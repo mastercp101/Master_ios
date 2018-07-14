@@ -6,26 +6,50 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--帳戶-->
+        <scene sceneID="gJD-vT-iCI">
+            <objects>
+                <viewController id="Laf-GE-2yF" customClass="AccountViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Am-5F-fLA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳戶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1e-ov-hRu">
+                                <rect key="frame" x="147" y="309" width="81" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ipE-DR-fA7"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="帳戶" id="XwM-sT-fte"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yjk-aM-gbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="2236"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Xul-vx-xJP">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fj5-qE-hzr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U03-IK-Y14">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="ap4-7N-vSh" kind="relationship" relationship="viewControllers" id="Z4D-rh-TEm"/>
                         <segue destination="KRs-Qe-i9s" kind="relationship" relationship="viewControllers" id="JNl-x2-E9U"/>
                         <segue destination="8lB-FP-G9B" kind="relationship" relationship="viewControllers" id="iXx-t3-Oy9"/>
                         <segue destination="aCb-mO-Jez" kind="relationship" relationship="viewControllers" id="bDA-ue-pX3"/>
-                        <segue destination="SXS-x5-qqr" kind="relationship" relationship="viewControllers" id="EGS-aY-jOw"/>
+                        <segue destination="Laf-GE-2yF" kind="relationship" relationship="viewControllers" id="EGS-aY-jOw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pwl-gJ-LaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -36,60 +60,41 @@
         <scene sceneID="Y7U-Gt-e53">
             <objects>
                 <viewControllerPlaceholder storyboardName="Master" id="ap4-7N-vSh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Master" landscapeImage="Master" selectedImage="Master" id="npb-GU-2HK">
-                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Item" id="npb-GU-2HK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euf-6A-cZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="-121"/>
+            <point key="canvasLocation" x="1660" y="-872"/>
         </scene>
         <!--Article-->
         <scene sceneID="SgI-ze-ccH">
             <objects>
                 <viewControllerPlaceholder storyboardName="Article" id="KRs-Qe-i9s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Article" selectedImage="Article" id="coe-n4-GIk"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="coe-n4-GIk"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKp-hm-Mmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="-43"/>
+            <point key="canvasLocation" x="1660" y="-121"/>
         </scene>
         <!--Message-->
         <scene sceneID="lep-pk-KSL">
             <objects>
                 <viewControllerPlaceholder storyboardName="Message" id="8lB-FP-G9B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Message" selectedImage="Message" id="cUx-J1-hO9"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="cUx-J1-hO9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eyA-9I-AHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="39"/>
+            <point key="canvasLocation" x="1660" y="618"/>
         </scene>
         <!--Notification-->
         <scene sceneID="RuP-Xi-ZnW">
             <objects>
                 <viewControllerPlaceholder storyboardName="Notification" id="aCb-mO-Jez" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notification" selectedImage="Notification" id="fzF-s9-kug"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="fzF-s9-kug"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BnS-oA-stA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="133"/>
-        </scene>
-        <!--Account-->
-        <scene sceneID="L9u-Mu-nD8">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Account" id="SXS-x5-qqr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" selectedImage="Account" id="vvU-fV-qfr"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uM0-xF-zDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="894" y="215"/>
+            <point key="canvasLocation" x="1660" y="1343"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Account" width="36" height="35"/>
-        <image name="Article" width="36" height="35"/>
-        <image name="Master" width="36" height="35"/>
-        <image name="Message" width="37" height="35"/>
-        <image name="Notification" width="36" height="35"/>
-    </resources>
 </document>

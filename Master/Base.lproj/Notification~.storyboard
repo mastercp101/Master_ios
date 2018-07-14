@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fj5-qE-hzr">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--通知-->
+        <scene sceneID="fh1-I5-DRp">
+            <objects>
+                <viewController id="ogC-eT-UMc" customClass="NotificationViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gGD-uh-fYb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3w-uj-3jp">
+                                <rect key="frame" x="147" y="309" width="81" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="N2K-dI-c9R"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="通知" id="gsv-8q-7y9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Le-UT-HO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660" y="1343"/>
+        </scene>
+        <!--帳戶-->
+        <scene sceneID="gJD-vT-iCI">
+            <objects>
+                <viewController id="Laf-GE-2yF" customClass="AccountViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Am-5F-fLA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳戶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1e-ov-hRu">
+                                <rect key="frame" x="147" y="309" width="81" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ipE-DR-fA7"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="帳戶" id="XwM-sT-fte"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yjk-aM-gbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="2236"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Xul-vx-xJP">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fj5-qE-hzr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U03-IK-Y14">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ap4-7N-vSh" kind="relationship" relationship="viewControllers" id="Z4D-rh-TEm"/>
+                        <segue destination="KRs-Qe-i9s" kind="relationship" relationship="viewControllers" id="JNl-x2-E9U"/>
+                        <segue destination="8lB-FP-G9B" kind="relationship" relationship="viewControllers" id="iXx-t3-Oy9"/>
+                        <segue destination="ogC-eT-UMc" kind="relationship" relationship="viewControllers" id="bDA-ue-pX3"/>
+                        <segue destination="Laf-GE-2yF" kind="relationship" relationship="viewControllers" id="EGS-aY-jOw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwl-gJ-LaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="133.5832083958021"/>
+        </scene>
+        <!--Master-->
+        <scene sceneID="Y7U-Gt-e53">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Master" id="ap4-7N-vSh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="npb-GU-2HK"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="euf-6A-cZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660" y="-872"/>
+        </scene>
+        <!--Article-->
+        <scene sceneID="SgI-ze-ccH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Article" id="KRs-Qe-i9s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="coe-n4-GIk"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKp-hm-Mmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660" y="-121"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="lep-pk-KSL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Message" id="8lB-FP-G9B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="cUx-J1-hO9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyA-9I-AHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660" y="618"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Laf-GE-2yF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Account View Controller-->
+        <scene sceneID="DBZ-0h-bZj">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g7f-9u-24j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="accountVC" id="b5M-wn-Xtg" customClass="AccountViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xCt-4y-VuK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳戶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1e-ov-hRu">
+                                <rect key="frame" x="147" y="309" width="81" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KtN-Wy-aoW"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3185" y="2236"/>
+        </scene>
+        <!--帳戶-->
+        <scene sceneID="gJD-vT-iCI">
+            <objects>
+                <viewController title="帳戶" id="Laf-GE-2yF" customClass="AccountSwitchViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Am-5F-fLA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F92-Sg-MbD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vG7-1L-azf">
+                                <rect key="frame" x="10" y="30" width="355" height="29"/>
+                                <segments>
+                                    <segment title="Account"/>
+                                    <segment title="Photo"/>
+                                    <segment title="Course"/>
+                                </segments>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="swichViewSegmentedTapped:" destination="Laf-GE-2yF" eventType="valueChanged" id="qsf-lV-JZp"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F92-Sg-MbD" firstAttribute="top" secondItem="1Am-5F-fLA" secondAttribute="top" id="GAI-fB-rou"/>
+                            <constraint firstItem="ipE-DR-fA7" firstAttribute="trailing" secondItem="vG7-1L-azf" secondAttribute="trailing" constant="10" id="Lfn-EZ-U9h"/>
+                            <constraint firstItem="F92-Sg-MbD" firstAttribute="bottom" secondItem="ipE-DR-fA7" secondAttribute="bottom" id="URj-HP-fvk"/>
+                            <constraint firstItem="F92-Sg-MbD" firstAttribute="trailing" secondItem="ipE-DR-fA7" secondAttribute="trailing" id="db8-zv-ZBk"/>
+                            <constraint firstItem="F92-Sg-MbD" firstAttribute="leading" secondItem="ipE-DR-fA7" secondAttribute="leading" id="dea-qu-FdC"/>
+                            <constraint firstItem="vG7-1L-azf" firstAttribute="leading" secondItem="ipE-DR-fA7" secondAttribute="leading" constant="10" id="lw0-jg-m8x"/>
+                            <constraint firstItem="vG7-1L-azf" firstAttribute="top" secondItem="ipE-DR-fA7" secondAttribute="top" constant="10" id="t06-zb-9aN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ipE-DR-fA7"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Account" image="Account" id="CCy-xw-pCc"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="switchView" destination="F92-Sg-MbD" id="7jO-1V-wNp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yjk-aM-gbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2439.1999999999998" y="2235.832083958021"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Account" width="24" height="23"/>
+    </resources>
+</document>

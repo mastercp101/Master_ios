@@ -11,6 +11,8 @@
 		27FB31DB20F9A418009AD98B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB31DA20F9A418009AD98B /* AccountViewController.swift */; };
 		27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DC20F9BF76009AD98B /* Photo.storyboard */; };
 		27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DE20F9BF86009AD98B /* Course.storyboard */; };
+		27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB31E420F9D4C5009AD98B /* CourseItemView.swift */; };
+		27FB31E720F9EFBE009AD98B /* CourseItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31E620F9EFBE009AD98B /* CourseItemView.xib */; };
 		27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FB920F2F7A2001A063E /* AppDelegate.swift */; };
 		27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */; };
 		27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FBD20F2F7A2001A063E /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 		27FB31DA20F9A418009AD98B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		27FB31DC20F9BF76009AD98B /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		27FB31DE20F9BF86009AD98B /* Course.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Course.storyboard; sourceTree = "<group>"; };
+		27FB31E420F9D4C5009AD98B /* CourseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemView.swift; sourceTree = "<group>"; };
+		27FB31E620F9EFBE009AD98B /* CourseItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseItemView.xib; sourceTree = "<group>"; };
 		27FC3FB620F2F7A2001A063E /* Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Master.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC3FB920F2F7A2001A063E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -84,8 +88,10 @@
 		27FB31E120F9BFFD009AD98B /* Course */ = {
 			isa = PBXGroup;
 			children = (
-				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
 				27FB31DE20F9BF86009AD98B /* Course.storyboard */,
+				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
+				27FB31E620F9EFBE009AD98B /* CourseItemView.xib */,
+				27FB31E420F9D4C5009AD98B /* CourseItemView.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 				27FC3FB220F2F7A2001A063E /* Sources */,
 				27FC3FB320F2F7A2001A063E /* Frameworks */,
 				27FC3FB420F2F7A2001A063E /* Resources */,
+				6BCAB92E3FAB069853E4C06F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -258,6 +265,7 @@
 				27FC3FC120F2F7A3001A063E /* Assets.xcassets in Resources */,
 				27FC3FE120F3093D001A063E /* Article.storyboard in Resources */,
 				27FC3FE320F3094C001A063E /* Message.storyboard in Resources */,
+				27FB31E720F9EFBE009AD98B /* CourseItemView.xib in Resources */,
 				27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */,
 				27FC3FE820F3096D001A063E /* Account.storyboard in Resources */,
 				27FC3FE620F3095D001A063E /* Notification.storyboard in Resources */,
@@ -285,6 +293,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6BCAB92E3FAB069853E4C06F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Master/Pods-Master-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Master/Pods-Master-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -294,6 +320,7 @@
 			files = (
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
+				27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
 				27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */,

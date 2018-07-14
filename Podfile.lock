@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 21fe89d68e89dbe9c88f2f422389d2a7db1f0e47
+PODS:
+  - iCarousel (1.8.3)
+
+DEPENDENCIES:
+  - iCarousel (~> 1.8.3)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - iCarousel
+
+SPEC CHECKSUMS:
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
+
+PODFILE CHECKSUM: ab698e6873582754c7e9c4ff284422b8f5901427
 
 COCOAPODS: 1.5.2

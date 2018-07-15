@@ -21,8 +21,21 @@ class CourseViewController: UIViewController {
     }
     
     private func downloadCourse(){
-        
+        //..
     }
+    
+    
+    @IBAction func unwindSegue(_ segue : UIStoryboardSegue){}
+    
+}
+
+// MARK: - SettingUI
+extension CourseViewController{
+    
+}
+
+// MARK: - iCarousel Setting
+extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     
     private func setICarousel(){
         iCarouselView.type = .rotary
@@ -31,9 +44,6 @@ class CourseViewController: UIViewController {
         iCarouselView.isVertical = true
     }
     
-    
-}
-extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     func numberOfItems(in carousel: iCarousel) -> Int {
         return dogName.count
     }
@@ -54,5 +64,15 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
         courseItemView.courseNameLabel.text = dog
         
         return courseItemView
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as? singleCourseViewController else{
+            assertionFailure("Invalid View Controller")
+            return
+        }
+        nextVC.dogName = dogName[index]
+        let navigation = UINavigationController(rootViewController: nextVC)
+        self.present(navigation, animated: true, completion: nil)
     }
 }

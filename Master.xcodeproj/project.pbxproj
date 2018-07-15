@@ -92,8 +92,12 @@
 		27FB31E120F9BFFD009AD98B /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				273C660120FB46B1007734C4 /* ClurseClass.swift */,
 				27FB31DE20F9BF86009AD98B /* Course.storyboard */,
 				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
+				273C65FD20FB1D7D007734C4 /* addCourseViewController.swift */,
+				273C660320FB74F0007734C4 /* singleCourseViewController.swift */,
+				273C660520FB7C78007734C4 /* singleCourseCell.swift */,
 				27FB31E620F9EFBE009AD98B /* CourseItemView.xib */,
 				27FB31E420F9D4C5009AD98B /* CourseItemView.swift */,
 			);

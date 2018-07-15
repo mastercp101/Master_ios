@@ -37,3 +37,17 @@ class CourseItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

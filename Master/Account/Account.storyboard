@@ -10,30 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Account View Controller-->
-        <scene sceneID="DBZ-0h-bZj">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g7f-9u-24j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="accountVC" id="b5M-wn-Xtg" customClass="AccountViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xCt-4y-VuK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳戶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1e-ov-hRu">
-                                <rect key="frame" x="147" y="309" width="81" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="KtN-Wy-aoW"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="3185" y="2236"/>
-        </scene>
         <!--帳戶-->
         <scene sceneID="gJD-vT-iCI">
             <objects>

@@ -14,18 +14,19 @@ class AccountSwitchViewController: UIViewController {
     
     
     @IBOutlet weak var switchView: UIView!
-    let accountVC = UIStoryboard(name: "Account", bundle: nil).instantiateViewController(withIdentifier: "accountVC")
+    let userVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userVC")
     let photoVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoVC")
     let courseVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "courseVC")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        switchView.addSubview(accountVC.view)
+        switchView.addSubview(userVC.view)
     }
+    
     @IBAction func swichViewSegmentedTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex{
         case 0:
-            switchView.addSubview(accountVC.view)
+            switchView.addSubview(userVC.view)
         case 1:
             switchView.addSubview(photoVC.view)
         case 2:

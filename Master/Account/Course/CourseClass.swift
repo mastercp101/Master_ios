@@ -1,5 +1,5 @@
 //
-//  ClurseClass.swift
+//  CourseClass.swift
 //  Master
 //
 //  Created by 黎峻亦 on 2018/7/15.

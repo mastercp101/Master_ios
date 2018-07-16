@@ -18,7 +18,8 @@ class courseMainCell : UITableViewCell{
 }
 
 class courseInfoCell : UITableViewCell{
-    @IBOutlet weak var courseDetailLabel: UILabel!
+    @IBOutlet weak var courseInfoTitle: UILabel!
+    @IBOutlet weak var courseInfoContent: UITextView!
 }
 
 extension UIButton{

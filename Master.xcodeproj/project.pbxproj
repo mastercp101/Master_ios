@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		270A00FA20F774E4008CEAEC /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A00F920F774E4008CEAEC /* Task.swift */; };
+		270D070920FC2FD00037F510 /* addCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070520FC2FD00037F510 /* addCourseViewController.swift */; };
+		270D070A20FC2FD00037F510 /* CourseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070620FC2FD00037F510 /* CourseClass.swift */; };
+		270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070720FC2FD00037F510 /* singleCourseCell.swift */; };
+		270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070820FC2FD00037F510 /* singleCourseViewController.swift */; };
+		270D073020FC91910037F510 /* UIImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D072F20FC91910037F510 /* UIImageCropper.swift */; };
+		270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */; };
+		270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */; };
+		270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073520FCBB4B0037F510 /* manageStudentViewController.swift */; };
 		27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DC20F9BF76009AD98B /* Photo.storyboard */; };
 		27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DE20F9BF86009AD98B /* Course.storyboard */; };
 		27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB31E420F9D4C5009AD98B /* CourseItemView.swift */; };
@@ -38,6 +46,14 @@
 /* Begin PBXFileReference section */
 		0BC07C19CA6F046D72AB51DD /* Pods-Master.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.release.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.release.xcconfig"; sourceTree = "<group>"; };
 		270A00F920F774E4008CEAEC /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		270D070520FC2FD00037F510 /* addCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCourseViewController.swift; sourceTree = "<group>"; };
+		270D070620FC2FD00037F510 /* CourseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseClass.swift; sourceTree = "<group>"; };
+		270D070720FC2FD00037F510 /* singleCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleCourseCell.swift; sourceTree = "<group>"; };
+		270D070820FC2FD00037F510 /* singleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleCourseViewController.swift; sourceTree = "<group>"; };
+		270D072F20FC91910037F510 /* UIImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCropper.swift; sourceTree = "<group>"; };
+		270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
+		270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentTableViewCell.swift; sourceTree = "<group>"; };
+		270D073520FCBB4B0037F510 /* manageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentViewController.swift; sourceTree = "<group>"; };
 		27FB31DC20F9BF76009AD98B /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		27FB31DE20F9BF86009AD98B /* Course.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Course.storyboard; sourceTree = "<group>"; };
 		27FB31E420F9D4C5009AD98B /* CourseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemView.swift; sourceTree = "<group>"; };
@@ -92,14 +108,16 @@
 		27FB31E120F9BFFD009AD98B /* Course */ = {
 			isa = PBXGroup;
 			children = (
-				273C660120FB46B1007734C4 /* ClurseClass.swift */,
 				27FB31DE20F9BF86009AD98B /* Course.storyboard */,
 				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
-				273C65FD20FB1D7D007734C4 /* addCourseViewController.swift */,
-				273C660320FB74F0007734C4 /* singleCourseViewController.swift */,
-				273C660520FB7C78007734C4 /* singleCourseCell.swift */,
+				270D070520FC2FD00037F510 /* addCourseViewController.swift */,
+				270D070820FC2FD00037F510 /* singleCourseViewController.swift */,
+				270D070720FC2FD00037F510 /* singleCourseCell.swift */,
+				270D073520FCBB4B0037F510 /* manageStudentViewController.swift */,
+				270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */,
 				27FB31E620F9EFBE009AD98B /* CourseItemView.xib */,
 				27FB31E420F9D4C5009AD98B /* CourseItemView.swift */,
+				270D070620FC2FD00037F510 /* CourseClass.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -129,6 +147,8 @@
 				27FC3FB920F2F7A2001A063E /* AppDelegate.swift */,
 				27FC3FBD20F2F7A2001A063E /* Main.storyboard */,
 				27FC3FDA20F2FF7F001A063E /* Common.swift */,
+				270D072F20FC91910037F510 /* UIImageCropper.swift */,
+				270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */,
 				270A00F920F774E4008CEAEC /* Task.swift */,
 				27FC3FD320F2FC93001A063E /* Master */,
 				27FC3FD520F2FCDE001A063E /* Article */,
@@ -183,8 +203,8 @@
 				27FC3FE720F3096D001A063E /* Account.storyboard */,
 				27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */,
 				F124C39A20FB229A0077906B /* User */,
-				27FB31E120F9BFFD009AD98B /* Course */,
 				27FB31E020F9BFF5009AD98B /* Photo */,
+				27FB31E120F9BFFD009AD98B /* Course */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -337,17 +357,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
+				270D070A20FC2FD00037F510 /* CourseClass.swift in Sources */,
 				F124C3A220FB3BAA0077906B /* UserTableViewCell.swift in Sources */,
+				270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */,
 				27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */,
 				F124C3A020FB38850077906B /* UserTableViewController.swift in Sources */,
+				270D070920FC2FD00037F510 /* addCourseViewController.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
 				27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */,
 				27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */,
 				27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */,
+				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
+				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
+				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,
+				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,
 				27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */,
 			);
@@ -520,7 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -542,7 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

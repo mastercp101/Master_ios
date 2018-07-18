@@ -18,7 +18,7 @@ class singleCourseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        singleCourseTableView.cellAutoSetRowHeight()
+        singleCourseTableView.setCellAutoRowHeight()
     }
     
     @IBAction func manageBtnTapped(_ sender: Any) {

@@ -13,7 +13,7 @@ class manageStudentViewController: UIViewController {
     @IBOutlet weak var manageStudentTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        manageStudentTableView.cellAutoSetRowHeight()
+        manageStudentTableView.setCellAutoRowHeight()
     }
     
     @IBAction func backBtnTapped(_ sender: Any) {

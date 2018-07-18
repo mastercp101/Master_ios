@@ -63,16 +63,23 @@ class Common{
 extension UIImageView{
     func setRoundImage(){
         self.layer.cornerRadius = self.bounds.height / 2
+        self.clipsToBounds = true
     }
 }
 
 extension UITableView{
-    func cellAutoSetRowHeight(){
-        self.estimatedRowHeight = 150
+    func setCellAutoRowHeight(){
+        self.estimatedRowHeight = 100
         self.rowHeight = UITableViewAutomaticDimension
     }
 }
 
+extension UILabel{
+    func setLableMultipleLine(){
+        self.lineBreakMode = .byWordWrapping
+        self.numberOfLines = 0
+    }
+}
 
 
 

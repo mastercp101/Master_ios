@@ -16,6 +16,8 @@
 		270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */; };
 		270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */; };
 		270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073520FCBB4B0037F510 /* manageStudentViewController.swift */; };
+		270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073720FD8A7D0037F510 /* MessageCell.swift */; };
+		270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073920FDA2000037F510 /* ChatRoomViewController.swift */; };
 		27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DC20F9BF76009AD98B /* Photo.storyboard */; };
 		27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DE20F9BF86009AD98B /* Course.storyboard */; };
 		27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB31E420F9D4C5009AD98B /* CourseItemView.swift */; };
@@ -54,6 +56,8 @@
 		270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentTableViewCell.swift; sourceTree = "<group>"; };
 		270D073520FCBB4B0037F510 /* manageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentViewController.swift; sourceTree = "<group>"; };
+		270D073720FD8A7D0037F510 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		270D073920FDA2000037F510 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		27FB31DC20F9BF76009AD98B /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		27FB31DE20F9BF86009AD98B /* Course.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Course.storyboard; sourceTree = "<group>"; };
 		27FB31E420F9D4C5009AD98B /* CourseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemView.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 			children = (
 				27FC3FE220F3094C001A063E /* Message.storyboard */,
 				27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */,
+				270D073920FDA2000037F510 /* ChatRoomViewController.swift */,
+				270D073720FD8A7D0037F510 /* MessageCell.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -372,8 +378,10 @@
 				27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */,
 				27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */,
 				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
+				270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */,
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
+				270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */,
 				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,
 				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,

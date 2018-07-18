@@ -57,3 +57,8 @@ class UserProfessionCell: UITableViewCell {
     @IBOutlet weak var userProfessionLabel: UILabel!
 }
 
+class UserSginOutCell: UITableViewCell {
+    
+    
+}
+

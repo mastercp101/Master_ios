@@ -40,9 +40,13 @@
 		27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FEF20F33BFD001A063E /* CourseViewController.swift */; };
 		27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */; };
 		B478B5D0DC46E8110CCDCDC6 /* Pods_Master.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */; };
-		F124C39C20FB22DC0077906B /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F124C39B20FB22DC0077906B /* User.storyboard */; };
-		F124C3A020FB38850077906B /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124C39F20FB38850077906B /* UserTableViewController.swift */; };
-		F124C3A220FB3BAA0077906B /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124C3A120FB3BAA0077906B /* UserTableViewCell.swift */; };
+		F1F714D320FF557F009DB9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714CF20FF557E009DB9EF /* User.swift */; };
+		F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */; };
+		F1F714D520FF557F009DB9EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F714D120FF557E009DB9EF /* User.storyboard */; };
+		F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D220FF557E009DB9EF /* UserTableViewController.swift */; };
+		F1F714DA20FF5593009DB9EF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F714D820FF5593009DB9EF /* Login.storyboard */; };
+		F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D920FF5593009DB9EF /* LoginViewController.swift */; };
+		F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,9 +87,13 @@
 		27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewController.swift; sourceTree = "<group>"; };
 		844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Master.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA472E47F99065BBF641F4FC /* Pods-Master.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.debug.xcconfig"; sourceTree = "<group>"; };
-		F124C39B20FB22DC0077906B /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
-		F124C39F20FB38850077906B /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
-		F124C3A120FB3BAA0077906B /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F1F714CF20FF557E009DB9EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F1F714D120FF557E009DB9EF /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		F1F714D220FF557E009DB9EF /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		F1F714D820FF5593009DB9EF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		F1F714D920FF5593009DB9EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SginUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +216,7 @@
 			children = (
 				27FC3FE720F3096D001A063E /* Account.storyboard */,
 				27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */,
+				F1F714D720FF5593009DB9EF /* Login */,
 				F124C39A20FB229A0077906B /* User */,
 				27FB31E020F9BFF5009AD98B /* Photo */,
 				27FB31E120F9BFFD009AD98B /* Course */,
@@ -235,11 +244,22 @@
 		F124C39A20FB229A0077906B /* User */ = {
 			isa = PBXGroup;
 			children = (
-				F124C39B20FB22DC0077906B /* User.storyboard */,
-				F124C39F20FB38850077906B /* UserTableViewController.swift */,
-				F124C3A120FB3BAA0077906B /* UserTableViewCell.swift */,
+				F1F714D120FF557E009DB9EF /* User.storyboard */,
+				F1F714D220FF557E009DB9EF /* UserTableViewController.swift */,
+				F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */,
+				F1F714CF20FF557E009DB9EF /* User.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		F1F714D720FF5593009DB9EF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F1F714D820FF5593009DB9EF /* Login.storyboard */,
+				F1F714D920FF5593009DB9EF /* LoginViewController.swift */,
+				F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,13 +327,14 @@
 				27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */,
 				27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */,
 				27FC3FC120F2F7A3001A063E /* Assets.xcassets in Resources */,
-				F124C39C20FB22DC0077906B /* User.storyboard in Resources */,
+				F1F714D520FF557F009DB9EF /* User.storyboard in Resources */,
 				27FC3FE120F3093D001A063E /* Article.storyboard in Resources */,
 				27FC3FE320F3094C001A063E /* Message.storyboard in Resources */,
 				27FB31E720F9EFBE009AD98B /* CourseItemView.xib in Resources */,
 				27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */,
 				27FC3FE820F3096D001A063E /* Account.storyboard in Resources */,
 				27FC3FE620F3095D001A063E /* Notification.storyboard in Resources */,
+				F1F714DA20FF5593009DB9EF /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,18 +385,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
+				F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */,
+				F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
 				270D070A20FC2FD00037F510 /* CourseClass.swift in Sources */,
-				F124C3A220FB3BAA0077906B /* UserTableViewCell.swift in Sources */,
 				270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */,
 				27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */,
-				F124C3A020FB38850077906B /* UserTableViewController.swift in Sources */,
 				270D070920FC2FD00037F510 /* addCourseViewController.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
 				27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */,
+				F1F714D320FF557F009DB9EF /* User.swift in Sources */,
 				27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */,
+				F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */,
 				27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */,
 				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
 				270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */,
@@ -385,6 +408,7 @@
 				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,
 				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,
+				F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */,
 				27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

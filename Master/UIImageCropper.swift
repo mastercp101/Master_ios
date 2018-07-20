@@ -20,7 +20,7 @@ import UIKit
     @objc optional func didCancel()
 }
 
-public class UIImageCropper: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public class UIImageCropper: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     /// Aspect ratio of the cropped image
     public var cropRatio: CGFloat = 1
@@ -33,6 +33,8 @@ public class UIImageCropper: UIViewController, UIImagePickerControllerDelegate, 
             picker?.allowsEditing = false
         }
     }
+    
+    
     
     /// Crop button text
     public var cropButtonText: String = "Crop"

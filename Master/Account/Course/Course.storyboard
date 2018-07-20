@@ -37,7 +37,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="add"/>
                                 <connections>
-                                    <segue destination="uNT-2Y-IBl" kind="show" id="BgQ-4M-PgA"/>
+                                    <action selector="addBtnTapped:" destination="ykG-pR-0Uw" eventType="touchUpInside" id="WM1-Le-qPp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,29 +63,29 @@
         <!--新增課程-->
         <scene sceneID="hb1-2N-WxF">
             <objects>
-                <viewController id="SdZ-FC-aFw" customClass="addCourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addCourseVC" id="SdZ-FC-aFw" customClass="addCourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H1r-eR-IBh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydl-PV-6L8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1157"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1236"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHO-rY-6ZK">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1270"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="courseAddImage" translatesAutoresizingMaskIntoConstraints="NO" id="JZr-8Q-P3D">
-                                                <rect key="frame" x="0.0" y="20" width="375" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="Iya-TN-xg1"/>
+                                                    <constraint firstAttribute="height" priority="900" constant="190" id="Iya-TN-xg1"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="Nn7-bA-KZk" appends="YES" id="3az-Ci-Qvj"/>
                                                 </connections>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2ws-hX-a3p">
-                                                <rect key="frame" x="20" y="185" width="335" height="976"/>
+                                                <rect key="frame" x="20" y="205" width="335" height="976"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Z-ZT-ep6">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="55.5"/>
@@ -110,7 +110,7 @@
                                                             <constraint firstItem="WTl-2n-gOh" firstAttribute="leading" secondItem="Y7Z-ZT-ep6" secondAttribute="leading" id="mQu-Mj-PYq"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fqr-XX-731">
+                                                    <stackView opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fqr-XX-731">
                                                         <rect key="frame" x="0.0" y="80.5" width="335" height="55.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9e-kg-lOE">
@@ -385,7 +385,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsO-0N-x1T">
-                                                <rect key="frame" x="20" y="1191" width="335" height="40"/>
+                                                <rect key="frame" x="20" y="1211" width="335" height="40"/>
                                                 <color key="backgroundColor" red="0.26869250388906701" green="0.34814985123577108" blue="0.69509769060890081" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ei2-oa-RaU"/>
@@ -398,6 +398,9 @@
                                                         <integer key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="sendBtnTapped:" destination="SdZ-FC-aFw" eventType="touchUpInside" id="28p-ty-RhY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -406,10 +409,10 @@
                                             <constraint firstItem="VsO-0N-x1T" firstAttribute="top" secondItem="2ws-hX-a3p" secondAttribute="bottom" constant="30" id="8CY-ag-HM8"/>
                                             <constraint firstAttribute="trailing" secondItem="VsO-0N-x1T" secondAttribute="trailing" constant="20" id="9Vd-tR-Bk4"/>
                                             <constraint firstItem="2ws-hX-a3p" firstAttribute="leading" secondItem="JHO-rY-6ZK" secondAttribute="leading" constant="20" id="9jv-bR-LWH"/>
-                                            <constraint firstItem="JZr-8Q-P3D" firstAttribute="top" secondItem="JHO-rY-6ZK" secondAttribute="top" constant="20" id="JnD-gD-9WQ"/>
-                                            <constraint firstAttribute="height" constant="1270" id="UQl-93-wyP"/>
+                                            <constraint firstAttribute="height" constant="1300" id="UQl-93-wyP"/>
                                             <constraint firstItem="VsO-0N-x1T" firstAttribute="leading" secondItem="JHO-rY-6ZK" secondAttribute="leading" constant="20" id="X06-N7-jTw"/>
                                             <constraint firstItem="JZr-8Q-P3D" firstAttribute="leading" secondItem="JHO-rY-6ZK" secondAttribute="leading" id="c5N-40-qpL"/>
+                                            <constraint firstItem="JZr-8Q-P3D" firstAttribute="top" secondItem="JHO-rY-6ZK" secondAttribute="top" id="raV-5P-nqw"/>
                                             <constraint firstAttribute="trailing" secondItem="JZr-8Q-P3D" secondAttribute="trailing" id="ttU-NC-9vW"/>
                                             <constraint firstItem="2ws-hX-a3p" firstAttribute="top" secondItem="JZr-8Q-P3D" secondAttribute="bottom" constant="15" id="u72-lB-NPU"/>
                                         </constraints>
@@ -428,33 +431,41 @@
                         <constraints>
                             <constraint firstItem="Ydl-PV-6L8" firstAttribute="bottom" secondItem="AjB-cR-ibU" secondAttribute="bottom" id="7Mm-Yl-l1e"/>
                             <constraint firstItem="Ydl-PV-6L8" firstAttribute="leading" secondItem="AjB-cR-ibU" secondAttribute="leading" id="JjH-qi-cjU"/>
-                            <constraint firstItem="Ydl-PV-6L8" firstAttribute="bottom" secondItem="AjB-cR-ibU" secondAttribute="bottom" id="OQr-l9-RZa"/>
-                            <constraint firstItem="Ydl-PV-6L8" firstAttribute="top" secondItem="AjB-cR-ibU" secondAttribute="top" id="SI1-Wd-ojb"/>
                             <constraint firstItem="Ydl-PV-6L8" firstAttribute="trailing" secondItem="AjB-cR-ibU" secondAttribute="trailing" id="SMS-HU-VeR"/>
-                            <constraint firstItem="Ydl-PV-6L8" firstAttribute="trailing" secondItem="AjB-cR-ibU" secondAttribute="trailing" id="cXz-n7-kSa"/>
                             <constraint firstItem="Ydl-PV-6L8" firstAttribute="top" secondItem="AjB-cR-ibU" secondAttribute="top" id="li1-a5-sjx"/>
-                            <constraint firstItem="Ydl-PV-6L8" firstAttribute="leading" secondItem="AjB-cR-ibU" secondAttribute="leading" id="sS6-zM-1X3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AjB-cR-ibU"/>
                     </view>
                     <navigationItem key="navigationItem" title="新增課程" id="7hI-sv-Bpj">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="fV6-A4-Ccx">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="OxG-LL-enF">
                             <connections>
-                                <action selector="BackBtnTapped:" destination="SdZ-FC-aFw" id="bUj-xQ-Dp3"/>
+                                <segue destination="uek-W9-m9c" kind="unwind" unwindAction="unwindToCourse:" id="0tD-3p-cWY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="1270"/>
+                    <size key="freeformSize" width="375" height="1300"/>
                     <connections>
                         <outlet property="addImageView" destination="JZr-8Q-P3D" id="lcR-G0-80K"/>
-                        <outlet property="detailTextViewOulet" destination="u6X-wA-DfU" id="hok-rF-s0M"/>
-                        <outlet property="noteTextViewOulet" destination="ZRf-in-Zlr" id="SlQ-uq-I9B"/>
+                        <outlet property="containView" destination="JHO-rY-6ZK" id="pcc-vS-gU0"/>
+                        <outlet property="detailTextView" destination="u6X-wA-DfU" id="hok-rF-s0M"/>
+                        <outlet property="noteTextView" destination="ZRf-in-Zlr" id="SlQ-uq-I9B"/>
+                        <outlet property="scrollView" destination="Ydl-PV-6L8" id="tJx-gv-Zha"/>
+                        <outletCollection property="courseTextField" destination="WTl-2n-gOh" collectionClass="NSMutableArray" id="prh-em-P28"/>
+                        <outletCollection property="courseTextField" destination="4WP-QL-mz9" collectionClass="NSMutableArray" id="4fG-4k-78t"/>
+                        <outletCollection property="courseTextField" destination="yp7-o0-2iS" collectionClass="NSMutableArray" id="4nX-yx-Fuu"/>
+                        <outletCollection property="courseTextField" destination="n86-rz-qCX" collectionClass="NSMutableArray" id="D3c-sz-gx2"/>
+                        <outletCollection property="courseTextField" destination="FLe-mT-wDW" collectionClass="NSMutableArray" id="gNc-p0-3hM"/>
+                        <outletCollection property="courseTextField" destination="zxm-vi-VWT" collectionClass="NSMutableArray" id="qPL-D7-b2S"/>
+                        <outletCollection property="courseTextField" destination="6KX-zp-LmD" collectionClass="NSMutableArray" id="HaD-k4-GLH"/>
+                        <outletCollection property="courseTextField" destination="Ycu-xc-ExU" collectionClass="NSMutableArray" id="WH5-uf-VaI"/>
+                        <outletCollection property="courseTextField" destination="K9s-pb-UZ9" collectionClass="NSMutableArray" id="W4s-Mi-JY6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5Y-2t-pJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uek-W9-m9c" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="Nn7-bA-KZk">
                     <connections>
                         <action selector="addImageTapped:" destination="SdZ-FC-aFw" id="e58-nr-XFg"/>
@@ -633,7 +644,7 @@
                     <navigationItem key="navigationItem" title="Course" id="WgY-Yo-ihu">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="bQa-Ub-4E0">
                             <connections>
-                                <segue destination="5vl-Di-Whm" kind="unwind" unwindAction="unwindSegue:" id="L9z-xo-enH"/>
+                                <segue destination="5vl-Di-Whm" kind="unwind" unwindAction="unwindToCourse:" id="pTp-gn-HSG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="manage" id="e9B-dz-Fcm">

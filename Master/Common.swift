@@ -1,5 +1,5 @@
 //
-//  Common.swift
+//  Alert.swift
 //  Master
 //
 //  Created by 黎峻亦 on 2018/7/9.
@@ -16,10 +16,43 @@ let urlString = "http://127.0.0.1:8080/Master/"
 let urlUserInfo = "UserInfo"
 
 // Singleton
+
 class Common{
     static let shared = Common()
     private init(){}
+    
+    // Manage Keyboard
+    func addObserves(scrollView : UIScrollView){
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil) { (notification) in
+            guard let usernfo = notification.userInfo,
+                let frame = (usernfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
+                    return
+            }
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: frame.height + 20, right: 0)
+        }
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil) { (notification) in
+            scrollView.contentInset = UIEdgeInsets.zero
+        }
+    }
+    
+    func removeObservers(viewController : UIViewController){
+        NotificationCenter.default.removeObserver(viewController)
+    }
+
+}
+
+class Alert{
+    static let shared = Alert()
+    private init(){}
     typealias alertHandler = (UIAlertAction) -> ()
+    
+    
+    func buildSingleAlert(viewConteoller : UIViewController,alertTitle : String?,handler : @escaping alertHandler){
+        let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: handler)
+        alertController.addAction(OKAction)
+        viewConteoller.present(alertController, animated: true, completion: nil)
+    }
     
     // Double Action Alert
     func buildDoubleAlert(viewController : UIViewController,alertTitle : String?,alertMessage : String?,actionTitles : [String],firstHandler : @escaping alertHandler,secondHandler : @escaping alertHandler){

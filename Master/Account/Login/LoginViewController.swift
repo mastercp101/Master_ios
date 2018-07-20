@@ -49,10 +49,6 @@ class LoginViewController: UIViewController {
         resetType()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @objc func moveViewUp(_ aNotification: Notification) {
         

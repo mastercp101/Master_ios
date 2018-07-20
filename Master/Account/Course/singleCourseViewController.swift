@@ -22,7 +22,7 @@ class singleCourseViewController: UIViewController {
     }
     
     @IBAction func manageBtnTapped(_ sender: Any) {
-        Common.shared.buildTripleAlert(viewController: self,
+        Alert.shared.buildTripleAlert(viewController: self,
                                        alertTitla: nil,
                                        actionTitles: ["管理學生","管理課程","刪除課程"],
                                        firstAction: { (firstAction) in
@@ -39,7 +39,7 @@ class singleCourseViewController: UIViewController {
             
         }) { (thirdAction) in
             // Delete Course Alert
-            Common.shared.buildDoubleAlert(viewController: self,alertTitle: "確定要刪除這個課程？",alertMessage: nil,actionTitles: ["確定","取消"],firstHandler: { (firstAction) in
+            Alert.shared.buildDoubleAlert(viewController: self,alertTitle: "確定要刪除這個課程？",alertMessage: nil,actionTitles: ["確定","取消"],firstHandler: { (firstAction) in
                 // Delete Course
             }, secondHandler: { _ in
                 return

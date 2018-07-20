@@ -55,7 +55,7 @@ class SginUpViewController: UIViewController {
         }
         let access = sginupAccessSegmented.selectedSegmentIndex + 1 // 教練 = 1, 學員 ＝ 2
         
-        Common.shared.buildDoubleAlert(viewController: self, alertTitle: nil, alertMessage: "確定送出?", actionTitles: ["Cancel","OK"], firstHandler: { (action) in
+        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: nil, alertMessage: "確定送出?", actionTitles: ["Cancel","OK"], firstHandler: { (action) in
             // 按下取消
         }) { (action) in
             self.sginupNow(account: account, password: password, name: name, access: access)

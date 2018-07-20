@@ -15,6 +15,9 @@ import UIKit
 let urlString = "http://127.0.0.1:8080/Master/"
 let urlUserInfo = "UserInfo"
 
+/// 使用者帳號, 拿到 nil 即沒登入
+var userAccount: String?
+
 // Singleton
 
 class Common{
@@ -92,13 +95,6 @@ class Alert{
         viewController.present(alertController, animated: true, completion: nil)
     }
     
-    func getUserAccount() -> String? {
-        let userDefault = UserDefaults.standard
-        guard let result = userDefault.string(forKey: USER_ACCOUNT_KEY), !result.isEmpty else {
-            return nil
-        }
-        return result
-    }
 }
 
 extension UIImageView{

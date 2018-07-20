@@ -31,6 +31,9 @@ class addCourseViewController: UIViewController{
     var courseRegisterDeadline : Date?
     var courseNote : String?
     
+    var whichIsEditing : dateIsEditing?
+    let datePickerView = UIDatePicker()
+    
     
     let picker = UIImagePickerController()
     let cropper = UIImageCropper(cropRatio: 16/9)
@@ -48,6 +51,13 @@ class addCourseViewController: UIViewController{
         containView.addGestureRecognizer(viewGesture)
         
         cropper.delegate = self
+        setDatePicker()
+    }
+    
+    private func setDatePicker(){
+        datePickerView.datePickerMode = .date
+        courseTextField[2].inputView = datePickerView
+        courseTextField[8].inputView = datePickerView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +67,30 @@ class addCourseViewController: UIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         Common.shared.removeObservers(viewController: self)
+    }
+    
+    
+    @IBAction func courseDateEditing(_ sender: UITextField) {
+        whichIsEditing = dateIsEditing.courseDate
+        datePickerView.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+    }
+    
+    @IBAction func courseRegistedEditing(_ sender: UITextField) {
+        whichIsEditing = dateIsEditing.courseDeadline
+        datePickerView.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+    }
+    
+    
+    @objc
+    private func datePickerValueChanged(sender : UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if whichIsEditing == dateIsEditing.courseDate{
+            courseTextField[2].text = dateFormatter.string(from: sender.date)
+        }else{
+            courseTextField[8].text = dateFormatter.string(from: sender.date)
+        }
     }
     
     @objc
@@ -85,20 +119,20 @@ class addCourseViewController: UIViewController{
     }
     
     private func handleTextFieldValue(){
-//        var courseName : String?
-//        var courseCategory : Int?
-//        var courseDetail : String?
-//        var courseDate : Date?
-//        var coursePrice : Int?
-//        var courseLocation : String?
-//        var courseNeed : String?
-//        var courseNumberOfPeople : Int?
-//        var courseQualification : String?
-//        var courseRegisterDeadline : Date?
-//        var courseNote : String?
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
         courseName = courseTextField[0].text!
         courseCategory  = Int(courseTextField[1].text!)
-        courseDetail = courseTextField[2].text!
+        courseDetail = detailTextView.text!
+        courseDate = dateFormatter.date(from: courseTextField[2].text!)!
+        coursePrice = Int(courseTextField[3].text!)
+        courseLocation = courseTextField[4].text!
+        courseNeed = courseTextField[5].text!
+        courseNumberOfPeople = Int(courseTextField[6].text!)
+        courseQualification = courseTextField[7].text!
+        courseRegisterDeadline = dateFormatter.date(from: courseTextField[8].text!)!
+        courseNote = noteTextView.text!
     }
     
     private func checkIsTextViewEmpty() -> Bool{
@@ -117,9 +151,7 @@ class addCourseViewController: UIViewController{
             guard textField.text == "" else{
                 return true
             }
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "\(textFieldTitle(textField: textField))不能為空白") { (_) in
-                return
-            }
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "\(textFieldTitle(textField: textField))不能為空白") { (_) in}
             return false
         }
         return true
@@ -149,8 +181,11 @@ class addCourseViewController: UIViewController{
             return ""
         }
     }
-    
-    
+}
+
+enum dateIsEditing{
+    case courseDate
+    case courseDeadline
 }
 
 extension addCourseViewController : UIImageCropperProtocol{

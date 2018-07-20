@@ -8,33 +8,36 @@
 
 import UIKit
 
+private let DEFAULT_USER_PORTRAIT = "user_default_por"
+private let DEFAULT_USER_BACKGROUND = "user_default_bkgd"
+
+private let imageCell = "UserImageCell"
+private let nameCell = "UserNameCell"
+private let infoCell = "UserInfoCell"
+private let profileCell = "UserProfileCell"
+private let professionCell = "UserProfessionCell"
+private let sginOutCell = "UserSginOutCell"
+
 
 class UserTableViewController: UITableViewController {
 
-   
-    private let imageCell = "UserImageCell"
-    private let nameCell = "UserNameCell"
-    private let infoCell = "UserInfoCell"
-    private let profileCell = "UserProfileCell"
-    private let professionCell = "UserProfessionCell"
-    private let sginOutCell = "UserSginOutCell"
-    
+    // 假資料
+    private var userInfo = [["圖片"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["登出"]]
+//    private var userInfo = [[String]]() // 正牌
     private let infoTitle = ["身份","性別","地址","電話"]
-//    private var userInfo = [[String]]()
-    
     private var userPortrait: Data?
     private var userBackground: Data?
 
     private let userAccount = "Cindy"
     private var userAccess = false
     
-    private var userInfo = [["圖片"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["登出"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         self.tableView.delaysContentTouches = false
-//        getUserInfo()
+//        getUserInfo() // 串接DB ...
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -69,13 +72,13 @@ class UserTableViewController: UITableViewController {
             if let userPortrait = self.userPortrait {
                 cell.userPortraitImageView.image = UIImage(data: userPortrait)
             } else {
-                cell.userPortraitImageView.image = UIImage(named:"user_default_por")
+                cell.userPortraitImageView.image = UIImage(named: DEFAULT_USER_PORTRAIT)
             }
             
             if let userBackground = self.userBackground {
                 cell.userBackgroundImageView.image = UIImage(data: userBackground)
             } else {
-                cell.userBackgroundImageView.image = UIImage(named:"user_default_bkgd")
+                cell.userBackgroundImageView.image = UIImage(named: DEFAULT_USER_BACKGROUND)
             }
             return cell
             
@@ -115,8 +118,8 @@ class UserTableViewController: UITableViewController {
             return cell
             
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NopeCell", for: indexPath)
-            return cell
+            
+            return UITableViewCell()
         }
     }
  
@@ -302,25 +305,28 @@ class UserTableViewController: UITableViewController {
     
     
     @IBAction func sginoutButton(_ sender: UIButton) {
-        
-        // PODO: - 清除登入資料 ...
-        
+        let userDefault = UserDefaults.standard
+        userDefault.removeObject(forKey: USER_ACCOUNT_KEY)
         presentLoginView()
-        print("登出")
-        
     }
     
+    
+    
+    
+    
+    
+    // PODO: - 通用方法 ...
     
     func presentLoginView() {
         
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginView = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+        let loginView = storyboard.instantiateViewController(withIdentifier: "loginVC")
         present(loginView, animated:true, completion:nil)
         
     }
 
     
-    @IBAction func unwindLogin(_ segue : UIStoryboardSegue) {
+    @IBAction func unwindLogin_子桓的登入返回(_ segue : UIStoryboardSegue) {
         // nope ...
     }
     

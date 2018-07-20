@@ -6,6 +6,8 @@
 //  Copyright © 2018年 黎峻亦. All rights reserved.
 //
 
+let USER_ACCOUNT_KEY = "userAccount"
+
 struct User:Codable {
     
     var userName: String?

@@ -58,6 +58,14 @@ class Common{
         alertController.addAction(cancelAction)
         viewController.present(alertController, animated: true, completion: nil)
     }
+    
+    func getUserAccount() -> String? {
+        let userDefault = UserDefaults.standard
+        guard let result = userDefault.string(forKey: USER_ACCOUNT_KEY), !result.isEmpty else {
+            return nil
+        }
+        return result
+    }
 }
 
 extension UIImageView{
@@ -80,7 +88,6 @@ extension UILabel{
         self.numberOfLines = 0
     }
 }
-
 
 extension UIButton {
     func shake() {

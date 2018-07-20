@@ -24,15 +24,20 @@ class CourseViewController: UIViewController {
         //..
     }
     
+    @IBAction func addBtnTapped(_ sender: Any) {
+        guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "addCourseVC") as? addCourseViewController else{
+            return
+        }
+        let navigation = UINavigationController(rootViewController: nextVC)
+        DispatchQueue.main.async {
+            self.present(navigation, animated: true, completion: nil)
+        }
+    }
     
-    @IBAction func unwindSegue(_ segue : UIStoryboardSegue){}
+    @IBAction func unwindToCourse(_ segue : UIStoryboardSegue){}
     
 }
 
-// MARK: - SettingUI
-extension CourseViewController{
-    
-}
 
 // MARK: - iCarousel Setting
 extension CourseViewController : iCarouselDelegate,iCarouselDataSource{

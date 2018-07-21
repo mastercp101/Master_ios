@@ -26,7 +26,6 @@ class SginUpViewController: UIViewController {
         sginupPasswordTextField.delegate = self
         sginupNameTextField.delegate = self
         navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,10 +96,8 @@ class SginUpViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Know", style: .default))
                 self.present(alert, animated: true)
             } else { // 註冊成功
-                self.dismiss(animated: true) {
-                    let userDefault = UserDefaults.standard
-                    userDefault.set(self.sginupAccountTextField.text, forKey: USER_ACCOUNT_KEY)
-                }
+                UserAccount.shared.setUserAccount(account: account)
+                self.dismiss(animated: true)
             }
         }
     }

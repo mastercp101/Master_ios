@@ -41,7 +41,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z3U-WM-KJI">
                                         <rect key="frame" x="42" y="0.0" width="273" height="32"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Account ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Bu-Ya-cyB">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入帳號 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Bu-Ya-cyB">
                                                 <rect key="frame" x="0.0" y="0.0" width="273" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="a5C-4d-nKy"/>
@@ -73,7 +73,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5XO-ah-ZmQ">
                                         <rect key="frame" x="42" y="0.0" width="273" height="32"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-qq-L5z">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入密碼 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-qq-L5z">
                                                 <rect key="frame" x="0.0" y="0.0" width="273" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Eev-0T-hNi"/>
@@ -100,7 +100,7 @@
                                     <constraint firstAttribute="height" constant="40" id="mQh-mI-nke"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Log In">
+                                <state key="normal" title="登入">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -119,7 +119,7 @@
                                     <constraint firstAttribute="height" constant="40" id="lAb-9L-JAT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Sign Up">
+                                <state key="normal" title="註冊">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -132,7 +132,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5LN-Mo-W2f">
-                                <rect key="frame" x="15" y="94" width="34" height="30"/>
+                                <rect key="frame" x="15" y="74" width="34" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -183,7 +183,7 @@
                             <constraint firstItem="OhM-9J-zwg" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="30" id="Ss6-vD-lQG"/>
                             <constraint firstItem="5LN-Mo-W2f" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="15" id="T5z-Pn-dtJ"/>
                             <constraint firstItem="NoY-cf-vTb" firstAttribute="top" secondItem="B5O-eq-2jb" secondAttribute="bottom" priority="750" constant="60" id="bD9-D1-HHi"/>
-                            <constraint firstItem="5LN-Mo-W2f" firstAttribute="top" secondItem="7Ex-SO-eIn" secondAttribute="top" constant="30" id="bV4-aD-QrJ"/>
+                            <constraint firstItem="5LN-Mo-W2f" firstAttribute="top" secondItem="7Ex-SO-eIn" secondAttribute="top" constant="10" id="bV4-aD-QrJ"/>
                             <constraint firstItem="OhM-9J-zwg" firstAttribute="top" secondItem="Kbw-vs-T9H" secondAttribute="bottom" constant="30" id="c4V-Ux-Inc"/>
                             <constraint firstItem="7Ex-SO-eIn" firstAttribute="trailing" secondItem="NCo-6g-Apr" secondAttribute="trailing" constant="30" id="cRE-JR-X3L"/>
                             <constraint firstItem="NCo-6g-Apr" firstAttribute="centerY" secondItem="EeO-a6-QsG" secondAttribute="centerY" id="jsF-iE-5Ng"/>
@@ -269,14 +269,14 @@
                                     <action selector="checkAccountRepeat:" destination="5lR-2C-yww" eventType="editingDidEnd" id="Lg5-qL-JdC"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-0B-NbY">
-                                <rect key="frame" x="40" y="94" width="64" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-0B-NbY">
+                                <rect key="frame" x="40" y="94" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-YQ-wea">
-                                <rect key="frame" x="40" y="185" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-YQ-wea">
+                                <rect key="frame" x="40" y="185" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -287,8 +287,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-ge-HhL">
-                                <rect key="frame" x="40" y="276" width="45" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-ge-HhL">
+                                <rect key="frame" x="40" y="276" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -302,7 +302,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fkc-3T-Kjc">
                                 <rect key="frame" x="30" y="398" width="315" height="29"/>
                                 <segments>
-                                    <segment title="學生"/>
+                                    <segment title="學員"/>
                                     <segment title="教練"/>
                                 </segments>
                             </segmentedControl>
@@ -319,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="40" id="mFV-1J-4c0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Sgin Up Now">
+                                <state key="normal" title="註冊">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

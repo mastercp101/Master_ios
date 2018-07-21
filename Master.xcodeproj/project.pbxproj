@@ -252,8 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				F1F714D120FF557E009DB9EF /* User.storyboard */,
-				F1F714D220FF557E009DB9EF /* UserTableViewController.swift */,
 				F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */,
+				F1F714D220FF557E009DB9EF /* UserTableViewController.swift */,
 				F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */,
 				F1F714CF20FF557E009DB9EF /* User.swift */,
 			);
@@ -592,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -614,7 +614,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

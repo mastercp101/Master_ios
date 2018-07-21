@@ -12,15 +12,33 @@ import UIKit
 // Don't write any code in here
 class AccountSwitchViewController: UIViewController {
     
-    
     @IBOutlet weak var switchView: UIView!
+    @IBOutlet weak var switchViewSegmented: UISegmentedControl!
+    
     let userVC = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "userVC")
     let photoVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoVC")
     let courseVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "courseVC")
+    let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginRemindVC")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        #if DEBUG
         switchView.addSubview(userVC.view)
+        #else
+        guard userAccount != nil else {
+            switchViewSegmented.isHidden = true
+            switchView.addSubview(loginVC.view)
+            return
+        }
+        switchViewSegmented.selectedSegmentIndex = 0
+        switchViewSegmented.isHidden = false
+        switchView.addSubview(userVC.view)
+        #endif
     }
     
     @IBAction func swichViewSegmentedTapped(_ sender: UISegmentedControl) {

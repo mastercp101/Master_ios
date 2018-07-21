@@ -12,7 +12,6 @@ class LoginRemindViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -22,8 +21,12 @@ class LoginRemindViewController: UIViewController {
     }
     
     @IBAction func showLogin(_ sender: UITapGestureRecognizer) {
-        
+        presentLoginView(view: self)
         // 跳到登入畫面 ...
+        
+        // TODO: - 網路判斷 ?
+        
+        // TODO: - 自動跳頁?
     }
     
     

@@ -10,9 +10,12 @@ import UIKit
 
 class UserModifyViewController: UIViewController {
 
+    var test = [[String]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(test)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -33,3 +36,4 @@ class UserModifyViewController: UIViewController {
     */
 
 }
+

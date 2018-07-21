@@ -51,6 +51,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="switchView" destination="F92-Sg-MbD" id="7jO-1V-wNp"/>
+                        <outlet property="switchViewSegmented" destination="vG7-1L-azf" id="mjf-rV-2Rt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yjk-aM-gbV" userLabel="First Responder" sceneMemberID="firstResponder"/>

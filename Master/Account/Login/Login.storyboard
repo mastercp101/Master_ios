@@ -41,7 +41,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z3U-WM-KJI">
                                         <rect key="frame" x="42" y="0.0" width="273" height="32"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Account ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Bu-Ya-cyB">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入帳號 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Bu-Ya-cyB">
                                                 <rect key="frame" x="0.0" y="0.0" width="273" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="a5C-4d-nKy"/>
@@ -73,7 +73,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5XO-ah-ZmQ">
                                         <rect key="frame" x="42" y="0.0" width="273" height="32"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-qq-L5z">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入密碼 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbD-qq-L5z">
                                                 <rect key="frame" x="0.0" y="0.0" width="273" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Eev-0T-hNi"/>
@@ -100,7 +100,7 @@
                                     <constraint firstAttribute="height" constant="40" id="mQh-mI-nke"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Log In">
+                                <state key="normal" title="登入">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -119,7 +119,7 @@
                                     <constraint firstAttribute="height" constant="40" id="lAb-9L-JAT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Sign Up">
+                                <state key="normal" title="註冊">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -132,7 +132,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5LN-Mo-W2f">
-                                <rect key="frame" x="15" y="94" width="34" height="30"/>
+                                <rect key="frame" x="15" y="74" width="34" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -183,7 +183,7 @@
                             <constraint firstItem="OhM-9J-zwg" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="30" id="Ss6-vD-lQG"/>
                             <constraint firstItem="5LN-Mo-W2f" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="15" id="T5z-Pn-dtJ"/>
                             <constraint firstItem="NoY-cf-vTb" firstAttribute="top" secondItem="B5O-eq-2jb" secondAttribute="bottom" priority="750" constant="60" id="bD9-D1-HHi"/>
-                            <constraint firstItem="5LN-Mo-W2f" firstAttribute="top" secondItem="7Ex-SO-eIn" secondAttribute="top" constant="30" id="bV4-aD-QrJ"/>
+                            <constraint firstItem="5LN-Mo-W2f" firstAttribute="top" secondItem="7Ex-SO-eIn" secondAttribute="top" constant="10" id="bV4-aD-QrJ"/>
                             <constraint firstItem="OhM-9J-zwg" firstAttribute="top" secondItem="Kbw-vs-T9H" secondAttribute="bottom" constant="30" id="c4V-Ux-Inc"/>
                             <constraint firstItem="7Ex-SO-eIn" firstAttribute="trailing" secondItem="NCo-6g-Apr" secondAttribute="trailing" constant="30" id="cRE-JR-X3L"/>
                             <constraint firstItem="NCo-6g-Apr" firstAttribute="centerY" secondItem="EeO-a6-QsG" secondAttribute="centerY" id="jsF-iE-5Ng"/>
@@ -206,42 +206,51 @@
             </objects>
             <point key="canvasLocation" x="4471.1999999999998" y="30.134932533733135"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Remind View Controller-->
         <scene sceneID="Hmj-WS-k0h">
             <objects>
-                <viewController storyboardIdentifier="tipsLoginVC" id="2ea-df-LXX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginRemindVC" id="2ea-df-LXX" customClass="LoginRemindViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b6t-qb-USy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulldog" translatesAutoresizingMaskIntoConstraints="NO" id="cfo-Wb-aRy">
-                                <rect key="frame" x="40" y="215.5" width="295" height="236"/>
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_remind_image" translatesAutoresizingMaskIntoConstraints="NO" id="cfo-Wb-aRy">
+                                <rect key="frame" x="61.5" y="232.5" width="252" height="202"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cfo-Wb-aRy" secondAttribute="height" multiplier="5:4" id="yej-cs-1Ih"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Fby-TR-edh" appends="YES" id="JPK-eD-uef"/>
+                                </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="點擊馬上登入" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-Fk-F5g">
-                                <rect key="frame" x="126.5" y="321.5" width="122.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="點擊馬上登入" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2D-Fk-F5g">
+                                <rect key="frame" x="123.5" y="361" width="128.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="A2D-Fk-F5g" firstAttribute="centerY" secondItem="b6t-qb-USy" secondAttribute="centerY" id="Kds-Jh-xK8"/>
                             <constraint firstItem="cfo-Wb-aRy" firstAttribute="centerY" secondItem="b6t-qb-USy" secondAttribute="centerY" id="T4j-wg-rGx"/>
+                            <constraint firstItem="A2D-Fk-F5g" firstAttribute="centerX" secondItem="b6t-qb-USy" secondAttribute="centerX" id="W4h-4B-rkc"/>
                             <constraint firstItem="cfo-Wb-aRy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7K9-jv-kWM" secondAttribute="leading" constant="40" id="cCz-Ra-ATY"/>
+                            <constraint firstItem="A2D-Fk-F5g" firstAttribute="centerY" secondItem="cfo-Wb-aRy" secondAttribute="centerY" constant="40" id="fzP-Vk-wqS"/>
                             <constraint firstItem="cfo-Wb-aRy" firstAttribute="centerX" secondItem="b6t-qb-USy" secondAttribute="centerX" id="oWF-ND-7pd"/>
-                            <constraint firstItem="A2D-Fk-F5g" firstAttribute="centerX" secondItem="b6t-qb-USy" secondAttribute="centerX" id="sXN-3r-3iL"/>
                             <constraint firstItem="7K9-jv-kWM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cfo-Wb-aRy" secondAttribute="trailing" constant="40" id="y44-Kr-ebY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7K9-jv-kWM"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOH-28-7r2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Fby-TR-edh">
+                    <connections>
+                        <action selector="showLogin:" destination="2ea-df-LXX" id="Gw0-zO-HDm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4469.6000000000004" y="779.46026986506752"/>
+            <point key="canvasLocation" x="4471" y="765"/>
         </scene>
         <!--Sgin Up-->
         <scene sceneID="Amn-6V-gBE">
@@ -260,14 +269,14 @@
                                     <action selector="checkAccountRepeat:" destination="5lR-2C-yww" eventType="editingDidEnd" id="Lg5-qL-JdC"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-0B-NbY">
-                                <rect key="frame" x="40" y="94" width="64" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-0B-NbY">
+                                <rect key="frame" x="40" y="94" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-YQ-wea">
-                                <rect key="frame" x="40" y="185" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-YQ-wea">
+                                <rect key="frame" x="40" y="185" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -278,8 +287,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-ge-HhL">
-                                <rect key="frame" x="40" y="276" width="45" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-ge-HhL">
+                                <rect key="frame" x="40" y="276" width="35" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -293,7 +302,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fkc-3T-Kjc">
                                 <rect key="frame" x="30" y="398" width="315" height="29"/>
                                 <segments>
-                                    <segment title="學生"/>
+                                    <segment title="學員"/>
                                     <segment title="教練"/>
                                 </segments>
                             </segmentedControl>
@@ -310,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="40" id="mFV-1J-4c0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Sgin Up Now">
+                                <state key="normal" title="註冊">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -408,12 +417,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bulldog" width="280" height="280"/>
         <image name="login_account_icon" width="128" height="128"/>
         <image name="login_ok_icon" width="128" height="128"/>
         <image name="login_password_eye-b" width="128" height="128"/>
         <image name="login_password_eye-w" width="128" height="128"/>
         <image name="login_password_icon" width="128" height="128"/>
+        <image name="login_remind_image" width="252" height="197"/>
         <image name="shiba" width="280" height="280"/>
     </resources>
 </document>

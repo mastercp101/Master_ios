@@ -39,12 +39,13 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
         UIApplication.shared.statusBarStyle = .lightContent
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
         self.view.endEditing(true)
         resetType()
     }
@@ -108,13 +109,11 @@ class LoginViewController: UIViewController {
             guard let result = results , let loginResult = result as? Bool else { return }
         
             if loginResult { // 登入成功
-                self.dismiss(animated: true) {  // dismiss view ...
-                    let userDefault = UserDefaults.standard // save user default ...
-                    userDefault.set(self.enterAccountTextField.text, forKey: USER_ACCOUNT_KEY)
-                }
+                UserAccount.shared.setUserAccount(account: account)
+                self.dismiss(animated: true)
             } else { // 登入失敗
                 UIView.animate(withDuration: 0.2) { self.errorTipsLabel.alpha = 1 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                      UIView.animate(withDuration: 0.2) { self.errorTipsLabel.alpha = 0 }
                 }
                 self.loginButton.shake()

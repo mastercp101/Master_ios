@@ -9,8 +9,11 @@
 import UIKit
 
 class MasterViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userAccount = UserAccount.shared.getUserAccount() // Important!!!
     }
+    
 }
 

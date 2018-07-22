@@ -18,33 +18,37 @@ private let profileCell = "UserProfileCell"
 private let professionCell = "UserProfessionCell"
 private let sginOutCell = "UserSginOutCell"
 
+private let titleCell = "TitleCell"
+private let infoTitleCell = "InfoTitleCell"
+private let proTitleCell = "ProTitleCell"
 
 class UserTableViewController: UITableViewController {
 
-    // 假資料
-    private var userInfo = [["圖片"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["登出"]]
-//    private var userInfo = [[String]]() // 正牌
+    private var userInfo = [[String]]()
     private let infoTitle = ["身份","性別","地址","電話"]
     private var userPortrait: Data?
     private var userBackground: Data?
-
-    private let userAccount = "Cindy"
     private var userAccess = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         self.tableView.delaysContentTouches = false
-//        getUserInfo() // 串接DB ...
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
+        #if DEBUG
+        userAccess = true
+        userInfo = [["圖片"],["名字"],["會員資訊"],["身份","性別","地址","電話"],["個人簡介"],["自我介紹"],["專業技能"],["技能","技能2","技能3"],["登出"]]
+        #else
+        if let account = userAccount {
+            // TODO: - 網路檢查?
+            getUserInfo(account: account)
+        } else {
+            userInfo = [["圖片"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["登出"]]
+        }
+        #endif
     }
 
+     // TODO: - 回到此頁面重新整理表格?
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,17 +68,18 @@ class UserTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+        
         switch indexPath.section {
-        case 0:
+            
+        case 0: // 大頭照
             
             let cell = tableView.dequeueReusableCell(withIdentifier: imageCell, for: indexPath) as! UserImageCell
+            
             if let userPortrait = self.userPortrait {
                 cell.userPortraitImageView.image = UIImage(data: userPortrait)
             } else {
                 cell.userPortraitImageView.image = UIImage(named: DEFAULT_USER_PORTRAIT)
             }
-            
             if let userBackground = self.userBackground {
                 cell.userBackgroundImageView.image = UIImage(data: userBackground)
             } else {
@@ -82,74 +87,63 @@ class UserTableViewController: UITableViewController {
             }
             return cell
             
-        case 1:
+        case 1: // 名字
             
             let cell = tableView.dequeueReusableCell(withIdentifier: nameCell, for: indexPath) as! UserNameCell
             cell.userNameLabel.text = userInfo[indexPath.section][indexPath.row]
             return cell
             
-        case 2:
+        case 2: // 會員資訊 Title
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: infoTitleCell, for: indexPath) as! UserInfoTitleCell
+            cell.userInfoTitleLabel.text = userInfo[indexPath.section][indexPath.row]
+            return cell
+            
+        case 3: // 會員資訊
             
             let cell = tableView.dequeueReusableCell(withIdentifier: infoCell, for: indexPath) as! UserInfoCell
             cell.userInfoDetail.text = userInfo[indexPath.section][indexPath.row]
             cell.userInfoTitle.text = infoTitle[indexPath.row]
             return cell
             
-        case 3:
+        case 4: // 個人簡介 Title
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: titleCell, for: indexPath) as! UserTitleCell
+            cell.userTitleLabel.text = userInfo[indexPath.section][indexPath.row]
+            return cell
+            
+        case 5: // 個人簡介
             
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCell, for: indexPath) as! UserProfileCell
             cell.userProfileLabel.text = userInfo[indexPath.section][indexPath.row]
             return cell
             
-        case 4: // 專業技能 ?
+        case 6: // 專業技能 Title
             
-            if userAccess {
-                let cell = tableView.dequeueReusableCell(withIdentifier: professionCell, for: indexPath) as! UserProfessionCell
-                cell.userProfessionLabel.text = userInfo[indexPath.section][indexPath.row]
-                return cell
-            } else {
-                fallthrough
-            }
+            guard userAccess else { fallthrough }
+            let cell = tableView.dequeueReusableCell(withIdentifier: proTitleCell, for: indexPath) as! UserProTitleCell
+            cell.userProTitleLabel.text = userInfo[indexPath.section][indexPath.row]
+            return cell
             
-        case 5:
+        case 7: // 專業技能
+            
+            guard userAccess else { fallthrough }
+            let cell = tableView.dequeueReusableCell(withIdentifier: professionCell, for: indexPath) as! UserProfessionCell
+            cell.userProfessionLabel.text = userInfo[indexPath.section][indexPath.row]
+            return cell
+        
+        case 8: // 登出按鈕
             
             tableView.separatorStyle = .none
             let cell = tableView.dequeueReusableCell(withIdentifier: sginOutCell, for: indexPath) as! UserSginOutCell
             return cell
             
         default:
-            
+
             return UITableViewCell()
         }
     }
  
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        let title: String?
-        
-        switch section {
-        case 2:
-            title = "會員資訊"
-        case 3:
-            title = "個人簡介"
-        case 4:
-            if userAccess {
-                title = "專業技能"
-            } else {
-                fallthrough
-            }
-        default:
-            title = nil
-        }
-        return title
-    }
-
-
-    
-    
-    
-    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -185,20 +179,25 @@ class UserTableViewController: UITableViewController {
     }
     */
 
-    /*
+ 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let controller = segue.destination as? UserModifyViewController {
+            controller.test = userInfo
+        }
     }
-    */
 
     
-    func getUserInfo() {
+    
+    
+    
+    func getUserInfo(account: String) {
         
-        let request: [String: Any] = ["action": "findById", "account": userAccount]
+        let request: [String: Any] = ["action": "findById", "account": account]
         Task.postRequestData(urlString: urlString + urlUserInfo , request: request) { (error, data) in
         
             guard error == nil, let data = data else { return }
@@ -251,17 +250,20 @@ class UserTableViewController: UITableViewController {
                 tel = "尚未設定聯絡方式"
             }
             
-            self.userInfo.removeAll()
-            self.userInfo.append([""]) // Image Cell 預留
+            // 開始加入 User Info !!!
             
+            self.userInfo.removeAll()
+            
+            self.userInfo.append(["頭像"]) // Image Cell 預留
             if let userName = result.userName, !userName.isEmpty {
                 self.userInfo.append([userName])
             } else {
                 self.userInfo.append(["尚未設定名稱"])
             }
             
+            self.userInfo.append(["會員資訊"])
             self.userInfo.append([access, gender, address, tel])
-            
+            self.userInfo.append(["個人簡介"])
             if let userProfile = result.userProfile, !userProfile.isEmpty {
                 self.userInfo.append([userProfile])
             } else {
@@ -269,16 +271,17 @@ class UserTableViewController: UITableViewController {
             }
         
             if result.userAccess == 1 {
-                self.getUserProfession()
+                self.userInfo.append(["專業技能"])
+                self.getUserProfession(account: account)
             } else {
                 self.setSginOutButton()
             }
         }
     }
 
-    func getUserProfession() {
-        
-        let request: [String: Any] = ["action": "getUserProfession", "account": userAccount]
+    func getUserProfession(account: String) {
+   
+        let request: [String: Any] = ["action": "getUserProfession", "account": account]
         
         Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
             
@@ -297,38 +300,24 @@ class UserTableViewController: UITableViewController {
         }
     }
     
-    func setSginOutButton() {
-        // 加上登出按鈕
-        self.userInfo.append([""])
+    func setSginOutButton() {  // 加上登出按鈕
+        self.userInfo.append(["登出"])
         self.tableView.reloadData()
     }
     
-    
     @IBAction func sginoutButton(_ sender: UIButton) {
-        let userDefault = UserDefaults.standard
-        userDefault.removeObject(forKey: USER_ACCOUNT_KEY)
-        presentLoginView()
+        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "您即將登出", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
+            // nope
+        }) { (action) in
+            UserAccount.shared.removeUserAccount()
+            presentLoginView(view: self)
+        }
     }
     
     
-    
-    
-    
-    
-    // PODO: - 通用方法 ...
-    
-    func presentLoginView() {
-        
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginView = storyboard.instantiateViewController(withIdentifier: "loginVC")
-        present(loginView, animated:true, completion:nil)
-        
-    }
-
-    
-    @IBAction func unwindLogin_子桓的登入返回(_ segue : UIStoryboardSegue) {
-        // nope ...
-    }
+//    @IBAction func unwindLogin_子桓的登入返回(_ segue : UIStoryboardSegue) {
+//        // nope ...
+//    }
     
     
     

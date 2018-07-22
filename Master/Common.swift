@@ -18,6 +18,9 @@ let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
 
+/// 使用者帳號, 拿到 nil 即沒登入
+var userAccount: String?
+
 // Singleton
 
 class Common{
@@ -103,7 +106,6 @@ class Alert{
         alertController.addAction(cancelAction)
         viewController.present(alertController, animated: true, completion: nil)
     }
-    
     
 }
 

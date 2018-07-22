@@ -41,8 +41,7 @@ class UserNameCell: UITableViewCell {
 }
 
 class UserInfoCell: UITableViewCell {
-    
-    // 更改名字
+
     @IBOutlet weak var userInfoTitle: UILabel!
     @IBOutlet weak var userInfoDetail: UILabel!
 }
@@ -59,6 +58,21 @@ class UserProfessionCell: UITableViewCell {
 
 class UserSginOutCell: UITableViewCell {
     
-    
 }
 
+class UserTitleCell: UITableViewCell {
+    
+    @IBOutlet weak var userTitleLabel: UILabel!
+}
+
+class UserInfoTitleCell: UITableViewCell {
+    
+    @IBOutlet weak var userInfoTitleLabel: UILabel!
+    @IBOutlet weak var userInfoTitleButton: UIButton!
+}
+
+class UserProTitleCell: UITableViewCell {
+    
+    @IBOutlet weak var userProTitleLabel: UILabel!
+    @IBOutlet weak var userProTitleButton: UIButton!
+}

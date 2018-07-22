@@ -22,13 +22,13 @@ class addCourseViewController: UIViewController{
     var courseName : String?
     var courseCategory : Int?
     var courseDetail : String?
-    var courseDate : Date?
+    var courseDate : String?
     var coursePrice : Int?
     var courseLocation : String?
     var courseNeed : String?
     var courseNumberOfPeople : Int?
     var courseQualification : String?
-    var courseRegisterDeadline : Date?
+    var courseRegisterDeadline : String?
     var courseNote : String?
     
     var whichIsEditing : dateIsEditing?
@@ -38,8 +38,18 @@ class addCourseViewController: UIViewController{
     let picker = UIImagePickerController()
     let cropper = UIImageCropper(cropRatio: 16/9)
     
+    var newCourseDetail : CourseDetail?
+    var newCourseProfile : CourseProfile?
+    
+    var courseImageID : Int?
+    var courseCategoryID : Int?
+    var updateCourseProfileResult : Int?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        encoder.outputFormatting = .init()
         setTextView(textView: detailTextView)
         setTextView(textView: noteTextView)
         
@@ -54,12 +64,6 @@ class addCourseViewController: UIViewController{
         setDatePicker()
     }
     
-    private func setDatePicker(){
-        datePickerView.datePickerMode = .date
-        courseTextField[2].inputView = datePickerView
-        courseTextField[8].inputView = datePickerView
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Common.shared.addObserves(scrollView: scrollView)
@@ -69,6 +73,11 @@ class addCourseViewController: UIViewController{
         Common.shared.removeObservers(viewController: self)
     }
     
+    private func setDatePicker(){
+        datePickerView.datePickerMode = .date
+        courseTextField[2].inputView = datePickerView
+        courseTextField[8].inputView = datePickerView
+    }
     
     @IBAction func courseDateEditing(_ sender: UITextField) {
         whichIsEditing = dateIsEditing.courseDate
@@ -112,9 +121,39 @@ class addCourseViewController: UIViewController{
         }
     }
     
+    // MARK: - Update Course
     @IBAction func sendBtnTapped(_ sender: Any) {
-        if checkIsTextFieldEmpty() == true && checkIsTextViewEmpty() == true{
-            handleTextFieldValue()
+        guard checkIsTextFieldEmpty() == true && checkIsTextViewEmpty() == true else{
+            return
+        }
+        
+        updateImage()
+        
+    }
+    
+    private func updateImage(){
+        guard let image = addImageView.image,let base64Image = image.base64() else{
+            assertionFailure("Invalid Image")
+            return
+        }
+        let request = ["action" : "insert","user_id":"billy","photo":base64Image]
+        
+        Task.postRequestData(urlString: "\(urlString)photoServlet", request: request) { (error, data) in
+            if let error = error {
+                print("Download Data Fail : \(error)")
+                return
+            }
+            guard let data = data,let decodeString = String(data: data, encoding: .utf8) else{
+                assertionFailure("Invalid data")
+                return
+            }
+            guard let imageID = Int(decodeString) ,imageID > 0 else{
+                assertionFailure("imageID is nil")
+                return
+            }
+            self.courseImageID = imageID
+            self.handleTextFieldValue()
+            self.createCourse()
         }
     }
     
@@ -123,16 +162,97 @@ class addCourseViewController: UIViewController{
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         courseName = courseTextField[0].text!
+        print(courseName!)
         courseCategory  = Int(courseTextField[1].text!)
         courseDetail = detailTextView.text!
-        courseDate = dateFormatter.date(from: courseTextField[2].text!)!
+//        courseDate = dateFormatter.date(from: courseTextField[2].text!)!
+        courseDate = courseTextField[2].text!
         coursePrice = Int(courseTextField[3].text!)
         courseLocation = courseTextField[4].text!
         courseNeed = courseTextField[5].text!
         courseNumberOfPeople = Int(courseTextField[6].text!)
         courseQualification = courseTextField[7].text!
-        courseRegisterDeadline = dateFormatter.date(from: courseTextField[8].text!)!
+//        courseRegisterDeadline = dateFormatter.date(from: courseTextField[8].text!)!
+        courseRegisterDeadline = courseTextField[8].text!
         courseNote = noteTextView.text!
+        
+        print(courseDate!)
+        print(courseRegisterDeadline!)
+    }
+    
+    private func createCourse(){
+        newCourseDetail = CourseDetail(courseCategoryID: 0,
+                                       professionID: courseCategory!,
+                                       courseName: courseName! ,
+                                       courseContent: courseDetail!,
+                                       coursePrice: coursePrice!,
+                                       courseNeed : courseNeed!,
+                                       courseQualification: courseQualification!,
+                                       courseLocation: courseLocation!,
+                                       courseNote: courseNote!)
+        
+        updateCourseDetail()
+    }
+    private func createCourseProfile(courseCategoryID : Int){
+        newCourseProfile = CourseProfile(courseID: 0,
+                                         userID: "billy",
+                                         courseDate: courseDate!,
+                                         courseApplyDeadLine: courseRegisterDeadline!,
+                                         coursePeopleNumber: courseNumberOfPeople!,
+                                         courseImageID: self.courseImageID!,
+                                         courseStatusID: 1,
+                                         courseCategoryID: courseCategoryID)
+    }
+    
+    private func updateCourseDetail(){
+        guard let encodedCourseDetail = try? encoder.encode(newCourseDetail),
+            let courseDetailStr = String(data: encodedCourseDetail, encoding: .utf8) else{
+                assertionFailure("Encode Data Fail")
+            return
+        }
+        let request = ["action":"insert","course":courseDetailStr]
+        Task.postRequestData(urlString: urlString + "CourseDetailServlet", request: request) { (error, data) in
+            if let error = error{
+                print("Download Data Fail : \(error)")
+                return
+            }
+            guard let data = data ,let decodeString = String(data: data, encoding: .utf8) else{
+                assertionFailure("Invalid data")
+                return
+            }
+            guard let courseCategoryID = Int(decodeString), courseCategoryID > 0 else{
+                assertionFailure("Update CourseDetail fail")
+                return
+            }
+            self.createCourseProfile(courseCategoryID: courseCategoryID)
+            self.updateCourseProfile()
+        }
+    }
+    
+    private func updateCourseProfile(){
+        guard let encodedCourseProfile = try? encoder.encode(newCourseProfile),
+            let courseProfileStr = String(data: encodedCourseProfile, encoding: .utf8)else{
+                assertionFailure("Encode Data Fail")
+                return
+        }
+        let request = ["action":"insert","course":courseProfileStr]
+        Task.postRequestData(urlString: urlString + "CourseServlet", request: request) { (error, data) in
+            if let error = error{
+                print("Download Data Fail : \(error)")
+                return
+            }
+            guard let data = data ,let decodeString = String(data: data, encoding: .utf8) else{
+                assertionFailure("Invalid data")
+                return
+            }
+            guard let updateCourseProfileResult = Int(decodeString) ,updateCourseProfileResult > 0 else{
+                assertionFailure("Update CourseProfile Fail")
+                return
+            }
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "新增課程成功！") { (_) in
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     private func checkIsTextViewEmpty() -> Bool{
@@ -197,9 +317,9 @@ extension addCourseViewController : UIImageCropperProtocol{
     }
     
     func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
-        addImageView.image = croppedImage
-        addImageView.contentMode = .scaleToFill
+        addImageView.contentMode = .scaleAspectFit
         addImageView.clipsToBounds = true
+        addImageView.image = croppedImage
     }
 }
 

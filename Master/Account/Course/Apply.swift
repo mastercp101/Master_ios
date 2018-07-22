@@ -8,27 +8,36 @@
 
 import Foundation
 
-// Find Apply by user name
-struct FindByUserNameApply{
-    let courseName : String
-    let courseDate : Date
-    let courseStatusName : String
-}
-
 // Find Apply By Course
-struct FindByCourseApply{
+struct FindByCourseApply : Codable{
     let courseID : Int
     let applyID : Int
     let userName : String
     let applyStatusName : String
-    let applyDate : Date
+    let applyDate : String
+    
+    enum CodingKeys : String,CodingKey{
+        case courseID = "course_id"
+        case applyID = "apply_id"
+        case userName = "user_name"
+        case applyStatusName = "apply_status_name"
+        case applyDate = "apply_time"
+    }
 }
 
 // ApplyInsert
-struct InsertApply{
+struct InsertApply : Codable{
     let applyID : Int
     let courseID : Int
     let userID : Int
     let applyStatusID : Int
-    let applyTime : Date
+    let applyTime : String
+    
+    enum Codingkeys : String, CodingKey {
+        case applyID = "apply_id"
+        case courseID = "course_id"
+        case userID = "user_id"
+        case applyStatusID = "apply_status_id"
+        case applyTime = "apply_time"
+    }
 }

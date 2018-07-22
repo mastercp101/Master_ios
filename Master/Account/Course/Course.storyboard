@@ -741,8 +741,8 @@
                                     <outlet property="delegate" destination="BqP-z7-bq0" id="OTm-KL-PCG"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="總共 10 人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOA-gc-wY4">
-                                <rect key="frame" x="137" y="94" width="101" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="總共 0 人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOA-gc-wY4">
+                                <rect key="frame" x="137" y="94" width="91" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -761,6 +761,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="manageStudentTableView" destination="0GX-eM-S4m" id="ZvO-Gy-9GS"/>
+                        <outlet property="totalPeopleCount" destination="GOA-gc-wY4" id="vcV-ea-8t3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIa-9K-FgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

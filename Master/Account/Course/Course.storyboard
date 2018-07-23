@@ -124,9 +124,6 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                                <connections>
-                                                                    <action selector="courseCategoryEditing:" destination="SdZ-FC-aFw" eventType="editingDidBegin" id="o3b-CF-Y0x"/>
-                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>

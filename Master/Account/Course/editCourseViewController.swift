@@ -25,9 +25,11 @@ class editCourseViewController: UIViewController{
     
     var image : UIImage?
     
+    var professions = [Profession]()
     var course : Course?
     var newCourseDetail : CourseDetail?
     var newCourseProfile : CourseProfile?
+    
     
     var whichIsEditing : DateIsEditing?
     var editingStyle : EditingStyle?
@@ -61,34 +63,7 @@ class editCourseViewController: UIViewController{
         cropper.delegate = self
         courseCategoryPicker.delegate = self
         setPicker()
-        checkEditingStyle()
-    }
-    
-    private func checkEditingStyle(){
-        guard self.course != nil else{
-            editingStyle = EditingStyle.insertCourse
-            return
-        }
-        editingStyle = EditingStyle.updateCourse
-        setCourseInfoToView()
-    }
-    
-    private func setCourseInfoToView(){
-        guard let course = course else{
-            assertionFailure("Invalid Course")
-            return
-        }
-        addImageView.image = self.image
-        courseTextField[0].text = course.courseName
-        detailTextView.text = course.courseContent
-        courseTextField[2].text = course.courseDate
-        courseTextField[3].text = String(course.coursePrice)
-        courseTextField[4].text = course.courseLocation
-        courseTextField[5].text = course.courseNeed
-        courseTextField[6].text = String(course.coursePeopleNumber)
-        courseTextField[7].text = course.courseQualification
-        courseTextField[8].text = course.courseApplyDeadLine
-        noteTextView.text = course.courseNote
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,9 +89,6 @@ class editCourseViewController: UIViewController{
         courseTextField[1].inputView = courseCategoryPicker
         courseTextField[2].inputView = datePickerView
         courseTextField[8].inputView = datePickerView
-    }
-    @IBAction func courseCategoryEditing(_ sender: Any) {
-        //..
     }
     
     @IBAction func courseDateEditing(_ sender: UITextField) {
@@ -175,8 +147,55 @@ class editCourseViewController: UIViewController{
                 return
             }
             
+            do{
+                let encodedProfession = try decoder.decode([Profession].self, from: data)
+                self.professions = encodedProfession
+                self.courseCategoryPicker.reloadAllComponents()
+            }catch{
+                assertionFailure("Error : \(error)")
+            }
+            self.checkEditingStyle()
+            self.courseTextField[1].text = self.professions[0].professionName
         }
     }
+    
+    private func checkEditingStyle(){
+        guard self.course != nil else{
+            editingStyle = EditingStyle.insertCourse
+            return
+        }
+        editingStyle = EditingStyle.updateCourse
+        setCourseInfoToView()
+    }
+    
+    private func setCourseInfoToView(){
+        guard let course = course else{
+            assertionFailure("Invalid Course")
+            return
+        }
+        
+        let professionIndex = professions.index { (profession) -> Bool in
+            print("\(profession.professionID),\(course.professionID)")
+            guard profession.professionID == course.professionID else{
+                return false
+            }
+            return true
+        }
+        
+        addImageView.image = self.image
+        courseTextField[0].text = course.courseName
+        detailTextView.text = course.courseContent
+        courseTextField[1].text = professions[professionIndex!].professionName
+        courseTextField[2].text = course.courseDate
+        courseTextField[3].text = String(course.coursePrice)
+        courseTextField[4].text = course.courseLocation
+        courseTextField[5].text = course.courseNeed
+        courseTextField[6].text = String(course.coursePeopleNumber)
+        courseTextField[7].text = course.courseQualification
+        courseTextField[8].text = course.courseApplyDeadLine
+        noteTextView.text = course.courseNote
+    }
+    
     
     // MARK: - Update Course
     @IBAction func sendBtnTapped(_ sender: Any) {
@@ -219,11 +238,16 @@ class editCourseViewController: UIViewController{
     }
     
     private func handleTextFieldValue(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let professionIndex = self.professions.index { (profession) -> Bool in
+            guard profession.professionName == courseTextField[1].text! else{
+                return false
+            }
+            return true
+        }
         
         courseName = courseTextField[0].text!
-        courseCategory  = Int(courseTextField[1].text!)
+        courseCategory  = self.professions[professionIndex!].professionID
         courseDetail = detailTextView.text!
         courseDate = courseTextField[2].text!
         coursePrice = Int(courseTextField[3].text!)
@@ -385,7 +409,6 @@ extension editCourseViewController : UIImageCropperProtocol{
             assertionFailure("Scale Image Fail")
             return
         }
-        
         UIGraphicsEndImageContext()
         addImageView.image = scaledImage
     }
@@ -396,15 +419,14 @@ extension editCourseViewController : UIPickerViewDelegate,UIPickerViewDataSource
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return professions.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "Test"
+        return professions[row].professionName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //..
+        self.courseTextField[1].text = professions[row].professionName
     }
-    
 }
 
 

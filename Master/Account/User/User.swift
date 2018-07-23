@@ -31,6 +31,7 @@ struct User:Codable {
     var userAccess: Int?
 }
 
+
 class UserAccount {
     
     static let shared = UserAccount()
@@ -53,13 +54,13 @@ class UserAccount {
         userDefault.removeObject(forKey: USER_ACCOUNT_KEY)
         userAccount = nil
     }
-    
 }
+
 
 class UserInfo {
     
     static let shared = UserInfo()
     private init() {}
     
-    var test = [[String]]()
+    var info = [[String]]()
 }

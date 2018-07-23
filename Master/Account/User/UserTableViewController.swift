@@ -38,14 +38,17 @@ class UserTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // TODO: - DeBug
-//        userAccess = true
-//        userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["技能","技能2","技能3"],["SginOut"]]
+        
+
         
         guard userInfo.count != 0 else {
 
-            // TODO: - 網路檢查?
+            // TODO: - DeBug
+            userAccess = true
+            userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["技能","技能2","技能3"],["SginOut"]]
+            UserInfo.shared.info = userInfo
             
+            // TODO: - 網路檢查?
             if let account = userAccount {
                 getUserInfo(account: account)
             } else {

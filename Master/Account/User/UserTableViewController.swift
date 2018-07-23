@@ -144,6 +144,57 @@ class UserTableViewController: UITableViewController {
         }
     }
  
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+            let title: String?
+    
+            switch section {
+            case 2:
+                title = "會員資訊"
+            case 3:
+                title = "個人簡介"
+            case 4:
+                guard userAccess else { fallthrough }
+                title = "專業技能"
+            default:
+                title = nil
+            }
+            return title
+        }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let frame: CGRect = tableView.frame
+//
+//        let DoneBut = UIButton(frame: CGRect(x: frame.size.width - 200, y: 0, width: 150, height: 35))
+//
+//        DoneBut.setTitle("Done", for: .normal)
+//
+//        DoneBut.backgroundColor = UIColor.blue
+//
+//
+//        DoneBut.addTarget(self, action: #selector(testQQ(_:)), for: .touchUpInside)
+//        //        DoneBut.addTarget(self, action: #selector(ViewController.buttonTapped(_:)), forControlEvents: .TouchUpInside)
+//
+//        //        DoneBut.backgroundColor = UIColor.blueColor()
+//
+//
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+//        headerView.backgroundColor = UIColor.lightGray
+//        headerView.addSubview(DoneBut)
+//        return headerView
+//
+//    }
+//
+//    @objc func testQQ (_ sender: UIButton) {
+//        sender.pulse()
+//        print("QQ")
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 35
+//    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -190,9 +241,6 @@ class UserTableViewController: UITableViewController {
             controller.test = userInfo
         }
     }
-
-    
-    
     
     
     func getUserInfo(account: String) {
@@ -315,10 +363,7 @@ class UserTableViewController: UITableViewController {
     }
     
     
-//    @IBAction func unwindLogin_子桓的登入返回(_ segue : UIStoryboardSegue) {
-//        // nope ...
-//    }
-    
+
     
     
 }

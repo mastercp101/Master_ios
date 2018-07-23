@@ -23,6 +23,11 @@ class CourseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         downloadCourse()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        // in case of course list have changed
+        courseList = [Course]()
+        photoList = [Photo]()
+    }
     
     private func downloadCourse(){
         // Download Course
@@ -39,6 +44,7 @@ class CourseViewController: UIViewController {
             }
             
             self.courseList = decodedCourseList
+            print(self.courseList.count)
             // Download Image
             for course in decodedCourseList{
                 self.downloadImage(imageID: course.courseImageID)
@@ -70,9 +76,7 @@ class CourseViewController: UIViewController {
     
     @IBAction func addBtnTapped(_ sender: Any) {
         DispatchQueue.main.async {
-            guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "addCourseVC") as? addCourseViewController else{
-                return
-            }
+            let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "editCourseVC") as! editCourseViewController
             let navigation = UINavigationController(rootViewController: nextVC)
             self.present(navigation, animated: true, completion: nil)
         }
@@ -138,6 +142,7 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
             return
         }
         nextVC.course = self.courseList[index]
+        nextVC.title = nextVC.course?.courseName
         
         if let image = findImage(index: index) {
             nextVC.image = image

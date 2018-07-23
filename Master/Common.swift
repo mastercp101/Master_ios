@@ -122,7 +122,7 @@ extension UIImage{
 //            return nil
 //        }
         
-        guard let imageData : Data = UIImageJPEGRepresentation(self, 3) else{
+        guard let imageData : Data = UIImageJPEGRepresentation(self, 0.5) else{
             return nil
         }
         return imageData.base64EncodedString()

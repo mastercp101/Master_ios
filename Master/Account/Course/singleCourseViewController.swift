@@ -11,7 +11,6 @@ import UIKit
 class singleCourseViewController: UIViewController {
     
     @IBOutlet weak var singleCourseTableView: UITableView!
-//    var dogName = ""
     var course : Course?
     var image : UIImage?
 
@@ -35,12 +34,11 @@ class singleCourseViewController: UIViewController {
             nextVC?.courseID = course.courseID
             let navigation = UINavigationController(rootViewController: nextVC!)
             self.present(navigation, animated: true, completion: nil)
-            self.presentVC()
             
         }, secondAction: { (secondAction) in
             
             // Manage Course
-            self.presentVC()
+            self.presentEditCourseVC()
             
         }) { (thirdAction) in
             // Delete Course Alert
@@ -54,8 +52,12 @@ class singleCourseViewController: UIViewController {
         }
     }
     
-    private func presentVC(){
-        //..
+    private func presentEditCourseVC(){
+        let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "editCourseVC") as! editCourseViewController
+        nextVC.course = self.course
+        nextVC.image = self.image
+        let navigation = UINavigationController(rootViewController: nextVC)
+        self.present(navigation, animated: true, completion: nil)
     }
     
 }

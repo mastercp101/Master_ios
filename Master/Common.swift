@@ -12,8 +12,11 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-let urlString = "http://127.0.0.1:8080/Master/"
+//let urlString = "http://127.0.0.1:8080/Master/"
+let urlString = "http://192.168.50.245:8080/Master/"
 let urlUserInfo = "UserInfo"
+let encoder = JSONEncoder()
+let decoder = JSONDecoder()
 
 /// 使用者帳號, 拿到 nil 即沒登入
 var userAccount: String?
@@ -113,6 +116,19 @@ extension UIImageView{
     }
 }
 
+extension UIImage{
+    func base64() -> String?{
+//        guard let imageData : Data = UIImagePNGRepresentation(self) else{
+//            return nil
+//        }
+        
+        guard let imageData : Data = UIImageJPEGRepresentation(self, 3) else{
+            return nil
+        }
+        return imageData.base64EncodedString()
+    }
+}
+
 extension UITableView{
     func setCellAutoRowHeight(){
         self.estimatedRowHeight = 100
@@ -163,6 +179,7 @@ extension UIButton {
         layer.add(flash, forKey: nil)
     }
 }
+
 
 
 

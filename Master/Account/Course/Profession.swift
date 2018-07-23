@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Profession{
+struct Profession : Codable{
     let professionID : Int
     let professionName : String
     
-    enum Codingkeys : String,CodingKey{
+    enum CodingKeys : String,CodingKey{
         case professionID = "profession_id"
         case professionName = "profession_name"
     }

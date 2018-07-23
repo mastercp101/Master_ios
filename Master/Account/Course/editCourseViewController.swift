@@ -1,5 +1,5 @@
 //
-//  addCourseViewController.swift
+//  editCourseViewController.swift
 //  Master
 //
 //  Created by 黎峻亦 on 2018/7/15.
@@ -7,17 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
-class addCourseViewController: UIViewController{
+class editCourseViewController: UIViewController{
 
     @IBOutlet weak var addImageView: UIImageView!
     @IBOutlet weak var containView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var detailTextView: UITextView!
-    
     @IBOutlet var courseTextField: [UITextField]!
+    
+    let courseCategoryPicker = UIPickerView()
+    let datePickerView = UIDatePicker()
+    let picker = UIImagePickerController()
+    let cropper = UIImageCropper(cropRatio: 12/9)
+    
+    var image : UIImage?
+    
+    var course : Course?
+    var newCourseDetail : CourseDetail?
+    var newCourseProfile : CourseProfile?
+    
+    var whichIsEditing : DateIsEditing?
+    var editingStyle : EditingStyle?
     
     var courseName : String?
     var courseCategory : Int?
@@ -30,38 +43,52 @@ class addCourseViewController: UIViewController{
     var courseQualification : String?
     var courseRegisterDeadline : String?
     var courseNote : String?
-    
-    var whichIsEditing : dateIsEditing?
-    let datePickerView = UIDatePicker()
-    
-    
-    let picker = UIImagePickerController()
-    let cropper = UIImageCropper(cropRatio: 16/9)
-    
-    var newCourseDetail : CourseDetail?
-    var newCourseProfile : CourseProfile?
-    
     var courseImageID : Int?
-    var courseCategoryID : Int?
+    var courseCategoryID = 0
     var updateCourseProfileResult : Int?
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         encoder.outputFormatting = .init()
+        
+        // Download user profession
+        downloadUSerProfession()
+        // Setting UI or delegate
         setTextView(textView: detailTextView)
         setTextView(textView: noteTextView)
-        
-        addImageView.isUserInteractionEnabled = true
-        let imageGesture = UITapGestureRecognizer(target: self, action: #selector(addImageTapped))
-        addImageView.addGestureRecognizer(imageGesture)
-        
-        let viewGesture = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
-        containView.addGestureRecognizer(viewGesture)
-        
+        setGesture()
         cropper.delegate = self
-        setDatePicker()
+        courseCategoryPicker.delegate = self
+        setPicker()
+        checkEditingStyle()
+    }
+    
+    private func checkEditingStyle(){
+        guard self.course != nil else{
+            editingStyle = EditingStyle.insertCourse
+            return
+        }
+        editingStyle = EditingStyle.updateCourse
+        setCourseInfoToView()
+    }
+    
+    private func setCourseInfoToView(){
+        guard let course = course else{
+            assertionFailure("Invalid Course")
+            return
+        }
+        addImageView.image = self.image
+        courseTextField[0].text = course.courseName
+        detailTextView.text = course.courseContent
+        courseTextField[2].text = course.courseDate
+        courseTextField[3].text = String(course.coursePrice)
+        courseTextField[4].text = course.courseLocation
+        courseTextField[5].text = course.courseNeed
+        courseTextField[6].text = String(course.coursePeopleNumber)
+        courseTextField[7].text = course.courseQualification
+        courseTextField[8].text = course.courseApplyDeadLine
+        noteTextView.text = course.courseNote
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,29 +100,41 @@ class addCourseViewController: UIViewController{
         Common.shared.removeObservers(viewController: self)
     }
     
-    private func setDatePicker(){
+    private func setGesture(){
+        addImageView.isUserInteractionEnabled = true
+        let imageGesture = UITapGestureRecognizer(target: self, action: #selector(addImageTapped))
+        addImageView.addGestureRecognizer(imageGesture)
+        
+        let viewGesture = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        containView.addGestureRecognizer(viewGesture)
+    }
+    
+    private func setPicker(){
         datePickerView.datePickerMode = .date
+        courseTextField[1].inputView = courseCategoryPicker
         courseTextField[2].inputView = datePickerView
         courseTextField[8].inputView = datePickerView
     }
+    @IBAction func courseCategoryEditing(_ sender: Any) {
+        //..
+    }
     
     @IBAction func courseDateEditing(_ sender: UITextField) {
-        whichIsEditing = dateIsEditing.courseDate
+        whichIsEditing = DateIsEditing.courseDate
         datePickerView.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
     }
     
     @IBAction func courseRegistedEditing(_ sender: UITextField) {
-        whichIsEditing = dateIsEditing.courseDeadline
+        whichIsEditing = DateIsEditing.courseDeadline
         datePickerView.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
     }
-    
     
     @objc
     private func datePickerValueChanged(sender : UIDatePicker){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        if whichIsEditing == dateIsEditing.courseDate{
+        if whichIsEditing == DateIsEditing.courseDate{
             courseTextField[2].text = dateFormatter.string(from: sender.date)
         }else{
             courseTextField[8].text = dateFormatter.string(from: sender.date)
@@ -112,6 +151,8 @@ class addCourseViewController: UIViewController{
         cropper.picker = picker
         cropper.cropButtonText = "Crop"
         cropper.cancelButtonText = "Retake"
+        
+        // Show alert ask user pick picture by camera or photo library.
         Alert.shared.buildPhotoAlert(viewController: self ,takePic: { (camera) in
             self.picker.sourceType = .camera
             self.present(self.picker, animated: true, completion: nil)
@@ -121,23 +162,43 @@ class addCourseViewController: UIViewController{
         }
     }
     
+    private func downloadUSerProfession(){
+        let urlStr = urlString + "UserInfo"
+        let request : [String : Any] = ["action":"findProfessionById","user_id":"billy"]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            
+        }
+    }
+    
     // MARK: - Update Course
     @IBAction func sendBtnTapped(_ sender: Any) {
         guard checkIsTextFieldEmpty() == true && checkIsTextViewEmpty() == true else{
             return
         }
-        
-        updateImage()
-        
-    }
-    
-    private func updateImage(){
         guard let image = addImageView.image,let base64Image = image.base64() else{
             assertionFailure("Invalid Image")
             return
         }
-        let request = ["action" : "insert","user_id":"billy","photo":base64Image]
         
+        if editingStyle == EditingStyle.insertCourse{
+            let request : [String : Any] = ["action" : "insert","user_id":"billy","photo":base64Image]
+            updateImage(request: request)
+        }else{ // editingStyle == updateCourse
+            let request : [String : Any] = ["action" : "update","photo_id":course!.courseImageID,"photo":base64Image]
+            updateImage(request: request)
+        }
+        
+    }
+    
+    private func updateImage(request : [String : Any]){
         Task.postRequestData(urlString: "\(urlString)photoServlet", request: request) { (error, data) in
             if let error = error {
                 print("Download Data Fail : \(error)")
@@ -162,26 +223,21 @@ class addCourseViewController: UIViewController{
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         courseName = courseTextField[0].text!
-        print(courseName!)
         courseCategory  = Int(courseTextField[1].text!)
         courseDetail = detailTextView.text!
-//        courseDate = dateFormatter.date(from: courseTextField[2].text!)!
         courseDate = courseTextField[2].text!
         coursePrice = Int(courseTextField[3].text!)
         courseLocation = courseTextField[4].text!
         courseNeed = courseTextField[5].text!
         courseNumberOfPeople = Int(courseTextField[6].text!)
         courseQualification = courseTextField[7].text!
-//        courseRegisterDeadline = dateFormatter.date(from: courseTextField[8].text!)!
         courseRegisterDeadline = courseTextField[8].text!
         courseNote = noteTextView.text!
         
-        print(courseDate!)
-        print(courseRegisterDeadline!)
     }
     
     private func createCourse(){
-        newCourseDetail = CourseDetail(courseCategoryID: 0,
+        newCourseDetail = CourseDetail(courseCategoryID: course?.courseCategoryID ?? self.courseCategoryID,
                                        professionID: courseCategory!,
                                        courseName: courseName! ,
                                        courseContent: courseDetail!,
@@ -191,26 +247,23 @@ class addCourseViewController: UIViewController{
                                        courseLocation: courseLocation!,
                                        courseNote: courseNote!)
         
-        updateCourseDetail()
-    }
-    private func createCourseProfile(courseCategoryID : Int){
-        newCourseProfile = CourseProfile(courseID: 0,
-                                         userID: "billy",
-                                         courseDate: courseDate!,
-                                         courseApplyDeadLine: courseRegisterDeadline!,
-                                         coursePeopleNumber: courseNumberOfPeople!,
-                                         courseImageID: self.courseImageID!,
-                                         courseStatusID: 1,
-                                         courseCategoryID: courseCategoryID)
+        // finish create course, call update course detail method
+        if editingStyle == EditingStyle.insertCourse{
+            updateCourseDetail(action: "insert")
+        }else{
+            updateCourseDetail(action: "update")
+        }
     }
     
-    private func updateCourseDetail(){
+    private func updateCourseDetail(action : String){
+        
         guard let encodedCourseDetail = try? encoder.encode(newCourseDetail),
             let courseDetailStr = String(data: encodedCourseDetail, encoding: .utf8) else{
                 assertionFailure("Encode Data Fail")
-            return
+                return
         }
-        let request = ["action":"insert","course":courseDetailStr]
+        
+        let request : [String : Any] = ["action":action,"course":courseDetailStr]
         Task.postRequestData(urlString: urlString + "CourseDetailServlet", request: request) { (error, data) in
             if let error = error{
                 print("Download Data Fail : \(error)")
@@ -224,18 +277,35 @@ class addCourseViewController: UIViewController{
                 assertionFailure("Update CourseDetail fail")
                 return
             }
-            self.createCourseProfile(courseCategoryID: courseCategoryID)
-            self.updateCourseProfile()
+            self.courseCategoryID = courseCategoryID
+            self.createCourseProfile()
+            
+            if self.editingStyle == EditingStyle.insertCourse{
+                self.updateCourseProfile(action: "insert")
+            }else{
+                self.updateCourseProfile(action: "update")
+            }
         }
     }
     
-    private func updateCourseProfile(){
+    private func createCourseProfile(){
+        newCourseProfile = CourseProfile(courseID: course?.courseID ?? 0,
+                                         userID: "billy",
+                                         courseDate: courseDate!,
+                                         courseApplyDeadLine: courseRegisterDeadline!,
+                                         coursePeopleNumber: courseNumberOfPeople!,
+                                         courseImageID: course?.courseImageID ?? self.courseImageID!,
+                                         courseStatusID: 1,
+                                         courseCategoryID: course?.courseCategoryID ?? self.courseCategoryID)
+    }
+    
+    private func updateCourseProfile(action : String){
         guard let encodedCourseProfile = try? encoder.encode(newCourseProfile),
             let courseProfileStr = String(data: encodedCourseProfile, encoding: .utf8)else{
                 assertionFailure("Encode Data Fail")
                 return
         }
-        let request = ["action":"insert","course":courseProfileStr]
+        let request = ["action":action,"course":courseProfileStr]
         Task.postRequestData(urlString: urlString + "CourseServlet", request: request) { (error, data) in
             if let error = error{
                 print("Download Data Fail : \(error)")
@@ -249,7 +319,7 @@ class addCourseViewController: UIViewController{
                 assertionFailure("Update CourseProfile Fail")
                 return
             }
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "新增課程成功！") { (_) in
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "上傳課程成功！") { (_) in
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -268,47 +338,18 @@ class addCourseViewController: UIViewController{
     
     private func checkIsTextFieldEmpty() -> Bool{
         for textField in courseTextField{
-            guard textField.text == "" else{
-                return true
+            let text = textField.text!.trimmingCharacters(in: .whitespaces)
+            let alertTitle = textField.restorationIdentifier!
+            guard text != "" else{
+                Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "\(alertTitle)不能為空白") { (_) in}
+                return false
             }
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "\(textFieldTitle(textField: textField))不能為空白") { (_) in}
-            return false
         }
         return true
     }
-    
-    private func textFieldTitle(textField : UITextField) -> String{
-        switch textField.tag{
-        case 0:
-            return "課程名稱"
-        case 1:
-            return "課程類別"
-        case 2:
-            return "課程日期"
-        case 3:
-            return "課程價格"
-        case 4:
-            return "課程地點"
-        case 5:
-            return "課程要求"
-        case 6:
-            return "課程人數"
-        case 7:
-            return "報名資格"
-        case 8:
-            return "報名期限"
-        default:
-            return ""
-        }
-    }
 }
 
-enum dateIsEditing{
-    case courseDate
-    case courseDeadline
-}
-
-extension addCourseViewController : UIImageCropperProtocol{
+extension editCourseViewController : UIImageCropperProtocol{
     private func setTextView(textView : UITextView){
         textView.layer.borderWidth = 0.5
         textView.layer.borderColor = UIColor.lightGray.cgColor
@@ -316,10 +357,75 @@ extension addCourseViewController : UIImageCropperProtocol{
         textView.backgroundColor = UIColor.white
     }
     
+    // MARK: - Did Finish Crop Image
     func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
-        addImageView.contentMode = .scaleAspectFit
-        addImageView.clipsToBounds = true
-        addImageView.image = croppedImage
+        
+        guard let image = croppedImage else{
+            assertionFailure("Invalid Image")
+            return
+        }
+        // Check if image is too large. If image too large then resize it.
+        let height = image.size.height
+        let width = image.size.width
+        
+        guard height * width > 900 * 1200 else{
+            addImageView.image = image
+            return
+        }
+        
+        // Start resize image
+        let size = __CGSizeApplyAffineTransform((croppedImage?.size)!, CGAffineTransform(scaleX: 0.5, y: 0.5))
+        let hasAlpha = false
+        let scale : CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        guard let scaledImage = UIGraphicsGetImageFromCurrentImageContext() else{
+            assertionFailure("Scale Image Fail")
+            return
+        }
+        
+        UIGraphicsEndImageContext()
+        addImageView.image = scaledImage
     }
 }
+
+extension editCourseViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 10
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "Test"
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //..
+    }
+    
+}
+
+
+enum EditingStyle{
+    case insertCourse
+    case updateCourse
+}
+
+enum DateIsEditing{
+    case courseDate
+    case courseDeadline
+}
+
+
+
+
+
+
+
+
+
+
+
 

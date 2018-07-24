@@ -12,8 +12,13 @@ import Foundation
 // User Defaults Key
 let USER_ACCOUNT_KEY = "userAccount"
 
-// TODO: - 通用方法 ...
-func presentLoginView(view: UIViewController) { // 跳到登入畫面
+let NOT_EDIT_TEXT = "尚未編輯"
+let MEN_TEXT = "男"
+let WOMEN_TEXT = "女"
+
+// TODO: - 通用方法 ... ?
+// 轉跳到登入畫面
+func presentLoginView(view: UIViewController) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginView = storyboard.instantiateViewController(withIdentifier: "loginVC")
     let rootViewController = view.view.window?.rootViewController
@@ -32,6 +37,7 @@ struct User:Codable {
 }
 
 
+// MARK: - UserDefaults 系列
 class UserAccount {
     
     static let shared = UserAccount()
@@ -57,6 +63,7 @@ class UserAccount {
 }
 
 
+// MARK: - 多頁面共享資料
 class UserInfo {
     
     static let shared = UserInfo()

@@ -26,7 +26,7 @@ class LoginRemindViewController: UIViewController {
         
         // TODO: - 網路判斷 ?
         
-        // TODO: - 自動跳頁?
+        // TODO: - 第一次自動跳頁?
     }
     
     

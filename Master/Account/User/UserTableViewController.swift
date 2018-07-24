@@ -8,9 +8,7 @@
 
 import UIKit
 
-let NOT_EDIT_TEXT = "尚未編輯"
-let MEN_TEXT = "男"
-let WOMEN_TEXT = "女"
+
 
 private let DEFAULT_USER_PORTRAIT = "user_default_por"
 private let DEFAULT_USER_BACKGROUND = "user_default_bkgd"
@@ -35,40 +33,40 @@ class UserTableViewController: UITableViewController {
         self.tableView.delaysContentTouches = false
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-
         
         guard userInfo.count != 0 else {
 
             // TODO: - DeBug
             userAccess = true
-            userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["技能","技能2","技能3"],["SginOut"]]
+            userInfo = [["image"],["名字"],["身份","性別","地址","電話"],
+                        ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
             UserInfo.shared.info = userInfo
             
-            // TODO: - 網路檢查?
-            if let account = userAccount {
-                getUserInfo(account: account)
-            } else {
-                userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["SginOut"]]
-            }
+            // TODO: - 網路檢查 ?
+            
+            // TODO: - 正式版
+//            if let account = userAccount {
+//                getUserInfo(account: account)
+//            } else {
+//                userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["out"]]
+//            }
             return
         }
-        
         // 否則會去 UserInfo 同步一次資料, 並重新整理
         userInfo = UserInfo.shared.info
         self.tableView.reloadData()
     }
-   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    
+    
+ // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -80,7 +78,6 @@ class UserTableViewController: UITableViewController {
         return userInfo[section].count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
@@ -140,81 +137,69 @@ class UserTableViewController: UITableViewController {
     }
  
     
+    
+ // MARK: - Section Methods.
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-       
-        let frame: CGRect = tableView.frame
-
+        
+        let bkgdColor = UIColor(red: 0.922, green: 0.922, blue: 0.945, alpha: 1.0)
+        let btnColor = UIColor(red: 0.271, green: 0.349, blue: 0.694, alpha: 1.0)
+        let frame = tableView.frame
+        // 基底
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+        view.backgroundColor = bkgdColor
+        // 標題
+        let title = UILabel(frame: CGRect(x: 20, y: 0, width: 100, height: 30))
+        title.font = UIFont.systemFont(ofSize: 16)
+        
         switch section {
             
-        case 2: // 會員資訊
-             let view: UIView?
-            let DoneBut = UIButton(frame: CGRect(x: frame.size.width - 200, y: 0, width: 150, height: 30))
-            DoneBut.setTitle("Done", for: .normal)
-            DoneBut.backgroundColor = UIColor.blue
-             DoneBut.addTarget(self, action: #selector(presentModifyView(_:)), for: .touchUpInside)
-            let title = UILabel(frame: CGRect(x: 20, y: 0, width: 150, height: 30))
+        case 2: // 編輯會員資訊
+            // Title
             title.text = "會員資訊"
-
-            view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-            view?.backgroundColor = UIColor.lightGray
-            view?.addSubview(DoneBut)
-            view?.addSubview(title)
+            // Button
+            let modifyBtn = UIButton(frame: CGRect(x: frame.size.width - 85, y: 2.5, width: 70, height: 25))
+            modifyBtn.layer.cornerRadius = 5
+            modifyBtn.backgroundColor = btnColor
+            modifyBtn.setTitle("編輯", for: .normal)
+            modifyBtn.setTitleColor(UIColor.white, for: .normal)
+            modifyBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            modifyBtn.addTarget(self, action: #selector(presentModifyView(_:)), for: .touchUpInside)
+            // View
+            view.addSubview(modifyBtn)
+            view.addSubview(title)
             return view
 
         case 3: // 個人簡介
-             let view: UIView?
-            let title = UILabel(frame: CGRect(x: 20, y: 0, width: 150, height: 35))
+            // Title
             title.text = "個人簡介"
-            view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-            view?.backgroundColor = UIColor.lightGray
-            view?.addSubview(title)
+            view.addSubview(title)
             return view
             
         case 4: // 專業技能
+            
             guard userAccess else { fallthrough }
-            let view: UIView?
-            let DoneBut = UIButton(frame: CGRect(x: frame.size.width - 200, y: 0, width: 150, height: 30))
-            DoneBut.setTitle("Done", for: .normal)
-            DoneBut.backgroundColor = UIColor.blue
-            DoneBut.addTarget(self, action: #selector(presentProfessionView(_:)), for: .touchUpInside)
-            let title = UILabel(frame: CGRect(x: 20, y: 0, width: 150, height: 30))
+            // Title
             title.text = "專業技能"
-
-            view = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-            view?.backgroundColor = UIColor.lightGray
-            view?.addSubview(DoneBut)
-            view?.addSubview(title)
+            // Button
+            let ProBtn = UIButton(frame: CGRect(x: frame.size.width - 85, y: 2.5, width: 70, height: 25))
+            ProBtn.layer.cornerRadius = 5
+            ProBtn.backgroundColor = btnColor
+            ProBtn.setTitle("編輯", for: .normal)
+            ProBtn.setTitleColor(UIColor.white, for: .normal)
+            ProBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            ProBtn.addTarget(self, action: #selector(presentProfessionView(_:)), for: .touchUpInside)
+            // View
+            view.addSubview(ProBtn)
+            view.addSubview(title)
             return view
+            
         default:
             return nil
         }
-
-      
     }
     
-    // 轉跳會員編輯畫面
-    @objc private func presentModifyView(_ sender: UIButton) {
-        
-        // TODO: - 改寫成單例模式
-        
-        sender.pulse()
-        let storyboard = UIStoryboard(name: "User", bundle: nil)
-        let loginView = storyboard.instantiateViewController(withIdentifier: "modifyVC")
-        let rootViewController = self.view.window?.rootViewController
-        rootViewController?.present(loginView, animated: true, completion: nil)
-    }
-
-    // 轉跳專業編輯畫面
-    @objc private func presentProfessionView(_ sender: UIButton) {
-        sender.pulse()
-       
-        print("View")
-        // TODO: - 轉跳專業編編輯畫面
-        
-    }
-    
-    
+    // Section Height
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 2,3:
@@ -226,6 +211,25 @@ class UserTableViewController: UITableViewController {
             return 0
         }
     }
+    
+    // 轉跳會員編輯畫面
+    @objc private func presentModifyView(_ sender: UIButton) {
+        sender.pulse()
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let loginView = storyboard.instantiateViewController(withIdentifier: "modifyVC")
+        let rootViewController = self.view.window?.rootViewController
+        rootViewController?.present(loginView, animated: true, completion: nil)
+    }
+
+    // 轉跳專業編輯畫面
+    @objc private func presentProfessionView(_ sender: UIButton) {
+        sender.pulse()
+       
+        print("還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒")
+        
+    }
+    
+
     
     /*
     // Override to support conditional editing of the table view.
@@ -274,6 +278,18 @@ class UserTableViewController: UITableViewController {
         }
     }
     */
+    
+    
+    @IBAction func modifyUserImage(_ sender: UITapGestureRecognizer) {
+        
+        // TODO: - Camera and photo
+        
+        print("還沒")
+    }
+    
+    
+    
+    
     
     
     
@@ -392,7 +408,7 @@ class UserTableViewController: UITableViewController {
     
     @IBAction func sginoutButton(_ sender: UIButton) {
         Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "您即將登出", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
-            // nope
+            return
         }) { (action) in
             self.prepareSginout()
             presentLoginView(view: self)

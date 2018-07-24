@@ -22,6 +22,7 @@ class AccountSwitchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: - DeBug
         switchView.addSubview(userVC.view)
     }
     
@@ -41,7 +42,6 @@ class AccountSwitchViewController: UIViewController {
 //        switchViewSegmented.selectedSegmentIndex = 0
 //        switchViewSegmented.isHidden = false
 //        switchView.addSubview(userVC.view)
-    
     }
     
     @IBAction func swichViewSegmentedTapped(_ sender: UISegmentedControl) {

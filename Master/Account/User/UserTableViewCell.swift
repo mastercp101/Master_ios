@@ -18,7 +18,6 @@ class UserImageCell: UITableViewCell {
         userPortraitImageView.layer.borderWidth = 2
         userPortraitImageView.layer.borderColor = UIColor.white.cgColor
     }
-    
 }
 
 class UserNameCell: UITableViewCell {

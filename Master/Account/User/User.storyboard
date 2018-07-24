@@ -28,17 +28,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_bkgd" translatesAutoresizingMaskIntoConstraints="NO" id="5dx-Ak-w1m">
+                                        <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_bkgd" translatesAutoresizingMaskIntoConstraints="NO" id="5dx-Ak-w1m">
                                             <rect key="frame" x="0.0" y="-0.5" width="375" height="200.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="qol-Hy-sRa"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_por" translatesAutoresizingMaskIntoConstraints="NO" id="ijo-P2-4GP">
+                                        <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_por" translatesAutoresizingMaskIntoConstraints="NO" id="ijo-P2-4GP">
                                             <rect key="frame" x="112.5" y="24.5" width="150" height="150.5"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ijo-P2-4GP" secondAttribute="height" multiplier="1:1" id="nk8-gK-Qzl"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="Ua2-Ut-4yj" appends="YES" id="EI1-Nj-NGj"/>
+                                            </connections>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -209,6 +213,11 @@
                     <navigationItem key="navigationItem" id="erF-8G-vHM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7r-xU-gJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ua2-Ut-4yj">
+                    <connections>
+                        <action selector="modifyUserImage:" destination="VW8-KC-nyY" id="YN0-4z-K0c"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2008.8" y="59.820089955022496"/>
         </scene>
@@ -238,9 +247,15 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Lod-qI-9Zd"/>
                                                 </constraints>
-                                                <state key="normal" title="Button">
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Send">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="saveModify:" destination="5ao-QH-SVF" eventType="touchUpInside" id="2fA-QV-QJm"/>
                                                 </connections>
@@ -255,7 +270,7 @@
                                                 <rect key="frame" x="30" y="241" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eq5-0g-xnh">
                                                 <rect key="frame" x="40" y="121" width="35" height="21"/>
@@ -273,7 +288,7 @@
                                                 <rect key="frame" x="30" y="332" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用戶名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gND-BD-ss2">
                                                 <rect key="frame" x="40" y="30" width="70" height="21"/>
@@ -292,7 +307,7 @@
                                                 <rect key="frame" x="30" y="61" width="315" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-FV-pwW">
                                                 <rect key="frame" x="30" y="423" width="315" height="150"/>
@@ -305,6 +320,7 @@
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="IOo-qK-oUx" firstAttribute="top" secondItem="CHJ-Og-tbS" secondAttribute="bottom" priority="900" constant="30" id="1KA-Pu-hFI"/>
                                             <constraint firstAttribute="trailing" secondItem="CHJ-Og-tbS" secondAttribute="trailing" constant="30" id="5xv-pA-svj"/>
@@ -336,6 +352,9 @@
                                             <constraint firstAttribute="trailing" secondItem="4ot-FV-pwW" secondAttribute="trailing" constant="30" id="qvr-9x-ex2"/>
                                             <constraint firstItem="gND-BD-ss2" firstAttribute="leading" secondItem="8Wc-Qb-Gqy" secondAttribute="leading" constant="40" id="re2-yf-ezK"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="I0f-WH-VqF" appends="YES" id="gZG-eG-L0l"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -374,6 +393,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xp1-lR-Uja" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="I0f-WH-VqF">
+                    <connections>
+                        <action selector="endEdit:" destination="5ao-QH-SVF" id="wfi-FJ-u5J"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2008.8" y="892.80359820089961"/>
         </scene>

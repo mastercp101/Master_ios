@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		270A00FA20F774E4008CEAEC /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A00F920F774E4008CEAEC /* Task.swift */; };
-		270D070920FC2FD00037F510 /* addCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070520FC2FD00037F510 /* addCourseViewController.swift */; };
+		270D070920FC2FD00037F510 /* editCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070520FC2FD00037F510 /* editCourseViewController.swift */; };
 		270D070A20FC2FD00037F510 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070620FC2FD00037F510 /* Course.swift */; };
 		270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070720FC2FD00037F510 /* singleCourseCell.swift */; };
 		270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D070820FC2FD00037F510 /* singleCourseViewController.swift */; };
@@ -19,6 +19,7 @@
 		270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073720FD8A7D0037F510 /* MessageCell.swift */; };
 		270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073920FDA2000037F510 /* ChatRoomViewController.swift */; };
 		27B9470320FF61CC00931FE4 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B9470220FF61CC00931FE4 /* Apply.swift */; };
+		27D2A7752105F68D00E8C761 /* Profession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D2A7742105F68D00E8C761 /* Profession.swift */; };
 		27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DC20F9BF76009AD98B /* Photo.storyboard */; };
 		27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DE20F9BF86009AD98B /* Course.storyboard */; };
 		27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB31E420F9D4C5009AD98B /* CourseItemView.swift */; };
@@ -55,7 +56,7 @@
 /* Begin PBXFileReference section */
 		0BC07C19CA6F046D72AB51DD /* Pods-Master.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.release.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.release.xcconfig"; sourceTree = "<group>"; };
 		270A00F920F774E4008CEAEC /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		270D070520FC2FD00037F510 /* addCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCourseViewController.swift; sourceTree = "<group>"; };
+		270D070520FC2FD00037F510 /* editCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editCourseViewController.swift; sourceTree = "<group>"; };
 		270D070620FC2FD00037F510 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		270D070720FC2FD00037F510 /* singleCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleCourseCell.swift; sourceTree = "<group>"; };
 		270D070820FC2FD00037F510 /* singleCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleCourseViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		270D073720FD8A7D0037F510 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		270D073920FDA2000037F510 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		27B9470220FF61CC00931FE4 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
+		27D2A7742105F68D00E8C761 /* Profession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profession.swift; sourceTree = "<group>"; };
 		27FB31DC20F9BF76009AD98B /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		27FB31DE20F9BF86009AD98B /* Course.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Course.storyboard; sourceTree = "<group>"; };
 		27FB31E420F9D4C5009AD98B /* CourseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemView.swift; sourceTree = "<group>"; };
@@ -128,7 +130,7 @@
 			children = (
 				27FB31DE20F9BF86009AD98B /* Course.storyboard */,
 				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
-				270D070520FC2FD00037F510 /* addCourseViewController.swift */,
+				270D070520FC2FD00037F510 /* editCourseViewController.swift */,
 				270D070820FC2FD00037F510 /* singleCourseViewController.swift */,
 				270D070720FC2FD00037F510 /* singleCourseCell.swift */,
 				270D073520FCBB4B0037F510 /* manageStudentViewController.swift */,
@@ -136,6 +138,7 @@
 				27FB31E620F9EFBE009AD98B /* CourseItemView.xib */,
 				27FB31E420F9D4C5009AD98B /* CourseItemView.swift */,
 				270D070620FC2FD00037F510 /* Course.swift */,
+				27D2A7742105F68D00E8C761 /* Profession.swift */,
 				27B9470220FF61CC00931FE4 /* Apply.swift */,
 			);
 			path = Course;
@@ -398,11 +401,12 @@
 				F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
+				27D2A7752105F68D00E8C761 /* Profession.swift in Sources */,
 				27B9470320FF61CC00931FE4 /* Apply.swift in Sources */,
 				270D070A20FC2FD00037F510 /* Course.swift in Sources */,
 				270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */,
 				27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */,
-				270D070920FC2FD00037F510 /* addCourseViewController.swift in Sources */,
+				270D070920FC2FD00037F510 /* editCourseViewController.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
 				27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */,
@@ -592,7 +596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -614,7 +618,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

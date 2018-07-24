@@ -8,19 +8,6 @@
 
 import UIKit
 
-//class UserTableViewCell: UITableViewCell {
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        // Configure the view for the selected state
-//    }
-//
-//}
-
 class UserImageCell: UITableViewCell {
 
     @IBOutlet weak var userPortraitImageView: UIImageView!
@@ -60,19 +47,4 @@ class UserSginOutCell: UITableViewCell {
     
 }
 
-class UserTitleCell: UITableViewCell {
-    
-    @IBOutlet weak var userTitleLabel: UILabel!
-}
 
-class UserInfoTitleCell: UITableViewCell {
-    
-    @IBOutlet weak var userInfoTitleLabel: UILabel!
-    @IBOutlet weak var userInfoTitleButton: UIButton!
-}
-
-class UserProTitleCell: UITableViewCell {
-    
-    @IBOutlet weak var userProTitleLabel: UILabel!
-    @IBOutlet weak var userProTitleButton: UIButton!
-}

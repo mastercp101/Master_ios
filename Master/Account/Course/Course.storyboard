@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fj6-22-RkS" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="117" width="375" height="432"/>
+                                <rect key="frame" x="0.0" y="117.5" width="375" height="432"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="432" id="IO0-3F-9db"/>
                                     <constraint firstAttribute="width" constant="375" id="bzL-24-ypx"/>
@@ -63,7 +63,7 @@
         <!--新增課程-->
         <scene sceneID="hb1-2N-WxF">
             <objects>
-                <viewController storyboardIdentifier="addCourseVC" id="SdZ-FC-aFw" customClass="addCourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editCourseVC" id="SdZ-FC-aFw" customClass="editCourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H1r-eR-IBh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTl-2n-gOh">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程名稱" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTl-2n-gOh">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,11 +119,11 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WP-QL-mz9">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程類別" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WP-QL-mz9">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
@@ -166,7 +166,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-o0-2iS">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程日期" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-o0-2iS">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -192,7 +192,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n86-rz-qCX">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程價格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n86-rz-qCX">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -218,7 +218,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FLe-mT-wDW">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程地點" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FLe-mT-wDW">
                                                                 <rect key="frame" x="0.0" y="26" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -241,7 +241,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Need" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxm-vi-VWT">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程需求" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Need" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxm-vi-VWT">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -267,7 +267,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of people" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-zp-LmD">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程人數" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of people" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-zp-LmD">
                                                                 <rect key="frame" x="0.0" y="26" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -290,7 +290,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qualification" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ycu-xc-ExU">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名資格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qualification" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ycu-xc-ExU">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -313,7 +313,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Register deadline" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9s-pb-UZ9">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名期限" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Register deadline" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9s-pb-UZ9">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

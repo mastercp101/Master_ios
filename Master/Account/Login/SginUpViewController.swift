@@ -32,7 +32,6 @@ class SginUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func prepareSginup(_ sender: UIButton) {
         
@@ -74,7 +73,9 @@ class SginUpViewController: UIViewController {
         connectionDBCheckAccount(account: account)
     }
     
-
+    
+ // MAEK: - Connect DB Methods.
+    
     private func sginupNow(account: String, password: String, name: String, access: Int) {
         
         let request: [String: Any] = ["action": "signup",
@@ -94,7 +95,8 @@ class SginUpViewController: UIViewController {
             if result == "0" { // 理論上進不來
                 Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error", handler: { (action) in })
             } else { // 註冊成功
-                UserAccount.shared.setUserAccount(account: account)
+                UserFile.shared.setUserAccount(account: account)
+                UserFile.shared.setUserAccess(access: access)
                 self.dismiss(animated: true)
             }
         }

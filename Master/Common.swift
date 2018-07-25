@@ -18,8 +18,9 @@ let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
 
-/// 使用者帳號, 拿到 nil 即沒登入
-var userAccount: String?
+var userAccount: String? // 使用者帳號, nil即沒登入
+var userAccess: UserAccess = .none // *** 使用者權限 ***
+var userProfessions = [Profession]() // 原汁原味 [Profession], 會在 User 資訊頁面存入
 
 // Singleton
 

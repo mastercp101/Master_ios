@@ -9,11 +9,11 @@
 import UIKit
 
 private let PROFILE_TEXT = "請輸入個人簡介..."
+private let MODIFY_TEXT = "即將修改會員資料"
 
 class UserModifyViewController: UIViewController {
     
     @IBOutlet weak var modifyScrollView: UIScrollView!
-    
     @IBOutlet weak var modifyNameTextField: UITextField!
     @IBOutlet weak var modifyGenderSegmented: UISegmentedControl!
     @IBOutlet weak var modifyAddressTextField: UITextField!
@@ -42,7 +42,6 @@ class UserModifyViewController: UIViewController {
         // 移除監聽
         Common.shared.removeObservers(viewController: self)
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,7 +84,7 @@ class UserModifyViewController: UIViewController {
         }
         self.view.endEditing(true)
         
-        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "即將修改會員資料", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
+        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: MODIFY_TEXT, alertMessage: nil, actionTitles: [CANCEL_TEXT, OK_TEXT], firstHandler: { (action) in
             return
         }) { (action) in
             // 連接修改會員資料
@@ -96,11 +95,11 @@ class UserModifyViewController: UIViewController {
     }
     
 
-    func prepareModifyView() {
+    private func prepareModifyView() {
         
-        modifyNameTextField.text = UserInfo.shared.info[1][0]
+        modifyNameTextField.text = UserData.shared.info[1][0]
         
-        let gender = UserInfo.shared.info[2][1]
+        let gender = UserData.shared.info[2][1]
         if gender != NOT_EDIT_TEXT {
             switch gender {
             case MEN_TEXT:
@@ -112,17 +111,13 @@ class UserModifyViewController: UIViewController {
             }
         }
         
-        let address = UserInfo.shared.info[2][2]
-        if address != NOT_EDIT_TEXT {
-            modifyAddressTextField.text = address
-        }
-
-        let tel = UserInfo.shared.info[2][3]
-        if tel != NOT_EDIT_TEXT {
-            modifyTelTextField.text = tel
-        }
+        let address = UserData.shared.info[2][2]
+        if address != NOT_EDIT_TEXT { modifyAddressTextField.text = address }
         
-        let profile = UserInfo.shared.info[3][0]
+        let tel = UserData.shared.info[2][3]
+        if tel != NOT_EDIT_TEXT { modifyTelTextField.text = tel }
+        
+        let profile = UserData.shared.info[3][0]
         if profile != NOT_EDIT_TEXT {
             modifyProfileTextView.text = profile
         } else {
@@ -130,8 +125,37 @@ class UserModifyViewController: UIViewController {
         }
     }
     
+    private func returnUserInfo(name: String, gender: Int, address: String, tel: String, profile: String) {
+        
+        let access = UserData.shared.info[2][0]
+        var genderStr: String
+        switch gender {
+        case 1:
+            genderStr = MEN_TEXT
+        case 2:
+            genderStr = WOMEN_TEXT
+        default:
+            genderStr = NOT_EDIT_TEXT
+        }
+        let userName = [name]
+        let userData = [access, genderStr, address, tel]
+        let userProfile = [profile]
+        
+        var userInfo = UserData.shared.info
+        userInfo.remove(at: 1)
+        userInfo.insert(userName, at: 1)
+        userInfo.remove(at: 2)
+        userInfo.insert(userData, at: 2)
+        userInfo.remove(at: 3)
+        userInfo.insert(userProfile, at: 3)
+        // 覆蓋上新的資料
+        UserData.shared.info = userInfo
+    }
     
-    func updateUserInfo(account: String, name: String, gender: Int, address: String, tel: String, profile: String) {
+    
+ // MAEK: - Connect DB Methods.
+    
+    private func updateUserInfo(account: String, name: String, gender: Int, address: String, tel: String, profile: String) {
 
         let request: [String: Any] = ["action" : "editMemberInfo",
                                       "account" : account,
@@ -150,41 +174,12 @@ class UserModifyViewController: UIViewController {
             }
             if result == "0" { // 理論上進不來
                 Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error", handler: { (action) in })
-            } else { // 註冊成功
+            } else {
                 // 回傳 UserInfo ...
                 self.returnUserInfo(name: name, gender: gender, address: address, tel: tel, profile: profile)
                 self.dismiss(animated: true)
             }
         }
-    }
-    
-    
-    func returnUserInfo(name: String, gender: Int, address: String, tel: String, profile: String) {
-    
-        let access = UserInfo.shared.info[2][0]
-        
-        var genderStr = ""
-        switch gender {
-        case 1:
-            genderStr = MEN_TEXT
-        case 2:
-            genderStr = WOMEN_TEXT
-        default:
-            genderStr = NOT_EDIT_TEXT
-        }
-        let userName = [name]
-        let userData = [access, genderStr, address, tel]
-        let userProfile = [profile]
-        
-        var userInfo = UserInfo.shared.info
-        userInfo.remove(at: 1)
-        userInfo.insert(userName, at: 1)
-        userInfo.remove(at: 2)
-        userInfo.insert(userData, at: 2)
-        userInfo.remove(at: 3)
-        userInfo.insert(userProfile, at: 3)
-        // 覆蓋上新的資料
-        UserInfo.shared.info = userInfo
     }
 }
 
@@ -192,20 +187,20 @@ class UserModifyViewController: UIViewController {
 extension UserModifyViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
+        // 如果開始編輯 ProfileTextView, ScrollView 會跳到最下面
         let leftBottomRect = CGRect(x: 0, y: self.view.frame.maxY - 1, width: 1, height: 1)
         modifyScrollView.scrollRectToVisible(leftBottomRect, animated: true)
-        
+
         if textView.text == PROFILE_TEXT {
             textView.text.removeAll()
         }
     }
 }
 
-
 extension UserModifyViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 變換 TextField 焦點
         var flag = false
         guard let text = textField.text, !text.isEmpty else { return flag }
 

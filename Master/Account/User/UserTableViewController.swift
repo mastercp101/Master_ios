@@ -9,6 +9,7 @@
 import UIKit
 
 
+private let SGIN_OUT_TEXT = "您即將登出"
 
 private let DEFAULT_USER_PORTRAIT = "user_default_por"
 private let DEFAULT_USER_BACKGROUND = "user_default_bkgd"
@@ -22,11 +23,9 @@ private let sginOutCell = "UserSginOutCell"
 
 class UserTableViewController: UITableViewController {
 
-    private var userInfo = [[String]]()
     private let infoTitle = ["身份","性別","地址","電話"]
     private var userPortrait: Data?
     private var userBackground: Data?
-    private var userAccess = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,26 +35,24 @@ class UserTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard userInfo.count != 0 else {
+        // TODO: - 網路檢查 ?
+        
+        guard UserData.shared.info.count != 0 else {
 
             // TODO: - DeBug
-            userAccess = true
-            userInfo = [["image"],["名字"],["身份","性別","地址","電話"],
-                        ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
-            UserInfo.shared.info = userInfo
-            
-            // TODO: - 網路檢查 ?
-            
+            userAccess = .coach
+            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],
+                                    ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
+           
             // TODO: - 正式版
 //            if let account = userAccount {
 //                getUserInfo(account: account)
 //            } else {
-//                userInfo = [["image"],["名字"],["身份","性別","地址","電話"],["自介"],["out"]]
+//                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
 //            }
             return
         }
         // 否則會去 UserInfo 同步一次資料, 並重新整理
-        userInfo = UserInfo.shared.info
         self.tableView.reloadData()
     }
 
@@ -70,12 +67,12 @@ class UserTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return userInfo.count
+        return UserData.shared.info.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userInfo[section].count
+        return UserData.shared.info[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,6 +81,7 @@ class UserTableViewController: UITableViewController {
             
         case 0: // 大頭照
             
+            print("大頭照")
             let cell = tableView.dequeueReusableCell(withIdentifier: imageCell, for: indexPath) as! UserImageCell
             
             if let userPortrait = self.userPortrait {
@@ -91,6 +89,7 @@ class UserTableViewController: UITableViewController {
             } else {
                 cell.userPortraitImageView.image = UIImage(named: DEFAULT_USER_PORTRAIT)
             }
+            
             if let userBackground = self.userBackground {
                 cell.userBackgroundImageView.image = UIImage(data: userBackground)
             } else {
@@ -101,27 +100,27 @@ class UserTableViewController: UITableViewController {
         case 1: // 名字
             
             let cell = tableView.dequeueReusableCell(withIdentifier: nameCell, for: indexPath) as! UserNameCell
-            cell.userNameLabel.text = userInfo[indexPath.section][indexPath.row]
+            cell.userNameLabel.text = UserData.shared.info[indexPath.section][indexPath.row]
             return cell
             
         case 2: // 會員資訊
             
             let cell = tableView.dequeueReusableCell(withIdentifier: infoCell, for: indexPath) as! UserInfoCell
-            cell.userInfoDetail.text = userInfo[indexPath.section][indexPath.row]
+            cell.userInfoDetail.text = UserData.shared.info[indexPath.section][indexPath.row]
             cell.userInfoTitle.text = infoTitle[indexPath.row]
             return cell
 
         case 3: // 個人簡介
             
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCell, for: indexPath) as! UserProfileCell
-            cell.userProfileLabel.text = userInfo[indexPath.section][indexPath.row]
+            cell.userProfileLabel.text = UserData.shared.info[indexPath.section][indexPath.row]
             return cell
 
         case 4: // 專業技能
             
-            guard userAccess else { fallthrough }
+            guard userAccess == .coach else { fallthrough }
             let cell = tableView.dequeueReusableCell(withIdentifier: professionCell, for: indexPath) as! UserProfessionCell
-            cell.userProfessionLabel.text = userInfo[indexPath.section][indexPath.row]
+            cell.userProfessionLabel.text = UserData.shared.info[indexPath.section][indexPath.row]
             return cell
         
         case 5: // 登出按鈕
@@ -178,7 +177,7 @@ class UserTableViewController: UITableViewController {
             
         case 4: // 專業技能
             
-            guard userAccess else { fallthrough }
+            guard userAccess == .coach else { fallthrough }
             // Title
             title.text = "專業技能"
             // Button
@@ -205,7 +204,7 @@ class UserTableViewController: UITableViewController {
         case 2,3:
             return 30
         case 4:
-            guard userAccess else { fallthrough }
+            guard userAccess == .coach else { fallthrough }
             return 30
         default:
             return 0
@@ -283,14 +282,8 @@ class UserTableViewController: UITableViewController {
     @IBAction func modifyUserImage(_ sender: UITapGestureRecognizer) {
         
         // TODO: - Camera and photo
-        
-        print("還沒")
+        print("沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有")
     }
-    
-    
-    
-    
-    
     
     
  // MARK: - Connect DataBase Methods
@@ -317,14 +310,11 @@ class UserTableViewController: UITableViewController {
             
             var access = ""
             if result.userAccess == 1 {
-                access = "教練"
-                self.userAccess = true
+                access = TEACHER_TEXT
             } else if result.userAccess == 2 {
-                access = "學員"
-                self.userAccess = false
+                access = STUDENT_TEXT
             } else {
                 access = NOT_EDIT_TEXT
-                self.userAccess = false
             }
             
             var gender = ""
@@ -350,21 +340,21 @@ class UserTableViewController: UITableViewController {
                 tel = NOT_EDIT_TEXT
             }
             
-            self.userInfo.removeAll() // 開始加入 User Info !!!
+            UserData.shared.info.removeAll() // 開始加入 User Info !!!
            
-            self.userInfo.append(["頭像"]) // Image Cell 預留
+            UserData.shared.info.append(["Image"]) // Image Cell 預留
             if let userName = result.userName, !userName.isEmpty {
-                self.userInfo.append([userName])
+                UserData.shared.info.append([userName])
             } else {
-                self.userInfo.append([NOT_EDIT_TEXT])
+                UserData.shared.info.append([NOT_EDIT_TEXT])
             }
         
-            self.userInfo.append([access, gender, address, tel])
+            UserData.shared.info.append([access, gender, address, tel])
             
             if let userProfile = result.userProfile, !userProfile.isEmpty {
-                self.userInfo.append([userProfile])
+                UserData.shared.info.append([userProfile])
             } else {
-                self.userInfo.append([NOT_EDIT_TEXT])
+                UserData.shared.info.append([NOT_EDIT_TEXT])
             }
         
             if result.userAccess == 1 {
@@ -376,30 +366,32 @@ class UserTableViewController: UITableViewController {
     }
 
     func getUserProfession(account: String) {
-   
-        let request: [String: Any] = ["action": "getUserProfession", "account": account]
+
+        let request: [String: Any] = ["action": "findProfessionById", "user_id": account]
         
         Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
             
             guard error == nil, let data = data else { return }
-            
-            let results =  try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-            
-            guard let result = results , let profession = result as? [String] else { return }
-        
-            if profession.count == 0 {
-                self.userInfo.append([NOT_EDIT_TEXT])
+            let decoder = JSONDecoder()
+            let results = try? decoder.decode([Profession].self, from: data)
+            guard let result = results else { return }
+     
+            if result.count == 0 {
+                UserData.shared.info.append([NOT_EDIT_TEXT])
             } else {
-                self.userInfo.append(profession)
+                userProfessions = result
+                var professions = [String]()
+                for profession in result { professions.append(profession.professionName) }
+                UserData.shared.info.append(professions)
             }
             self.setSginOutButton()
         }
     }
     
+    
     func setSginOutButton() {  // 加上登出按鈕
-        self.userInfo.append(["登出"])
+        UserData.shared.info.append(["SginOut"])
         self.tableView.reloadData()
-        UserInfo.shared.info = userInfo
     }
     
     
@@ -407,7 +399,7 @@ class UserTableViewController: UITableViewController {
  // MARK: - SginOut Methods.
     
     @IBAction func sginoutButton(_ sender: UIButton) {
-        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "您即將登出", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
+        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: SGIN_OUT_TEXT, alertMessage: nil, actionTitles: [CANCEL_TEXT, OK_TEXT], firstHandler: { (action) in
             return
         }) { (action) in
             self.prepareSginout()
@@ -416,12 +408,12 @@ class UserTableViewController: UITableViewController {
     }
     
     func prepareSginout() {
-        userAccess = false
+        userAccess = .none
         userPortrait = nil
         userBackground = nil
-        userInfo.removeAll()
-        UserInfo.shared.info.removeAll()
-        UserAccount.shared.removeUserAccount()
+        UserData.shared.info.removeAll()
+        UserFile.shared.removeUserAccount()
+        UserFile.shared.removeUserAccess()
     }
     
     

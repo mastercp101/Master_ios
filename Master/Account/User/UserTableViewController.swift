@@ -40,16 +40,15 @@ class UserTableViewController: UITableViewController {
         guard UserData.shared.info.count != 0 else {
 
             // TODO: - DeBug
-            userAccess = .coach
-            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],
-                                    ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
+//            userAccess = .coach
+//            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
            
             // TODO: - 正式版
-//            if let account = userAccount {
-//                getUserInfo(account: account)
-//            } else {
-//                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
-//            }
+            if let account = userAccount {
+                getUserInfo(account: account)
+            } else {
+                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
+            }
             return
         }
         // 否則會去 UserInfo 同步一次資料, 並重新整理
@@ -81,7 +80,6 @@ class UserTableViewController: UITableViewController {
             
         case 0: // 大頭照
             
-            print("大頭照")
             let cell = tableView.dequeueReusableCell(withIdentifier: imageCell, for: indexPath) as! UserImageCell
             
             if let userPortrait = self.userPortrait {
@@ -223,67 +221,21 @@ class UserTableViewController: UITableViewController {
     // 轉跳專業編輯畫面
     @objc private func presentProfessionView(_ sender: UIButton) {
         sender.pulse()
-       
-        print("還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒還沒")
-        
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let loginView = storyboard.instantiateViewController(withIdentifier: "professionVC")
+        let rootViewController = self.view.window?.rootViewController
+        rootViewController?.present(loginView, animated: true, completion: nil)
     }
     
 
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? UserModifyViewController {
-            controller.test = userInfo
-        }
-    }
-    */
-    
+ // MARK: - 使用者頭像及背景
     
     @IBAction func modifyUserImage(_ sender: UITapGestureRecognizer) {
         
         // TODO: - Camera and photo
         print("沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有")
     }
+    
     
     
  // MARK: - Connect DataBase Methods
@@ -388,7 +340,6 @@ class UserTableViewController: UITableViewController {
         }
     }
     
-    
     func setSginOutButton() {  // 加上登出按鈕
         UserData.shared.info.append(["SginOut"])
         self.tableView.reloadData()
@@ -415,6 +366,5 @@ class UserTableViewController: UITableViewController {
         UserFile.shared.removeUserAccount()
         UserFile.shared.removeUserAccess()
     }
-    
     
 }

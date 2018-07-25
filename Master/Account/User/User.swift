@@ -7,28 +7,6 @@
 //
 
 import UIKit
-import Foundation
-
-// TODO: - 待整理到其他地方
-// User Defaults Key
-let USER_ACCOUNT_KEY = "userAccount"
-let USER_ACCESS_KEY = "userAccess"
-// UserScript
-let NOT_EDIT_TEXT = "尚未編輯"
-let MEN_TEXT = "男"
-let WOMEN_TEXT = "女"
-let TEACHER_TEXT = "教練"
-let STUDENT_TEXT = "學員"
-let OK_TEXT = "確定"
-let CANCEL_TEXT = "取消"
-// 轉跳到登入畫面
-func presentLoginView(view: UIViewController) {
-    let storyboard = UIStoryboard(name: "Login", bundle: nil)
-    let loginView = storyboard.instantiateViewController(withIdentifier: "loginVC")
-    let rootViewController = view.view.window?.rootViewController
-    rootViewController?.present(loginView, animated: true, completion: nil)
-}
-// TODO: - 待整理到其他地方
 
 
 enum UserAccess {
@@ -38,7 +16,6 @@ enum UserAccess {
 }
 
 struct User: Codable {
-    
     var userName: String?
     var userAddress: String?
     var userTel: String?
@@ -49,9 +26,12 @@ struct User: Codable {
     var userAccess: Int?
 }
 
-
 // MARK: - UserDefaults 系列
 class UserFile {
+    
+    // User Defaults Key
+    private let USER_ACCOUNT_KEY = "userAccount"
+    private let USER_ACCESS_KEY = "userAccess"
     
     static let shared = UserFile()
     private init() {}

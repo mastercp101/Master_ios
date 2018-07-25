@@ -28,7 +28,6 @@ class AccountSwitchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         // TODO: - 正式版
 //        guard userAccount != nil else {
 //            switchViewSegmented.isHidden = true

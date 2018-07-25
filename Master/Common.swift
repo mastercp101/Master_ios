@@ -45,15 +45,6 @@ class Common{
     func removeObservers(viewController : UIViewController){
         NotificationCenter.default.removeObserver(viewController)
     }
-    
-    
-    func getUserAccount() -> String? {
-        let userDefault = UserDefaults.standard
-        guard let result = userDefault.string(forKey: USER_ACCOUNT_KEY), !result.isEmpty else {
-            return nil
-        }
-        return result
-    }
 
 }
 

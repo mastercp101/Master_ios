@@ -134,9 +134,8 @@ class LoginViewController: UIViewController {
             
             let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
-            guard let result = results, let access = result as? Int else {
-                return
-            }
+            guard let result = results, let access = result as? Int else { return }
+            
             UserFile.shared.setUserAccess(access: access)
             self.dismiss(animated: true)
         }

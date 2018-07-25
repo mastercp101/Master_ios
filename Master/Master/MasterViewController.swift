@@ -12,7 +12,9 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userAccount = UserAccount.shared.getUserAccount() // Important!!!
+        // Important !
+        userAccount = UserFile.shared.getUserAccount() // 帳號
+        userAccess = UserFile.shared.getUserAccess() // 權限
     }
     
 }

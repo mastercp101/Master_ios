@@ -32,7 +32,6 @@ class SginUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func prepareSginup(_ sender: UIButton) {
         
@@ -55,7 +54,7 @@ class SginUpViewController: UIViewController {
         let access = sginupAccessSegmented.selectedSegmentIndex + 1 // 教練 = 1, 學員 ＝ 2
         
         Alert.shared.buildDoubleAlert(viewController: self, alertTitle: nil, alertMessage: "確定送出?", actionTitles: ["Cancel","OK"], firstHandler: { (action) in
-            // 按下取消
+            return
         }) { (action) in
             self.sginupNow(account: account, password: password, name: name, access: access)
         }
@@ -74,7 +73,9 @@ class SginUpViewController: UIViewController {
         connectionDBCheckAccount(account: account)
     }
     
-
+    
+ // MAEK: - Connect DB Methods.
+    
     private func sginupNow(account: String, password: String, name: String, access: Int) {
         
         let request: [String: Any] = ["action": "signup",
@@ -92,11 +93,10 @@ class SginUpViewController: UIViewController {
             }
             
             if result == "0" { // 理論上進不來
-                let alert = UIAlertController(title: "Error", message: "伺服器出錯，請聯絡管理員。", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Know", style: .default))
-                self.present(alert, animated: true)
+                Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error", handler: { (action) in })
             } else { // 註冊成功
-                UserAccount.shared.setUserAccount(account: account)
+                UserFile.shared.setUserAccount(account: account)
+                UserFile.shared.setUserAccess(access: access)
                 self.dismiss(animated: true)
             }
         }

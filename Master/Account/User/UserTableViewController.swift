@@ -40,15 +40,15 @@ class UserTableViewController: UITableViewController {
         guard UserData.shared.info.count != 0 else {
 
             // TODO: - DeBug
-//            userAccess = .coach
-//            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
+            userAccess = .coach
+            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
            
             // TODO: - 正式版
-            if let account = userAccount {
-                getUserInfo(account: account)
-            } else {
-                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
-            }
+//            if let account = userAccount {
+//                getUserInfo(account: account)
+//            } else {
+//                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
+//            }
             return
         }
         // 否則會去 UserInfo 同步一次資料, 並重新整理

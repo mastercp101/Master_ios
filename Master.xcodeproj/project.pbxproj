@@ -43,6 +43,9 @@
 		27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */; };
 		B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */; };
 		B478B5D0DC46E8110CCDCDC6 /* Pods_Master.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */; };
+		F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */; };
+		F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */; };
+		F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */; };
 		F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */; };
 		F1A784E92108304800C03AB6 /* UserScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E82108304800C03AB6 /* UserScript.swift */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
@@ -97,6 +100,9 @@
 		844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Master.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		EA472E47F99065BBF641F4FC /* Pods-Master.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.debug.xcconfig"; sourceTree = "<group>"; };
+		F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCategoryTableViewController.swift; sourceTree = "<group>"; };
+		F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionItemTableViewController.swift; sourceTree = "<group>"; };
+		F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionTableViewCell.swift; sourceTree = "<group>"; };
 		F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfessionTableViewController.swift; sourceTree = "<group>"; };
 		F1A784E82108304800C03AB6 /* UserScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScript.swift; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +272,9 @@
 				F1F714D220FF557E009DB9EF /* UserTableViewController.swift */,
 				F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */,
 				F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */,
+				F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */,
+				F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */,
+				F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */,
 				F1A784E82108304800C03AB6 /* UserScript.swift */,
 				F1F714CF20FF557E009DB9EF /* User.swift */,
 			);
@@ -408,6 +417,7 @@
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
 				B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */,
 				F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */,
+				F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */,
 				F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
@@ -430,6 +440,8 @@
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
 				F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */,
+				F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */,
+				F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */,
 				270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */,
 				F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */,
 				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,

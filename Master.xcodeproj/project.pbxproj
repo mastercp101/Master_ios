@@ -41,6 +41,7 @@
 		27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FED20F33BEB001A063E /* PhotoViewController.swift */; };
 		27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FEF20F33BFD001A063E /* CourseViewController.swift */; };
 		27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */; };
+		B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */; };
 		B478B5D0DC46E8110CCDCDC6 /* Pods_Master.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
 		F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */; };
@@ -92,6 +93,7 @@
 		27FC3FEF20F33BFD001A063E /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewController.swift; sourceTree = "<group>"; };
 		844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Master.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		EA472E47F99065BBF641F4FC /* Pods-Master.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.debug.xcconfig"; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
 		F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModifyViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				27FC3FDC20F308F8001A063E /* Master.storyboard */,
 				27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */,
+				B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
+				B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */,
 				F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */,
 				F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,

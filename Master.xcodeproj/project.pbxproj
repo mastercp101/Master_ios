@@ -47,6 +47,8 @@
 		F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */; };
 		F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */; };
 		F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */; };
+		F146DA3C2109CABB0042C329 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */; };
+		F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */; };
 		F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */; };
 		F1A784E92108304800C03AB6 /* UserScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E82108304800C03AB6 /* UserScript.swift */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
@@ -105,6 +107,8 @@
 		F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCategoryTableViewController.swift; sourceTree = "<group>"; };
 		F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionItemTableViewController.swift; sourceTree = "<group>"; };
 		F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionTableViewCell.swift; sourceTree = "<group>"; };
+		F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
+		F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfessionTableViewController.swift; sourceTree = "<group>"; };
 		F1A784E82108304800C03AB6 /* UserScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScript.swift; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 			children = (
 				27FC3FDF20F3093D001A063E /* Article.storyboard */,
 				27FC3FCB20F2FC40001A063E /* ArticleViewController.swift */,
+				F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */,
+				F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
+				F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */,
 				B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */,
 				F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */,
 				F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */,
@@ -443,6 +450,7 @@
 				270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */,
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
+				F146DA3C2109CABB0042C329 /* ArticleTableViewController.swift in Sources */,
 				F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */,
 				F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */,
 				F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */,

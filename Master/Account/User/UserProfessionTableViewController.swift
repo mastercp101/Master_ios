@@ -18,6 +18,8 @@ class UserProfessionTableViewController: UITableViewController {
     
     private var professions = [String]()
     private var isUpdate = false
+    
+    var selectNewProfessionItem: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,14 +75,16 @@ class UserProfessionTableViewController: UITableViewController {
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         
-        guard !tableView.isEditing else {
-            tableView.setEditing(false, animated: true)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(newProfession(_:)))
-            return
-        }
+//        guard !tableView.isEditing else {
+//            tableView.setEditing(false, animated: true)
+//            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(newProfession(_:)))
+//            return
+//        }
+        
         returnUserInfo()
         self.dismiss(animated: true) {
             guard self.isUpdate else { return }
+            self.isUpdate = false
             if let account = userAccount { self.updateCommonProfession(account: account) }
         }
     }
@@ -92,10 +96,9 @@ class UserProfessionTableViewController: UITableViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newProfession(_:)))
             return
         }
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "selectProVC") {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "PfsCategoryVC") {
             navigationController?.pushViewController(controller, animated: true)
         }
-//        self.navigationController?.popToRootViewController(animated: true) // 回到最上層
     }
     
     private func returnUserInfo() {
@@ -107,22 +110,27 @@ class UserProfessionTableViewController: UITableViewController {
     
     @IBAction func newProfessionReturn(segue: UIStoryboardSegue) {
         
-        
         // 拿到選擇的值
-        
-        
+        guard let account = userAccount, let professionItem = selectNewProfessionItem else { return }
         // 判斷重複
-        
-        
-        // 更新公用物件 ... ?
-        
-        
-        // isUpdate = true
-        
-        
-        print("newProfessionReturn")
+        for profession in professions {
+            guard professionItem != profession else {
+                showBanAlert()
+                return
+            }
+        }
+        insertProfession(account: account, profession: professionItem)
+        isUpdate = true
+        professions.append(professionItem)
+        let indexPath = IndexPath(row: professions.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
+    func showBanAlert() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "請勿重複選擇") { (action) in }
+        }
+    }
     
     
  // MAEK: - Connect DB Methods.
@@ -158,8 +166,28 @@ class UserProfessionTableViewController: UITableViewController {
             let results = try? decoder.decode([Profession].self, from: data)
             guard let result = results else { return }
             if result.count > 0 { userProfessions = result }
-            
         }
+    }
+    
+    private func insertProfession(account: String, profession: String) {
+        
+        let request: [String: Any] = ["action": "updataUserProfession",
+                                      "account": account,
+                                      "profession": profession]
+        
+        Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
+            
+            guard error == nil, let data = data else { return }
+            
+            let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            guard let result = results , let insertResult = result as? Int else { return }
+            
+            if insertResult <= 0 {
+                Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "新增時發生錯誤，請聯絡管理員", handler: { (action) in return })
+            }
+        }
+        
     }
     
 }

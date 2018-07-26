@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private let SGIN_OUT_TEXT = "您即將登出"
 
 private let DEFAULT_USER_PORTRAIT = "user_default_por"
@@ -22,37 +21,60 @@ private let professionCell = "UserProfessionCell"
 private let sginOutCell = "UserSginOutCell"
 
 class UserTableViewController: UITableViewController {
-
+    
+    // TODO: - 圖片相關 1
+    private var selectUserImageType: selectUserImageType = .none
+    private let userImagePicker = UIImagePickerController()
+    private let userImageCropper = UIImageCropper(cropRatio: 1/1)
+    private let userGroundPicker = UIImagePickerController()
+    private let userGroundCropper = UIImageCropper(cropRatio: 18/10)
+    
     private let infoTitle = ["身份","性別","地址","電話"]
     private var userPortrait: Data?
     private var userBackground: Data?
     
+    @IBOutlet var userLoadingView: UIView!
+    @IBOutlet weak var userLoadingIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delaysContentTouches = false
+        
+        // TODO: - 圖片相關 2
+        userGroundCropper.delegate = self
+        userGroundCropper.picker = userGroundPicker
+        userGroundCropper.cropButtonText = "Crop"
+        userGroundCropper.cancelButtonText = "Retake"
+        userImageCropper.delegate = self
+        userImageCropper.picker = userImagePicker
+        userImageCropper.cropButtonText = "Crop"
+        userImageCropper.cancelButtonText = "Retake"
+        
+        tableView.separatorStyle = .none
+        tableView.delaysContentTouches = false
+        tableView.backgroundView = userLoadingView
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // TODO: - 網路檢查 ?
         
         guard UserData.shared.info.count != 0 else {
 
             // TODO: - DeBug
             userAccess = .coach
-            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
-           
+            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],
+                                    ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
+            
             // TODO: - 正式版
-//            if let account = userAccount {
-//                getUserInfo(account: account)
-//            } else {
-//                UserData.shared.info = [["image"],["尚未登入"],["尚未登入","尚未登入","尚未登入","尚未登入"],["尚未登入"],["out"]]
+//            guard let account = userAccount else {
+//                UserData.shared.info = [["image"],["nil"],["nil","nil","nil","nil"],["nil"],["out"]]
+//                return
 //            }
+//            getUserInfo(account: account)
             return
         }
-        // 否則會去 UserInfo 同步一次資料, 並重新整理
-        self.tableView.reloadData()
+        tableView.reloadData() // 否則重新整理
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,12 +87,18 @@ class UserTableViewController: UITableViewController {
  // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
+        if UserData.shared.info.count > 0 {
+            tableView.backgroundView?.isHidden = true
+            userLoadingIndicator.stopAnimating()
+        } else {
+            tableView.backgroundView?.isHidden = false
+        }
         return UserData.shared.info.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return UserData.shared.info[section].count
     }
 
@@ -79,7 +107,7 @@ class UserTableViewController: UITableViewController {
         switch indexPath.section {
             
         case 0: // 大頭照
-            
+ 
             let cell = tableView.dequeueReusableCell(withIdentifier: imageCell, for: indexPath) as! UserImageCell
             
             if let userPortrait = self.userPortrait {
@@ -87,7 +115,6 @@ class UserTableViewController: UITableViewController {
             } else {
                 cell.userPortraitImageView.image = UIImage(named: DEFAULT_USER_PORTRAIT)
             }
-            
             if let userBackground = self.userBackground {
                 cell.userBackgroundImageView.image = UIImage(data: userBackground)
             } else {
@@ -96,7 +123,7 @@ class UserTableViewController: UITableViewController {
             return cell
             
         case 1: // 名字
-            
+
             let cell = tableView.dequeueReusableCell(withIdentifier: nameCell, for: indexPath) as! UserNameCell
             cell.userNameLabel.text = UserData.shared.info[indexPath.section][indexPath.row]
             return cell
@@ -123,12 +150,10 @@ class UserTableViewController: UITableViewController {
         
         case 5: // 登出按鈕
             
-            tableView.separatorStyle = .none
             let cell = tableView.dequeueReusableCell(withIdentifier: sginOutCell, for: indexPath) as! UserSginOutCell
             return cell
             
         default:
-
             return UITableViewCell()
         }
     }
@@ -227,20 +252,57 @@ class UserTableViewController: UITableViewController {
         rootViewController?.present(loginView, animated: true, completion: nil)
     }
     
+    
 
  // MARK: - 使用者頭像及背景
     
     @IBAction func modifyUserImage(_ sender: UITapGestureRecognizer) {
         
-        // TODO: - Camera and photo
-        print("沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有沒有")
+        selectUserImageType = .selectPortrait
+        
+        let alert = UIAlertController(title: "更換大頭照", message: nil, preferredStyle: .actionSheet)
+        let takePicture = UIAlertAction(title: "使用相機", style: .default) { (action) in
+            self.userImagePicker.sourceType = .camera
+            self.present(self.userImagePicker, animated: true, completion: nil)
+        }
+        let pickFromAlbum = UIAlertAction(title: "從相簿選擇照片", style: .default) { (action) in
+            self.userImagePicker.sourceType = .photoLibrary
+            self.present(self.userImagePicker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alert.addAction(takePicture)
+        alert.addAction(pickFromAlbum)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    @IBAction func modifyUserGroundImage(_ sender: UITapGestureRecognizer) {
+        
+        selectUserImageType = .selectBackground
+
+        let alert = UIAlertController(title: "更換背景照片", message: nil, preferredStyle: .actionSheet)
+        let takePicture = UIAlertAction(title: "使用相機", style: .default) { (action) in
+            self.userGroundPicker.sourceType = .camera
+            self.present(self.userGroundPicker, animated: true, completion: nil)
+        }
+        let pickFromAlbum = UIAlertAction(title: "從相簿選擇照片", style: .default) { (action) in
+            self.userGroundPicker.sourceType = .photoLibrary
+            self.present(self.userGroundPicker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alert.addAction(takePicture)
+        alert.addAction(pickFromAlbum)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     
     
  // MARK: - Connect DataBase Methods
     
-    func getUserInfo(account: String) {
+    private func getUserInfo(account: String) {
         
         let request: [String: Any] = ["action": "findById", "account": account]
         Task.postRequestData(urlString: urlString + urlUserInfo , request: request) { (error, data) in
@@ -317,7 +379,7 @@ class UserTableViewController: UITableViewController {
         }
     }
 
-    func getUserProfession(account: String) {
+    private func getUserProfession(account: String) {
 
         let request: [String: Any] = ["action": "findProfessionById", "user_id": account]
         
@@ -340,12 +402,58 @@ class UserTableViewController: UITableViewController {
         }
     }
     
-    func setSginOutButton() {  // 加上登出按鈕
+    private func setSginOutButton() {  // 加上登出按鈕
         UserData.shared.info.append(["SginOut"])
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
+    private func updateUserInfoIamge(account: String, select: Bool, base64Image: String) {
+        
+        let request: [String: Any] = ["action" : "updataUserPhoto",
+                                      "account" : account,
+                                      "imageSelect" : select,
+                                      "imageBase64" : base64Image]
+        
+        Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
+            
+            guard error == nil, let data = data else { return }
+            print("Q1")
+            guard let result = String(data: data, encoding: .utf8) else {
+                return
+            }
+            print("Q2")
+            
+            if result == "0" {
+                print("GG")
+            } else {
+                print("OK")
+            }
+        }
+    }
     
+    private func checkSelectImageType(image: UIImage) {
+        
+        guard let account = userAccount, let base64Image = image.base64() else { return }
+        
+        let dataImage = UIImageJPEGRepresentation(image, 1.0)
+        
+        switch selectUserImageType {
+            
+        case .selectPortrait:
+            userPortrait = dataImage
+            updateUserInfoIamge(account: account, select: false, base64Image: base64Image)
+            
+        case .selectBackground:
+            userBackground = dataImage
+            updateUserInfoIamge(account: account, select: true, base64Image: base64Image)
+            
+        case .none:
+            break
+        }
+        
+        selectUserImageType = .none
+        tableView.reloadData()
+    }
 
  // MARK: - SginOut Methods.
     
@@ -368,3 +476,35 @@ class UserTableViewController: UITableViewController {
     }
     
 }
+
+
+extension UserTableViewController: UIImageCropperProtocol {
+
+    // MARK: - Did Finish Crop Image
+    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+        
+        guard let image = croppedImage else{ return }
+
+        guard image.size.height * image.size.width > 900 * 1200 else {
+            checkSelectImageType(image: image)
+            return
+        }
+        
+        // Start resize image
+        let size = __CGSizeApplyAffineTransform((croppedImage?.size)!, CGAffineTransform(scaleX: 0.5, y: 0.5))
+        let hasAlpha = false
+        let scale : CGFloat = 0.0
+
+        UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+
+        guard let scaledImage = UIGraphicsGetImageFromCurrentImageContext() else{
+            assertionFailure("Scale Image Fail")
+            return
+        }
+        UIGraphicsEndImageContext()
+        checkSelectImageType(image: scaledImage)
+    }
+    
+}
+

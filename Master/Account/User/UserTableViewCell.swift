@@ -15,7 +15,7 @@ class UserImageCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userPortraitImageView.layer.borderWidth = 2
+        userPortraitImageView.layer.borderWidth = 3
         userPortraitImageView.layer.borderColor = UIColor.white.cgColor
     }
 }

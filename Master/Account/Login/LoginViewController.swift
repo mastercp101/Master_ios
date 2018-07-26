@@ -72,6 +72,15 @@ class LoginViewController: UIViewController {
         keyboardHeight = nil
     }
     
+    @IBAction func loginViewEndEdit(_ sender: UITapGestureRecognizer) {
+        
+        if let keyboardHeight = keyboardHeight {
+            UIView.animate(withDuration: 0.23) { self.view.frame.origin.y += keyboardHeight }
+        }
+        resetType()
+        self.view.endEditing(true)
+    }
+    
     @IBAction func prepareLogin(_ sender: UIButton) {
         // check test field ...
         guard let account = enterAccountTextField.text, let password = enterPasswordTextField.text ,!account.isEmpty, !password.isEmpty else {
@@ -112,6 +121,7 @@ class LoginViewController: UIViewController {
             guard let result = results , let loginResult = result as? Bool else { return }
         
             if loginResult { // 登入成功
+                userAccount = account
                 UserFile.shared.setUserAccount(account: account)
                 self.getUserAccess(account: account)
             } else { // 登入失敗

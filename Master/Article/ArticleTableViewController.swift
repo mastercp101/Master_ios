@@ -1,24 +1,23 @@
 //
-//  ProfessionItemTableViewController.swift
+//  ArticleTableViewController.swift
 //  Master
 //
-//  Created by Diego on 2018/7/25.
+//  Created by Diego on 2018/7/26.
 //  Copyright © 2018年 黎峻亦. All rights reserved.
 //
 
 import UIKit
 
-class ProfessionItemTableViewController: UITableViewController {
+class ArticleTableViewController: UITableViewController {
 
-    var category: String?
-    private var professionItem = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let category = category {
-            getAllProfessionItem(category: category)
-        }
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,22 +29,23 @@ class ProfessionItemTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return professionItem.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PfsItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        cell.textLabel?.text = professionItem[indexPath.row]
+        // Configure the cell...
+
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,39 +82,14 @@ class ProfessionItemTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let controller = segue.destination as? UserProfessionTableViewController
-        if let row = tableView.indexPathForSelectedRow?.row {
-            controller?.selectNewProfessionItem = professionItem[row]
-        }
-        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
- 
-    
-    private func getAllProfessionItem(category: String) {
-        
-        let request: [String: Any] = ["action": "getAllProfessionItem", "category": category]
-        
-        Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
-            
-            guard error == nil, let data = data else { return }
-            
-            let results =  try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-            
-            guard let result = results , let profession = result as? [String] else { return }
-            
-            if profession.count > 0 {
-                self.professionItem = profession
-            } else {
-                self.professionItem.append("No Data")
-            }
-            self.tableView.reloadData()
-        }
-    }
+    */
 
 }

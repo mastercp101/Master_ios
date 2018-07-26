@@ -10,51 +10,28 @@ import UIKit
 
 class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    private let waterSegue = "waterSegue"
-    private let xsportSegue = "xsportSegue"
-    private let workoutSegue = "workoutSegue"
-    private let ballSegue = "ballSegue"
-    private let musicSegue = "musicSegue"
-    private let languageSegue = "languageSegue"
-    private let leisureSegue = "leisureSegue"
-    private let codingSegue = "codingSegue"
-
-    private let courseArticleServlet = "/CourseArticleServlet"
-
     @IBOutlet weak var pickerTextField: UITextField!
+    
+    private let courseArticleServlet = "/CourseArticleServlet"
+    private let courseCell = "courseCell"
 
     var pickerArray = [String]()
-
+    var courseList = [Course]()
+    var professionCategory: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Connection to Server.
-        let requestCourse = ["courseArticle":"professionData"]
-
-        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestCourse) { (error, data) in
-
-            if let error = error {
-                assertionFailure("Fail to get Course from servlet: \(error)" )
-                return
-            }
-            
-            guard let data = data else {
-                assertionFailure("Fail to get data from servlet: \(error)")
-                return
-            }
-            
-        }
-
-
-        
-
 
         // Setting pickerView.
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerTextField.inputView = pickerView
-
-
+        pickerTextField.placeholder = professionCategory
+        
+        // Tap to hidePickerView.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hidePickerView))
+        self.view.addGestureRecognizer(tap)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,7 +43,7 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,33 +51,15 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         return 0
     }
 
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerArray.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerArray[row]
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerTextField.text = pickerArray[row]
-    }
-
-
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -146,6 +105,56 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: PickerView Delegate
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerTextField.text = pickerArray[row]
+        downloadCourse()
+        
+    }
+
+    @objc
+    func hidePickerView() {
+        self.view.endEditing(true)
+    }
+    
+    func downloadCourse() {
+        
+        guard let professionCategory = professionCategory else {
+            print("professionCategory is nil")
+            return
+        }
+        
+        let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionCategory]
+        print("\(requestGetCourse)")
+        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
+            
+            if let error = error {
+                assertionFailure("Fail to get Course from servlet: \(error)." )
+                return
+            }
+            
+            guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
+                assertionFailure("Invalid data.")
+                return
+            }
+            
+            self.courseList = courseList
+            
+        }
+    }
 
 }
 

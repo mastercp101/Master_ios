@@ -15,6 +15,15 @@ enum UserAccess {
     case none   // 沒有登入
 }
 
+enum selectUserImageType {
+    case selectPortrait
+    case selectBackground
+    case none
+}
+
+
+
+
 struct User: Codable {
     var userName: String?
     var userAddress: String?

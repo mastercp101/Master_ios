@@ -36,7 +36,13 @@ class MasterViewController: UIViewController {
         downloadProfessionCategory()
         
         // Add gesture recognizer
+        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
+        toleft.direction = .left
+        masterImgeView.addGestureRecognizer(toleft)
         
+        let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
+        toright.direction = .right
+        masterImgeView.addGestureRecognizer(toright)
     }
     
     func downloadProfessionCategory() {
@@ -108,6 +114,7 @@ class MasterViewController: UIViewController {
         
     }
     
+    @objc
     func toRight() {
         
         UIView.transition(with: masterImgeView, duration: 0.5, options: [.transitionFlipFromLeft], animations: {
@@ -121,6 +128,7 @@ class MasterViewController: UIViewController {
         
     }
     
+    @objc
     func toLeft() {
         
         UIView.transition(with: masterImgeView, duration: 0.5, options: [.transitionFlipFromRight], animations: {

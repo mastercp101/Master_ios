@@ -138,7 +138,7 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         }
         
         let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionCategory]
-        print("\(requestGetCourse)")
+//        print("\(requestGetCourse)")
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
             
             if let error = error {

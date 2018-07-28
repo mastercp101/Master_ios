@@ -9,9 +9,7 @@
 import UIKit
 
 class manageStudentTableViewCell: UITableViewCell {
-
     @IBOutlet weak var studentImageView: UIImageView!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var applyStatus: UILabel!
-    
 }

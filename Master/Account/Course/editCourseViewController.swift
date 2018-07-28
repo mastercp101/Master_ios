@@ -100,6 +100,9 @@ class editCourseViewController: UIViewController{
         whichIsEditing = DateIsEditing.courseDeadline
         datePickerView.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
     }
+    @IBAction func backBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     @objc
     private func datePickerValueChanged(sender : UIDatePicker){
@@ -343,7 +346,8 @@ class editCourseViewController: UIViewController{
                 return
             }
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "上傳課程成功！") { (_) in
-                self.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "unwindToCourseWithEditCourseSuccess", sender: nil)
             }
         }
     }

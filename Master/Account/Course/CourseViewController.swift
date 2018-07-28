@@ -15,12 +15,17 @@ class CourseViewController: UIViewController {
     var dogName = ["beagle","bulldog","bordercollie","shiba"]
     var courseList = [Course]()
     var photoList = [Photo]()
+    var isCourseDelete : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setICarousel()
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+        if isCourseDelete == true{
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
+        }
         downloadCourse()
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -84,9 +89,7 @@ class CourseViewController: UIViewController {
             self.present(navigation, animated: true, completion: nil)
         }
     }
-    
     @IBAction func unwindToCourse(_ segue : UIStoryboardSegue){}
-    
 }
 
 

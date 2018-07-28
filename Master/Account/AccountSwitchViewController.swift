@@ -23,20 +23,20 @@ class AccountSwitchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: - DeBug
-        switchView.addSubview(userVC.view)
+//        switchView.addSubview(userVC.view)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // TODO: - 正式版
-//        guard userAccount != nil else {
-//            switchViewSegmented.isHidden = true
-//            switchView.addSubview(loginVC.view)
-//            return
-//        }
-//        switchViewSegmented.selectedSegmentIndex = 0
-//        switchViewSegmented.isHidden = false
-//        switchView.addSubview(userVC.view)
+        guard userAccount != nil else {
+            switchViewSegmented.isHidden = true
+            switchView.addSubview(loginVC.view)
+            return
+        }
+        switchViewSegmented.selectedSegmentIndex = 0
+        switchViewSegmented.isHidden = false
+        switchView.addSubview(userVC.view)
     }
     
     @IBAction func swichViewSegmentedTapped(_ sender: UISegmentedControl) {

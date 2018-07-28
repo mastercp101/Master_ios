@@ -121,7 +121,6 @@ class LoginViewController: UIViewController {
             guard let result = results , let loginResult = result as? Bool else { return }
         
             if loginResult { // 登入成功
-                userAccount = account
                 UserFile.shared.setUserAccount(account: account)
                 self.getUserAccess(account: account)
             } else { // 登入失敗

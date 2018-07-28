@@ -393,7 +393,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fW-jg-ATx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Tb3-xb-h2j" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5617" y="-693"/>
+            <point key="canvasLocation" x="5601" y="-718"/>
         </scene>
         <!--編輯會員資料-->
         <scene sceneID="qVM-ui-Cpr">

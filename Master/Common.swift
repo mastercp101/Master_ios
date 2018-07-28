@@ -136,6 +136,7 @@ extension UILabel{
 }
 
 extension UIButton {
+    
     func shake() {
         let shake = CABasicAnimation(keyPath: "position")
         shake.duration = 0.05
@@ -172,6 +173,106 @@ extension UIButton {
     }
 }
 
+extension UIImageView {
+    
+    // 下載文章圖片
+    func getArticlePhoto(postId: String, index: Int) {
+        
+        let url = urlString + urlUserInfo
+        let request = ["action" : "getUserPostPhoto", "postId" : postId]
+        let image = UIImage(named: "user_default_por")
+        
+        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+            ArticleData.shared.info[index].postPhoto = data
+        }) { (data) in
+            ArticleData.shared.info[index].postPhoto = data
+        }
+    }
+    
+    // 下載大頭照
+    func getUserPortrait(account: String, index: Int) {
+        
+        let url = urlString + "CourseArticleServlet"
+        let request = ["courseArticle" : "getPhotoByUserId", "userId" : account]
+        let image = UIImage(named: "user_default_por")
+        
+        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+            ArticleData.shared.info[index].postPortrait = data
+        }) { (data) in
+            ArticleData.shared.info[index].postPortrait = data
+        }
+    }
+    
+    private typealias passHandler = (Data?) -> Void
+    private typealias failHandler = (Data?) -> Void
+    static var currentTasks = [String: URLSessionDataTask]()
+    
+    private func downloadImage(_ url: String,
+                               request: [String:Any],
+                               defaultImage: UIImage?,
+                               failHandler: @escaping failHandler,
+                               passHandler: @escaping passHandler) {
+        
+        // Check if we should cancel exist download task
+        if let existTask = UIImageView.currentTasks[self.description] {
+            existTask.cancel()
+            UIImageView.currentTasks.removeValue(forKey: self.description)
+            print("A exist task is canceled")
+        }
+        // Keep going to download process.
+        let loadingView = prepareLoadingView()
+        
+        Task.postRequestData(urlString: url, request: request) { (error, data) in
+            
+            defer { DispatchQueue.main.async { loadingView.stopAnimating() } }
+            
+            guard error == nil, let data = data else {
+                DispatchQueue.main.async { self.image = defaultImage }
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            
+            let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            guard let result = results, let resultString = result as? String else {
+                DispatchQueue.main.async { self.image = defaultImage}
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            guard let dataImage = Data(base64Encoded: resultString) else {
+                DispatchQueue.main.async { self.image = defaultImage }
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            passHandler(dataImage)
+            DispatchQueue.main.async { self.image = UIImage(data: dataImage) }
+            // Remove task from currentTasks
+            UIImageView.currentTasks.removeValue(forKey: self.description) // 下載完成拿掉
+        }
+        loadingView.startAnimating()
+    }
+    
+    private func prepareLoadingView() -> UIActivityIndicatorView { // 創造轉轉轉
+        
+        // Find out exist loadingView. 防止重複新增元件
+        for view in self.subviews { // 去 Array 找有沒有要的東西
+            if view is UIActivityIndicatorView {
+                return view as! UIActivityIndicatorView
+            }
+        }
+        // Create loadingView 都沒有創造一個新的給它
+        let frame = CGRect(origin: .zero, size: self.frame.size)
+        let result = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge) // 轉轉轉 Style
+        result.frame = frame
+        result.color = .blue
+        result.hidesWhenStopped = true // 沒有再跑自動隱藏
+        // autolayout 前身 autoresizing 可用於簡單的配置
+        result.autoresizingMask = [.flexibleHeight , .flexibleWidth] // 讓元件隨依附元件的寬高做改變
+        result.tag = tag
+        self.addSubview(result)
+        return result
+    }
+}
 
 
 

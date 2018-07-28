@@ -38,16 +38,19 @@ class CourseViewController: UIViewController {
                 assertionFailure("Error : \(error)")
                 return
             }
-            guard let data = data,let decodedCourseList = try? decoder.decode([Course].self, from: data) else{
+            guard let data = data else{
                 assertionFailure("Invalid data")
                 return
             }
-            
-            self.courseList = decodedCourseList
-            print(self.courseList.count)
-            // Download Image
-            for course in decodedCourseList{
-                self.downloadImage(imageID: course.courseImageID)
+            do{
+                let decodedCourseList = try decoder.decode([Course].self, from: data)
+                self.courseList = decodedCourseList
+                // Download Image
+                for course in decodedCourseList{
+                    self.downloadImage(imageID: course.courseImageID)
+                }
+            }catch{
+                assertionFailure("Decode Course Fail : \(error)")
             }
         }
     }
@@ -67,7 +70,7 @@ class CourseViewController: UIViewController {
             let newPhoto = Photo(imageID: imageID, image: image)
             self.photoList.append(newPhoto)
             
-            // If finish download last image reload ICarousel View.
+            // if finish download last image reload iCarousel View.
             if self.photoList.count == self.courseList.count{
                 self.iCarouselView.reloadData()
             }

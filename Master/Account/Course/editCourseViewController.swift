@@ -214,7 +214,6 @@ class editCourseViewController: UIViewController{
             let request : [String : Any] = ["action" : "update","photo_id":course!.courseImageID,"photo":base64Image]
             updateImage(request: request)
         }
-        
     }
     
     private func updateImage(request : [String : Any]){
@@ -428,7 +427,6 @@ extension editCourseViewController : UIPickerViewDelegate,UIPickerViewDataSource
         self.courseTextField[1].text = professions[row].professionName
     }
 }
-
 
 enum EditingStyle{
     case insertCourse

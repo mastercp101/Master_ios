@@ -445,7 +445,7 @@
                     <navigationItem key="navigationItem" title="新增課程" id="7hI-sv-Bpj">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="OxG-LL-enF">
                             <connections>
-                                <segue destination="uek-W9-m9c" kind="unwind" unwindAction="unwindToCourse:" id="0tD-3p-cWY"/>
+                                <action selector="backBtnTapped:" destination="SdZ-FC-aFw" id="xAN-3o-MIq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -468,6 +468,7 @@
                         <outletCollection property="courseTextField" destination="6KX-zp-LmD" collectionClass="NSMutableArray" id="HaD-k4-GLH"/>
                         <outletCollection property="courseTextField" destination="Ycu-xc-ExU" collectionClass="NSMutableArray" id="WH5-uf-VaI"/>
                         <outletCollection property="courseTextField" destination="K9s-pb-UZ9" collectionClass="NSMutableArray" id="W4s-Mi-JY6"/>
+                        <segue destination="uek-W9-m9c" kind="unwind" identifier="unwindToCourseWithEditCourseSuccess" unwindAction="unwindToCourse:" id="a9V-ob-TwM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5Y-2t-pJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -650,7 +651,7 @@
                     <navigationItem key="navigationItem" title="Course" id="WgY-Yo-ihu">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="bQa-Ub-4E0">
                             <connections>
-                                <segue destination="5vl-Di-Whm" kind="unwind" unwindAction="unwindToCourse:" id="pTp-gn-HSG"/>
+                                <segue destination="5vl-Di-Whm" kind="unwind" identifier="unwindToCourse" unwindAction="unwindToCourse:" id="pTp-gn-HSG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="manage" id="e9B-dz-Fcm">
@@ -661,6 +662,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="singleCourseTableView" destination="0SN-yW-Zlc" id="xLw-Aa-xvX"/>
+                        <segue destination="5vl-Di-Whm" kind="unwind" identifier="unwindToCourseWithDeleteCourse" unwindAction="unwindToCourse:" id="u7m-Q5-QJ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOs-6l-MY8" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,12 +8,11 @@
 
 import UIKit
 
-private let ACCOUNT_PLACEHOLDER = "Enter Account ..."
-private let PASSWORD_PLACEHOLDER = "Enter Password ..."
-private let LOGIN_VIEW_BACKGROUND = "login_test_bkgd"
-
-
 class LoginViewController: UIViewController {
+    
+    private let ACCOUNT_PLACEHOLDER = "Enter Account ..."
+    private let PASSWORD_PLACEHOLDER = "Enter Password ..."
+    private let LOGIN_VIEW_BACKGROUND = "login_test_bkgd"
     
     private var keyboardLock = true
     private var keyboardHeight: CGFloat?
@@ -23,7 +22,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginBkgdImageView: UIImageView!
     @IBOutlet weak var errorTipsLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +48,6 @@ class LoginViewController: UIViewController {
         resetType()
     }
     
-    
     @objc func moveViewUp(_ aNotification: Notification) {
         
         guard keyboardLock else { return }
@@ -70,7 +67,20 @@ class LoginViewController: UIViewController {
         enterPasswordTextField.attributedPlaceholder = NSAttributedString(string: PASSWORD_PLACEHOLDER, attributes: [.foregroundColor: UIColor.lightGray])
     }
     
-
+    private func resetType() {
+        keyboardLock = true
+        keyboardHeight = nil
+    }
+    
+    @IBAction func loginViewEndEdit(_ sender: UITapGestureRecognizer) {
+        
+        if let keyboardHeight = keyboardHeight {
+            UIView.animate(withDuration: 0.23) { self.view.frame.origin.y += keyboardHeight }
+        }
+        resetType()
+        self.view.endEditing(true)
+    }
+    
     @IBAction func prepareLogin(_ sender: UIButton) {
         // check test field ...
         guard let account = enterAccountTextField.text, let password = enterPasswordTextField.text ,!account.isEmpty, !password.isEmpty else {
@@ -94,6 +104,8 @@ class LoginViewController: UIViewController {
     }
 
     
+ // MAEK: - Connect DB Methods.
+    
     private func loginCheck(account: String, password: String) {
         
         let request: [String: Any] = ["action": "login",
@@ -109,8 +121,9 @@ class LoginViewController: UIViewController {
             guard let result = results , let loginResult = result as? Bool else { return }
         
             if loginResult { // 登入成功
-                UserAccount.shared.setUserAccount(account: account)
-                self.dismiss(animated: true)
+                userAccount = account
+                UserFile.shared.setUserAccount(account: account)
+                self.getUserAccess(account: account)
             } else { // 登入失敗
                 UIView.animate(withDuration: 0.2) { self.errorTipsLabel.alpha = 1 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -121,9 +134,21 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func resetType() {
-        keyboardLock = true
-        keyboardHeight = nil
+    private func getUserAccess(account: String) {
+        
+        let request: [String: Any] = ["action": "getUserAccess", "account": account]
+        
+        Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
+            
+            guard error == nil, let data = data else { return }
+            
+            let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            guard let result = results, let access = result as? Int else { return }
+            
+            UserFile.shared.setUserAccess(access: access)
+            self.dismiss(animated: true)
+        }
     }
 }
 

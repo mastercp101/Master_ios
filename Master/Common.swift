@@ -12,14 +12,15 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-//let urlString = "http://127.0.0.1:8080/Master/"
-let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://127.0.0.1:8080/Master/"
+//let urlString = "http://192.168.50.20:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
 
-/// 使用者帳號, 拿到 nil 即沒登入
-var userAccount: String?
+var userAccount: String? // 使用者帳號, nil即沒登入
+var userAccess: UserAccess = .none // *** 使用者權限 ***
+var userProfessions = [Profession]() // 原汁原味 [Profession], 會在 User 資訊頁面存入
 
 // Singleton
 
@@ -43,15 +44,6 @@ class Common{
     
     func removeObservers(viewController : UIViewController){
         NotificationCenter.default.removeObserver(viewController)
-    }
-    
-    
-    func getUserAccount() -> String? {
-        let userDefault = UserDefaults.standard
-        guard let result = userDefault.string(forKey: USER_ACCOUNT_KEY), !result.isEmpty else {
-            return nil
-        }
-        return result
     }
 
 }

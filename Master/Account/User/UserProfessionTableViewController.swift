@@ -127,6 +127,7 @@ class UserProfessionTableViewController: UITableViewController {
     }
     
     func showBanAlert() {
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "請勿重複選擇") { (action) in }
         }

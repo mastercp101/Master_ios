@@ -8,10 +8,30 @@
 
 import UIKit
 
-class ArticleViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+class ArticleData {
+    
+    static let shared = ArticleData()
+    private init() {}
+    
+    var info = [ExperienceArticle]()
 }
+
+struct ExperienceArticle: Codable {
+    
+    let postId: Int? // 文章ID
+    let userId: String? // 發文者ID
+    let postContent: String? // 內文
+    let postTime: String? // 時間
+    let photoId: Int? // 文章圖片ID
+    let userName: String? // 發文者名稱
+    let postLike: Bool? // 你是否有點過讚?
+    let postLikes: Int? // 讚 總數量
+    
+    var postPortrait: Data?
+    var postPhoto: Data?
+    var commentCount: String?
+}
+
+
+
+

@@ -10,15 +10,40 @@ import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var postsPortraitImage: UIImageView!
+    @IBOutlet weak var postsNameLabel: UILabel!
+    @IBOutlet weak var postsDateLabel: UILabel!
+    
+    @IBOutlet weak var postsContentLabel: UILabel!
+    @IBOutlet weak var postsContentImage: UIImageView!
+    
+    @IBOutlet weak var postsLikeNumberLabel: UILabel!
+    @IBOutlet weak var postsTalkNumberLabel: UILabel!
+
+    @IBOutlet weak var postsLikeButton: UIButton!
+    @IBOutlet weak var postsTalkButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override var frame: CGRect {
+
+        didSet {
+            var newFrame = frame
+            newFrame.origin.y += 5
+            newFrame.size.height -= 10
+            super.frame = newFrame
+        }
     }
 
 }

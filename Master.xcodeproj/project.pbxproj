@@ -29,7 +29,6 @@
 		27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FB920F2F7A2001A063E /* AppDelegate.swift */; };
 		27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */; };
 		27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FBD20F2F7A2001A063E /* Main.storyboard */; };
-		27FC3FC120F2F7A3001A063E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC020F2F7A3001A063E /* Assets.xcassets */; };
 		27FC3FC420F2F7A3001A063E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC220F2F7A3001A063E /* LaunchScreen.storyboard */; };
 		27FC3FCC20F2FC40001A063E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCB20F2FC40001A063E /* Article.swift */; };
 		27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */; };
@@ -43,6 +42,7 @@
 		27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FED20F33BEB001A063E /* PhotoViewController.swift */; };
 		27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FEF20F33BFD001A063E /* CourseViewController.swift */; };
 		27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */; };
+		B35F44C9210F514C00DC428C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC020F2F7A3001A063E /* Assets.xcassets */; };
 		B37E32202108AA4B008A5A4F /* ProfessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37E321F2108AA4B008A5A4F /* ProfessionCategory.swift */; };
 		B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */; };
 		B478B5D0DC46E8110CCDCDC6 /* Pods_Master.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */; };
@@ -374,9 +374,9 @@
 				27FC3FC420F2F7A3001A063E /* LaunchScreen.storyboard in Resources */,
 				27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */,
 				27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */,
-				27FC3FC120F2F7A3001A063E /* Assets.xcassets in Resources */,
 				F1F714D520FF557F009DB9EF /* User.storyboard in Resources */,
 				27FC3FE120F3093D001A063E /* Article.storyboard in Resources */,
+				B35F44C9210F514C00DC428C /* Assets.xcassets in Resources */,
 				27FC3FE320F3094C001A063E /* Message.storyboard in Resources */,
 				27FB31E720F9EFBE009AD98B /* CourseItemView.xib in Resources */,
 				27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */,

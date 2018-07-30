@@ -31,7 +31,7 @@
 		27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FBD20F2F7A2001A063E /* Main.storyboard */; };
 		27FC3FC120F2F7A3001A063E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC020F2F7A3001A063E /* Assets.xcassets */; };
 		27FC3FC420F2F7A3001A063E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC220F2F7A3001A063E /* LaunchScreen.storyboard */; };
-		27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCB20F2FC40001A063E /* ArticleViewController.swift */; };
+		27FC3FCC20F2FC40001A063E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCB20F2FC40001A063E /* Article.swift */; };
 		27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */; };
 		27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCF20F2FC5E001A063E /* NotificationViewController.swift */; };
 		27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FDA20F2FF7F001A063E /* Common.swift */; };
@@ -51,6 +51,7 @@
 		F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */; };
 		F146DA3C2109CABB0042C329 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */; };
 		F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */; };
+		F14E8EAE210F15FA0080D306 /* AddPhotoTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */; };
 		F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */; };
 		F1A784E92108304800C03AB6 /* UserScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E82108304800C03AB6 /* UserScript.swift */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
@@ -92,7 +93,7 @@
 		27FC3FC020F2F7A3001A063E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27FC3FC320F2F7A3001A063E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27FC3FC520F2F7A3001A063E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27FC3FCB20F2FC40001A063E /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		27FC3FCB20F2FC40001A063E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		27FC3FCF20F2FC5E001A063E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		27FC3FDA20F2FF7F001A063E /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionTableViewCell.swift; sourceTree = "<group>"; };
 		F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
 		F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoTextViewController.swift; sourceTree = "<group>"; };
 		F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfessionTableViewController.swift; sourceTree = "<group>"; };
 		F1A784E82108304800C03AB6 /* UserScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScript.swift; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
@@ -222,9 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				27FC3FDF20F3093D001A063E /* Article.storyboard */,
-				27FC3FCB20F2FC40001A063E /* ArticleViewController.swift */,
+				27FC3FCB20F2FC40001A063E /* Article.swift */,
 				F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */,
 				F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */,
+				F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14E8EAE210F15FA0080D306 /* AddPhotoTextViewController.swift in Sources */,
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
 				F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */,
 				2766CA52210F284E007F9648 /* CommentDialogViewController.swift in Sources */,
@@ -449,7 +453,7 @@
 				270D070920FC2FD00037F510 /* editCourseViewController.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
-				27FC3FCC20F2FC40001A063E /* ArticleViewController.swift in Sources */,
+				27FC3FCC20F2FC40001A063E /* Article.swift in Sources */,
 				F1F714D320FF557F009DB9EF /* User.swift in Sources */,
 				27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */,
 				F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */,
@@ -640,7 +644,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = D4YAKH82G8;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -662,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = D4YAKH82G8;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

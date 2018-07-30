@@ -62,16 +62,16 @@ class UserTableViewController: UITableViewController {
         guard UserData.shared.info.count != 0 else {
 
             // TODO: - DeBug
-//            userAccess = .coach
-//            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],
-//                                    ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
+            userAccess = .coach
+            UserData.shared.info = [["image"],["名字"],["身份","性別","地址","電話"],
+                                    ["自我介紹"],["技能","技能2","技能3"],["SginOut"]]
             
             // TODO: - 正式版
-            guard let account = userAccount else {
-                UserData.shared.info = [["image"],["nil"],["nil","nil","nil","nil"],["nil"],["out"]]
-                return
-            }
-            getUserInfo(account: account)
+//            guard let account = userAccount else {
+//                UserData.shared.info = [["image"],["nil"],["nil","nil","nil","nil"],["nil"],["out"]]
+//                return
+//            }
+//            getUserInfo(account: account)
             return
         }
         tableView.reloadData() // 否則重新整理

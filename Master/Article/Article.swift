@@ -11,7 +11,7 @@ import UIKit
 class ArticleData {
     
     static let shared = ArticleData()
-    private init() {}
+    private init(){}
     
     var info = [ExperienceArticle]()
 }

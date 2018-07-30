@@ -29,11 +29,11 @@ struct FindByCourseApply : Codable{
 struct InsertApply : Codable{
     let applyID : Int
     let courseID : Int
-    let userID : Int
+    let userID : String
     let applyStatusID : Int
-    let applyTime : String
+    let applyTime : String?
     
-    enum Codingkeys : String, CodingKey {
+    enum CodingKeys : String,CodingKey{
         case applyID = "apply_id"
         case courseID = "course_id"
         case userID = "user_id"

@@ -28,6 +28,8 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Don't Move, Important !!!
+        Common.shared.downloadExperience()
         // Important !
         userAccount = UserFile.shared.getUserAccount() // 帳號
         userAccess = UserFile.shared.getUserAccess() // 權限

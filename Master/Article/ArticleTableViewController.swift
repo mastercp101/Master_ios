@@ -103,23 +103,34 @@ class ArticleTableViewController: UITableViewController {
             cell.postsPortraitImage.getUserPortrait(account: userId, index: indexPath.row)
             
         }
+//        else if let userId = ArticleData.shared.info[indexPath.row].userId {
+//            cell.postsPortraitImage.getUserPortrait(account: userId, index: indexPath.row)
+//        }
+        let userId = ArticleData.shared.info[indexPath.row].userId
+        cell.postsPortraitImage.getUserPortrait(account: userId, index: indexPath.row)
+        
         // 內容貼圖
         if let data = ArticleData.shared.info[indexPath.row].postPhoto {
             cell.postsContentImage.image = UIImage(data: data)
-        } else if let postId = ArticleData.shared.info[indexPath.row].postId {
-            cell.postsContentImage.getArticlePhoto(postId: "\(postId)", index: indexPath.row)
         }
+//        else if let postId = ArticleData.shared.info[indexPath.row].postId {
+//            cell.postsContentImage.getArticlePhoto(postId: postId, index: indexPath.row)
+//        }
+        let postId = ArticleData.shared.info[indexPath.row].postId
+        cell.postsContentImage.getArticlePhoto(postId: postId, index: indexPath.row)
         
         cell.postsNameLabel.text = ArticleData.shared.info[indexPath.row].userName
         cell.postsDateLabel.text = ArticleData.shared.info[indexPath.row].postTime
         cell.postsContentLabel.text = ArticleData.shared.info[indexPath.row].postContent
-        cell.postsLikeNumberLabel.text = "\(ArticleData.shared.info[indexPath.row].postLikes ?? 0)"
+        cell.postsLikeNumberLabel.text = "\(ArticleData.shared.info[indexPath.row].postLikes)"
         
         if let text = ArticleData.shared.info[indexPath.row].commentCount {
             cell.postsTalkNumberLabel.text = text
-        } else if let postId = ArticleData.shared.info[indexPath.row].postId {
-            getExperienceCommentCount(postId: "\(postId)", label: cell.postsTalkNumberLabel, index: indexPath.row)
-        } else {
+        }
+//        else if let postId = ArticleData.shared.info[indexPath.row].postId {
+//            getExperienceCommentCount(postId: "\(postId)", label: cell.postsTalkNumberLabel, index: indexPath.row)
+//        }
+        else {
             cell.postsTalkNumberLabel.text = "0 則留言"
         }
         // 點讚狀態

@@ -14,7 +14,7 @@ class manageStudentViewController: UIViewController {
     @IBOutlet weak var totalPeopleCount: UILabel!
 
     var applyList = [FindByCourseApply]()
-    var urlStr = ""
+    var urlStr = urlString + "applyServlet"
     var courseID = 0
     
     override func viewDidLoad() {
@@ -26,7 +26,6 @@ class manageStudentViewController: UIViewController {
     }
     
     private func downloadApply(){
-        urlStr = urlString + "applyServlet"
         let request : [String : Any] = ["action":"findByCourseId","course_id":courseID]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {
@@ -98,7 +97,7 @@ extension manageStudentViewController : UITableViewDelegate ,UITableViewDataSour
         cell.studentImageView.setRoundImage()
         
         let apply = applyList[indexPath.row]
-        cell.studentImageView.image = UIImage(named: "shiba")
+        cell.studentImageView.getUserPortrait(account: apply.userName, index: nil)
         cell.applyStatus.text = apply.applyStatusName
         cell.studentName.text = apply.userName
         return cell

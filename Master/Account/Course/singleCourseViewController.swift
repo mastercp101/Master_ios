@@ -14,6 +14,9 @@ class singleCourseViewController: UIViewController {
     var course : Course?
     var image : UIImage?
     var applyList = [FindByCourseApply]()
+    let applyServer = "applyServlet"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,7 +26,6 @@ class singleCourseViewController: UIViewController {
     }
     
     @IBAction func manageBtnTapped(_ sender: Any) {
-        
         guard let course = course else{
             assertionFailure("Invalid Course")
             return
@@ -31,8 +33,68 @@ class singleCourseViewController: UIViewController {
         downloadApply(courseID: course.courseID)
     }
     
+    @IBAction func applyBtnTapped(_ sender: Any) {
+        guard let course = course else{
+            assertionFailure("Invalid Course")
+            return
+        }
+        checkApply(course: course)
+    }
+    
+    private func checkApply(course : Course){
+        let urlStr = urlString + applyServer
+        let request : [String : Any] = ["action":"check","course_id":course.courseID,"user_id":"Cindy"]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let resultStr = String(data: data, encoding: .utf8) ,let result = Int(resultStr) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            self.handleCheckApplyResult(result: result, course: course)
+        }
+    }
+    
+    private func handleCheckApplyResult(result : Int ,course : Course){
+        if result > 0{
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您已報名過此課程！", handler: { (action) in})
+        }else{
+            let newApply = InsertApply(applyID: 0, courseID: course.courseID, userID: "Cindy", applyStatusID: 1, applyTime: nil)
+            Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "確認是否要報名\(course.courseName)?", alertMessage: nil, actionTitles: ["確定","取消"], firstHandler: { (confirmAction) in
+                self.insertApply(apply: newApply)
+            }){ (cancelAction) in}
+        }
+    }
+    
+    private func insertApply(apply : InsertApply){
+        guard let encodedApply = try? encoder.encode(apply),let applyStr = String(data: encodedApply, encoding: .utf8) else{
+            assertionFailure("Invalid Apply")
+            return
+        }
+        let urlStr = urlString + applyServer
+        let request : [String : Any] = ["action":"insert","apply":applyStr]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let resultStr = String(data: data, encoding: .utf8),let result = Int(resultStr) else{
+                return
+            }
+            if result > 0{
+                Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "報名成功", handler: { (action) in})
+            }
+        }
+    }
+    
+    @IBAction func contectBtnTapped(_ sender: Any) {
+        //..
+    }
+    
     private func downloadApply(courseID : Int){
-        let urlStr = urlString + "applyServlet"
+        let urlStr = urlString + applyServer
         let request : [String : Any] = ["action":"findByCourseId","course_id":courseID]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {
@@ -93,7 +155,7 @@ class singleCourseViewController: UIViewController {
         guard let course = course else{
             return
         }
-        let urlStr = urlString + "applyServlet"
+        let urlStr = urlString + applyServer
         let request : [String : Any] = ["action":"deleteByCourseId","course_id":course.courseID]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
@@ -112,6 +174,7 @@ class singleCourseViewController: UIViewController {
             }
         }
     }
+    
     private func deleteCourseFailAlert(){
         Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "刪除課程失敗") { (action) in}
     }

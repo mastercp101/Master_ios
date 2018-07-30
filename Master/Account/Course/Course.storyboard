@@ -562,6 +562,9 @@
                                                                     <real key="value" value="17.5"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="contectBtnTapped:" destination="FWt-eU-9ak" eventType="touchUpInside" id="guv-If-Z7S"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FN-Po-vQC">
                                                             <rect key="frame" x="0.0" y="47" width="70" height="35"/>
@@ -573,6 +576,9 @@
                                                             <state key="normal" title="APPLY">
                                                                 <color key="titleColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="applyBtnTapped:" destination="FWt-eU-9ak" eventType="touchUpInside" id="02J-4c-yki"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -804,7 +810,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcs-iZ-Tfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4765.6000000000004" y="2935.6821589205401"/>
+            <point key="canvasLocation" x="4546" y="2936"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XIS-is-dCI">

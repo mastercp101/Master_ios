@@ -45,6 +45,23 @@ class Common{
     func removeObservers(viewController : UIViewController){
         NotificationCenter.default.removeObserver(viewController)
     }
+    
+    func downloadExperience(){
+        let urlStr = urlString + "ExperienceArticleServlet"
+        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":"billy"]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let decodedData = try? decoder.decode([ExperienceArticle].self, from: data) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            ArticleData.shared.info = decodedData
+        }
+    }
+    
 
 }
 
@@ -112,10 +129,6 @@ extension UIImageView{
 
 extension UIImage{
     func base64() -> String?{
-//        guard let imageData : Data = UIImagePNGRepresentation(self) else{
-//            return nil
-//        }
-        
         guard let imageData : Data = UIImageJPEGRepresentation(self, 0.5) else{
             return nil
         }
@@ -178,10 +191,10 @@ extension UIButton {
 extension UIImageView {
     
     // 下載文章圖片
-    func getArticlePhoto(postId: String, index: Int) {
+    func getArticlePhoto(postId: Int, index: Int) {
         
         let url = urlString + urlUserInfo
-        let request = ["action" : "getUserPostPhoto", "postId" : postId]
+        let request : [String : Any] = ["action" : "getUserPostPhoto", "postId" : postId]
         let image = UIImage(named: "user_default_por")
         
         downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
@@ -192,16 +205,19 @@ extension UIImageView {
     }
     
     // 下載大頭照
-    func getUserPortrait(account: String, index: Int) {
-        
+    func getUserPortrait(account: String, index: Int?) {
         let url = urlString + "CourseArticleServlet"
         let request = ["courseArticle" : "getPhotoByUserId", "userId" : account]
         let image = UIImage(named: "user_default_por")
         
-        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
-            ArticleData.shared.info[index].postPortrait = data
-        }) { (data) in
-            ArticleData.shared.info[index].postPortrait = data
+        if let index = index {
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }) { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }
+        }else{
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (defaultImageData) in}) { (imageData) in}
         }
     }
     

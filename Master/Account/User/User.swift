@@ -21,9 +21,6 @@ enum selectUserImageType {
     case none
 }
 
-
-
-
 struct User: Codable {
     var userName: String?
     var userAddress: String?

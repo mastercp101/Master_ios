@@ -417,16 +417,12 @@ class UserTableViewController: UITableViewController {
         Task.postRequestData(urlString: urlString + urlUserInfo, request: request) { (error, data) in
             
             guard error == nil, let data = data else { return }
-            print("Q1")
-            guard let result = String(data: data, encoding: .utf8) else {
-                return
-            }
-            print("Q2")
+            guard let result = String(data: data, encoding: .utf8) else { return }
             
             if result == "0" {
-                print("GG")
+                print("圖片上傳失敗?!")
             } else {
-                print("OK")
+                print("圖片上傳成功")
             }
         }
     }

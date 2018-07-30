@@ -12,8 +12,8 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-let urlString = "http://127.0.0.1:8080/Master/"
-//let urlString = "http://192.168.50.20:8080/Master/"
+//let urlString = "http://127.0.0.1:8080/Master/"
+let urlString = "http://192.168.50.245:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -45,6 +45,28 @@ class Common{
     func removeObservers(viewController : UIViewController){
         NotificationCenter.default.removeObserver(viewController)
     }
+    
+    func downloadExperience(){
+        // TODO: - Debug
+        let account = "billy"
+        // TODO: - 正式版
+//        var account = ""
+//        if let userAccount = userAccount { account = userAccount }
+        let urlStr = urlString + "ExperienceArticleServlet"
+        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":account]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let decodedData = try? decoder.decode([ExperienceArticle].self, from: data) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            ArticleData.shared.info = decodedData
+        }
+    }
+    
 
 }
 
@@ -72,7 +94,7 @@ class Alert{
     }
     
     // Triple Action Alert
-    func buildTripleAlert(viewController : UIViewController,alertTitla : String?,actionTitles : [String],firstAction : @escaping alertHandler,secondAction : @escaping alertHandler,thirdAction : @escaping alertHandler){
+    func buildTripleAlert(viewController : UIViewController,alertTitla : String?,actionTitles : [String],useCancelAction : Bool,firstAction : @escaping alertHandler,secondAction : @escaping alertHandler,thirdAction : @escaping alertHandler){
         
         let alertController = UIAlertController(title: alertTitla, message: nil, preferredStyle: .actionSheet)
         let firstAction = UIAlertAction(title: actionTitles[0], style: .default, handler: firstAction)
@@ -83,7 +105,9 @@ class Alert{
         alertController.addAction(firstAction)
         alertController.addAction(secondAction)
         alertController.addAction(thirdAction)
-        alertController.addAction(cancelAction)
+        if useCancelAction{
+            alertController.addAction(cancelAction)
+        }
         viewController.present(alertController, animated: true, completion: nil)
     }
     
@@ -110,10 +134,6 @@ extension UIImageView{
 
 extension UIImage{
     func base64() -> String?{
-//        guard let imageData : Data = UIImagePNGRepresentation(self) else{
-//            return nil
-//        }
-        
         guard let imageData : Data = UIImageJPEGRepresentation(self, 0.5) else{
             return nil
         }
@@ -136,6 +156,7 @@ extension UILabel{
 }
 
 extension UIButton {
+    
     func shake() {
         let shake = CABasicAnimation(keyPath: "position")
         shake.duration = 0.05
@@ -172,6 +193,110 @@ extension UIButton {
     }
 }
 
+extension UIImageView {
+    
+    // 下載文章圖片
+    func getArticlePhoto(postId: Int, index: Int) {
+        
+        let url = urlString + urlUserInfo
+        let request : [String : Any] = ["action" : "getUserPostPhoto", "postId" : postId]
+        let image = UIImage(named: "user_default_por")
+        
+        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+            ArticleData.shared.info[index].postPhoto = data
+        }) { (data) in
+            ArticleData.shared.info[index].postPhoto = data
+        }
+    }
+    
+    // 下載大頭照
+    func getUserPortrait(account: String, index: Int?) {
+        let url = urlString + "CourseArticleServlet"
+        let request = ["courseArticle" : "getPhotoByUserId", "userId" : account]
+        let image = UIImage(named: "user_default_por")
+        
+        if let index = index {
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }) { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }
+        }else{
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (defaultImageData) in}) { (imageData) in}
+        }
+    }
+    
+    private typealias passHandler = (Data?) -> Void
+    private typealias failHandler = (Data?) -> Void
+    static var currentTasks = [String: URLSessionDataTask]()
+    
+    private func downloadImage(_ url: String,
+                               request: [String:Any],
+                               defaultImage: UIImage?,
+                               failHandler: @escaping failHandler,
+                               passHandler: @escaping passHandler) {
+        
+        // Check if we should cancel exist download task
+        if let existTask = UIImageView.currentTasks[self.description] {
+            existTask.cancel()
+            UIImageView.currentTasks.removeValue(forKey: self.description)
+            print("A exist task is canceled")
+        }
+        // Keep going to download process.
+        let loadingView = prepareLoadingView()
+        
+        Task.postRequestData(urlString: url, request: request) { (error, data) in
+            
+            defer { DispatchQueue.main.async { loadingView.stopAnimating() } }
+            
+            guard error == nil, let data = data else {
+                DispatchQueue.main.async { self.image = defaultImage }
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            
+            let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            guard let result = results, let resultString = result as? String else {
+                DispatchQueue.main.async { self.image = defaultImage}
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            guard let dataImage = Data(base64Encoded: resultString) else {
+                DispatchQueue.main.async { self.image = defaultImage }
+                if let image = defaultImage, let data = UIImageJPEGRepresentation(image, 1.0) { failHandler(data) }
+                return
+            }
+            passHandler(dataImage)
+            DispatchQueue.main.async { self.image = UIImage(data: dataImage) }
+            // Remove task from currentTasks
+            UIImageView.currentTasks.removeValue(forKey: self.description) // 下載完成拿掉
+        }
+        loadingView.startAnimating()
+    }
+    
+    private func prepareLoadingView() -> UIActivityIndicatorView { // 創造轉轉轉
+        
+        // Find out exist loadingView. 防止重複新增元件
+        for view in self.subviews { // 去 Array 找有沒有要的東西
+            if view is UIActivityIndicatorView {
+                return view as! UIActivityIndicatorView
+            }
+        }
+        // Create loadingView 都沒有創造一個新的給它
+        let frame = CGRect(origin: .zero, size: self.frame.size)
+        let result = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge) // 轉轉轉 Style
+        result.frame = frame
+        result.color = .blue
+        result.hidesWhenStopped = true // 沒有再跑自動隱藏
+        // autolayout 前身 autoresizing 可用於簡單的配置
+        result.autoresizingMask = [.flexibleHeight , .flexibleWidth] // 讓元件隨依附元件的寬高做改變
+        result.tag = tag
+        self.addSubview(result)
+        return result
+    }
+    
+}
 
 
 

@@ -29,7 +29,6 @@ class Task{
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let error = error{
-                assertionFailure("\(error)")
                 DispatchQueue.main.async {
                     doneHandler(error , nil)
                 }

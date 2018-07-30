@@ -28,12 +28,14 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Don't Move, Important !!!
+        Common.shared.downloadExperience()
         // Important !
         userAccount = UserFile.shared.getUserAccount() // 帳號
         userAccess = UserFile.shared.getUserAccess() // 權限
         
         // Download ProfessionCategorys
-        downloadProfessionCategory()
+//        downloadProfessionCategory()
         
         // Add gesture recognizer
 //        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))

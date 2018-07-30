@@ -42,7 +42,7 @@ extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let nextVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoItemVC") as! PhotoItemViewController
-        nextVC.article = self.articles[indexPath.row]
+        nextVC.article = ArticleData.shared.info[indexPath.row]
         let navigation = UINavigationController(rootViewController: nextVC)
         self.show(navigation, sender: self)
     }

@@ -146,6 +146,7 @@ class LoginViewController: UIViewController {
             guard let result = results, let access = result as? Int else { return }
             
             UserFile.shared.setUserAccess(access: access)
+            
             self.dismiss(animated: true)
         }
     }

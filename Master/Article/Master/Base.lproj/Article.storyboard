@@ -79,7 +79,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VEr-TL-n4t">
                                                     <rect key="frame" x="0.0" y="0.0" width="172.5" height="24"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="article_like_2" translatesAutoresizingMaskIntoConstraints="NO" id="1mH-GK-tJ1">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="article_like_0" translatesAutoresizingMaskIntoConstraints="NO" id="1mH-GK-tJ1">
                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="1mH-GK-tJ1" secondAttribute="height" multiplier="1:1" id="W6i-RI-lW8"/>
@@ -114,25 +114,21 @@
                                                         <constraint firstAttribute="height" constant="1" id="PKk-aX-QwR"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="do9-0L-Hdj">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="do9-0L-Hdj">
                                                     <rect key="frame" x="0.0" y="10" width="355" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6Q-6N-kXH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="177.5" height="30"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162.5" height="30"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <state key="normal" title=" 讚" image="article_like_1">
-                                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
+                                                            <state key="normal" title=" 讚" image="article_like_1"/>
                                                             <connections>
                                                                 <action selector="clickLink:" destination="PGj-nV-QpE" eventType="touchUpInside" id="4l2-i0-Qvs"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCo-te-m4X">
-                                                            <rect key="frame" x="177.5" y="0.0" width="177.5" height="30"/>
+                                                            <rect key="frame" x="192.5" y="0.0" width="162.5" height="30"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <state key="normal" title=" 留言" image="article_talk">
-                                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            </state>
+                                                            <state key="normal" title=" 留言" image="article_talk"/>
                                                             <connections>
                                                                 <action selector="clickTalk:" destination="PGj-nV-QpE" eventType="touchUpInside" id="GsD-BV-GqT"/>
                                                             </connections>
@@ -191,25 +187,29 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TfV-KD-RFS"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="articleLoadingIndicator" destination="MpC-aK-piA" id="TZZ-68-cTM"/>
+                        <outlet property="articleLoadingView" destination="90W-gg-55E" id="T5y-dU-RCj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5R-0z-L7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="90W-gg-55E">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="644"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="MpC-aK-piA">
+                            <rect key="frame" x="168" y="304" width="37" height="37"/>
+                            <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="MpC-aK-piA" firstAttribute="centerY" secondItem="90W-gg-55E" secondAttribute="centerY" id="RRc-TH-bcJ"/>
+                        <constraint firstItem="MpC-aK-piA" firstAttribute="centerX" secondItem="90W-gg-55E" secondAttribute="centerX" id="rVx-i4-k5c"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="shI-Vk-Q2Y"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="4117.6000000000004" y="-197.45127436281859"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="aAm-w2-Xpm">
-            <objects>
-                <viewController id="SM0-dF-5hq" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VeK-lH-rGB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="NEv-YJ-wXI"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CqN-K0-hXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2143" y="178"/>
         </scene>
         <!--Article-->
         <scene sceneID="jD3-xY-sgB">
@@ -228,13 +228,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqc-tQ-QJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3180" y="-197.45127436281859"/>
+            <point key="canvasLocation" x="3218" y="-197"/>
         </scene>
     </scenes>
     <resources>
         <image name="Article" width="25" height="23"/>
+        <image name="article_like_0" width="128" height="128"/>
         <image name="article_like_1" width="24" height="24"/>
-        <image name="article_like_2" width="128" height="128"/>
         <image name="article_talk" width="24" height="24"/>
         <image name="user_default_por" width="450" height="450"/>
     </resources>

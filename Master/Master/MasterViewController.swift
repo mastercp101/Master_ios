@@ -35,7 +35,7 @@ class MasterViewController: UIViewController {
         userAccess = UserFile.shared.getUserAccess() // 權限
         
         // Download ProfessionCategorys
-//        downloadProfessionCategory()
+        downloadProfessionCategory()
         
         // Add gesture recognizer
 //        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))

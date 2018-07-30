@@ -9,6 +9,7 @@
 import UIKit
 
 class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
 
     @IBOutlet weak var pickerTextField: UITextField!
     
@@ -48,7 +49,7 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return courseList.count
     }
 
     
@@ -107,6 +108,7 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     */
     
     // MARK: PickerView Delegate
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -121,23 +123,17 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerTextField.text = pickerArray[row]
-        downloadCourse()
-        
+        downloadCourse(professionItem: pickerArray[row])
     }
-
+    
     @objc
     func hidePickerView() {
         self.view.endEditing(true)
     }
     
-    func downloadCourse() {
+    func downloadCourse(professionItem: String) {
         
-        guard let professionCategory = professionCategory else {
-            print("professionCategory is nil")
-            return
-        }
-        
-        let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionCategory]
+        let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
         print("\(requestGetCourse)")
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
             
@@ -147,12 +143,11 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
             }
             
             guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
-                assertionFailure("Invalid data.")
+                print("Data is nil.")
                 return
             }
-            
             self.courseList = courseList
-            
+            self.tableView.reloadData()
         }
     }
 

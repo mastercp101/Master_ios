@@ -36,13 +36,13 @@ class MasterViewController: UIViewController {
         downloadProfessionCategory()
         
         // Add gesture recognizer
-        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
-        toleft.direction = .left
-        masterImgeView.addGestureRecognizer(toleft)
-        
-        let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
-        toright.direction = .right
-        masterImgeView.addGestureRecognizer(toright)
+//        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
+//        toleft.direction = .left
+//        masterImgeView.addGestureRecognizer(toleft)
+//
+//        let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
+//        toright.direction = .right
+//        masterImgeView.addGestureRecognizer(toright)
     }
     
     func downloadProfessionCategory() {
@@ -62,6 +62,7 @@ class MasterViewController: UIViewController {
             }
             
             self.professionCategorys = professionCategorys
+            
         }
     }
     

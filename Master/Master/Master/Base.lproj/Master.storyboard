@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcW-7o-b5Q">
-                                <rect key="frame" x="0.0" y="368" width="375" height="250"/>
+                                <rect key="frame" x="10" y="378" width="355" height="230"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-tT-UBT">
-                                        <rect key="frame" x="30" y="33.5" width="315" height="183"/>
+                                        <rect key="frame" x="20" y="23.5" width="315" height="183"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Qvo-0y-heg">
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="79"/>
@@ -216,23 +216,23 @@
                                 <color key="backgroundColor" red="1" green="0.75894135210000002" blue="0.79167244420000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="uKK-tT-UBT" firstAttribute="centerY" secondItem="vcW-7o-b5Q" secondAttribute="centerY" id="TiW-U7-yTg"/>
-                                    <constraint firstAttribute="height" constant="250" id="ZAE-7c-cIv"/>
+                                    <constraint firstAttribute="height" constant="230" id="ZAE-7c-cIv"/>
                                     <constraint firstItem="uKK-tT-UBT" firstAttribute="centerX" secondItem="vcW-7o-b5Q" secondAttribute="centerX" id="j0m-rx-8Fh"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
-                                <rect key="frame" x="0.0" y="94" width="375" height="244"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="234"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Va9-wr-zID" secondAttribute="trailing" id="6HJ-qT-qeQ"/>
-                            <constraint firstItem="P4g-N8-FCO" firstAttribute="bottom" secondItem="vcW-7o-b5Q" secondAttribute="bottom" id="HeB-3x-zkH"/>
+                            <constraint firstItem="P4g-N8-FCO" firstAttribute="bottom" secondItem="vcW-7o-b5Q" secondAttribute="bottom" constant="10" id="HeB-3x-zkH"/>
                             <constraint firstItem="Va9-wr-zID" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" id="NSD-xH-oGU"/>
-                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="trailing" secondItem="P4g-N8-FCO" secondAttribute="trailing" id="Qid-jf-4Bw"/>
-                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" id="S06-r0-jRq"/>
+                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="trailing" secondItem="P4g-N8-FCO" secondAttribute="trailing" constant="-10" id="Qid-jf-4Bw"/>
+                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" constant="10" id="S06-r0-jRq"/>
                             <constraint firstItem="Va9-wr-zID" firstAttribute="top" secondItem="P4g-N8-FCO" secondAttribute="top" constant="30" id="YPq-AB-rSJ"/>
-                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="top" secondItem="Va9-wr-zID" secondAttribute="bottom" constant="30" id="ccg-DD-wv8"/>
+                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="top" secondItem="Va9-wr-zID" secondAttribute="bottom" constant="50" id="ccg-DD-wv8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4g-N8-FCO"/>
                     </view>
@@ -255,20 +255,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textField key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="Xew-7G-QPB">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="P2o-wS-6GK">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ea9-AX-ldi">
+                                    <rect key="frame" x="10" y="10" width="355" height="24"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Ea9-AX-ldi" firstAttribute="top" secondItem="P2o-wS-6GK" secondAttribute="top" constant="10" id="5cw-qX-NWq"/>
+                                <constraint firstAttribute="bottom" secondItem="Ea9-AX-ldi" secondAttribute="bottom" constant="10" id="Iy5-nE-XGd"/>
+                                <constraint firstItem="Ea9-AX-ldi" firstAttribute="leading" secondItem="P2o-wS-6GK" secondAttribute="leading" constant="10" id="MJ8-Y9-bw0"/>
+                                <constraint firstAttribute="trailing" secondItem="Ea9-AX-ldi" secondAttribute="trailing" constant="10" id="dkr-o6-6DM"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="70" id="YDM-Ju-12W">
-                                <rect key="frame" x="0.0" y="59" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YDM-Ju-12W" id="S5R-nn-rkf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAA-Ki-Yki">
+                                            <rect key="frame" x="129" y="25" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -279,7 +300,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="CNa-DK-Os1"/>
                     <connections>
-                        <outlet property="pickerTextField" destination="Xew-7G-QPB" id="dsI-5T-MMq"/>
+                        <outlet property="pickerTextField" destination="Ea9-AX-ldi" id="1lR-jP-rwQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U12-hf-Yma" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,14 +329,14 @@
     <resources>
         <image name="Account" width="24" height="23"/>
         <image name="Master" width="24" height="23"/>
-        <image name="ball" width="116" height="116"/>
-        <image name="code" width="116" height="116"/>
-        <image name="language" width="116" height="116"/>
-        <image name="music" width="116" height="116"/>
-        <image name="paint" width="116" height="116"/>
-        <image name="skate" width="116" height="116"/>
-        <image name="swim" width="116" height="116"/>
-        <image name="workout" width="116" height="116"/>
+        <image name="ball" width="87" height="87"/>
+        <image name="code" width="87" height="87"/>
+        <image name="language" width="87" height="87"/>
+        <image name="music" width="87" height="87"/>
+        <image name="paint" width="87" height="87"/>
+        <image name="skate" width="87" height="87"/>
+        <image name="swim" width="87" height="87"/>
+        <image name="workout" width="87" height="87"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VUB-AZ-m1m"/>

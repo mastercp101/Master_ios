@@ -112,10 +112,6 @@ extension UIImageView{
 
 extension UIImage{
     func base64() -> String?{
-//        guard let imageData : Data = UIImagePNGRepresentation(self) else{
-//            return nil
-//        }
-        
         guard let imageData : Data = UIImageJPEGRepresentation(self, 0.5) else{
             return nil
         }
@@ -192,16 +188,19 @@ extension UIImageView {
     }
     
     // 下載大頭照
-    func getUserPortrait(account: String, index: Int) {
-        
+    func getUserPortrait(account: String, index: Int?) {
         let url = urlString + "CourseArticleServlet"
         let request = ["courseArticle" : "getPhotoByUserId", "userId" : account]
         let image = UIImage(named: "user_default_por")
         
-        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
-            ArticleData.shared.info[index].postPortrait = data
-        }) { (data) in
-            ArticleData.shared.info[index].postPortrait = data
+        if let index = index {
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }) { (data) in
+                ArticleData.shared.info[index].postPortrait = data
+            }
+        }else{
+            downloadImage(url, request: request, defaultImage: image, failHandler: { (defaultImageData) in}) { (imageData) in}
         }
     }
     

@@ -147,6 +147,7 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
             assertionFailure("Invalid View Controller")
             return
         }
+        
         nextVC.course = self.courseList[index]
         nextVC.title = nextVC.course?.courseName
         

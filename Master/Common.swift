@@ -45,6 +45,23 @@ class Common{
     func removeObservers(viewController : UIViewController){
         NotificationCenter.default.removeObserver(viewController)
     }
+    
+    func downloadExperience(){
+        let urlStr = urlString + "ExperienceArticleServlet"
+        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":"billy"]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let decodedData = try? decoder.decode([ExperienceArticle].self, from: data) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            ArticleData.shared.info = decodedData
+        }
+    }
+    
 
 }
 
@@ -174,10 +191,10 @@ extension UIButton {
 extension UIImageView {
     
     // 下載文章圖片
-    func getArticlePhoto(postId: String, index: Int) {
+    func getArticlePhoto(postId: Int, index: Int) {
         
         let url = urlString + urlUserInfo
-        let request = ["action" : "getUserPostPhoto", "postId" : postId]
+        let request : [String : Any] = ["action" : "getUserPostPhoto", "postId" : postId]
         let image = UIImage(named: "user_default_por")
         
         downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in

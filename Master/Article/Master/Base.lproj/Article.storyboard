@@ -184,7 +184,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="post" id="abY-Uq-nJB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TfV-KD-RFS"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TfV-KD-RFS">
+                            <connections>
+                                <segue destination="Ghh-p5-eO4" kind="show" id="uQh-Vv-1IB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -229,6 +233,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqc-tQ-QJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3218" y="-197"/>
+        </scene>
+        <!--Add Photo Text View Controller-->
+        <scene sceneID="1LQ-A8-749">
+            <objects>
+                <viewController id="Ghh-p5-eO4" customClass="AddPhotoTextViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="omy-cE-0X3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tBs-Iu-lG8">
+                                <rect key="frame" x="16" y="336" width="343" height="149"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="0.15705265409999999" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="R78-dl-OEy">
+                                <rect key="frame" x="16" y="82" width="343" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="0.1952857449" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aS-hP-q2Y">
+                                <rect key="frame" x="23" y="239" width="37" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="清除"/>
+                                <connections>
+                                    <action selector="deleteBtAction:" destination="Ghh-p5-eO4" eventType="touchUpInside" id="w91-bv-ZWU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhI-Fi-9R3">
+                                <rect key="frame" x="310" y="240" width="37" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="送出"/>
+                                <connections>
+                                    <action selector="pushNewArticle:" destination="Ghh-p5-eO4" eventType="touchUpInside" id="jX2-Hf-WFs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38r-19-ifh">
+                                <rect key="frame" x="230" y="271" width="30" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="➕"/>
+                                <connections>
+                                    <action selector="addPhoto:" destination="Ghh-p5-eO4" eventType="touchUpInside" id="DEV-Em-5mv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JbI-Zi-G4s"/>
+                    </view>
+                    <connections>
+                        <outlet property="newArticleImageView" destination="tBs-Iu-lG8" id="OiR-X8-7jn"/>
+                        <outlet property="newArticleTextView" destination="R78-dl-OEy" id="7BE-av-nFx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcf-yi-fxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5010" y="-197"/>
         </scene>
     </scenes>
     <resources>

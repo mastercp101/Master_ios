@@ -50,6 +50,7 @@
 		F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */; };
 		F146DA3C2109CABB0042C329 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */; };
 		F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */; };
+		F14E8EAE210F15FA0080D306 /* AddPhotoTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */; };
 		F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */; };
 		F1A784E92108304800C03AB6 /* UserScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E82108304800C03AB6 /* UserScript.swift */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
@@ -111,6 +112,7 @@
 		F11684D92108A0FD004E0345 /* ProfessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionTableViewCell.swift; sourceTree = "<group>"; };
 		F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
 		F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoTextViewController.swift; sourceTree = "<group>"; };
 		F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfessionTableViewController.swift; sourceTree = "<group>"; };
 		F1A784E82108304800C03AB6 /* UserScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScript.swift; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
@@ -219,9 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				27FC3FDF20F3093D001A063E /* Article.storyboard */,
+				27FC3FCB20F2FC40001A063E /* Article.swift */,
 				F146DA3B2109CABB0042C329 /* ArticleTableViewController.swift */,
 				F146DA3D2109CAC90042C329 /* ArticleTableViewCell.swift */,
-				27FC3FCB20F2FC40001A063E /* Article.swift */,
+				F14E8EAD210F15FA0080D306 /* AddPhotoTextViewController.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14E8EAE210F15FA0080D306 /* AddPhotoTextViewController.swift in Sources */,
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
 				F146DA3E2109CAC90042C329 /* ArticleTableViewCell.swift in Sources */,
 				B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */,

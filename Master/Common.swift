@@ -10,10 +10,10 @@ import UIKit
 
 //Only put "let" property over here
 //if you want to put variable property put it in singleton
-let urlString = "http://192.168.50.21:8080/Master/"
+
 // Connect DB URL
 //let urlString = "http://127.0.0.1:8080/Master/"
-//let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://192.168.50.245:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -47,8 +47,13 @@ class Common{
     }
     
     func downloadExperience(){
+        // TODO: - Debug
+        let account = "billy"
+        // TODO: - 正式版
+//        var account = ""
+//        if let userAccount = userAccount { account = userAccount }
         let urlStr = urlString + "ExperienceArticleServlet"
-        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":"billy"]
+        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":account]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
                 assertionFailure("Error : \(error)")

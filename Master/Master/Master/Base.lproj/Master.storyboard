@@ -36,7 +36,7 @@
                                                                     <constraint firstAttribute="width" constant="60" id="lR8-5l-nWR"/>
                                                                     <constraint firstAttribute="height" constant="60" id="xQR-co-Ghc"/>
                                                                 </constraints>
-                                                                <state key="normal" image="swim"/>
+                                                                <state key="normal" image="pfs_swim"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="waterSegue" id="gQM-yU-C9x"/>
                                                                 </connections>
@@ -58,7 +58,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="T2G-u1-bCT"/>
                                                                     <constraint firstAttribute="width" constant="60" id="e3H-TW-t86"/>
                                                                 </constraints>
-                                                                <state key="normal" image="skate"/>
+                                                                <state key="normal" image="pfs_skate"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="xsportSegue" id="f1L-DC-voZ"/>
                                                                 </connections>
@@ -80,7 +80,7 @@
                                                                     <constraint firstAttribute="width" constant="60" id="duW-5M-n3O"/>
                                                                     <constraint firstAttribute="height" constant="60" id="kuh-k8-jZs"/>
                                                                 </constraints>
-                                                                <state key="normal" image="workout"/>
+                                                                <state key="normal" image="pfs_workout"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="workoutSegue" id="VUB-AZ-m1m"/>
                                                                 </connections>
@@ -102,7 +102,7 @@
                                                                     <constraint firstAttribute="width" constant="60" id="LWT-pI-cz9"/>
                                                                     <constraint firstAttribute="height" constant="60" id="l0k-1Y-ZeH"/>
                                                                 </constraints>
-                                                                <state key="normal" image="ball"/>
+                                                                <state key="normal" image="pfs_ball"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="ballSegue" id="k0h-bE-p44"/>
                                                                 </connections>
@@ -129,7 +129,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="WXh-mU-NHu"/>
                                                                     <constraint firstAttribute="width" constant="60" id="vXl-ou-Gve"/>
                                                                 </constraints>
-                                                                <state key="normal" image="music"/>
+                                                                <state key="normal" image="pfs_music"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="musicSegue" id="E75-lF-0m5"/>
                                                                 </connections>
@@ -151,7 +151,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="VXy-tI-Jv8"/>
                                                                     <constraint firstAttribute="width" constant="60" id="ZmB-5P-9RV"/>
                                                                 </constraints>
-                                                                <state key="normal" image="language"/>
+                                                                <state key="normal" image="pfs_language"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="languageSegue" id="OWM-1C-WHk"/>
                                                                 </connections>
@@ -173,7 +173,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="GGt-8h-f6n"/>
                                                                     <constraint firstAttribute="width" constant="60" id="rXl-VA-vpM"/>
                                                                 </constraints>
-                                                                <state key="normal" image="paint"/>
+                                                                <state key="normal" image="pfs_paint"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="leisureSegue" id="JET-dQ-tiY"/>
                                                                 </connections>
@@ -195,7 +195,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="TOf-WZ-NTN"/>
                                                                     <constraint firstAttribute="width" constant="60" id="cmV-Ku-Jyz"/>
                                                                 </constraints>
-                                                                <state key="normal" image="code"/>
+                                                                <state key="normal" image="pfs_code"/>
                                                                 <connections>
                                                                     <segue destination="WfF-gY-2Ai" kind="show" identifier="codingSegue" id="2cj-Tj-yB4"/>
                                                                 </connections>
@@ -275,24 +275,70 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="70" id="YDM-Ju-12W">
-                                <rect key="frame" x="0.0" y="72" width="375" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="90" id="YDM-Ju-12W">
+                                <rect key="frame" x="0.0" y="72" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YDM-Ju-12W" id="S5R-nn-rkf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAA-Ki-Yki">
-                                            <rect key="frame" x="129" y="25" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="n4R-kx-ha5">
+                                            <rect key="frame" x="10" y="5" width="68.5" height="79.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVc-ee-8Ya">
+                                                    <rect key="frame" x="0.0" y="0.0" width="68.5" height="24"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-7" translatesAutoresizingMaskIntoConstraints="NO" id="Zdy-v8-1gx">
+                                                    <rect key="frame" x="0.0" y="39" width="68.5" height="40.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="StarTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAE-xj-DQ3">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EndTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeG-pr-Hpu">
+                                                            <rect key="frame" x="0.0" y="13.5" width="68.5" height="27"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pOw-I0-eF2">
+                                            <rect key="frame" x="260" y="37.5" width="105" height="47"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumOfAttend" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uks-5c-j3q">
+                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23i-GJ-jK4">
+                                                    <rect key="frame" x="0.0" y="26.5" width="105" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="n4R-kx-ha5" firstAttribute="leading" secondItem="S5R-nn-rkf" secondAttribute="leading" constant="10" id="6Ah-ch-b4i"/>
+                                        <constraint firstAttribute="bottom" secondItem="n4R-kx-ha5" secondAttribute="bottom" constant="5" id="968-Aa-Rmg"/>
+                                        <constraint firstItem="n4R-kx-ha5" firstAttribute="top" secondItem="S5R-nn-rkf" secondAttribute="top" constant="5" id="Ghd-EY-DSa"/>
+                                        <constraint firstAttribute="trailing" secondItem="pOw-I0-eF2" secondAttribute="trailing" constant="10" id="VDt-Va-lay"/>
+                                        <constraint firstAttribute="bottom" secondItem="pOw-I0-eF2" secondAttribute="bottom" constant="5" id="ZwR-71-8e9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="WfF-gY-2Ai" id="zad-JL-Con"/>
                             <outlet property="delegate" destination="WfF-gY-2Ai" id="bJu-jv-VqA"/>
@@ -306,14 +352,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U12-hf-Yma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1685.5999999999999" y="-2062.2188905547227"/>
-        </scene>
-        <!--Course-->
-        <scene sceneID="7hR-bO-E61">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Course" id="ALT-3r-QE4" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9KD-tj-uQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2390" y="-2100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Op3-Vq-wyd">
@@ -337,14 +375,14 @@
     <resources>
         <image name="Account" width="24" height="23"/>
         <image name="Master" width="24" height="23"/>
-        <image name="ball" width="87" height="87"/>
-        <image name="code" width="87" height="87"/>
-        <image name="language" width="87" height="87"/>
-        <image name="music" width="87" height="87"/>
-        <image name="paint" width="87" height="87"/>
-        <image name="skate" width="87" height="87"/>
-        <image name="swim" width="87" height="87"/>
-        <image name="workout" width="87" height="87"/>
+        <image name="pfs_ball" width="87" height="87"/>
+        <image name="pfs_code" width="87" height="87"/>
+        <image name="pfs_language" width="87" height="87"/>
+        <image name="pfs_music" width="87" height="87"/>
+        <image name="pfs_paint" width="87" height="87"/>
+        <image name="pfs_skate" width="87" height="87"/>
+        <image name="pfs_swim" width="87" height="87"/>
+        <image name="pfs_workout" width="87" height="87"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VUB-AZ-m1m"/>

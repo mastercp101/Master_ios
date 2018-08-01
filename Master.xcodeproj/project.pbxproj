@@ -42,9 +42,11 @@
 		27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FED20F33BEB001A063E /* PhotoViewController.swift */; };
 		27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FEF20F33BFD001A063E /* CourseViewController.swift */; };
 		27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */; };
+		B33790C021107B3C00E2ECD3 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33790BF21107B3C00E2ECD3 /* MasterTableViewCell.swift */; };
 		B35F44C9210F514C00DC428C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC020F2F7A3001A063E /* Assets.xcassets */; };
 		B37E32202108AA4B008A5A4F /* ProfessionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37E321F2108AA4B008A5A4F /* ProfessionCategory.swift */; };
 		B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */; };
+		B3D4DAFB211195000030A5CD /* HighlightCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D4DAFA211195000030A5CD /* HighlightCourse.swift */; };
 		B478B5D0DC46E8110CCDCDC6 /* Pods_Master.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */; };
 		F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */; };
 		F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */; };
@@ -106,8 +108,10 @@
 		27FC3FEF20F33BFD001A063E /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		27FC3FF120F36707001A063E /* AccountSwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewController.swift; sourceTree = "<group>"; };
 		844AAF0894C9D35F95D98FD6 /* Pods_Master.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Master.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33790BF21107B3C00E2ECD3 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewCell.swift; sourceTree = "<group>"; };
 		B37E321F2108AA4B008A5A4F /* ProfessionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCategory.swift; sourceTree = "<group>"; };
 		B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
+		B3D4DAFA211195000030A5CD /* HighlightCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCourse.swift; sourceTree = "<group>"; };
 		EA472E47F99065BBF641F4FC /* Pods-Master.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Master.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Master/Pods-Master.debug.xcconfig"; sourceTree = "<group>"; };
 		F11684D52108A0C5004E0345 /* ProfessionCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionCategoryTableViewController.swift; sourceTree = "<group>"; };
 		F11684D72108A0D4004E0345 /* ProfessionItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionItemTableViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +219,9 @@
 				27FC3FDC20F308F8001A063E /* Master.storyboard */,
 				27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */,
 				B387AEB3210713CD00BF4794 /* MasterTableViewController.swift */,
+				B33790BF21107B3C00E2ECD3 /* MasterTableViewCell.swift */,
 				B37E321F2108AA4B008A5A4F /* ProfessionCategory.swift */,
+				B3D4DAFA211195000030A5CD /* HighlightCourse.swift */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -461,10 +467,12 @@
 				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
 				270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */,
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
+				B3D4DAFB211195000030A5CD /* HighlightCourse.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
 				F146DA3C2109CABB0042C329 /* ArticleTableViewController.swift in Sources */,
 				F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */,
 				F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */,
+				B33790C021107B3C00E2ECD3 /* MasterTableViewCell.swift in Sources */,
 				F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */,
 				270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */,
 				F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */,
@@ -644,7 +652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C79K9PYRJB;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -666,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C79K9PYRJB;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

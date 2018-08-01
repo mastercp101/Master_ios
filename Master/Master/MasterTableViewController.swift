@@ -13,8 +13,9 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
 
     @IBOutlet weak var pickerTextField: UITextField!
     
-    private let courseArticleServlet = "/CourseArticleServlet"
     private let courseCell = "courseCell"
+    private let COURSE_ARTICLE_Key = "courseArticle"
+    private let courseArticleServlet = "/CourseArticleServlet"
 
     var pickerArray = [String]()
     var courseList = [Course]()
@@ -22,6 +23,8 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = professionCategory
 
         // Setting pickerView.
         let pickerView = UIPickerView()
@@ -29,9 +32,14 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         pickerTextField.inputView = pickerView
         pickerTextField.placeholder = professionCategory
         
-        // Tap to hidePickerView.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hidePickerView))
-        self.view.addGestureRecognizer(tap)
+        // DoneButton to hide PickerView.
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.isTranslucent = true
+        let doneButton = UIBarButtonItem(title: "確定", style: .done, target: nil, action: #selector(hidePickerView))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([spaceButton, doneButton], animated: true)
+        pickerTextField.inputAccessoryView = toolbar
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -54,14 +62,50 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath)
-        cell.textLabel?.text = courseList[indexPath.row].courseName
-        // Configure the cell...
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath) as? MasterTableViewCell else {
+            assertionFailure("Fail to get MasterTableViewCell.")
+            return UITableViewCell()
+        }
+        
+        let course = courseList[indexPath.row]
+        let requestNumOfJoin = ["courseArticle":"courseJoin","courseId":"\(course.courseID)"]
+        
+        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestNumOfJoin) { (error, data) in
 
+            if let error = error {
+                assertionFailure("Fail to get requestNumOfJoin : \(error)")
+                return
+            }
+
+            guard let data = data else {
+                assertionFailure("Data is nil.")
+                return
+            }
+
+            if let peopleNumber = String(data: data, encoding: .utf8) {
+                cell.numberOfJoinedLabel.text = "參加人數: \(peopleNumber)/\(course.coursePeopleNumber)"
+            }
+            
+            cell.courseNameLabel.text = course.courseName
+            cell.starTimeLabel.text = "開始日期: \(course.courseDate)"
+            cell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
+            cell.locationLabel.text = course.courseLocation
+        }
+        
+        if course.courseStatusID == 2 {
+            cell.isUserInteractionEnabled = false
+            cell.subviews.first?.backgroundColor = .gray
+            cell.subviews.first?.subviews.first?.backgroundColor = .gray
+        }
+        
         return cell
     }
     
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.view.endEditing(true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -134,6 +178,7 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     func downloadCourse(professionItem: String) {
         
         let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
+        
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
             
             if let error = error {

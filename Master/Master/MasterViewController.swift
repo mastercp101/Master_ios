@@ -18,13 +18,17 @@ class MasterViewController: UIViewController {
     private let languageSegue = "languageSegue"
     private let leisureSegue = "leisureSegue"
     private let codingSegue = "codingSegue"
+    private let COURSE_ARTICLE_Key = "courseArticle"
+    private let photoServlet = "/photoServlet"
     private let courseArticleServlet = "/CourseArticleServlet"
     
-    var targerIndex = -1
-    var imageList = [String]()
+    var timer: Timer?
+    var targetIndex = 0
+    var hightlightImages = [UIImage]()
+    var highlightCourses = [HighlightCourse]()
     var professionCategorys = [ProfessionCategory]()
     
-    @IBOutlet weak var masterImgeView: UIImageView!
+    @IBOutlet weak var masterImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,19 +41,37 @@ class MasterViewController: UIViewController {
         // Download ProfessionCategorys
         downloadProfessionCategory()
         
+        // Download HighlightCoursePhoto
+        downloadHighlightCoursePhoto()
+        
         // Add gesture recognizer
-//        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
-//        toleft.direction = .left
-//        masterImgeView.addGestureRecognizer(toleft)
-//
-//        let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
-//        toright.direction = .right
-//        masterImgeView.addGestureRecognizer(toright)
+        let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
+        toleft.direction = .left
+        masterImageView.addGestureRecognizer(toleft)
+        
+        let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
+        toright.direction = .right
+        masterImageView.addGestureRecognizer(toright)
+        masterImageView.isUserInteractionEnabled = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(performSlideShow), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
     }
     
     func downloadProfessionCategory() {
         
-        let requestGetProfession = ["courseArticle":"getProfession"]
+        let requestGetProfession = [COURSE_ARTICLE_Key:"getProfession"]
         
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetProfession) { (error, data) in
             
@@ -65,6 +87,49 @@ class MasterViewController: UIViewController {
             
             self.professionCategorys = professionCategorys
             
+        }
+    }
+    
+    func downloadHighlightCoursePhoto() {
+        
+        let requestGetCourseNewPhotoId = [COURSE_ARTICLE_Key:"getCourseNewPhotoId"]
+        
+        // Search HighlightCourse
+        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourseNewPhotoId) { (error, data) in
+            
+            if let error = error {
+                assertionFailure("Fail to getCourseNewPhotoId: \(error)")
+                return
+            }
+            
+            guard let data = data, let highlightCourses = try? decoder.decode([HighlightCourse].self, from: data) else {
+                assertionFailure("Data is nil.")
+                return
+            }
+            
+            self.highlightCourses = highlightCourses
+            self.hightlightImages.removeAll()
+            
+            // Download HighlightCourse Photo
+            for i in 0..<highlightCourses.count {
+                let requestHighlightCoursePhoto = ["action":"getImage","photo_id":highlightCourses[i].courseImageId,"imageSize":1000] as [String : Any]
+                
+                Task.postRequestData(urlString: urlString + self.photoServlet, request: requestHighlightCoursePhoto) { (error, data) in
+                    
+                    if let error = error {
+                        assertionFailure("Fail to getCourseNewPhoto: \(error)")
+                        return
+                    }
+                    
+                    guard let data = data, let image = UIImage(data: data) else {
+                        assertionFailure("Data is nil.")
+                        return
+                    }
+                    
+                    self.hightlightImages.append(image)
+                    self.configureImageView()
+                }
+            }
         }
     }
     
@@ -85,27 +150,27 @@ class MasterViewController: UIViewController {
         case workoutSegue:
             controller.pickerArray = professionCategorys[2].professionItems
             controller.professionCategory = professionCategorys[2].professionCategory
-
+            
         case ballSegue:
             controller.pickerArray = professionCategorys[3].professionItems
             controller.professionCategory = professionCategorys[3].professionCategory
-
+            
         case musicSegue:
             controller.pickerArray = professionCategorys[4].professionItems
             controller.professionCategory = professionCategorys[4].professionCategory
-
+            
         case languageSegue:
             controller.pickerArray = professionCategorys[5].professionItems
             controller.professionCategory = professionCategorys[5].professionCategory
-
+            
         case leisureSegue:
             controller.pickerArray = professionCategorys[6].professionItems
             controller.professionCategory = professionCategorys[6].professionCategory
-
+            
         case codingSegue:
             controller.pickerArray = professionCategorys[7].professionItems
             controller.professionCategory = professionCategorys[7].professionCategory
-
+            
         default:
             return
             
@@ -113,18 +178,17 @@ class MasterViewController: UIViewController {
     }
     
     func configureImageView() {
-        
-        
+        masterImageView.image = hightlightImages[targetIndex]
     }
     
     @objc
     func toRight() {
         
-        UIView.transition(with: masterImgeView, duration: 0.5, options: [.transitionFlipFromLeft], animations: {
+        UIView.transition(with: masterImageView, duration: 0.5, options: [.transitionCrossDissolve, .curveEaseIn], animations: {
             
-            self.targerIndex -= 1
-            if self.targerIndex < 0 {
-                self.targerIndex = self.imageList.count - 1
+            self.targetIndex -= 1
+            if self.targetIndex < 0 {
+                self.targetIndex = self.hightlightImages.count - 1
             }
             self.configureImageView()
         }, completion: nil)
@@ -134,15 +198,33 @@ class MasterViewController: UIViewController {
     @objc
     func toLeft() {
         
-        UIView.transition(with: masterImgeView, duration: 0.5, options: [.transitionFlipFromRight], animations: {
+        UIView.transition(with: masterImageView, duration: 0.5, options: [.transitionCrossDissolve, .curveEaseIn], animations: {
             
-            self.targerIndex += 1
-            if self.targerIndex >= self.imageList.count {
-                self.targerIndex = 0
+            self.targetIndex += 1
+            if self.targetIndex >= self.hightlightImages.count {
+                self.targetIndex = 0
             }
             self.configureImageView()
         }, completion: nil)
         
+    }
+    
+    @objc
+    func performSlideShow() {
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        
+        masterImageView.layer.add(transition, forKey: nil)
+        
+        self.targetIndex += 1
+        if self.targetIndex >= hightlightImages.count {
+            self.targetIndex = 0
+        }
+        configureImageView()
     }
 }
 

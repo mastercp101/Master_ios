@@ -8,5 +8,7 @@ target 'Master' do
   use_frameworks!
   
  pod 'iCarousel', '~> 1.8.3'
+ pod 'Firebase/Core'
+ pod 'Firebase/Database'
 
 end

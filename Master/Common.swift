@@ -13,7 +13,10 @@ import UIKit
 
 // Connect DB URL
 //let urlString = "http://127.0.0.1:8080/Master/"
-let urlString = "http://192.168.50.20:8080/Master/"
+//哲維
+//let urlString = "http://192.168.50.20:8080/Master/"
+//峻亦
+let urlString = "http://192.168.50.245:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -21,9 +24,11 @@ let decoder = JSONDecoder()
 var userAccount: String? // 使用者帳號, nil即沒登入
 var userAccess: UserAccess = .none // *** 使用者權限 ***
 var userProfessions = [Profession]() // 原汁原味 [Profession], 會在 User 資訊頁面存入
+var userName: String? //  使用者名字
+var userPortrait: Data? //  使用者的大頭照
+
 
 // Singleton
-
 class Common{
     static let shared = Common()
     private init(){}

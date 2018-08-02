@@ -13,10 +13,3 @@ class messageRoomItemCell : UITableViewCell{
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
 }
-
-class messageFromOtherCell : UITableViewCell{
-    @IBOutlet weak var userPropertyImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-}
-

@@ -48,3 +48,28 @@ class ArticleTableViewCell: UITableViewCell {
         }
     }
 }
+
+
+class ArticleDetailTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var articleDetailPortrait: UIImageView!
+    @IBOutlet weak var articleDetailName: UILabel!
+    @IBOutlet weak var articleDetailDate: UILabel!
+    @IBOutlet weak var articleDetailContent: UILabel!
+    @IBOutlet weak var articleDetailPhoto: UIImageView!
+    @IBOutlet weak var articleDetailLikes: UILabel!
+    @IBOutlet weak var articleDetailTalks: UILabel!
+    
+}
+
+
+
+class ArticleToMessageTableViewCell: UITableViewCell {
+    
+    
+    
+    
+}
+
+
+

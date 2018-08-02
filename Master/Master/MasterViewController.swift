@@ -37,7 +37,9 @@ class MasterViewController: UIViewController {
         // Important !
         userAccount = UserFile.shared.getUserAccount() // 帳號
         userAccess = UserFile.shared.getUserAccess() // 權限
-        
+        userName = UserFile.shared.getUserName() // 名字
+        userPortrait = UserFile.shared.loadUserPortrait() // 大頭照
+
         // Download ProfessionCategorys
         downloadProfessionCategory()
         

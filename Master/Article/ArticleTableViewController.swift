@@ -83,7 +83,7 @@ class ArticleTableViewController: UITableViewController {
     }
     
     
-    // MARK: - Table view data source
+ // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -139,30 +139,18 @@ class ArticleTableViewController: UITableViewController {
         return cell
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
     @IBAction func clickAddNewArticle(_ sender: UIBarButtonItem) {
         
         guard checkLogin() else { return }
         
         let storyboard = UIStoryboard(name: "Article", bundle: nil)
-        let loginView = storyboard.instantiateViewController(withIdentifier: "AddNewArticle")
+        let loginView = storyboard.instantiateViewController(withIdentifier: "AddNewArticleVC")
         let rootViewController = self.view.window?.rootViewController
         rootViewController?.present(loginView, animated: true, completion: nil)
         
     }
     
-    
-    
-    
+    // 點讚
     @IBAction func clickLink(_ sender: UIButton) {
         
         guard checkLogin() else { return }
@@ -192,13 +180,24 @@ class ArticleTableViewController: UITableViewController {
         ArticleData.shared.info[index.row].postLikes = likeNumber
     }
     
+    // 留言
     @IBAction func clickTalk(_ sender: UIButton) {
         
         guard checkLogin() else { return }
-        
+        // 拿到目前點擊的 IndexPath
         let point = sender.convert(CGPoint.zero, to: self.tableView)
-        let indexPath = self.tableView.indexPathForRow(at: point)
-        print("\(indexPath?.row ?? -1)")
+        // 準備目的地
+        let storyboard = UIStoryboard(name: "Article", bundle: nil)
+        let detailView = storyboard.instantiateViewController(withIdentifier: "ActicleDetailVC")
+        // 準備傳值, 及
+        if let detailViewController = (detailView as? UINavigationController)?.topViewController as? ArticleDetailViewController,  let indexPath = self.tableView.indexPathForRow(at: point) {
+            
+            detailViewController.articleDetail = ArticleData.shared.info[indexPath.row]
+            self.present(detailView, animated: true, completion: nil)
+            return
+        }
+
+        // TODO: - 換頁失敗?
     }
     
     private func checkLogin() -> Bool {

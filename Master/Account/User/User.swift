@@ -97,4 +97,7 @@ class UserData {
     private init() {}
     
     var info = [[String]]()
+    
+    var userPortrait: Data?
+    var userBackground: Data?
 }

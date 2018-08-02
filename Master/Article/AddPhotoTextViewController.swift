@@ -9,29 +9,60 @@
 import UIKit
 import Photos
 
+private let loadingViewTag = 9527
+private let THINK_TEXT = "在想些什麼?"
 private let photoServlet = "photoServlet"
 private let experienceArticleServlet = "ExperienceArticleServlet"
 
 class AddPhotoTextViewController: UIViewController {
     
+    @IBOutlet weak var postPortrait: UIImageView!
+    @IBOutlet weak var postName: UILabel!
     @IBOutlet weak var newArticleImageView: UIImageView!
     @IBOutlet weak var newArticleTextView: UITextView!
+    @IBOutlet weak var bottomLayout: NSLayoutConstraint! // Layout
     
     private let addPhotoPicker = UIImagePickerController()
-    private let addPhotoCropper = UIImageCropper(cropRatio: 16/9)
+    private let addPhotoCropper = UIImageCropper(cropRatio: 8/6)
+    
+    deinit { NotificationCenter.default.removeObserver(self) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 相機, 相簿相關
+        // User name and portrait
+        if UserData.shared.info.count != 0, !UserData.shared.info[1][0].isEmpty, let data = UserData.shared.userPortrait {
+            postName.text = UserData.shared.info[1][0]
+            postPortrait.image = UIImage(data: data)
+        } else if let account = userAccount {
+            getUserInfo(account: account)
+        }
+        // Prepare textView
+        newArticleTextView.textContainer.lineFragmentPadding = 15
+        newArticleTextView.delegate = self
+        newArticleTextView.textColor = .gray
+        newArticleTextView.text = THINK_TEXT
+        // Prepare camera and photo library
         addPhotoCropper.delegate = self
         addPhotoCropper.picker = addPhotoPicker
         addPhotoCropper.cropButtonText = "Crop"
         addPhotoCropper.cancelButtonText = "Retake"
-        
-//        // 請求相機授權？應該不用？
-//        PHPhotoLibrary.requestAuthorization { (status) in
-//            print("PHPhotoLibrary.requestAuthorization: \(status.rawValue)")
-//        }
+        // 監聽鍵盤事件
+        NotificationCenter.default.addObserver(self, selector: #selector(moveBottomViewUp(_:)), name: .UIKeyboardWillShow, object: nil)
+        //        // 請求相機授權？應該不用？
+        //        PHPhotoLibrary.requestAuthorization { (status) in
+        //            print("PHPhotoLibrary.requestAuthorization: \(status.rawValue)")
+        //        }
+    }
+
+    @objc func moveBottomViewUp(_ aNotification: Notification) {
+        let info = aNotification.userInfo
+        let sizeValue = info![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let size = sizeValue.cgRectValue.size
+        let height = size.height
+        self.bottomLayout.constant = height
+        UIView.animate(withDuration: 0.23){
+            self.view.layoutIfNeeded()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,39 +70,113 @@ class AddPhotoTextViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func addPhoto(_ sender: Any) {
+    // 相機
+    @IBAction func addCameraPhoto(_ sender: UIButton) {
+        endEdit()
+        self.addPhotoPicker.sourceType = .camera
+        self.present(self.addPhotoPicker, animated: true, completion: nil)
+    }
+    
+    // 相簿
+    @IBAction func addLibraryPhoto(_ sender: UIButton) {
+        endEdit()
+        self.addPhotoPicker.sourceType = .photoLibrary
+        self.present(self.addPhotoPicker, animated: true, completion: nil)
+    }
+    
+    // 發布
+    @IBAction func pushNewArticle(_ sender: UIBarButtonItem) {
+        endEdit()
         
-        Alert.shared.buildPhotoAlert(viewController: self, takePic: { (action) in
-            self.addPhotoPicker.sourceType = .camera
-            self.present(self.addPhotoPicker, animated: true, completion: nil)
+        guard let image = newArticleImageView.image else {
+            showAlert(message: "尚未選擇圖片")
+            return
+        }
+        guard let text = newArticleTextView?.text.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty, text != THINK_TEXT else {
+            showAlert(message: "尚未編輯文章")
+            return
+        }
+        guard let account = userAccount else {
+            showAlert(message: "尚未登入")
+            return
+        }
+        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "確定發布?", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
+            // nope ...
         }) { (action) in
-            self.addPhotoPicker.sourceType = .photoLibrary
-            self.present(self.addPhotoPicker, animated: true, completion: nil)
+            self.prepareLoadingView()
+            self.pushArticlePhoto(account: account, article: text, photo: image)
         }
     }
     
-    // 推送新文章
-    @IBAction func pushNewArticle(_ sender: Any) {
-        guard let account = userAccount else { return }
-        pushArticlePhoto(account: account)
+    // 點擊下方小灰條
+    @IBAction func clickViewEndEdit(_ sender: UITapGestureRecognizer) {
+        endEdit()
     }
     
-    // 清空畫面
-    @IBAction func deleteBtAction(_ sender: Any) {
-        newArticleTextView.text = ""
-        newArticleImageView.image = nil
+    // 回到上一頁
+    @IBAction func goBackToArticleHome(_ sender: UIBarButtonItem) {
+        endEdit()
+        if let text = newArticleTextView?.text.trimmingCharacters(in: .whitespacesAndNewlines),
+            !text.isEmpty, text != THINK_TEXT || newArticleImageView.image != nil {
+            
+            Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "您即將離開", alertMessage: nil, actionTitles: ["捨棄貼文", "繼續編輯"], firstHandler: { (action) in
+                self.dismiss(animated: true)
+            }) { (action) in
+                // nope ...
+            }
+            return
+        }
+        dismiss(animated: true)
     }
     
+    // 準備轉轉畫面
+    private func prepareLoadingView() {
+        
+        if let view = self.view.viewWithTag(loadingViewTag) {
+            if view.alpha == 0 {
+                UIView.animate(withDuration: 0.15) { view.alpha = 0.3 }
+            }
+            return
+        }
+        // 背景
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.tag = loadingViewTag
+        // 轉轉轉
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activity.frame = CGRect(origin: .zero, size: self.view.frame.size)
+        activity.color = .white
+        activity.hidesWhenStopped = true
+        activity.autoresizingMask = [.flexibleHeight , .flexibleWidth]
+        activity.startAnimating()
+        // 加入背景
+        view.addSubview(activity)
+        self.view.addSubview(view)
+        UIView.animate(withDuration: 0.15) {
+            self.view.viewWithTag(loadingViewTag)?.alpha = 0.3
+        }
+    }
+    
+    // 結束鍵盤
+    private func endEdit() {
+        self.view.endEditing(true)
+        bottomLayout.constant = 0
+        UIView.animate(withDuration: 0.23, delay: 0, options: [.curveEaseOut], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
     
     
  // MARK: - Connect DataBase Methods
     
     // 開始上傳文章圖片
-    private func pushArticlePhoto(account: String) {
+    private func pushArticlePhoto(account: String, article: String, photo: UIImage) {
         
-        guard let articleImage = newArticleImageView.image else { return }
-        guard let imageData = UIImageJPEGRepresentation(articleImage , 1) else { return }
+        guard let imageData = UIImageJPEGRepresentation(photo , 1.0) else {
+            return
+        }
         let base64 = imageData.base64EncodedString()
         
         let request = ["action": "insert", "photo": base64, "user_id": account]
@@ -88,7 +193,7 @@ class AddPhotoTextViewController: UIViewController {
                 return
             }
             if photoId > 0 {
-                self.pushArticleText(account: account, photoId: photoId)
+                self.pushArticleText(account: account, photoId: photoId, article: article)
             } else {
                 self.showFailAlert()
             }
@@ -96,13 +201,11 @@ class AddPhotoTextViewController: UIViewController {
     }
     
     // 開始上傳文章內容
-    private func pushArticleText(account:String, photoId: Int) {
-        
-        let text = newArticleTextView.text ?? ""
+    private func pushArticleText(account:String, photoId: Int, article: String) {
         
         let request : [String : Any] = ["experienceArticle": "insertExperience",
                                         "user_id": account,
-                                        "content": text,
+                                        "content": article,
                                         "photo_id": photoId]
         
         Task.postRequestData(urlString: urlString + experienceArticleServlet, request: request) { (error, data) in
@@ -118,32 +221,127 @@ class AddPhotoTextViewController: UIViewController {
             }
  
             if pushResult != 0 {
-                print("成功新增")
-                // TODO: - 回到上一頁
+
+                // 現在時間
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let time = formatter.string(from: Date())
+                // 準備圖片
+                var portrait: Data? = nil
+                var photo: Data? = nil
+                if let image = self.newArticleImageView.image, let imageData = UIImageJPEGRepresentation(image, 1.0) {
+                    photo = imageData
+                }
+                if let image = self.postPortrait.image, let imageData = UIImageJPEGRepresentation(image, 1.0) {
+                    portrait = imageData
+                }
+                // 準備物件
+                let returnData = ExperienceArticle(postId: pushResult, userId: account, postContent: article, postTime: time, photoId: photoId, userName: self.postName.text ?? account, postLike: false, postLikes: 0, postPortrait: portrait, postPhoto: photo, commentCount: "0 則留言")
+                // 回到上一頁, 並回傳
+                self.dismiss(animated: true) {
+                    NotificationCenter.default.post(name: .postNewArticle, object: nil, userInfo: ["newArticle" : returnData])
+                }
             } else {
                 self.showFailAlert()
             }
         }
     }
-    
-    private func showFailAlert() {
+    // 拿到自己的大頭照及名字
+    private func getUserInfo(account: String) {
         
-        Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error") { (action) in
-            print("上傳失敗")
+        let request : [String : Any] = ["experienceArticle": "experienceUserData",
+                                        "userId": account]
+        
+        Task.postRequestData(urlString: urlString + experienceArticleServlet, request: request) { (error, data) in
+            
+            guard error == nil, let data = data else { return }
+            
+            let decoder = JSONDecoder()
+            let results = try? decoder.decode(User.self, from: data)
+            
+            guard let result = results else { return }
+            
+            if let base64 = result.userPortraitBase64, let data = Data(base64Encoded: base64) {
+                self.postPortrait.image = UIImage(data: data)
+            } else {
+                self.postPortrait.image = UIImage(named: "user_default_por")
+            }
+           
+            if let name = result.userName {
+                self.postName.text = name
+            } else {
+                self.postName.text = account
+            }
         }
     }
-
-}
-
-extension AddPhotoTextViewController : UIImageCropperProtocol{
     
-    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
-        // 下面視做壓縮圖片的動作 croppedImage?.resize(maxWidthHeight: imageView.frame.height) 然後前面要宣告給下面裁切 保存用
-        let image =  croppedImage?.resize(maxWidthHeight: newArticleImageView.frame.height) // 宣告image為一個常數 讓相片壓縮完
-        newArticleImageView.image = image//imageView 裡面有一個image 屬性 現在這個屬性是croppedImage(才切後的相片）
-
+    // AAAAAAlert
+    private func showFailAlert() {
+        self.view.viewWithTag(loadingViewTag)?.alpha = 0
+        Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error") { (action) in
+            print("AddPhotoTextViewController: 文章上傳失敗")
+        }
+    }
+    private func showAlert(message: String) {
+        Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: message) { (action) in }
     }
     
 }
+
+
+extension AddPhotoTextViewController : UIImageCropperProtocol {
+    
+    
+//    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+//
+//        let image =  croppedImage?.resize(maxWidthHeight: newArticleImageView.frame.height) // 宣告image為一個常數 讓相片壓縮完
+//        newArticleImageView.image = image//imageView 裡面有一個image 屬性 現在這個屬性是croppedImage(才切後的相片）
+//
+//    }
+    
+    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+        
+        guard let image = croppedImage else{ return }
+        
+        guard image.size.height * image.size.width > 375 * 250 else {
+           
+            newArticleImageView.image = image
+            return
+        }
+        
+        let size = __CGSizeApplyAffineTransform((croppedImage?.size)!, CGAffineTransform(scaleX: 0.5, y: 0.5))
+        let hasAlpha = false
+        let scale : CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(size, hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        guard let scaledImage = UIGraphicsGetImageFromCurrentImageContext() else { return }
+        
+        UIGraphicsEndImageContext()
+        newArticleImageView.image = scaledImage
+    }
+    
+}
+
+extension AddPhotoTextViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.text == THINK_TEXT {
+            textView.textColor = .black
+            textView.text.removeAll()
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 
 

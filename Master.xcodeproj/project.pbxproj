@@ -58,6 +58,7 @@
 		F1EFA4332112C5000067712F /* AddPhotoTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA42E2112C5000067712F /* AddPhotoTextViewController.swift */; };
 		F1EFA4342112C5000067712F /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA42F2112C5000067712F /* ArticleTableViewController.swift */; };
 		F1EFA4352112C5000067712F /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA4302112C5000067712F /* ArticleTableViewCell.swift */; };
+		F1EFA4372112D2C60067712F /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA4362112D2C60067712F /* ArticleDetailViewController.swift */; };
 		F1F714D320FF557F009DB9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714CF20FF557E009DB9EF /* User.swift */; };
 		F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */; };
 		F1F714D520FF557F009DB9EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F714D120FF557E009DB9EF /* User.storyboard */; };
@@ -123,6 +124,7 @@
 		F1EFA42E2112C5000067712F /* AddPhotoTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoTextViewController.swift; sourceTree = "<group>"; };
 		F1EFA42F2112C5000067712F /* ArticleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
 		F1EFA4302112C5000067712F /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F1EFA4362112D2C60067712F /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		F1F714CF20FF557E009DB9EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F1F714D120FF557E009DB9EF /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				F1EFA42C2112C4FF0067712F /* Article.swift */,
 				F1EFA4302112C5000067712F /* ArticleTableViewCell.swift */,
 				F1EFA42F2112C5000067712F /* ArticleTableViewController.swift */,
+				F1EFA4362112D2C60067712F /* ArticleDetailViewController.swift */,
 				F1EFA42E2112C5000067712F /* AddPhotoTextViewController.swift */,
 			);
 			path = Article;
@@ -482,6 +485,7 @@
 				F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */,
 				27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */,
 				F1A784E92108304800C03AB6 /* UserScript.swift in Sources */,
+				F1EFA4372112D2C60067712F /* ArticleDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

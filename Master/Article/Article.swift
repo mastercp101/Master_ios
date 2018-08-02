@@ -8,6 +8,10 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let postNewArticle = Notification.Name("PostNewArticle")
+}
+
 class ArticleData {
     
     static let shared = ArticleData()
@@ -32,36 +36,34 @@ struct ExperienceArticle: Codable {
     var commentCount: String?
 }
 
-extension UIImage {
-    
-    func resize(maxWidthHeight: CGFloat) -> UIImage? {
-        
-        //檢查是否圖片已經小於imageView
-        if self.size.width <= maxWidthHeight &&
-            self.size.height <= maxWidthHeight {
-            return self
-        }
-        
-        //決定大小
-        let finalSize: CGSize
-        if self.size.width >= self.size.height{
-            let ratio = self.size.width / maxWidthHeight
-            finalSize = CGSize(width: maxWidthHeight, height: self.size.height / ratio)
-        } else {
-            let ratio = self.size.height / maxWidthHeight
-            finalSize = CGSize(width: self.size.width / ratio, height: maxWidthHeight)
-            
-        }
-        
-        UIGraphicsBeginImageContext(finalSize) //虛擬畫布//C語言的API->要小心記憶體管理(ARC無效)
-        let drawRect = CGRect(x: 0, y: 0, width: finalSize.width, height: finalSize.height)
-        self.draw(in: drawRect) //image把自己畫在一個小畫布上
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext() //極重要！！
-        return result
-        
-    }
-    
-}
+//extension UIImage {
+//
+//    func resize(maxWidthHeight: CGFloat) -> UIImage? {
+//
+//        //檢查是否圖片已經小於imageView
+//        if self.size.width <= maxWidthHeight &&
+//            self.size.height <= maxWidthHeight {
+//            return self
+//        }
+//
+//        //決定大小
+//        let finalSize: CGSize
+//        if self.size.width >= self.size.height{
+//            let ratio = self.size.width / maxWidthHeight
+//            finalSize = CGSize(width: maxWidthHeight, height: self.size.height / ratio)
+//        } else {
+//            let ratio = self.size.height / maxWidthHeight
+//            finalSize = CGSize(width: self.size.width / ratio, height: maxWidthHeight)
+//        }
+//
+//        UIGraphicsBeginImageContext(finalSize) //虛擬畫布//C語言的API->要小心記憶體管理(ARC無效)
+//        let drawRect = CGRect(x: 0, y: 0, width: finalSize.width, height: finalSize.height)
+//        self.draw(in: drawRect) //image把自己畫在一個小畫布上
+//        let result = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext() //極重要！！
+//        return result
+//
+//    }
+//}
 
 

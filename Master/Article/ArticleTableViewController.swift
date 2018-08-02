@@ -19,6 +19,8 @@ class ArticleTableViewController: UITableViewController {
     
     private var loginId = "" // 目前顯示該頁所使用的帳號
     
+    deinit { NotificationCenter.default.removeObserver(self) }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 準備讀取畫面
@@ -33,10 +35,15 @@ class ArticleTableViewController: UITableViewController {
         if let id = userAccount {
             loginId = id // 存入顯示該頁所使用的帳號
         }
+        // 註冊發布文章通知
+        NotificationCenter.default.addObserver(self, selector: #selector(postNewArticle(noti:)), name: .postNewArticle, object: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // 畫面移動到頂端
+        let topRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        self.tableView.scrollRectToVisible(topRect, animated: false)
         // 檢查目前登入的帳號是否跟讀取時的帳號一致, 否則重新整理(包括登出狀態)
         var account = ""
         if let userAccount = userAccount { account = userAccount }
@@ -46,7 +53,17 @@ class ArticleTableViewController: UITableViewController {
         }
     }
     
-    // TODO: - 刷新畫面
+    // 偵測到發佈新文章執行
+    @objc func postNewArticle(noti: Notification) {
+        
+        if let userInfo = noti.userInfo, let newArticle = userInfo["newArticle"] as? ExperienceArticle {
+            ArticleData.shared.info.insert(newArticle, at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    // 下拉刷新畫面執行
     @objc func pullToRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             defer { self.refreshControl?.endRefreshing() }
@@ -132,6 +149,20 @@ class ArticleTableViewController: UITableViewController {
      }
      */
     
+    @IBAction func clickAddNewArticle(_ sender: UIBarButtonItem) {
+        
+        guard checkLogin() else { return }
+        
+        let storyboard = UIStoryboard(name: "Article", bundle: nil)
+        let loginView = storyboard.instantiateViewController(withIdentifier: "AddNewArticle")
+        let rootViewController = self.view.window?.rootViewController
+        rootViewController?.present(loginView, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
     @IBAction func clickLink(_ sender: UIButton) {
         
         guard checkLogin() else { return }
@@ -186,6 +217,7 @@ class ArticleTableViewController: UITableViewController {
         }
         return result
     }
+    
     
     
     // MARK: - Connect DataBase Methods
@@ -255,11 +287,7 @@ class ArticleTableViewController: UITableViewController {
             
             ArticleData.shared.info[index].postLikes = resultInt
         }
-        
     }
-    
-    
-    
 }
 
 

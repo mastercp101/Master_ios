@@ -48,10 +48,11 @@ class Common{
     
     func downloadExperience(){
         // TODO: - Debug
-        let account = "billy"
+//        let account = "billy"
         // TODO: - 正式版
-//        var account = ""
-//        if let userAccount = userAccount { account = userAccount }
+        var account = ""
+        if let userAccount = userAccount { account = userAccount }
+        // 
         let urlStr = urlString + "ExperienceArticleServlet"
         let request : [String : Any] = ["experienceArticle":"getExperiences","userId":account]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
@@ -291,7 +292,6 @@ extension UIImageView {
         result.hidesWhenStopped = true // 沒有再跑自動隱藏
         // autolayout 前身 autoresizing 可用於簡單的配置
         result.autoresizingMask = [.flexibleHeight , .flexibleWidth] // 讓元件隨依附元件的寬高做改變
-        result.tag = tag
         self.addSubview(result)
         return result
     }

@@ -704,7 +704,7 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulldog" translatesAutoresizingMaskIntoConstraints="NO" id="Jlh-f0-VVO">
-                                                    <rect key="frame" x="20" y="7" width="56" height="56"/>
+                                                    <rect key="frame" x="20" y="7.5" width="56" height="56"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="5Jq-Ac-ZJC"/>
                                                         <constraint firstAttribute="width" constant="56" id="Q8f-rk-vzt"/>
@@ -718,7 +718,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hav-m2-LU7">
-                                                    <rect key="frame" x="287" y="24" width="50" height="21"/>
+                                                    <rect key="frame" x="287" y="25" width="50" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

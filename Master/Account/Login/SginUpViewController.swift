@@ -97,6 +97,7 @@ class SginUpViewController: UIViewController {
             } else { // 註冊成功
                 UserFile.shared.setUserAccount(account: account)
                 UserFile.shared.setUserAccess(access: access)
+                UserFile.shared.setUserName(name: name)
                 self.dismiss(animated: true)
             }
         }

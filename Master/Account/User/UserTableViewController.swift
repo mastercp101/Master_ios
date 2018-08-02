@@ -30,8 +30,6 @@ class UserTableViewController: UITableViewController {
     private let userGroundCropper = UIImageCropper(cropRatio: 18/10)
     
     private let infoTitle = ["身份","性別","地址","電話"]
-    //    private var userPortrait: Data?
-    //    private var userBackground: Data?
     
     @IBOutlet var userLoadingView: UIView!
     @IBOutlet weak var userLoadingIndicator: UIActivityIndicatorView!
@@ -108,7 +106,7 @@ class UserTableViewController: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: imageCell, for: indexPath) as! UserImageCell
             
-            if let userPortrait = UserData.shared.userPortrait {
+            if let userPortrait = userPortrait {
                 cell.userPortraitImageView.image = UIImage(data: userPortrait)
             } else {
                 cell.userPortraitImageView.image = UIImage(named: DEFAULT_USER_PORTRAIT)
@@ -313,7 +311,7 @@ class UserTableViewController: UITableViewController {
             guard let result = results else { return }
             
             if let userPortraitBase64 = result.userPortraitBase64 {
-                UserData.shared.userPortrait = Data(base64Encoded: userPortraitBase64)
+                userPortrait = Data(base64Encoded: userPortraitBase64)
             }
             
             if let userBackgroundBase64 = result.userBackgroundBase64 {
@@ -429,12 +427,12 @@ class UserTableViewController: UITableViewController {
         
         guard let account = userAccount, let base64Image = image.base64() else { return }
         
-        let dataImage = UIImageJPEGRepresentation(image, 1.0)
+        guard let dataImage = UIImageJPEGRepresentation(image, 1.0) else { return }
         
         switch selectUserImageType {
             
         case .selectPortrait:
-            UserData.shared.userPortrait = dataImage
+            UserFile.shared.saveUserPortrait(data: dataImage)
             updateUserInfoIamge(account: account, select: false, base64Image: base64Image)
             
         case .selectBackground:
@@ -462,11 +460,12 @@ class UserTableViewController: UITableViewController {
     
     func prepareSginout() {
         userAccess = .none
-        UserData.shared.userPortrait = nil
         UserData.shared.userBackground = nil
         UserData.shared.info.removeAll()
         UserFile.shared.removeUserAccount()
         UserFile.shared.removeUserAccess()
+        UserFile.shared.removeUserName()
+        UserFile.shared.deleteUserPortrait()
     }
     
 }

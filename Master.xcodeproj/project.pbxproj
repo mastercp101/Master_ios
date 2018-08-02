@@ -241,11 +241,11 @@
 			isa = PBXGroup;
 			children = (
 				F1EFA42D2112C5000067712F /* Article.storyboard */,
-				F1EFA42C2112C4FF0067712F /* Article.swift */,
-				F1EFA4302112C5000067712F /* ArticleTableViewCell.swift */,
 				F1EFA42F2112C5000067712F /* ArticleTableViewController.swift */,
 				F1EFA4362112D2C60067712F /* ArticleDetailViewController.swift */,
 				F1EFA42E2112C5000067712F /* AddPhotoTextViewController.swift */,
+				F1EFA4302112C5000067712F /* ArticleTableViewCell.swift */,
+				F1EFA42C2112C4FF0067712F /* Article.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";

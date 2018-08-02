@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    private let experienceArticleServlet = "ExperienceArticleServlet"
     private let ACCOUNT_PLACEHOLDER = "Enter Account ..."
     private let PASSWORD_PLACEHOLDER = "Enter Password ..."
     private let LOGIN_VIEW_BACKGROUND = "login_test_bkgd"
@@ -146,7 +147,32 @@ class LoginViewController: UIViewController {
             guard let result = results, let access = result as? Int else { return }
             
             UserFile.shared.setUserAccess(access: access)
+            // 繼續 ...
+            self.getUserNameAndPortrait(account: account)
+        }
+    }
+    
+    // 拿到自己的大頭照及名字
+    private func getUserNameAndPortrait(account: String) {
+        
+        let request : [String : Any] = ["experienceArticle": "experienceUserData",
+                                        "userId": account]
+        
+        Task.postRequestData(urlString: urlString + experienceArticleServlet, request: request) { (error, data) in
             
+            guard error == nil, let data = data else { return }
+            
+            let decoder = JSONDecoder()
+            let results = try? decoder.decode(User.self, from: data)
+            
+            guard let result = results else { return }
+            
+            if let base64 = result.userPortraitBase64, let data = Data(base64Encoded: base64) {
+                UserFile.shared.saveUserPortrait(data: data)
+            }
+            if let name = result.userName {
+                UserFile.shared.setUserName(name: name)
+            }
             self.dismiss(animated: true)
         }
     }

@@ -19,8 +19,8 @@ class MasterViewController: UIViewController {
     private let leisureSegue = "leisureSegue"
     private let codingSegue = "codingSegue"
     private let COURSE_ARTICLE_Key = "courseArticle"
-    private let photoServlet = "/photoServlet"
-    private let courseArticleServlet = "/CourseArticleServlet"
+    private let photoServlet = "photoServlet"
+    private let courseArticleServlet = "CourseArticleServlet"
     
     var timer: Timer?
     var targetIndex = 0

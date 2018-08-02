@@ -8,29 +8,26 @@
 
 import UIKit
 
-class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MasterTableViewController: UITableViewController {
     
 
     @IBOutlet weak var pickerTextField: UITextField!
     
     private let courseCell = "courseCell"
     private let COURSE_ARTICLE_Key = "courseArticle"
-    private let courseArticleServlet = "/CourseArticleServlet"
+    private let courseArticleServlet = "CourseArticleServlet"
+    private let photoServlet = "photoServlet"
 
-    var pickerArray = [String]()
     var courseList = [Course]()
+    var photoList = [UIImage]()
+    var pickerArray = [String]()
     var professionCategory: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = professionCategory
-
-        // Setting pickerView.
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        pickerTextField.inputView = pickerView
-        pickerTextField.placeholder = professionCategory
+        setpickerView()
         
         // DoneButton to hide PickerView.
         let toolbar = UIToolbar()
@@ -47,9 +44,14 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -102,10 +104,6 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
         return cell
     }
     
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.view.endEditing(true)
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -141,15 +139,112 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        guard let controller = segue.destination as? singleCourseViewController else {
+            assertionFailure("Fail to get singleCourseViewController.")
+            return
+        }
+        
+        guard let row = tableView.indexPathForSelectedRow?.row else {
+            assertionFailure("Fail to get indexPathForSelectedRow.")
+            return
+        }
+        
+        controller.course = courseList[row]
+        controller.image = photoList[row]
     }
-    */
+    
+    
+    private func downloadCourse(professionItem: String) {
+        
+        let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
+        
+        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
+            
+            if let error = error {
+                assertionFailure("Fail to get Course from servlet: \(error)." )
+                return
+            }
+            
+            guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
+                print("Data is nil.")
+                return
+            }
+            self.courseList = courseList
+            self.tableView.reloadData()
+            
+            var images = [UIImage]()
+            for course in courseList {
+                self.downloadImages(imageID: course.courseImageID, doneHandler: { (error, data) in
+                    
+                    if let error = error {
+                        assertionFailure("Fail to downloadImage: \(error)")
+                        return
+                    }
+                    
+                    guard let data = data, let image = UIImage(data: data) else {
+                        assertionFailure("Data is nil.")
+                        return
+                    }
+                    
+                    images.append(image)
+                    // Check is already download all images.
+                    if images.count == courseList.count {
+                        self.photoList = images
+                    }
+                })
+            }
+            
+        }
+    }
+    
+    private func downloadImages(imageID : Int, doneHandler: @escaping Task.DoneHandler){
+        let urlStr = urlString + photoServlet
+        let request : [String : Any] = ["action":"getImage","photo_id":imageID,"imageSize":1000]
+        
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                DispatchQueue.main.async {
+                    doneHandler(error,nil)
+                }
+                return
+            }
+            guard let data = data else {
+                assertionFailure("Invalid data")
+                let error = NSError(domain: "Invalid data", code: -1, userInfo: nil)
+                DispatchQueue.main.async {
+                    doneHandler(error,nil)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                doneHandler(nil,data)
+            }
+        }
+    }
+
+}
+
+extension MasterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    private func setpickerView() {
+        // Setting pickerView.
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerTextField.inputView = pickerView
+        pickerTextField.placeholder = professionCategory
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        pickerTextField.text = pickerArray[0]
+        downloadCourse(professionItem: pickerArray[0])
+    }
     
     // MARK: PickerView Delegate
     
@@ -174,26 +269,5 @@ class MasterTableViewController: UITableViewController, UIPickerViewDelegate, UI
     func hidePickerView() {
         self.view.endEditing(true)
     }
-    
-    func downloadCourse(professionItem: String) {
-        
-        let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
-        
-        Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
-            
-            if let error = error {
-                assertionFailure("Fail to get Course from servlet: \(error)." )
-                return
-            }
-            
-            guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
-                print("Data is nil.")
-                return
-            }
-            self.courseList = courseList
-            self.tableView.reloadData()
-        }
-    }
-
 }
 

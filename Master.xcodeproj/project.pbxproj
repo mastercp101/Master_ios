@@ -16,8 +16,12 @@
 		270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */; };
 		270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */; };
 		270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073520FCBB4B0037F510 /* manageStudentViewController.swift */; };
-		270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073720FD8A7D0037F510 /* MessageCell.swift */; };
-		270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073920FDA2000037F510 /* ChatRoomViewController.swift */; };
+		270D073820FD8A7D0037F510 /* ChatRoomItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073720FD8A7D0037F510 /* ChatRoomItemCell.swift */; };
+		273D63892112DE090040803B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 273D63882112DE080040803B /* GoogleService-Info.plist */; };
+		273D638B2112E35B0040803B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D638A2112E35B0040803B /* Chat.swift */; };
+		273D638D2112EFBC0040803B /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D638C2112EFBC0040803B /* ChatRoomViewController.swift */; };
+		273D638F2112FFF20040803B /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D638E2112FFF20040803B /* MessageBubbleView.swift */; };
+		273D6391211300140040803B /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D6390211300140040803B /* MessageTableViewCell.swift */; };
 		2766CA50210EE577007F9648 /* PhotoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766CA4F210EE577007F9648 /* PhotoItemViewController.swift */; };
 		2766CA52210F284E007F9648 /* CommentDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766CA51210F284E007F9648 /* CommentDialogViewController.swift */; };
 		27B9470320FF61CC00931FE4 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B9470220FF61CC00931FE4 /* Apply.swift */; };
@@ -30,7 +34,7 @@
 		27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FBB20F2F7A2001A063E /* MasterViewController.swift */; };
 		27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FBD20F2F7A2001A063E /* Main.storyboard */; };
 		27FC3FC420F2F7A3001A063E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FC220F2F7A3001A063E /* LaunchScreen.storyboard */; };
-		27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */; };
+		27FC3FCE20F2FC4F001A063E /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCD20F2FC4F001A063E /* ChatRoomListViewController.swift */; };
 		27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FCF20F2FC5E001A063E /* NotificationViewController.swift */; };
 		27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FC3FDA20F2FF7F001A063E /* Common.swift */; };
 		27FC3FDE20F308F8001A063E /* Master.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FC3FDC20F308F8001A063E /* Master.storyboard */; };
@@ -79,8 +83,12 @@
 		270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentTableViewCell.swift; sourceTree = "<group>"; };
 		270D073520FCBB4B0037F510 /* manageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentViewController.swift; sourceTree = "<group>"; };
-		270D073720FD8A7D0037F510 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		270D073920FDA2000037F510 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		270D073720FD8A7D0037F510 /* ChatRoomItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomItemCell.swift; sourceTree = "<group>"; };
+		273D63882112DE080040803B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		273D638A2112E35B0040803B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		273D638C2112EFBC0040803B /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		273D638E2112FFF20040803B /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		273D6390211300140040803B /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		2766CA4F210EE577007F9648 /* PhotoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewController.swift; sourceTree = "<group>"; };
 		2766CA51210F284E007F9648 /* CommentDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDialogViewController.swift; sourceTree = "<group>"; };
 		27B9470220FF61CC00931FE4 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
@@ -96,7 +104,7 @@
 		27FC3FC020F2F7A3001A063E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27FC3FC320F2F7A3001A063E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27FC3FC520F2F7A3001A063E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		27FC3FCD20F2FC4F001A063E /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
 		27FC3FCF20F2FC5E001A063E /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		27FC3FDA20F2FF7F001A063E /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		27FC3FDD20F308F8001A063E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Master/Base.lproj/Master.storyboard; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 				27FC3FD620F2FCF1001A063E /* Notification */,
 				27FC3FD820F2FD05001A063E /* Account */,
 				27FC3FC520F2F7A3001A063E /* Info.plist */,
+				273D63882112DE080040803B /* GoogleService-Info.plist */,
 				27FC3FC220F2F7A3001A063E /* LaunchScreen.storyboard */,
 			);
 			path = Master;
@@ -254,9 +263,12 @@
 			isa = PBXGroup;
 			children = (
 				27FC3FE220F3094C001A063E /* Message.storyboard */,
-				27FC3FCD20F2FC4F001A063E /* MessageViewController.swift */,
-				270D073920FDA2000037F510 /* ChatRoomViewController.swift */,
-				270D073720FD8A7D0037F510 /* MessageCell.swift */,
+				27FC3FCD20F2FC4F001A063E /* ChatRoomListViewController.swift */,
+				273D638C2112EFBC0040803B /* ChatRoomViewController.swift */,
+				273D6390211300140040803B /* MessageTableViewCell.swift */,
+				273D638E2112FFF20040803B /* MessageBubbleView.swift */,
+				270D073720FD8A7D0037F510 /* ChatRoomItemCell.swift */,
+				273D638A2112E35B0040803B /* Chat.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -392,6 +404,7 @@
 				27FC3FE820F3096D001A063E /* Account.storyboard in Resources */,
 				27FC3FE620F3095D001A063E /* Notification.storyboard in Resources */,
 				F1F714DA20FF5593009DB9EF /* Login.storyboard in Resources */,
+				273D63892112DE090040803B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,11 +436,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Master/Pods-Master-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,16 +477,19 @@
 				F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */,
 				270D070B20FC2FD00037F510 /* singleCourseCell.swift in Sources */,
 				F1EFA4352112C5000067712F /* ArticleTableViewCell.swift in Sources */,
+				273D638F2112FFF20040803B /* MessageBubbleView.swift in Sources */,
 				27FB31E520F9D4C5009AD98B /* CourseItemView.swift in Sources */,
+				273D638B2112E35B0040803B /* Chat.swift in Sources */,
 				270D070920FC2FD00037F510 /* editCourseViewController.swift in Sources */,
 				270A00FA20F774E4008CEAEC /* Task.swift in Sources */,
 				27FC3FF020F33BFD001A063E /* CourseViewController.swift in Sources */,
 				F1F714D320FF557F009DB9EF /* User.swift in Sources */,
-				27FC3FCE20F2FC4F001A063E /* MessageViewController.swift in Sources */,
+				27FC3FCE20F2FC4F001A063E /* ChatRoomListViewController.swift in Sources */,
 				F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */,
 				27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */,
 				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
-				270D073820FD8A7D0037F510 /* MessageCell.swift in Sources */,
+				270D073820FD8A7D0037F510 /* ChatRoomItemCell.swift in Sources */,
+				273D6391211300140040803B /* MessageTableViewCell.swift in Sources */,
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				B3D4DAFB211195000030A5CD /* HighlightCourse.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
@@ -475,13 +497,13 @@
 				F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */,
 				B33790C021107B3C00E2ECD3 /* MasterTableViewCell.swift in Sources */,
 				F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */,
-				270D073A20FDA2000037F510 /* ChatRoomViewController.swift in Sources */,
 				F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */,
 				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,
 				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,
 				F1EFA4342112C5000067712F /* ArticleTableViewController.swift in Sources */,
 				F1EFA4332112C5000067712F /* AddPhotoTextViewController.swift in Sources */,
+				273D638D2112EFBC0040803B /* ChatRoomViewController.swift in Sources */,
 				F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */,
 				27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */,
 				F1A784E92108304800C03AB6 /* UserScript.swift in Sources */,
@@ -648,7 +670,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -670,7 +692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

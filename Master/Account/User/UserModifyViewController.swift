@@ -88,6 +88,7 @@ class UserModifyViewController: UIViewController {
             return
         }) { (action) in
             // 連接修改會員資料
+            UserFile.shared.setUserName(name: name)
             if let account = userAccount {
                 self.updateUserInfo(account: account, name: name, gender: gender, address: address, tel: tel, profile: profile)
             }

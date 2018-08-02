@@ -30,8 +30,8 @@ class AddPhotoTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // User name and portrait
-        if UserData.shared.info.count != 0, !UserData.shared.info[1][0].isEmpty, let data = UserData.shared.userPortrait {
-            postName.text = UserData.shared.info[1][0]
+        if let name = userName, let data = userPortrait {
+            postName.text = name
             postPortrait.image = UIImage(data: data)
         } else if let account = userAccount {
             getUserInfo(account: account)
@@ -262,12 +262,14 @@ class AddPhotoTextViewController: UIViewController {
             guard let result = results else { return }
             
             if let base64 = result.userPortraitBase64, let data = Data(base64Encoded: base64) {
+                UserFile.shared.saveUserPortrait(data: data)
                 self.postPortrait.image = UIImage(data: data)
             } else {
                 self.postPortrait.image = UIImage(named: "user_default_por")
             }
            
             if let name = result.userName {
+                UserFile.shared.setUserName(name: name)
                 self.postName.text = name
             } else {
                 self.postName.text = account

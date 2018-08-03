@@ -222,6 +222,9 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
                                 <rect key="frame" x="0.0" y="94" width="375" height="244"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Va9-wr-zID" secondAttribute="height" multiplier="375:244" id="ToE-bD-ueD"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -316,7 +319,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pa9-7Q-gau">
                                                     <rect key="frame" x="250" y="48" width="105" height="47"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumOfJoined" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efi-Eu-lFC">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumOfJoined" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efi-Eu-lFC">
                                                             <rect key="frame" x="0.0" y="0.0" width="105" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
@@ -378,21 +381,6 @@
             </objects>
             <point key="canvasLocation" x="1685.5999999999999" y="-2062.2188905547227"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="srU-oq-IzA">
-            <objects>
-                <viewController id="Oq6-ra-IcO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="o3z-gg-Vtq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="mx4-dm-l6O"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LH2-iB-TGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2497" y="-2063"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Op3-Vq-wyd">
             <objects>
@@ -424,6 +412,6 @@
         <image name="pfs_workout" width="116" height="116"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VUB-AZ-m1m"/>
+        <segue reference="JET-dQ-tiY"/>
     </inferredMetricsTieBreakers>
 </document>

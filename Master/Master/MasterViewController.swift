@@ -19,13 +19,13 @@ class MasterViewController: UIViewController {
     private let leisureSegue = "leisureSegue"
     private let codingSegue = "codingSegue"
     private let COURSE_ARTICLE_Key = "courseArticle"
-    private let photoServlet = "/photoServlet"
-    private let courseArticleServlet = "/CourseArticleServlet"
+    private let photoServlet = "photoServlet"
+    private let courseArticleServlet = "CourseArticleServlet"
     
     var timer: Timer?
     var targetIndex = 0
     var hightlightImages = [UIImage]()
-    var highlightCourses = [HighlightCourse]()
+    var highlightCourses = [Course]()
     var professionCategorys = [ProfessionCategory]()
     
     @IBOutlet weak var masterImageView: UIImageView!
@@ -54,6 +54,9 @@ class MasterViewController: UIViewController {
         let toright = UISwipeGestureRecognizer(target: self, action: #selector(toRight))
         toright.direction = .right
         masterImageView.addGestureRecognizer(toright)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHighlightImage))
+        masterImageView.addGestureRecognizer(tap)
         masterImageView.isUserInteractionEnabled = true
     }
     
@@ -64,7 +67,6 @@ class MasterViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         if timer != nil {
             timer?.invalidate()
             timer = nil
@@ -104,7 +106,7 @@ class MasterViewController: UIViewController {
                 return
             }
             
-            guard let data = data, let highlightCourses = try? decoder.decode([HighlightCourse].self, from: data) else {
+            guard let data = data, let highlightCourses = try? decoder.decode([Course].self, from: data) else {
                 assertionFailure("Data is nil.")
                 return
             }
@@ -114,7 +116,7 @@ class MasterViewController: UIViewController {
             
             // Download HighlightCourse Photo
             for i in 0..<highlightCourses.count {
-                let requestHighlightCoursePhoto = ["action":"getImage","photo_id":highlightCourses[i].courseImageId,"imageSize":1000] as [String : Any]
+                let requestHighlightCoursePhoto = ["action":"getImage","photo_id":highlightCourses[i].courseImageID,"imageSize":1000] as [String : Any]
                 
                 Task.postRequestData(urlString: urlString + self.photoServlet, request: requestHighlightCoursePhoto) { (error, data) in
                     
@@ -183,6 +185,7 @@ class MasterViewController: UIViewController {
         masterImageView.image = hightlightImages[targetIndex]
     }
     
+    // Gesture recognizer selector
     @objc
     func toRight() {
         
@@ -209,6 +212,20 @@ class MasterViewController: UIViewController {
             self.configureImageView()
         }, completion: nil)
         
+    }
+    
+    @objc
+    func tapHighlightImage() {
+        
+        guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as? singleCourseViewController else {
+            assertionFailure("Fail to get singleCourseVC.")
+            return
+        }
+        
+        nextVC.course = highlightCourses[targetIndex]
+        nextVC.image = hightlightImages[targetIndex]
+        
+        show(nextVC, sender: self)
     }
     
     @objc

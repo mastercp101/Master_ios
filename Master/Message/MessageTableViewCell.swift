@@ -9,7 +9,7 @@
 import UIKit
 
 class messageCell: UITableViewCell {
-    var userProfile : UIImageView?
+    var userPortraitImageView : UIImageView?
     var nameTextLabel : UILabel?
     let cellContentViewWidth = ChatItemSingleTon.shared.cellContentViewWidth
     let textfontSize : CGFloat = 14.0
@@ -39,21 +39,27 @@ class messageCell: UITableViewCell {
         return messageBubbleView
     }()
     
-    func setImage(chatItem : ChatItem){
-        userProfile?.removeFromSuperview()
+    func setImage(chatItem : ChatItem,friendImage : UIImage?){
+        userPortraitImageView?.removeFromSuperview()
         var frame : CGRect
         if chatItem.fromSelf{
             frame = CGRect(x: cellContentViewWidth - 35, y: 3, width: 30, height: 30)
         }else{
-            frame = CGRect(x: 10, y: 3, width: 25, height: 25)
+            frame = CGRect(x: 10, y: 3, width: 30, height: 30)
         }
         let imageView = UIImageView(frame: frame)
-        imageView.getUserPortrait(account: chatItem.userID, index: nil)
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        self.userProfile = imageView
+        
+        if chatItem.fromSelf{
+            imageView.image = UIImage(data: userPortrait!)
+        }else{
+            imageView.image = ChatItemSingleTon.shared.friendPortrait!
+        }
+        
+        self.userPortraitImageView = imageView
         self.contentView.addSubview(imageView)
     }
     

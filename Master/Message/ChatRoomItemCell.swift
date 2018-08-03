@@ -9,7 +9,7 @@
 import UIKit
 
 class messageRoomItemCell : UITableViewCell{
-    @IBOutlet weak var userPropertyImageView: UIImageView!
+    @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
 }

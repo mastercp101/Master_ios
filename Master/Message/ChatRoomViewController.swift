@@ -19,9 +19,10 @@ class ChatRoomViewController: UIViewController {
     
     var isBottom = false
     var ref : DatabaseReference!
-    var chatRoomPosition : String?
     var chatItems = [ChatItem]()
     var bottomConstraint : NSLayoutConstraint?
+    var friendImage : UIImage?
+    var chatRoom : ChatRoom?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,26 @@ class ChatRoomViewController: UIViewController {
         downloadMessage()
         setKeyboardHandler()
         setConstraint()
+        self.title = chatRoom?.roomName
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        updateLastessage(userID: userAccount!, roomName: chatRoom!.roomName)
+        updateLastessage(userID: chatRoom!.friendUserID, roomName: userName!)
+    }
+    
+    private func updateLastessage(userID : String,roomName : String){
+        let urlStr = urlString + "chatRoomServlet"
+        guard let lastMsg = chatItems.last?.message else{
+            return
+        }
+        let request : [String : Any] = ["action":"updateLastMessage","last_message":lastMsg,"user_id":userID,"room_name":roomName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+        }
     }
     
     private func setConstraint(){
@@ -45,7 +66,7 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func downloadMessage(){
-        guard let position = chatRoomPosition else {
+        guard let position = chatRoom?.roomPosition else {
             return
         }
         ref.child(position).observe(.value) { (snapshot) in
@@ -82,10 +103,13 @@ class ChatRoomViewController: UIViewController {
         
         let isKeyboardShowing = notification.name == .UIKeyboardWillShow
         bottomConstraint?.constant = isKeyboardShowing ? -keyboardFrame!.height : 0
-        UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }) { (completed) in
-            self.scrollToBottom()
+        
+        if !isKeyboardShowing{
+            UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }) { (completed) in
+                self.scrollToBottom()
+            }
         }
     }
     
@@ -94,7 +118,7 @@ class ChatRoomViewController: UIViewController {
             return
         }
         let request : [String : Any] = ["msg":message,"name":userAccount!]
-        ref.child(chatRoomPosition!).childByAutoId().setValue(request)
+        ref.child(chatRoom!.roomPosition).childByAutoId().setValue(request)
         inputMessageTextField.text = nil
     }
     
@@ -119,7 +143,7 @@ extension ChatRoomViewController : UITableViewDataSource,UITableViewDelegate{
         cell.selectionStyle = .none
         cell.messageBubbleView.messageLabel?.text = chatItem.message
         cell.messageBubbleView.setBubbleViewFrame(chatItem: chatItem)
-        cell.setImage(chatItem: chatItem)
+        cell.setImage(chatItem: chatItem, friendImage: friendImage)
         cell.setNameLabel(chatItem: chatItem)
         handleScrollToBottom(indexPath: indexPath)
         return cell

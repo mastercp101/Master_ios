@@ -143,18 +143,13 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as? singleCourseViewController else{
-            assertionFailure("Invalid View Controller")
-            return
-        }
-        
+        print("123")
+        let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as! singleCourseViewController
         nextVC.course = self.courseList[index]
         nextVC.title = nextVC.course?.courseName
-        
         if let image = findImage(index: index) {
             nextVC.image = image
         }
-        
         let navigation = UINavigationController(rootViewController: nextVC)
         self.present(navigation, animated: true, completion: nil)
     }

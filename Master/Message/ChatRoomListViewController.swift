@@ -17,18 +17,17 @@ class ChatRoomListViewController: UIViewController {
     @IBOutlet weak var chatRoomListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         chatRoomListTableView.setCellAutoRowHeight()
         ref = Database.database().reference()
-        downloadChatRoom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        downloadChatRoom()
     }
     
     private func downloadChatRoom(){
-        let request : [String : Any] = ["action":"findRoomByUserId","user_id":"billy"]
+        let request : [String : Any] = ["action":"findRoomByUserId","user_id":userAccount!]
         let urlStr = urlString + "chatRoomServlet"
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {
@@ -43,8 +42,6 @@ class ChatRoomListViewController: UIViewController {
             self.chatRoomListTableView.reloadData()
         }
     }
-    
-    
 }
 
 extension ChatRoomListViewController :UITableViewDataSource,UITableViewDelegate{
@@ -53,19 +50,19 @@ extension ChatRoomListViewController :UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? messageRoomItemCell
-        cell?.userPropertyImageView.setRoundImage()
-        cell?.userPropertyImageView.getUserPortrait(account: chatRoomList[indexPath.row].roomName, index: nil)
-        cell?.userNameLabel.text = chatRoomList[indexPath.row].roomName
-        cell?.lastMessageLabel.text = chatRoomList[indexPath.row].lastMessage
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! messageRoomItemCell
+        cell.userProfileImageView.setRoundImage()
+        cell.userProfileImageView.getUserPortrait(account: chatRoomList[indexPath.row].roomName, index: nil)
+        cell.userNameLabel.text = chatRoomList[indexPath.row].roomName
+        cell.lastMessageLabel.text = chatRoomList[indexPath.row].lastMessage
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatroomPosition = chatRoomList[indexPath.row].roomPosition
         let nextVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatRoomVC") as! ChatRoomViewController
-//        print(chatroomPosition)
-        nextVC.chatRoomPosition = chatroomPosition
+        let cell = tableView.cellForRow(at: indexPath) as! messageRoomItemCell
+        ChatItemSingleTon.shared.friendPortrait = cell.userProfileImageView.image
+        nextVC.chatRoom = chatRoomList[indexPath.row]
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

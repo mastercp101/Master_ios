@@ -225,7 +225,8 @@ class MasterViewController: UIViewController {
         nextVC.course = highlightCourses[targetIndex]
         nextVC.image = hightlightImages[targetIndex]
         
-        show(nextVC, sender: self)
+        let navigation = UINavigationController(rootViewController: nextVC)
+        present(navigation, animated: true, completion: nil)
     }
     
     @objc

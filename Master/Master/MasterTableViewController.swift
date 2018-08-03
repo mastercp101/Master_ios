@@ -114,7 +114,8 @@ class MasterTableViewController: UITableViewController {
         nextVC.course = courseList[indexPath.row]
         nextVC.image = photoList[indexPath.row]
         
-        show(nextVC, sender: self)
+        let navigation = UINavigationController(rootViewController: nextVC)
+        present(navigation, animated: true, completion: nil)
     }
     
     /*

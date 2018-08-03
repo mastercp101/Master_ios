@@ -12,11 +12,11 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-let urlString = "http://127.0.0.1:8080/Master/"
+//let urlString = "http://127.0.0.1:8080/Master/"
 //哲維
 //let urlString = "http://192.168.50.21:8080/Master/"
 //峻亦
-//let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://192.168.50.245:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -224,8 +224,10 @@ extension UIImageView {
         if let index = index {
             downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
                 ArticleData.shared.info[index].postPortrait = data
+                ChatItemSingleTon.shared.friendPortrait = UIImage(data: data!)
             }) { (data) in
                 ArticleData.shared.info[index].postPortrait = data
+                ChatItemSingleTon.shared.friendPortrait = UIImage(data: data!)
             }
         }else{
             downloadImage(url, request: request, defaultImage: image, failHandler: { (defaultImageData) in}) { (imageData) in}

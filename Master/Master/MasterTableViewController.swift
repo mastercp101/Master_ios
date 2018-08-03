@@ -104,6 +104,19 @@ class MasterTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as? singleCourseViewController else {
+            assertionFailure("Fail to get singleCourseVC.")
+            return
+        }
+        
+        nextVC.course = courseList[indexPath.row]
+        nextVC.image = photoList[indexPath.row]
+        
+        show(nextVC, sender: self)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -143,23 +156,7 @@ class MasterTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let controller = segue.destination as? singleCourseViewController else {
-            assertionFailure("Fail to get singleCourseViewController.")
-            return
-        }
-        
-        guard let row = tableView.indexPathForSelectedRow?.row else {
-            assertionFailure("Fail to get indexPathForSelectedRow.")
-            return
-        }
-        
-        controller.course = courseList[row]
-        controller.image = photoList[row]
-    }
-    
-    
+   
     private func downloadCourse(professionItem: String) {
         
         let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]

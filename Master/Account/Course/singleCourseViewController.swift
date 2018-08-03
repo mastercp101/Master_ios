@@ -33,6 +33,11 @@ class singleCourseViewController: UIViewController {
         downloadApply(courseID: course.courseID)
     }
     
+    @IBAction func backBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func applyBtnTapped(_ sender: Any) {
         guard let course = course else{
             assertionFailure("Invalid Course")

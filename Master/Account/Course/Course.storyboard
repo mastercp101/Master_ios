@@ -13,7 +13,7 @@
         <!--Data Source-->
         <scene sceneID="M8y-Im-ydu">
             <objects>
-                <viewController storyboardIdentifier="courseVC" id="ykG-pR-0Uw" customClass="CourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ykG-pR-0Uw" customClass="CourseViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tIZ-49-y3F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,6 +47,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NUQ-px-tgC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kFX-DT-CT4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -55,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEy-dV-RSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4765.6000000000004" y="2235.832083958021"/>
+            <point key="canvasLocation" x="5704.8000000000002" y="2235.832083958021"/>
         </scene>
         <!--新增課程-->
         <scene sceneID="hb1-2N-WxF">
@@ -476,7 +477,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6716" y="2136"/>
+            <point key="canvasLocation" x="7655.1999999999998" y="2135.5322338830588"/>
         </scene>
         <!--Course-->
         <scene sceneID="3PT-6J-VpB">
@@ -652,9 +653,9 @@
                         <viewLayoutGuide key="safeArea" id="acn-hi-n4i"/>
                     </view>
                     <navigationItem key="navigationItem" title="Course" id="WgY-Yo-ihu">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="bQa-Ub-4E0">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="QOD-Cg-xrB">
                             <connections>
-                                <segue destination="5vl-Di-Whm" kind="unwind" identifier="unwindToCourse" unwindAction="unwindToCourse:" id="pTp-gn-HSG"/>
+                                <action selector="backBtnTapped:" destination="FWt-eU-9ak" id="A1y-vz-Awi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="manage" id="e9B-dz-Fcm">
@@ -789,7 +790,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnT-in-7NX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5713" y="2193"/>
+            <point key="canvasLocation" x="6652" y="2192.6536731634183"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YfB-cU-vAZ">
@@ -826,6 +827,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rq9-mT-x8p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6188" y="3220"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FfB-wc-mn5">
+            <objects>
+                <navigationController storyboardIdentifier="courseVC" automaticallyAdjustsScrollViewInsets="NO" id="3PT-yw-Qvx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GnY-OC-a7n">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ykG-pR-0Uw" kind="relationship" relationship="rootViewController" id="WfT-lF-lDx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QfL-08-YGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4765.6000000000004" y="2235.832083958021"/>
         </scene>
     </scenes>
     <resources>

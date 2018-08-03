@@ -8,11 +8,13 @@
 
 import UIKit
 struct ChatRoom : Codable{
+    let friendUserID : String
     let roomName : String
     let roomPosition : String
     let lastMessage : String
     
     enum CodingKeys : String,CodingKey{
+        case friendUserID = "friend_user_id"
         case roomName = "room_name"
         case roomPosition = "room_position"
         case lastMessage = "last_message"
@@ -34,6 +36,6 @@ struct ChatItem{
 class ChatItemSingleTon{
     static let shared = ChatItemSingleTon()
     init(){}
-    
+    var friendPortrait : UIImage?
     var cellContentViewWidth : CGFloat = 0.0
 }

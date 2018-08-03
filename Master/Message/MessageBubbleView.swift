@@ -64,7 +64,7 @@ class MessageBubbleView: UIView {
         if chatItem!.fromSelf{
             offsetX = contentCellWidth - messageLabelWidth - contentMargin * 4
         }else{
-            offsetX = contentMargin * 4
+            offsetX = contentMargin * 4.5
         }
         self.frame = CGRect(x: offsetX, y: contentMargin, width: messageLabelWidth, height: finalHeight)
     }

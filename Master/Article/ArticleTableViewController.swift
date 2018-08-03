@@ -41,9 +41,9 @@ class ArticleTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 畫面移動到頂端
-        let topRect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        self.tableView.scrollRectToVisible(topRect, animated: false)
+//        // 畫面移動到頂端
+//        let topRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+//        self.tableView.scrollRectToVisible(topRect, animated: false)
         // 檢查目前登入的帳號是否跟讀取時的帳號一致, 否則重新整理(包括登出狀態)
         var account = ""
         if let userAccount = userAccount { account = userAccount }
@@ -124,8 +124,8 @@ class ArticleTableViewController: UITableViewController {
         cell.postsContentLabel.text = ArticleData.shared.info[indexPath.row].postContent
         cell.postsLikeNumberLabel.text = "\(ArticleData.shared.info[indexPath.row].postLikes)"
         
-        if let text = ArticleData.shared.info[indexPath.row].commentCount {
-            cell.postsTalkNumberLabel.text = text
+        if let count = ArticleData.shared.info[indexPath.row].commentCount {
+            cell.postsTalkNumberLabel.text = "\(count) 則留言"
         } else {
             getExperienceCommentCount(postId: ArticleData.shared.info[indexPath.row].postId, label: cell.postsTalkNumberLabel, index: indexPath.row)
         }
@@ -192,7 +192,7 @@ class ArticleTableViewController: UITableViewController {
         // 準備傳值, 及
         if let detailViewController = (detailView as? UINavigationController)?.topViewController as? ArticleDetailViewController,  let indexPath = self.tableView.indexPathForRow(at: point) {
             
-            detailViewController.articleDetail = ArticleData.shared.info[indexPath.row]
+            detailViewController.selectArticleIndex = indexPath.row
             self.present(detailView, animated: true, completion: nil)
             return
         }
@@ -251,7 +251,7 @@ class ArticleTableViewController: UITableViewController {
         Task.postRequestData(urlString: urlString + experienceArticleServlet, request: request) { (error, data) in
             
             guard error == nil, let data = data else {
-                ArticleData.shared.info[index].commentCount = "0 則留言"
+                ArticleData.shared.info[index].commentCount = 0
                 label.text = "0 則留言"
                 return
             }
@@ -259,13 +259,13 @@ class ArticleTableViewController: UITableViewController {
             let results = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
             guard let result = results, let resultInt = result as? Int else {
-                ArticleData.shared.info[index].commentCount = "0 則留言"
-                label.text = "0"
+                ArticleData.shared.info[index].commentCount = 0
+                label.text = "0 則留言"
                 return
             }
             
             label.text = "\(resultInt) 則留言"
-            ArticleData.shared.info[index].commentCount = "\(resultInt) 則留言"
+            ArticleData.shared.info[index].commentCount = resultInt
         }
     }
     // 依據自己, 修改點讚狀態

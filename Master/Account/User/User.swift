@@ -91,7 +91,7 @@ class UserFile {
     }
     
     // 名字 ***
-    func getUserName() -> String? { 
+    func getUserName() -> String? {
         guard let result = userDefault.string(forKey: USER_NAME_KEY), !result.isEmpty else {
             return nil
         }
@@ -111,13 +111,16 @@ class UserFile {
     func loadUserPortrait() -> Data? {
         // 路徑
         guard let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            if let image = UIImage(named: "user_default_por") { return UIImageJPEGRepresentation(image, 1.0) }
             return nil
         }
         // 完整路徑
         let fullFileURL = cachesURL.appendingPathComponent(USER_PORTRAIT_KET)
         // 拿到檔案
-        let data = try? Data(contentsOf: fullFileURL)
-    
+        guard let data = try? Data(contentsOf: fullFileURL) else {
+            if let image = UIImage(named: "user_default_por") { return UIImageJPEGRepresentation(image, 1.0) }
+            return nil
+        }
         return data
     }
     
@@ -133,7 +136,7 @@ class UserFile {
         do {
             try data.write(to: fullFileURL)
         } catch {
-            print(": \(error)")
+            print("儲存失敗: \(error)")
         }
     }
     

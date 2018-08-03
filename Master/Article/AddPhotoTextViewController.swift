@@ -9,12 +9,16 @@
 import UIKit
 import Photos
 
-private let loadingViewTag = 9527
 private let THINK_TEXT = "在想些什麼?"
 private let photoServlet = "photoServlet"
 private let experienceArticleServlet = "ExperienceArticleServlet"
 
 class AddPhotoTextViewController: UIViewController {
+    
+    // 轉轉轉元件編號
+    private let loadingViewTag = 9527
+    // 文章圖片壓縮比
+    private let compressionRatio: CGFloat = 0.7
     
     @IBOutlet weak var postPortrait: UIImageView!
     @IBOutlet weak var postName: UILabel!
@@ -154,7 +158,7 @@ class AddPhotoTextViewController: UIViewController {
         view.addSubview(activity)
         self.view.addSubview(view)
         UIView.animate(withDuration: 0.15) {
-            self.view.viewWithTag(loadingViewTag)?.alpha = 0.3
+            self.view.viewWithTag(self.loadingViewTag)?.alpha = 0.3
         }
     }
     
@@ -174,7 +178,7 @@ class AddPhotoTextViewController: UIViewController {
     // 開始上傳文章圖片
     private func pushArticlePhoto(account: String, article: String, photo: UIImage) {
         
-        guard let imageData = UIImageJPEGRepresentation(photo , 1.0) else {
+        guard let imageData = UIImageJPEGRepresentation(photo , compressionRatio) else {
             return
         }
         let base64 = imageData.base64EncodedString()
@@ -193,7 +197,7 @@ class AddPhotoTextViewController: UIViewController {
                 return
             }
             if photoId > 0 {
-                self.pushArticleText(account: account, photoId: photoId, article: article)
+                self.pushArticleText(account: account, photoId: photoId, article: article, photoData: imageData)
             } else {
                 self.showFailAlert()
             }
@@ -201,7 +205,7 @@ class AddPhotoTextViewController: UIViewController {
     }
     
     // 開始上傳文章內容
-    private func pushArticleText(account:String, photoId: Int, article: String) {
+    private func pushArticleText(account:String, photoId: Int, article: String, photoData: Data) {
         
         let request : [String : Any] = ["experienceArticle": "insertExperience",
                                         "user_id": account,
@@ -226,17 +230,8 @@ class AddPhotoTextViewController: UIViewController {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 let time = formatter.string(from: Date())
-                // 準備圖片
-                var portrait: Data? = nil
-                var photo: Data? = nil
-                if let image = self.newArticleImageView.image, let imageData = UIImageJPEGRepresentation(image, 1.0) {
-                    photo = imageData
-                }
-                if let image = self.postPortrait.image, let imageData = UIImageJPEGRepresentation(image, 1.0) {
-                    portrait = imageData
-                }
-                // 準備物件
-                let returnData = ExperienceArticle(postId: pushResult, userId: account, postContent: article, postTime: time, photoId: photoId, userName: self.postName.text ?? account, postLike: false, postLikes: 0, postPortrait: portrait, postPhoto: photo, commentCount: "0 則留言")
+                // 準備返回的文章物件
+                let returnData = ExperienceArticle(postId: pushResult, userId: account, postContent: article, postTime: time, photoId: photoId, userName: self.postName.text ?? account, postLike: false, postLikes: 0, postPortrait: userPortrait, postPhoto: photoData, commentCount: 0)
                 // 回到上一頁, 並回傳
                 self.dismiss(animated: true) {
                     NotificationCenter.default.post(name: .postNewArticle, object: nil, userInfo: ["newArticle" : returnData])

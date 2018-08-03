@@ -69,6 +69,7 @@ class ChatRoomViewController: UIViewController {
         guard let position = chatRoom?.roomPosition else {
             return
         }
+        print(position)
         ref.child(position).observe(.value) { (snapshot) in
             self.chatItems = [ChatItem]()
             for chatItem in snapshot.children.allObjects as! [DataSnapshot]{

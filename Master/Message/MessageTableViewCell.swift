@@ -54,11 +54,18 @@ class messageCell: UITableViewCell {
         imageView.clipsToBounds = true
         
         if chatItem.fromSelf{
-            imageView.image = UIImage(data: userPortrait!)
+            if let data = userPortrait{
+                imageView.image = UIImage(data: data)
+            }else{
+                imageView.image = UIImage(named: "user_default_por")
+            }
         }else{
-            imageView.image = ChatItemSingleTon.shared.friendPortrait!
+            if let friendPortrait = ChatItemSingleTon.shared.friendPortrait{
+                imageView.image = friendPortrait
+            }else{
+                imageView.image = UIImage(named: "user_default_por")
+            }
         }
-        
         self.userPortraitImageView = imageView
         self.contentView.addSubview(imageView)
     }

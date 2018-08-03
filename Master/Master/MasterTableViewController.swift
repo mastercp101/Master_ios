@@ -22,12 +22,14 @@ class MasterTableViewController: UITableViewController {
     var photoList = [UIImage]()
     var pickerArray = [String]()
     var professionCategory: String?
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = professionCategory
         setpickerView()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        navigationItem.title = professionCategory
         
         // DoneButton to hide PickerView.
         let toolbar = UIToolbar()
@@ -95,7 +97,12 @@ class MasterTableViewController: UITableViewController {
             cell.locationLabel.text = course.courseLocation
         }
         
-        if course.courseStatusID == 2 {
+        guard let courseDeadLine = dateFormatter.date(from: course.courseApplyDeadLine) else {
+            assertionFailure("Invalid courseApplyDeadLine.")
+            return UITableViewCell()
+        }
+        
+        if Date() > courseDeadLine {
             cell.isUserInteractionEnabled = false
             cell.subviews.first?.backgroundColor = .gray
             cell.subviews.first?.subviews.first?.backgroundColor = .gray

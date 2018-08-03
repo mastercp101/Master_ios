@@ -62,7 +62,8 @@ class MasterViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(performSlideShow), userInfo: nil, repeats: true)
+        
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(performSlideShow), userInfo: nil, repeats: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

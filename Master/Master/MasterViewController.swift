@@ -44,7 +44,7 @@ class MasterViewController: UIViewController {
         downloadProfessionCategory()
         
         // Download HighlightCoursePhoto
-        downloadHighlightCoursePhoto()
+        downloadHighlightCourse()
         
         // Add gesture recognizer
         let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
@@ -74,7 +74,7 @@ class MasterViewController: UIViewController {
         }
     }
     
-    func downloadProfessionCategory() {
+    private func downloadProfessionCategory() {
         
         let requestGetProfession = [COURSE_ARTICLE_Key:"getProfession"]
         
@@ -95,7 +95,7 @@ class MasterViewController: UIViewController {
         }
     }
     
-    func downloadHighlightCoursePhoto() {
+    private func downloadHighlightCourse() {
         
         let requestGetCourseNewPhotoId = [COURSE_ARTICLE_Key:"getCourseNewPhotoId"]
         
@@ -114,25 +114,29 @@ class MasterViewController: UIViewController {
             self.highlightCourses = highlightCourses
             self.hightlightImages.removeAll()
             
-            // Download HighlightCourse Photo
-            for i in 0..<highlightCourses.count {
-                let requestHighlightCoursePhoto = ["action":"getImage","photo_id":highlightCourses[i].courseImageID,"imageSize":1000] as [String : Any]
+            self.downloadHighlightCoursePhoto()
+        }
+    }
+    
+    private func downloadHighlightCoursePhoto() {
+        // Download HighlightCourse Photo
+        for i in 0..<highlightCourses.count {
+            let requestHighlightCoursePhoto = ["action":"getImage","photo_id":highlightCourses[i].courseImageID,"imageSize":1000] as [String : Any]
+            
+            Task.postRequestData(urlString: urlString + self.photoServlet, request: requestHighlightCoursePhoto) { (error, data) in
                 
-                Task.postRequestData(urlString: urlString + self.photoServlet, request: requestHighlightCoursePhoto) { (error, data) in
-                    
-                    if let error = error {
-                        assertionFailure("Fail to getCourseNewPhoto: \(error)")
-                        return
-                    }
-                    
-                    guard let data = data, let image = UIImage(data: data) else {
-                        assertionFailure("Data is nil.")
-                        return
-                    }
-                    
-                    self.hightlightImages.append(image)
-                    self.configureImageView()
+                if let error = error {
+                    assertionFailure("Fail to getCourseNewPhoto: \(error)")
+                    return
                 }
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    assertionFailure("Data is nil.")
+                    return
+                }
+                
+                self.hightlightImages.append(image)
+                self.configureImageView()
             }
         }
     }

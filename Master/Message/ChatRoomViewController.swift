@@ -36,24 +36,7 @@ class ChatRoomViewController: UIViewController {
         self.title = chatRoom?.roomName
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        updateLastessage(userID: userAccount!, roomName: chatRoom!.roomName)
-        updateLastessage(userID: chatRoom!.friendUserID, roomName: userName!)
-    }
     
-    private func updateLastessage(userID : String,roomName : String){
-        let urlStr = urlString + "chatRoomServlet"
-        guard let lastMsg = chatItems.last?.message else{
-            return
-        }
-        let request : [String : Any] = ["action":"updateLastMessage","last_message":lastMsg,"user_id":userID,"room_name":roomName]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error{
-                assertionFailure("Error : \(error)")
-                return
-            }
-        }
-    }
     
     private func setConstraint(){
         bottomConstraint = NSLayoutConstraint(item: messageInputView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
@@ -121,6 +104,20 @@ class ChatRoomViewController: UIViewController {
         let request : [String : Any] = ["msg":message,"name":userAccount!]
         ref.child(chatRoom!.roomPosition).childByAutoId().setValue(request)
         inputMessageTextField.text = nil
+        
+        updateLastessage(message: message, userID: userAccount!, roomName: chatRoom!.roomName)
+        updateLastessage(message: message, userID: chatRoom!.friendUserID, roomName: userName!)
+    }
+    
+    private func updateLastessage(message : String, userID : String, roomName : String){
+        let urlStr = urlString + "chatRoomServlet"
+        let request : [String : Any] = ["action":"updateLastMessage","last_message":message,"user_id":userID,"room_name":roomName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+        }
     }
     
     private func setTableView(){

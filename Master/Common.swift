@@ -12,11 +12,11 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-//let urlString = "http://127.0.0.1:8080/Master/"
+let urlString = "http://127.0.0.1:8080/Master/"
 //哲維
 //let urlString = "http://192.168.50.21:8080/Master/"
 //峻亦
-let urlString = "http://192.168.0.11:8080/Master/"
+//let urlString = "http://192.168.0.11:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()

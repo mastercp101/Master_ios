@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Master/Master/MasterViewController.swift"
-            timestampString = "554977154.945681"
+            timestampString = "555044336.765105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
             endingLineNumber = "184"
-            landmarkName = "MasterViewController"
-            landmarkType = "3">
+            landmarkName = "configureImageView()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

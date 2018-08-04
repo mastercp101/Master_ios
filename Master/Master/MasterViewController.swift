@@ -106,7 +106,6 @@ class MasterViewController: UIViewController {
                 assertionFailure("Fail to getCourseNewPhotoId: \(error)")
                 return
             }
-            
             guard let data = data, let highlightCourses = try? decoder.decode([Course].self, from: data) else {
                 assertionFailure("Data is nil.")
                 return

@@ -33,7 +33,19 @@ struct ExperienceArticle: Codable {
     
     var postPortrait: Data?
     var postPhoto: Data?
-    var commentCount: String?
+    var commentCount: Int?
+}
+
+struct ArticleComment: Codable {
+    
+    let comment_id: Int?
+    let post_id: Int?
+    let user_id: String?
+    let comment_content: String?
+    let comment_time: String?
+    let user_name: String?
+
+    var user_Portrait: Data?
 }
 
 //extension UIImage {

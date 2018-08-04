@@ -27,7 +27,16 @@ class ChatRoomListViewController: UIViewController {
     }
     
     private func downloadChatRoom(){
-        let request : [String : Any] = ["action":"findRoomByUserId","user_id":userAccount!]
+        
+        guard let userAccount = userAccount else{
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您還未登入") { (alert) in
+                let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+                self.present(nextVC, animated: true, completion: nil)
+            }
+            return
+        }
+        
+        let request : [String : Any] = ["action":"findRoomByUserId","user_id":userAccount]
         let urlStr = urlString + "chatRoomServlet"
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class singleCourseViewController: UIViewController {
     
@@ -15,10 +17,20 @@ class singleCourseViewController: UIViewController {
     var image : UIImage?
     var applyList = [FindByCourseApply]()
     let applyServer = "applyServlet"
+    let chatSevlet = "chatRoomServlet"
+    var ref : DatabaseReference!
+    var position = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        downloadFriendPortrait()
+    }
+    
+    private func downloadFriendPortrait(){
+        let imageView = UIImageView()
+        imageView.getUserPortrait(account: course!.userID, index: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +57,139 @@ class singleCourseViewController: UIViewController {
         }
         checkApply(course: course)
     }
+    
+    @IBAction func contectBtnTapped(_ sender: Any) {
+        guard let course = course else{
+            return
+        }
+        guard course.userID != userAccount ,userAccess != .coach else{
+            return
+        }
+        //  get userName by course owner userId
+        findNameByID(course: course)
+    }
+    
+    private func findNameByID(course : Course){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"findUserNameById","user_id":course.userID]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data,let resultName = String(data: data, encoding: .utf8) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            self.isRoomExist(friendUserName: resultName)
+        }
+    }
+    
+    private func isRoomExist(friendUserName : String){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"checkChatRoom","user_id":userAccount!,"friend_name":friendUserName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data,
+                let resultStr = String(data: data, encoding: .utf8),
+                let result = Int(resultStr) else{
+                assertionFailure("Invalid Data")
+                return
+            }
+            if result > 0{
+                // find room position
+                self.findRoomPosition(friendName: friendUserName)
+            }else{
+                // create chatRoom
+                let position = self.createFireBaseChatRoom()
+                self.position = position
+                self.insertChatRommInDB(friendUserName: friendUserName, position: position)
+            }
+        }
+    }
+    
+    private func findRoomPosition(friendName : String){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"findRoomPosition","user_id":userAccount!,"friend_name":friendName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data,
+                let resultStr = String(data: data, encoding: .utf8) else{
+                    assertionFailure("Invalid Data")
+                    return
+            }
+            self.position = resultStr
+            self.openChatRoom(friendName: friendName)
+        }
+    }
+    
+    private func createFireBaseChatRoom() -> String{
+        let key = ref.childByAutoId().key
+        let request : [String : Any] = [key:"空房間"]
+        ref.updateChildValues(request)
+        print(key)
+        return key
+    }
+    
+    private func insertChatRommInDB(friendUserName : String,position : String){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"createChatRoom","chat_room_position":position]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data,
+                let resultStr = String(data: data, encoding: .utf8),
+                let result = Int(resultStr) else{
+                    assertionFailure("Invalid Data")
+                    return
+            }
+            self.connectUserToChatRoom(userID: userAccount!, chatRoomID: result, roomName: friendUserName)
+        }
+    }
+    
+    private func connectUserToChatRoom(userID : String,chatRoomID : Int,roomName : String){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"connectUserToRoom","user_id":userID,"chat_room_id":chatRoomID,"room_name":roomName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            self.connectFriendToChatRoom(userID: self.course!.userID, chatRoomID: chatRoomID, roomName: userName!, friendName: roomName)
+        }
+    }
+    
+    private func connectFriendToChatRoom(userID : String,chatRoomID : Int,roomName : String,friendName : String){
+        let urlStr = urlString + chatSevlet
+        let request : [String : Any] = ["action":"connectUserToRoom","user_id":userID,"chat_room_id":chatRoomID,"room_name":roomName]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            self.openChatRoom(friendName: friendName)
+        }
+    }
+    
+    
+    private func openChatRoom(friendName : String){
+        guard let course = course else{
+            return
+        }
+        let chatRoom = ChatRoom(friendUserID: course.userID, roomName: friendName, roomPosition: self.position, lastMessage: "")
+        let nextVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatRoomVC") as! ChatRoomViewController
+        nextVC.chatRoom = chatRoom
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     
     private func checkApply(course : Course){
         let urlStr = urlString + applyServer
@@ -94,9 +239,7 @@ class singleCourseViewController: UIViewController {
         }
     }
     
-    @IBAction func contectBtnTapped(_ sender: Any) {
-        //..
-    }
+    
     
     private func downloadApply(courseID : Int){
         let urlStr = urlString + applyServer
@@ -214,6 +357,8 @@ class singleCourseViewController: UIViewController {
             }
         })
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToCourseWithDeleteCourse"{

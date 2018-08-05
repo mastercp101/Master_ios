@@ -97,15 +97,8 @@ class MasterTableViewController: UITableViewController {
             cell.locationLabel.text = course.courseLocation
         }
         
-        guard let courseDeadLine = dateFormatter.date(from: course.courseApplyDeadLine) else {
-            assertionFailure("Invalid courseApplyDeadLine.")
-            return UITableViewCell()
-        }
-        
-        if Date() > courseDeadLine {
-            cell.isUserInteractionEnabled = false
-            cell.subviews.first?.backgroundColor = .gray
-            cell.subviews.first?.subviews.first?.backgroundColor = .gray
+        if let courseDeadLine = dateFormatter.date(from: course.courseApplyDeadLine), Date() > courseDeadLine {
+            cell.isHidden = true
         }
         
         return cell
@@ -137,6 +130,7 @@ class MasterTableViewController: UITableViewController {
                 print("Data is nil.")
                 return
             }
+            
             self.courseList = courseList
             self.tableView.reloadData()
             

@@ -26,7 +26,7 @@ class CourseViewController: UIViewController {
         if isCourseDelete == true{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
         }
-        downloadCourse()
+        identifyAccess()
     }
     override func viewDidDisappear(_ animated: Bool) {
         // in case of course list have changed
@@ -34,10 +34,29 @@ class CourseViewController: UIViewController {
         photoList = [Photo]()
     }
     
-    private func downloadCourse(){
+    
+    
+    private func identifyAccess(){
+        if userAccess == .coach{
+            // download coach owned course
+            downloadCourse(action: "findCourseByCoach")
+        }else if userAccess == .student{
+            // download student owned course
+            downloadCourse(action: "findCourseByStudent")
+        }else{
+            // show alert to user warn that didn't sign in
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您還未登入") { (alert) in
+                let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+                self.present(nextVC, animated: true, completion: nil)
+            }
+            return
+        }
+    }
+    
+    private func downloadCourse(action : String){
         // Download Course
         let urlStr = urlString + "finalCourseServlet"
-        let request = ["action" : "getAll"]
+        let request = ["action" : action]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
                 assertionFailure("Error : \(error)")
@@ -143,7 +162,6 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        print("123")
         let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as! singleCourseViewController
         nextVC.course = self.courseList[index]
         nextVC.title = nextVC.course?.courseName

@@ -59,6 +59,7 @@ class ArticleDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var articleDetailPhoto: UIImageView!
     @IBOutlet weak var articleDetailLikes: UILabel!
     @IBOutlet weak var articleDetailTalks: UILabel!
+    @IBOutlet weak var articleDetailLikeButton: UIButton!
     
     override var frame: CGRect {
         didSet {
@@ -80,14 +81,6 @@ class ArticleToMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var messageDetailLabel: UILabel!
     @IBOutlet weak var messageDateLabel: UILabel!
     
-//    override var frame: CGRect {
-//        didSet {
-//            var newFrame = frame
-//            newFrame.origin.x += 10
-//            newFrame.size.width -= 20
-//            super.frame = newFrame
-//        }
-//    }
 }
 
 // 沒有留言
@@ -95,28 +88,12 @@ class NoneMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var noneMessageLabel: UILabel!
     
-//    override var frame: CGRect {
-//        didSet {
-//            var newFrame = frame
-//            newFrame.origin.x += 10
-//            newFrame.size.width -= 20
-//            super.frame = newFrame
-//        }
-//    }
 }
 
 // 讀取
 class LoadingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    
-//    override var frame: CGRect {
-//        didSet {
-//            var newFrame = frame
-//            newFrame.origin.x += 10
-//            newFrame.size.width -= 20
-//            super.frame = newFrame
-//        }
-//    }
+
 }
 

@@ -342,11 +342,17 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="162.5" height="30"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <state key="normal" title=" 讚" image="article_like_1"/>
+                                                                    <connections>
+                                                                        <action selector="detailClinkLike:" destination="epn-uu-bz5" eventType="touchUpInside" id="Bwt-mM-KoA"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7J-lJ-42C">
                                                                     <rect key="frame" x="192.5" y="0.0" width="162.5" height="30"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <state key="normal" title=" 留言" image="article_talk"/>
+                                                                    <connections>
+                                                                        <action selector="detailClinkTalk:" destination="epn-uu-bz5" eventType="touchUpInside" id="Kie-Es-Mnn"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -382,14 +388,17 @@
                                                 <constraint firstItem="4MK-k0-0BY" firstAttribute="leading" secondItem="biA-X1-1fV" secondAttribute="leading" constant="15" id="yAn-wX-Yh0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="articleDetailContent" destination="2xU-gN-qzh" id="3sz-vo-vTQ"/>
                                             <outlet property="articleDetailDate" destination="8jR-oJ-Tb4" id="61K-2H-L6b"/>
+                                            <outlet property="articleDetailLikeButton" destination="wMZ-eV-50x" id="wpX-I0-ynZ"/>
                                             <outlet property="articleDetailLikes" destination="Huf-8o-FTZ" id="ItP-zn-Zes"/>
                                             <outlet property="articleDetailName" destination="uUe-4x-fpQ" id="gz6-js-7eU"/>
                                             <outlet property="articleDetailPhoto" destination="fDT-31-jbw" id="ogS-JR-ebZ"/>
                                             <outlet property="articleDetailPortrait" destination="If6-CD-ekO" id="i5d-2Z-we6"/>
                                             <outlet property="articleDetailTalks" destination="6VN-fD-bi3" id="czC-tz-Xer"/>
+                                            <outletCollection property="gestureRecognizers" destination="3h1-wK-p9v" appends="YES" id="dUR-qX-XpU"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleToMessageCell" rowHeight="106" id="1go-14-aRU" customClass="ArticleToMessageTableViewCell" customModule="Master" customModuleProvider="target">
@@ -477,6 +486,7 @@
                                                 <constraint firstItem="Gww-No-aQu" firstAttribute="leading" secondItem="h00-uz-lJq" secondAttribute="trailing" constant="10" id="tCS-EV-9Lt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="messageDateLabel" destination="8IT-eM-osG" id="M19-eD-2Ep"/>
                                             <outlet property="messageDetailLabel" destination="YIb-vC-heq" id="JQW-4A-7QD"/>
@@ -492,7 +502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前尚無留言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tP-8x-Y5M">
-                                                    <rect key="frame" x="120" y="0.5" width="134" height="100"/>
+                                                    <rect key="frame" x="120" y="0.5" width="134" height="99"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="100" id="Tg8-vy-ait"/>
                                                     </constraints>
@@ -520,7 +530,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mFJ-fA-WBg">
-                                                    <rect key="frame" x="169" y="0.5" width="37" height="100"/>
+                                                    <rect key="frame" x="169" y="0.5" width="37" height="99"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="100" id="eHi-fX-tDJ"/>
                                                     </constraints>
@@ -560,6 +570,9 @@
                                             <constraint firstAttribute="height" constant="30" id="eeg-FM-wC0"/>
                                         </constraints>
                                         <state key="normal" image="article_send"/>
+                                        <connections>
+                                            <action selector="sendComment:" destination="epn-uu-bz5" eventType="touchUpInside" id="Rl0-T5-LvK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -594,10 +607,16 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="867"/>
                     <connections>
+                        <outlet property="commentTextField" destination="aoK-fl-r88" id="I04-Yf-fRj"/>
                         <outlet property="viewBottomLayout" destination="nQ1-i9-Wwu" id="qBf-Sh-tsn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cr8-Tm-PtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3h1-wK-p9v">
+                    <connections>
+                        <action selector="detailClinkbBlank:" destination="epn-uu-bz5" id="FNY-oF-aSY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4157.6000000000004" y="663.41829085457277"/>
         </scene>
@@ -781,7 +800,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reW-p1-dxy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3333.5999999999999" y="574.36281859070471"/>
+            <point key="canvasLocation" x="3217" y="573"/>
         </scene>
     </scenes>
     <resources>

@@ -27,11 +27,17 @@
                                     <outletCollection property="gestureRecognizers" destination="qSG-e0-2qI" appends="YES" id="Fal-jO-AQl"/>
                                 </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shiba" translatesAutoresizingMaskIntoConstraints="NO" id="B5O-eq-2jb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_tset_logo" translatesAutoresizingMaskIntoConstraints="NO" id="B5O-eq-2jb">
                                 <rect key="frame" x="80.5" y="124" width="214.5" height="215"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="B5O-eq-2jb" secondAttribute="height" multiplier="1:1" id="ExD-HA-wRm"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NoY-cf-vTb">
                                 <rect key="frame" x="30" y="393" width="315" height="32"/>
@@ -432,6 +438,6 @@
         <image name="login_password_eye-w" width="128" height="128"/>
         <image name="login_password_icon" width="128" height="128"/>
         <image name="login_remind_image" width="252" height="197"/>
-        <image name="shiba" width="280" height="280"/>
+        <image name="login_tset_logo" width="1026" height="1022"/>
     </resources>
 </document>

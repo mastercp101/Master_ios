@@ -35,8 +35,9 @@ class ArticleTableViewController: UITableViewController {
         if let id = userAccount {
             loginId = id // 存入顯示該頁所使用的帳號
         }
-        // 註冊發布文章通知
+        // 註冊監聽
         NotificationCenter.default.addObserver(self, selector: #selector(postNewArticle(noti:)), name: .postNewArticle, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateArticle(noti:)), name: .updateArticle, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -55,14 +56,26 @@ class ArticleTableViewController: UITableViewController {
     
     // 偵測到發佈新文章執行
     @objc func postNewArticle(noti: Notification) {
-        
+        // 發布新文章 ...
         if let userInfo = noti.userInfo, let newArticle = userInfo["newArticle"] as? ExperienceArticle {
             ArticleData.shared.info.insert(newArticle, at: 0)
             let indexPath = IndexPath(row: 0, section: 0)
             self.tableView.insertRows(at: [indexPath], with: .automatic)
         }
     }
-    
+    // 偵測在詳細頁面留言或改變點贊狀態後執行
+    @objc func updateArticle(noti: Notification) {
+        if let userInfo = noti.userInfo, let updateIndex = userInfo["updateArticle"] as? Int {
+            guard let cell = tableView.cellForRow(at: IndexPath(row: updateIndex, section: 0)) as? ArticleTableViewCell else { return }
+            cell.postsLikeNumberLabel.text = "\(ArticleData.shared.info[updateIndex].postLikes)"
+            cell.postsTalkNumberLabel.text = "\(ArticleData.shared.info[updateIndex].commentCount ?? 0) 則留言"
+            if ArticleData.shared.info[updateIndex].postLike {
+                cell.postsLikeButton.tintColor = UIColor.blue
+            } else {
+                cell.postsLikeButton.tintColor = UIColor.black
+            }
+        }
+    }
     // 下拉刷新畫面執行
     @objc func pullToRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -118,7 +131,7 @@ class ArticleTableViewController: UITableViewController {
         } else {
             cell.postsContentImage.getArticlePhoto(postId: ArticleData.shared.info[indexPath.row].postId, index: indexPath.row)
         }
-        
+
         cell.postsNameLabel.text = ArticleData.shared.info[indexPath.row].userName
         cell.postsDateLabel.text = ArticleData.shared.info[indexPath.row].postTime
         cell.postsContentLabel.text = ArticleData.shared.info[indexPath.row].postContent
@@ -196,8 +209,6 @@ class ArticleTableViewController: UITableViewController {
             self.present(detailView, animated: true, completion: nil)
             return
         }
-
-        // TODO: - 換頁失敗?
     }
     
     private func checkLogin() -> Bool {

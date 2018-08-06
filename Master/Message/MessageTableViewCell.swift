@@ -39,7 +39,7 @@ class messageCell: UITableViewCell {
         return messageBubbleView
     }()
     
-    func setImage(chatItem : ChatItem,friendImage : UIImage?){
+    func setImage(chatItem : ChatItem){
         userPortraitImageView?.removeFromSuperview()
         var frame : CGRect
         if chatItem.fromSelf{

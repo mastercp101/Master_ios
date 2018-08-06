@@ -69,11 +69,6 @@ class AddPhotoTextViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // 相機
     @IBAction func addCameraPhoto(_ sender: UIButton) {
         endEdit()

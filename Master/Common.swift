@@ -16,7 +16,8 @@ import UIKit
 //哲維
 //let urlString = "http://192.168.50.21:8080/Master/"
 //峻亦
-let urlString = "http://192.168.50.245:8080/Master/"
+//let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://172.20.10.8:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -75,7 +76,8 @@ class Common{
     
     // Alert User who didn't login
     func alertUserToLogin(viewController : UIViewController){
-        Alert.shared.buildSingleAlert(viewConteoller: viewController, alertTitle: "您還未登入") { (alert) in
+        Alert.shared.buildDoubleAlert(viewController: viewController, alertTitle: "您還沒有登入", alertMessage: nil, actionTitles: ["繼續逛逛","登入"], firstHandler: { (cancelAction) in
+        }) { (signInAction) in
             let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
             viewController.present(nextVC, animated: true, completion: nil)
         }

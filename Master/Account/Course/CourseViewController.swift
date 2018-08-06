@@ -173,7 +173,6 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as! singleCourseViewController
         nextVC.course = self.courseList[index]
-        nextVC.title = nextVC.course?.courseName
         if let image = findImage(index: index) {
             nextVC.image = image
         }

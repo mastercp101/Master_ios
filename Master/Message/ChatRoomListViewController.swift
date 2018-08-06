@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
+
 class ChatRoomListViewController: UIViewController {
     
     var ref : DatabaseReference!
@@ -26,13 +27,14 @@ class ChatRoomListViewController: UIViewController {
         downloadChatRoom()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        chatRoomList = [ChatRoom]()
+        chatRoomListTableView.reloadData()
+    }
+    
     private func downloadChatRoom(){
-        
         guard let userAccount = userAccount else{
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您還未登入") { (alert) in
-                let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
-                self.present(nextVC, animated: true, completion: nil)
-            }
+            Common.shared.alertUserToLogin(viewController: self)
             return
         }
         
@@ -72,6 +74,8 @@ extension ChatRoomListViewController :UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.cellForRow(at: indexPath) as! messageRoomItemCell
         ChatItemSingleTon.shared.friendPortrait = cell.userProfileImageView.image
         nextVC.chatRoom = chatRoomList[indexPath.row]
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let navigation = UINavigationController(rootViewController: nextVC)
+        self.present(navigation, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -51,9 +51,8 @@ class editCourseViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "新增/管理課程"
         encoder.outputFormatting = .init()
-        
         // Download user profession
         downloadUserProfession()
         // Setting UI or delegate
@@ -171,10 +170,10 @@ class editCourseViewController: UIViewController{
     
     private func checkEditingStyle(){
         guard self.course != nil else{
-            editingStyle = EditingStyle.insertCourse
+            editingStyle = .insertCourse
             return
         }
-        editingStyle = EditingStyle.updateCourse
+        editingStyle = .updateCourse
         setCourseInfoToView()
     }
     

@@ -44,13 +44,19 @@ class AccountSwitchViewController: UIViewController {
     private func segmentedSelect(at index: Int) {
         switch index {
         case 0:
+            photoVC.view.removeFromSuperview()
+            courseVC.view.removeFromSuperview()
             switchView.addSubview(userVC.view)
         case 1:
+            courseVC.view.removeFromSuperview()
+            userVC.view.removeFromSuperview()
             switchView.addSubview(photoVC.view)
         case 2:
+            photoVC.view.removeFromSuperview()
+            userVC.view.removeFromSuperview()
             switchView.addSubview(courseVC.view)
         default:
-            switchView.addSubview(courseVC.view)
+            return
         }
     }
     

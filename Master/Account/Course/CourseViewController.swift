@@ -22,19 +22,17 @@ class CourseViewController: UIViewController {
         self.setICarousel()
     }
     override func viewWillAppear(_ animated: Bool) {
-        
         if isCourseDelete == true{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
         }
         identifyAccess()
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         // in case of course list have changed
         courseList = [Course]()
         photoList = [Photo]()
     }
-    
-    
     
     private func identifyAccess(){
         if userAccess == .coach{
@@ -45,36 +43,42 @@ class CourseViewController: UIViewController {
             downloadCourse(action: "findCourseByStudent")
         }else{
             // show alert to user warn that didn't sign in
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您還未登入") { (alert) in
-                let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
-                self.present(nextVC, animated: true, completion: nil)
-            }
-            return
+            Common.shared.alertUserToLogin(viewController: self)
         }
     }
     
     private func downloadCourse(action : String){
+        
+        guard let userID = userAccount else{
+            Common.shared.alertUserToLogin(viewController: self)
+            return
+        }
+        
         // Download Course
         let urlStr = urlString + "finalCourseServlet"
-        let request = ["action" : action]
+        let request = ["action" : action,"user_id":userID]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
                 assertionFailure("Error : \(error)")
                 return
             }
-            guard let data = data else{
+            guard let data = data , let decodedCourseList = try? decoder.decode([Course].self, from: data) else{
                 assertionFailure("Invalid data")
                 return
             }
-            do{
-                let decodedCourseList = try decoder.decode([Course].self, from: data)
-                self.courseList = decodedCourseList
+            self.courseList = decodedCourseList
+            if decodedCourseList.count == 0{
+                let label = UILabel()
+                label.frame.size = CGSize(width: 200, height: 200)
+                label.text = "還未新增課程"
+                label.font = UIFont.systemFont(ofSize: 30)
+                label.center = self.view.center
+                self.view.addSubview(label)
+            }else{
                 // Download Image
                 for course in decodedCourseList{
                     self.downloadImage(imageID: course.courseImageID)
                 }
-            }catch{
-                assertionFailure("Decode Course Fail : \(error)")
             }
         }
     }

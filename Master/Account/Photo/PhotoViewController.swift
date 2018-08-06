@@ -51,7 +51,6 @@ extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSou
 
 class photoCollectionViewCell : UICollectionViewCell{
     @IBOutlet weak var articleImageView: UIImageView!
-    
 }
 
 

@@ -166,6 +166,6 @@ class UserData {
     
     var info = [[String]]()
     
-    var SuserPortrait: Data?
+//    var userPortrait: Data? 已改為從 Common userPortrait 拿
     var userBackground: Data?
 }

@@ -17,6 +17,7 @@
 		270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */; };
 		270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073520FCBB4B0037F510 /* manageStudentViewController.swift */; };
 		270D073820FD8A7D0037F510 /* ChatRoomItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D073720FD8A7D0037F510 /* ChatRoomItemCell.swift */; };
+		272515B82118034C00A4905D /* PhotoSingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272515B72118034C00A4905D /* PhotoSingleTon.swift */; };
 		273D63892112DE090040803B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 273D63882112DE080040803B /* GoogleService-Info.plist */; };
 		273D638B2112E35B0040803B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D638A2112E35B0040803B /* Chat.swift */; };
 		273D638D2112EFBC0040803B /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D638C2112EFBC0040803B /* ChatRoomViewController.swift */; };
@@ -84,6 +85,7 @@
 		270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentTableViewCell.swift; sourceTree = "<group>"; };
 		270D073520FCBB4B0037F510 /* manageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageStudentViewController.swift; sourceTree = "<group>"; };
 		270D073720FD8A7D0037F510 /* ChatRoomItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomItemCell.swift; sourceTree = "<group>"; };
+		272515B72118034C00A4905D /* PhotoSingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSingleTon.swift; sourceTree = "<group>"; };
 		273D63882112DE080040803B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		273D638A2112E35B0040803B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		273D638C2112EFBC0040803B /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				27FB31DC20F9BF76009AD98B /* Photo.storyboard */,
+				272515B72118034C00A4905D /* PhotoSingleTon.swift */,
 				27FC3FED20F33BEB001A063E /* PhotoViewController.swift */,
 				2766CA4F210EE577007F9648 /* PhotoItemViewController.swift */,
 				2766CA51210F284E007F9648 /* CommentDialogViewController.swift */,
@@ -170,9 +173,9 @@
 			children = (
 				27FB31DE20F9BF86009AD98B /* Course.storyboard */,
 				27FC3FEF20F33BFD001A063E /* CourseViewController.swift */,
-				270D070520FC2FD00037F510 /* editCourseViewController.swift */,
 				270D070820FC2FD00037F510 /* singleCourseViewController.swift */,
 				270D070720FC2FD00037F510 /* singleCourseCell.swift */,
+				270D070520FC2FD00037F510 /* editCourseViewController.swift */,
 				270D073520FCBB4B0037F510 /* manageStudentViewController.swift */,
 				270D073320FCBA970037F510 /* manageStudentTableViewCell.swift */,
 				27FB31E620F9EFBE009AD98B /* CourseItemView.xib */,
@@ -503,6 +506,7 @@
 				270D073420FCBA970037F510 /* manageStudentTableViewCell.swift in Sources */,
 				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,
+				272515B82118034C00A4905D /* PhotoSingleTon.swift in Sources */,
 				F1B2993921143BEC0074B0F4 /* ArticleTableViewController.swift in Sources */,
 				273D638D2112EFBC0040803B /* ChatRoomViewController.swift in Sources */,
 				F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */,

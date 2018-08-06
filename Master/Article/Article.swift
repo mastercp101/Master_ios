@@ -10,6 +10,7 @@ import UIKit
 
 extension Notification.Name {
     static let postNewArticle = Notification.Name("PostNewArticle")
+    static let updateArticle = Notification.Name("updateArticle")
 }
 
 class ArticleData {

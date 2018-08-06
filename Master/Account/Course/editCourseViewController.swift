@@ -51,11 +51,10 @@ class editCourseViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "新增/管理課程"
         encoder.outputFormatting = .init()
-        
         // Download user profession
-        downloadUSerProfession()
+        downloadUserProfession()
         // Setting UI or delegate
         setTextView(textView: detailTextView)
         setTextView(textView: noteTextView)
@@ -73,6 +72,13 @@ class editCourseViewController: UIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         Common.shared.removeObservers(viewController: self)
+    }
+    
+    private func checkIsSignIn(){
+        if userAccount == nil{
+            Common.shared.alertUserToLogin(viewController: self)
+            return
+        }
     }
     
     private func setGesture(){
@@ -137,9 +143,9 @@ class editCourseViewController: UIViewController{
         }
     }
     
-    private func downloadUSerProfession(){
+    private func downloadUserProfession(){
         let urlStr = urlString + "UserInfo"
-        let request : [String : Any] = ["action":"findProfessionById","user_id":"billy"]
+        let request : [String : Any] = ["action":"findProfessionById","user_id": userAccount!]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {
                 assertionFailure("Error : \(error)")
@@ -164,10 +170,10 @@ class editCourseViewController: UIViewController{
     
     private func checkEditingStyle(){
         guard self.course != nil else{
-            editingStyle = EditingStyle.insertCourse
+            editingStyle = .insertCourse
             return
         }
-        editingStyle = EditingStyle.updateCourse
+        editingStyle = .updateCourse
         setCourseInfoToView()
     }
     
@@ -211,7 +217,7 @@ class editCourseViewController: UIViewController{
         }
         
         if editingStyle == EditingStyle.insertCourse{
-            let request : [String : Any] = ["action" : "insert","user_id":"billy","photo":base64Image]
+            let request : [String : Any] = ["action" : "insert","user_id": userAccount!,"photo":base64Image]
             updateImage(request: request)
         }else{ // editingStyle == updateCourse
             let request : [String : Any] = ["action" : "update","photo_id":course!.courseImageID,"photo":base64Image]
@@ -316,7 +322,7 @@ class editCourseViewController: UIViewController{
     
     private func createCourseProfile(){
         newCourseProfile = CourseProfile(courseID: course?.courseID ?? 0,
-                                         userID: "billy",
+                                         userID: userAccount!,
                                          courseDate: courseDate!,
                                          courseApplyDeadLine: courseRegisterDeadline!,
                                          coursePeopleNumber: courseNumberOfPeople!,

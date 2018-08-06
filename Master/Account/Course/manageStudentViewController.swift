@@ -18,6 +18,7 @@ class manageStudentViewController: UIViewController {
     var courseID = 0
     
     override func viewDidLoad() {
+        self.title = "學生管理"
         super.viewDidLoad()
         manageStudentTableView.setCellAutoRowHeight()
         if applyList.count > 0{

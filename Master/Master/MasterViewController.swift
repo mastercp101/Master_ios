@@ -32,14 +32,14 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Don't Move, Important !!!
-        Common.shared.downloadExperience()
-        // Important !
+        // Important !!!
         userAccount = UserFile.shared.getUserAccount() // 帳號
         userAccess = UserFile.shared.getUserAccess() // 權限
         userName = UserFile.shared.getUserName() // 名字
         userPortrait = UserFile.shared.loadUserPortrait() // 大頭照
-        
+        // Don't Move, Important !!! 要在載入帳號之後 ...
+        Common.shared.downloadExperience()
+
         // Download ProfessionCategorys
         downloadProfessionCategory()
         

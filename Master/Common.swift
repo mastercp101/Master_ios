@@ -12,11 +12,12 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-let urlString = "http://127.0.0.1:8080/Master/"
+//let urlString = "http://127.0.0.1:8080/Master/"
 //哲維
 //let urlString = "http://192.168.50.21:8080/Master/"
 //峻亦
-//let urlString = "http://192.168.0.11:8080/Master/"
+//let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://172.20.10.8:8080/Master/"
 let urlUserInfo = "UserInfo"
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
@@ -73,6 +74,14 @@ class Common{
         }
     }
     
+    // Alert User who didn't login
+    func alertUserToLogin(viewController : UIViewController){
+        Alert.shared.buildDoubleAlert(viewController: viewController, alertTitle: "您還沒有登入", alertMessage: nil, actionTitles: ["繼續逛逛","登入"], firstHandler: { (cancelAction) in
+        }) { (signInAction) in
+            let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+            viewController.present(nextVC, animated: true, completion: nil)
+        }
+    }
 
 }
 
@@ -203,7 +212,6 @@ extension UIImageView {
     
     // 下載文章圖片
     func getArticlePhoto(postId: Int, index: Int) {
-        
         let url = urlString + urlUserInfo
         let request : [String : Any] = ["action" : "getUserPostPhoto", "postId" : postId]
         let image = UIImage(named: "user_default_por")

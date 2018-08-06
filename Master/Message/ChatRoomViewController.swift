@@ -21,22 +21,40 @@ class ChatRoomViewController: UIViewController {
     var ref : DatabaseReference!
     var chatItems = [ChatItem]()
     var bottomConstraint : NSLayoutConstraint?
-    var friendImage : UIImage?
     var chatRoom : ChatRoom?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        setBackBtn()
         ref = Database.database().reference()
         setTableView()
         ChatItemSingleTon.shared.cellContentViewWidth = UIScreen.main.bounds.width
         downloadMessage()
         setKeyboardHandler()
         setConstraint()
-        self.title = chatRoom?.roomName
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tableView.addGestureRecognizer(gesture)
     }
     
+    @objc
+    private func endEditing(){
+        inputMessageTextField.endEditing(true)
+    }
     
+    private func setBackBtn(){
+        let backBtn = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(backBtnTapped))
+        self.navigationItem.leftBarButtonItem = backBtn
+    }
+    
+    @objc
+    private func backBtnTapped(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "123"
+    }
     
     private func setConstraint(){
         bottomConstraint = NSLayoutConstraint(item: messageInputView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
@@ -52,7 +70,6 @@ class ChatRoomViewController: UIViewController {
         guard let position = chatRoom?.roomPosition else {
             return
         }
-        print(position)
         ref.child(position).observe(.value) { (snapshot) in
             self.chatItems = [ChatItem]()
             for chatItem in snapshot.children.allObjects as! [DataSnapshot]{
@@ -141,7 +158,7 @@ extension ChatRoomViewController : UITableViewDataSource,UITableViewDelegate{
         cell.selectionStyle = .none
         cell.messageBubbleView.messageLabel?.text = chatItem.message
         cell.messageBubbleView.setBubbleViewFrame(chatItem: chatItem)
-        cell.setImage(chatItem: chatItem, friendImage: friendImage)
+        cell.setImage(chatItem: chatItem)
         cell.setNameLabel(chatItem: chatItem)
         handleScrollToBottom(indexPath: indexPath)
         return cell

@@ -11,51 +11,79 @@ import iCarousel
 
 class CourseViewController: UIViewController {
 
+    @IBOutlet weak var addCourseBtn: UIButton!
     @IBOutlet weak var iCarouselView: iCarousel!
     var dogName = ["beagle","bulldog","bordercollie","shiba"]
     var courseList = [Course]()
     var photoList = [Photo]()
     var isCourseDelete : Bool?
+    var zeroCourselabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setICarousel()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.iCarouselView.reloadData()
         if isCourseDelete == true{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
         }
-        downloadCourse()
+        identifyAccess()
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         // in case of course list have changed
         courseList = [Course]()
         photoList = [Photo]()
     }
     
-    private func downloadCourse(){
+    private func identifyAccess(){
+        if userAccess == .coach{
+            // download coach owned course
+            downloadCourse(action: "findCourseByCoach")
+        }else if userAccess == .student{
+            addCourseBtn.isHidden = true
+            // download student owned course
+            downloadCourse(action: "findCourseByStudent")
+        }else{
+            // show alert to user warn that didn't sign in
+            Common.shared.alertUserToLogin(viewController: self)
+        }
+    }
+    
+    private func downloadCourse(action : String){
+        
+        guard let userID = userAccount else{
+            Common.shared.alertUserToLogin(viewController: self)
+            return
+        }
+        
         // Download Course
         let urlStr = urlString + "finalCourseServlet"
-        let request = ["action" : "getAll"]
+        let request = ["action" : action,"user_id":userID]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
                 assertionFailure("Error : \(error)")
                 return
             }
-            guard let data = data else{
+            guard let data = data , let decodedCourseList = try? decoder.decode([Course].self, from: data) else{
                 assertionFailure("Invalid data")
                 return
             }
-            do{
-                let decodedCourseList = try decoder.decode([Course].self, from: data)
-                self.courseList = decodedCourseList
+            self.courseList = decodedCourseList
+            if decodedCourseList.count == 0{
+                self.zeroCourselabel.frame.size = CGSize(width: 200, height: 200)
+                self.zeroCourselabel.text = "還未新增課程"
+                self.zeroCourselabel.font = UIFont.systemFont(ofSize: 30)
+                self.zeroCourselabel.center = self.view.center
+                self.view.addSubview(self.zeroCourselabel)
+            }else{
                 // Download Image
+                self.zeroCourselabel.removeFromSuperview()
                 for course in decodedCourseList{
                     self.downloadImage(imageID: course.courseImageID)
                 }
-            }catch{
-                assertionFailure("Decode Course Fail : \(error)")
             }
         }
     }
@@ -143,10 +171,8 @@ extension CourseViewController : iCarouselDelegate,iCarouselDataSource{
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        print("123")
         let nextVC = UIStoryboard(name: "Course", bundle: nil).instantiateViewController(withIdentifier: "singleCourseVC") as! singleCourseViewController
         nextVC.course = self.courseList[index]
-        nextVC.title = nextVC.course?.courseName
         if let image = findImage(index: index) {
             nextVC.image = image
         }

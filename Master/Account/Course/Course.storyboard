@@ -54,6 +54,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addCourseBtn" destination="OeO-1e-bqY" id="IlI-Mg-psD"/>
                         <outlet property="iCarouselView" destination="fj6-22-RkS" id="cfK-iM-dPn"/>
                     </connections>
                 </viewController>
@@ -668,6 +669,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="manageBtn" destination="e9B-dz-Fcm" id="RI9-Lj-FuA"/>
                         <outlet property="singleCourseTableView" destination="0SN-yW-Zlc" id="xLw-Aa-xvX"/>
                         <segue destination="5vl-Di-Whm" kind="unwind" identifier="unwindToCourseWithDeleteCourse" unwindAction="unwindToCourse:" id="u7m-Q5-QJ2"/>
                     </connections>

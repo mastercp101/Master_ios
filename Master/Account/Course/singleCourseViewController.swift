@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class singleCourseViewController: UIViewController {
     
+    @IBOutlet weak var manageBtn: UIBarButtonItem!
     @IBOutlet weak var singleCourseTableView: UITableView!
     var course : Course?
     var image : UIImage?
@@ -26,6 +27,10 @@ class singleCourseViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         downloadFriendPortrait()
+        
+        if userAccess == .student{
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     private func downloadFriendPortrait(){
@@ -37,7 +42,8 @@ class singleCourseViewController: UIViewController {
         singleCourseTableView.setCellAutoRowHeight()
     }
     
-    @IBAction func manageBtnTapped(_ sender: Any) {
+    @IBAction func manageBtnTapped(_ sender: UIButton) {
+
         guard let course = course else{
             assertionFailure("Invalid Course")
             return

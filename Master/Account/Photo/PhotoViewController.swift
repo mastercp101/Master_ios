@@ -29,6 +29,28 @@ class PhotoViewController: UIViewController {
         photoCollectionViewFlowLayout.itemSize = CGSize(width: collectionItemSize, height: collectionItemSize)
     }
     
+    private func downloadUserArticle(){
+        let urlStr = urlString + "ExperienceArticleServlet"
+        let request : [String : Any] = ["experienceArticle":"","":"","":""]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error {
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data else{
+                assertionFailure("Invalid data")
+                return
+            }
+            
+            
+            
+            
+            
+            
+        }
+    }
+    
+    
     
 }
 extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSource{

@@ -11,17 +11,21 @@ import iCarousel
 
 class CourseViewController: UIViewController {
 
+    @IBOutlet weak var addCourseBtn: UIButton!
     @IBOutlet weak var iCarouselView: iCarousel!
     var dogName = ["beagle","bulldog","bordercollie","shiba"]
     var courseList = [Course]()
     var photoList = [Photo]()
     var isCourseDelete : Bool?
+    var zeroCourselabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setICarousel()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        self.iCarouselView.reloadData()
         if isCourseDelete == true{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
         }
@@ -39,6 +43,7 @@ class CourseViewController: UIViewController {
             // download coach owned course
             downloadCourse(action: "findCourseByCoach")
         }else if userAccess == .student{
+            addCourseBtn.isHidden = true
             // download student owned course
             downloadCourse(action: "findCourseByStudent")
         }else{
@@ -68,14 +73,14 @@ class CourseViewController: UIViewController {
             }
             self.courseList = decodedCourseList
             if decodedCourseList.count == 0{
-                let label = UILabel()
-                label.frame.size = CGSize(width: 200, height: 200)
-                label.text = "還未新增課程"
-                label.font = UIFont.systemFont(ofSize: 30)
-                label.center = self.view.center
-                self.view.addSubview(label)
+                self.zeroCourselabel.frame.size = CGSize(width: 200, height: 200)
+                self.zeroCourselabel.text = "還未新增課程"
+                self.zeroCourselabel.font = UIFont.systemFont(ofSize: 30)
+                self.zeroCourselabel.center = self.view.center
+                self.view.addSubview(self.zeroCourselabel)
             }else{
                 // Download Image
+                self.zeroCourselabel.removeFromSuperview()
                 for course in decodedCourseList{
                     self.downloadImage(imageID: course.courseImageID)
                 }

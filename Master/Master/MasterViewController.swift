@@ -39,7 +39,7 @@ class MasterViewController: UIViewController {
         userAccess = UserFile.shared.getUserAccess() // 權限
         userName = UserFile.shared.getUserName() // 名字
         userPortrait = UserFile.shared.loadUserPortrait() // 大頭照
-
+        
         // Download ProfessionCategorys
         downloadProfessionCategory()
         
@@ -132,6 +132,7 @@ class MasterViewController: UIViewController {
                 
                 guard let data = data, let image = UIImage(data: data) else {
                     assertionFailure("Data is nil.")
+                    self.highlightCourses.remove(at: i)
                     return
                 }
                 
@@ -186,6 +187,11 @@ class MasterViewController: UIViewController {
     }
     
     func configureImageView() {
+        
+        guard highlightCourses.count == 0 else {
+            return
+        }
+        
         masterImageView.image = hightlightImages[targetIndex]
     }
     

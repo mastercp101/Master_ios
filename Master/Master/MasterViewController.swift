@@ -188,7 +188,7 @@ class MasterViewController: UIViewController {
     
     func configureImageView() {
         
-        guard highlightCourses.count == 0 else {
+        guard highlightCourses.count != 0 else {
             return
         }
         

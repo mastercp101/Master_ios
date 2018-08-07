@@ -20,14 +20,18 @@ class UserProfessionTableViewController: UITableViewController {
     private var isUpdate = false
     
     var selectNewProfessionItem: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard userAccess == .coach, UserData.shared.info.count == 6  else { return }
         professions = UserData.shared.info[workingIndex]
-        if professions.count == 1, professions.first == NOT_EDIT_TEXT { professions.removeAll() }
+        if professions.count == 1, professions.first == NOT_EDIT_TEXT {
+            professions.removeAll()
+            tableView.setEditing(true, animated: true)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newProfession(_:)))
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,17 +39,17 @@ class UserProfessionTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return professions.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: professionCell, for: indexPath)
         cell.textLabel?.text = professions[indexPath.row]
@@ -59,7 +63,7 @@ class UserProfessionTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
+        
         guard let account = userAccount else { return }
         // 同步 DB
         deleteProfession(account: account, profession: professions[indexPath.row])
@@ -75,11 +79,11 @@ class UserProfessionTableViewController: UITableViewController {
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         
-//        guard !tableView.isEditing else {
-//            tableView.setEditing(false, animated: true)
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(newProfession(_:)))
-//            return
-//        }
+        //        guard !tableView.isEditing else {
+        //            tableView.setEditing(false, animated: true)
+        //            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(newProfession(_:)))
+        //            return
+        //        }
         
         returnUserInfo()
         self.dismiss(animated: true) {
@@ -90,7 +94,7 @@ class UserProfessionTableViewController: UITableViewController {
     }
     
     @IBAction func newProfession(_ sender: UIBarButtonItem) {
-
+        
         guard tableView.isEditing else {
             tableView.setEditing(true, animated: true)
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newProfession(_:)))
@@ -134,7 +138,7 @@ class UserProfessionTableViewController: UITableViewController {
     }
     
     
- // MAEK: - Connect DB Methods.
+    // MAEK: - Connect DB Methods.
     
     private func deleteProfession(account: String, profession: String) {
         

@@ -57,19 +57,20 @@
 		F1A784E721082FE900C03AB6 /* UserProfessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */; };
 		F1A784E92108304800C03AB6 /* UserScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A784E82108304800C03AB6 /* UserScript.swift */; };
 		F1B2993521143BEC0074B0F4 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2992F21143BEB0074B0F4 /* Article.swift */; };
-		F1B2993621143BEC0074B0F4 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B2993021143BEB0074B0F4 /* Article.storyboard */; };
 		F1B2993721143BEC0074B0F4 /* AddPhotoTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2993121143BEB0074B0F4 /* AddPhotoTextViewController.swift */; };
 		F1B2993821143BEC0074B0F4 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2993221143BEB0074B0F4 /* ArticleDetailViewController.swift */; };
-		F1B2993921143BEC0074B0F4 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2993321143BEC0074B0F4 /* ArticleTableViewController.swift */; };
 		F1B2993A21143BEC0074B0F4 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2993421143BEC0074B0F4 /* ArticleTableViewCell.swift */; };
+		F1D8EA7421194B3500410305 /* ArticleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7321194B3500410305 /* ArticleTableViewController.swift */; };
+		F1D8EA7621194B3A00410305 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1D8EA7521194B3A00410305 /* Article.storyboard */; };
+		F1D8EA7821194B3D00410305 /* OtherUserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */; };
+		F1D8EA7B21194B9100410305 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7921194B9100410305 /* LoginViewController.swift */; };
+		F1D8EA7C21194B9100410305 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1D8EA7A21194B9100410305 /* Login.storyboard */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
 		F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */; };
 		F1F714D320FF557F009DB9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714CF20FF557E009DB9EF /* User.swift */; };
 		F1F714D420FF557F009DB9EF /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */; };
 		F1F714D520FF557F009DB9EF /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F714D120FF557E009DB9EF /* User.storyboard */; };
 		F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D220FF557E009DB9EF /* UserTableViewController.swift */; };
-		F1F714DA20FF5593009DB9EF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F714D820FF5593009DB9EF /* Login.storyboard */; };
-		F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714D920FF5593009DB9EF /* LoginViewController.swift */; };
 		F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,19 +129,20 @@
 		F1A784E621082FE900C03AB6 /* UserProfessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfessionTableViewController.swift; sourceTree = "<group>"; };
 		F1A784E82108304800C03AB6 /* UserScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScript.swift; sourceTree = "<group>"; };
 		F1B2992F21143BEB0074B0F4 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		F1B2993021143BEB0074B0F4 /* Article.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		F1B2993121143BEB0074B0F4 /* AddPhotoTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoTextViewController.swift; sourceTree = "<group>"; };
 		F1B2993221143BEB0074B0F4 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
-		F1B2993321143BEC0074B0F4 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
 		F1B2993421143BEC0074B0F4 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		F1D8EA7321194B3500410305 /* ArticleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewController.swift; sourceTree = "<group>"; };
+		F1D8EA7521194B3A00410305 /* Article.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
+		F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserDetailViewController.swift; sourceTree = "<group>"; };
+		F1D8EA7921194B9100410305 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F1D8EA7A21194B9100410305 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
 		F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModifyViewController.swift; sourceTree = "<group>"; };
 		F1F714CF20FF557E009DB9EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F1F714D020FF557E009DB9EF /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F1F714D120FF557E009DB9EF /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		F1F714D220FF557E009DB9EF /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
-		F1F714D820FF5593009DB9EF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		F1F714D920FF5593009DB9EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SginUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,10 +245,11 @@
 		27FC3FD520F2FCDE001A063E /* Article */ = {
 			isa = PBXGroup;
 			children = (
-				F1B2993021143BEB0074B0F4 /* Article.storyboard */,
-				F1B2993321143BEC0074B0F4 /* ArticleTableViewController.swift */,
+				F1D8EA7521194B3A00410305 /* Article.storyboard */,
+				F1D8EA7321194B3500410305 /* ArticleTableViewController.swift */,
 				F1B2993221143BEB0074B0F4 /* ArticleDetailViewController.swift */,
 				F1B2993121143BEB0074B0F4 /* AddPhotoTextViewController.swift */,
+				F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */,
 				F1B2993421143BEC0074B0F4 /* ArticleTableViewCell.swift */,
 				F1B2992F21143BEB0074B0F4 /* Article.swift */,
 			);
@@ -326,8 +329,8 @@
 		F1F714D720FF5593009DB9EF /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F1F714D820FF5593009DB9EF /* Login.storyboard */,
-				F1F714D920FF5593009DB9EF /* LoginViewController.swift */,
+				F1D8EA7A21194B9100410305 /* Login.storyboard */,
+				F1D8EA7921194B9100410305 /* LoginViewController.swift */,
 				F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */,
 				F1F714DC20FF56B0009DB9EF /* SginUpViewController.swift */,
 			);
@@ -396,6 +399,7 @@
 			files = (
 				27FC3FDE20F308F8001A063E /* Master.storyboard in Resources */,
 				27FC3FC420F2F7A3001A063E /* LaunchScreen.storyboard in Resources */,
+				F1D8EA7C21194B9100410305 /* Login.storyboard in Resources */,
 				27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */,
 				27FB31DF20F9BF86009AD98B /* Course.storyboard in Resources */,
 				F1F714D520FF557F009DB9EF /* User.storyboard in Resources */,
@@ -403,10 +407,9 @@
 				27FC3FE320F3094C001A063E /* Message.storyboard in Resources */,
 				27FB31E720F9EFBE009AD98B /* CourseItemView.xib in Resources */,
 				27FC3FBF20F2F7A2001A063E /* Main.storyboard in Resources */,
-				F1B2993621143BEC0074B0F4 /* Article.storyboard in Resources */,
+				F1D8EA7621194B3A00410305 /* Article.storyboard in Resources */,
 				27FC3FE820F3096D001A063E /* Account.storyboard in Resources */,
 				27FC3FE620F3095D001A063E /* Notification.storyboard in Resources */,
-				F1F714DA20FF5593009DB9EF /* Login.storyboard in Resources */,
 				273D63892112DE090040803B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1B2993521143BEC0074B0F4 /* Article.swift in Sources */,
+				F1D8EA7421194B3500410305 /* ArticleTableViewController.swift in Sources */,
 				270D073220FC91A80037F510 /* UIImage+FixOrientation.swift in Sources */,
 				2766CA52210F284E007F9648 /* CommentDialogViewController.swift in Sources */,
 				B387AEB4210713CD00BF4794 /* MasterTableViewController.swift in Sources */,
@@ -488,18 +492,19 @@
 				F1F714D320FF557F009DB9EF /* User.swift in Sources */,
 				F1B2993721143BEC0074B0F4 /* AddPhotoTextViewController.swift in Sources */,
 				27FC3FCE20F2FC4F001A063E /* ChatRoomListViewController.swift in Sources */,
-				F1F714DB20FF5593009DB9EF /* LoginViewController.swift in Sources */,
 				27FC3FEE20F33BEB001A063E /* PhotoViewController.swift in Sources */,
 				270D073620FCBB4B0037F510 /* manageStudentViewController.swift in Sources */,
 				F1B2993A21143BEC0074B0F4 /* ArticleTableViewCell.swift in Sources */,
 				F1B2993821143BEC0074B0F4 /* ArticleDetailViewController.swift in Sources */,
 				270D073820FD8A7D0037F510 /* ChatRoomItemCell.swift in Sources */,
 				273D6391211300140040803B /* MessageTableViewCell.swift in Sources */,
+				F1D8EA7821194B3D00410305 /* OtherUserDetailViewController.swift in Sources */,
 				270D073020FC91910037F510 /* UIImageCropper.swift in Sources */,
 				B3D4DAFB211195000030A5CD /* HighlightCourse.swift in Sources */,
 				27FC3FBA20F2F7A2001A063E /* AppDelegate.swift in Sources */,
 				F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */,
 				F11684D62108A0C5004E0345 /* ProfessionCategoryTableViewController.swift in Sources */,
+				F1D8EA7B21194B9100410305 /* LoginViewController.swift in Sources */,
 				B33790C021107B3C00E2ECD3 /* MasterTableViewCell.swift in Sources */,
 				F11684DA2108A0FD004E0345 /* ProfessionTableViewCell.swift in Sources */,
 				F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */,
@@ -507,7 +512,6 @@
 				270D070C20FC2FD00037F510 /* singleCourseViewController.swift in Sources */,
 				27FC3FDB20F2FF7F001A063E /* Common.swift in Sources */,
 				272515B82118034C00A4905D /* PhotoSingleTon.swift in Sources */,
-				F1B2993921143BEC0074B0F4 /* ArticleTableViewController.swift in Sources */,
 				273D638D2112EFBC0040803B /* ChatRoomViewController.swift in Sources */,
 				F1F714D620FF557F009DB9EF /* UserTableViewController.swift in Sources */,
 				27FC3FF220F36707001A063E /* AccountSwitchViewController.swift in Sources */,

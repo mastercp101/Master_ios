@@ -20,13 +20,11 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var enterAccountTextField: UITextField!
     @IBOutlet weak var enterPasswordTextField: UITextField!
-    @IBOutlet weak var loginBkgdImageView: UIImageView!
-    @IBOutlet weak var errorTipsLabel: UILabel!
+    @IBOutlet weak var errorTipsStackView: UIStackView!
     @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareLoginView()
         enterAccountTextField.delegate = self
         enterPasswordTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(moveViewUp(_:)), name: .UIKeyboardWillShow, object: nil)
@@ -38,13 +36,13 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+//        UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .default
+//        UIApplication.shared.statusBarStyle = .default
         self.view.endEditing(true)
         resetType()
     }
@@ -59,13 +57,6 @@ class LoginViewController: UIViewController {
         let height = size.height - 150
         UIView.animate(withDuration: 0.23) { self.view.frame.origin.y -= height }
         keyboardHeight = height
-    }
-    
-    private func prepareLoginView() {
-        // Text Field Placeholder Color
-        loginBkgdImageView.image = UIImage(named: LOGIN_VIEW_BACKGROUND)
-        enterAccountTextField.attributedPlaceholder = NSAttributedString(string: ACCOUNT_PLACEHOLDER, attributes: [.foregroundColor: UIColor.lightGray])
-        enterPasswordTextField.attributedPlaceholder = NSAttributedString(string: PASSWORD_PLACEHOLDER, attributes: [.foregroundColor: UIColor.lightGray])
     }
     
     private func resetType() {
@@ -125,9 +116,9 @@ class LoginViewController: UIViewController {
                 UserFile.shared.setUserAccount(account: account)
                 self.getUserAccess(account: account)
             } else { // 登入失敗
-                UIView.animate(withDuration: 0.2) { self.errorTipsLabel.alpha = 1 }
+                UIView.animate(withDuration: 0.2) { self.errorTipsStackView.alpha = 1 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                     UIView.animate(withDuration: 0.2) { self.errorTipsLabel.alpha = 0 }
+                     UIView.animate(withDuration: 0.2) { self.errorTipsStackView.alpha = 0 }
                 }
                 self.loginButton.shake()
             }

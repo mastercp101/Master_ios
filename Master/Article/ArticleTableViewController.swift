@@ -42,9 +42,6 @@ class ArticleTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        // 畫面移動到頂端
-//        let topRect = CGRect(x: 0, y: 0, width: 1, height: 1)
-//        self.tableView.scrollRectToVisible(topRect, animated: false)
         // 檢查目前登入的帳號是否跟讀取時的帳號一致, 否則重新整理(包括登出狀態)
         var account = ""
         if let userAccount = userAccount { account = userAccount }
@@ -119,6 +116,18 @@ class ArticleTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: postsCell, for: indexPath) as? ArticleTableViewCell else {
             return UITableViewCell()
         }
+        
+        
+        
+        
+        // TODO: - 新增點擊大頭照Show Detail
+        
+        cell.postsPortraitImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUserDetail(_:))))
+        
+        
+        
+        
+ 
         // 發文者大頭照
         if let data = ArticleData.shared.info[indexPath.row].postPortrait {
             cell.postsPortraitImage.image = UIImage(data: data)
@@ -151,6 +160,29 @@ class ArticleTableViewController: UITableViewController {
         
         return cell
     }
+  
+    
+    @objc private func showUserDetail(_ sender: UITapGestureRecognizer) {
+        
+        guard let point = sender.view?.convert(CGPoint.zero, to: self.tableView),
+              let indexPath = self.tableView.indexPathForRow(at: point) else { return }
+        
+        
+        let storyboard = UIStoryboard(name: "Article", bundle: nil)
+        guard let userDetailView = storyboard.instantiateViewController(withIdentifier: "UserDetailVC") as? OtherUserDetailViewController else {
+            return
+        }
+        userDetailView.testStr = "QQ"
+        
+        userDetailView.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        userDetailView.modalPresentationStyle = .overCurrentContext // 背景半透明
+        userDetailView.modalTransitionStyle = .crossDissolve // 畫面出現淡入淡出
+        let rootViewController = self.view.window?.rootViewController
+        rootViewController?.present(userDetailView, animated: true, completion: nil)
+    }
+
+    
+ // MARK: - Click button handler
     
     @IBAction func clickAddNewArticle(_ sender: UIBarButtonItem) {
         
@@ -158,9 +190,7 @@ class ArticleTableViewController: UITableViewController {
         
         let storyboard = UIStoryboard(name: "Article", bundle: nil)
         let loginView = storyboard.instantiateViewController(withIdentifier: "AddNewArticleVC")
-        let rootViewController = self.view.window?.rootViewController
-        rootViewController?.present(loginView, animated: true, completion: nil)
-        
+        present(loginView, animated: true, completion: nil)
     }
     
     // 點讚
@@ -298,6 +328,7 @@ class ArticleTableViewController: UITableViewController {
             ArticleData.shared.info[index].postLikes = resultInt
         }
     }
+    
 }
 
 

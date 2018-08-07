@@ -33,6 +33,12 @@ class ArticleDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 設定 title
+        if let index = selectArticleIndex {
+            self.navigationItem.title = "\(ArticleData.shared.info[index].userName)的貼文"
+        } else {
+            self.navigationItem.title = "貼文"
+        }
         commentTextField.delegate = self
         // 找到 TableView
         for view in self.view.subviews {
@@ -54,6 +60,8 @@ class ArticleDetailViewController: UIViewController {
         if ArticleData.shared.info[index].commentCount != 0 {
             getArticleComment(postId: ArticleData.shared.info[index].postId)
         }
+        // 彈起鍵盤
+        commentTextField.becomeFirstResponder()
     }
     
     @objc func moveBottomViewUp(_ aNotification: Notification) {

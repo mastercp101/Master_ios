@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--登入-->
         <scene sceneID="cNp-Td-F6E">
             <objects>
                 <viewController id="ydH-yu-cCw" customClass="LoginViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,9 +141,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5LN-Mo-W2f">
-                                <rect key="frame" x="15" y="30" width="42" height="34"/>
+                                <rect key="frame" x="15" y="30" width="37" height="34"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <state key="normal" title="Back">
+                                <state key="normal" title="返回">
                                     <color key="titleColor" red="0.27058823529999998" green="0.34901960780000002" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -164,8 +164,8 @@
                                     <action selector="loginShowPassword:" destination="ydH-yu-cCw" eventType="touchDown" id="hAN-u0-Ec9"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gtd-Nf-MRq">
-                                <rect key="frame" x="212" y="255" width="132.5" height="20"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gtd-Nf-MRq">
+                                <rect key="frame" x="219.5" y="255" width="125" height="20"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_error_icon" translatesAutoresizingMaskIntoConstraints="NO" id="p2i-F0-YMF">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -175,16 +175,17 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號或密碼錯誤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaK-sX-84i">
-                                        <rect key="frame" x="25" y="0.0" width="107.5" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="25" y="0.0" width="100" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="dDb-cn-AXz"/>
-                                </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="gEJ-rd-fCa">
+                                <rect key="frame" x="178" y="408" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -198,6 +199,7 @@
                             <constraint firstItem="NoY-cf-vTb" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="30" id="HTl-Du-4Je"/>
                             <constraint firstItem="Kbw-vs-T9H" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="30" id="Hc8-E8-fn8"/>
                             <constraint firstItem="XLD-fq-isr" firstAttribute="trailing" secondItem="7Ex-SO-eIn" secondAttribute="trailing" id="KtW-yX-LId"/>
+                            <constraint firstItem="gEJ-rd-fCa" firstAttribute="centerX" secondItem="OhM-9J-zwg" secondAttribute="centerX" id="Q50-cC-LWP"/>
                             <constraint firstItem="OhM-9J-zwg" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="30" id="Ss6-vD-lQG"/>
                             <constraint firstItem="5LN-Mo-W2f" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" constant="15" id="T5z-Pn-dtJ"/>
                             <constraint firstItem="XLD-fq-isr" firstAttribute="top" secondItem="bNt-me-l2p" secondAttribute="top" id="TOl-Fp-1x9"/>
@@ -207,6 +209,7 @@
                             <constraint firstItem="7Ex-SO-eIn" firstAttribute="trailing" secondItem="NCo-6g-Apr" secondAttribute="trailing" constant="30" id="cRE-JR-X3L"/>
                             <constraint firstItem="NCo-6g-Apr" firstAttribute="centerY" secondItem="EeO-a6-QsG" secondAttribute="centerY" id="jsF-iE-5Ng"/>
                             <constraint firstItem="XLD-fq-isr" firstAttribute="leading" secondItem="7Ex-SO-eIn" secondAttribute="leading" id="nT5-Ur-6fN"/>
+                            <constraint firstItem="gEJ-rd-fCa" firstAttribute="centerY" secondItem="OhM-9J-zwg" secondAttribute="centerY" id="ndY-n1-iYP"/>
                             <constraint firstItem="7Ex-SO-eIn" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9RD-bo-dfN" secondAttribute="bottom" priority="900" constant="60" id="pkb-kB-5h1"/>
                             <constraint firstItem="7Ex-SO-eIn" firstAttribute="trailing" secondItem="Gtd-Nf-MRq" secondAttribute="trailing" constant="30" id="tyk-e2-qNH"/>
                             <constraint firstItem="Kbw-vs-T9H" firstAttribute="top" secondItem="NoY-cf-vTb" secondAttribute="bottom" constant="20" id="yEL-1b-JHc"/>
@@ -217,12 +220,14 @@
                             <outletCollection property="gestureRecognizers" destination="qSG-e0-2qI" appends="YES" id="Muw-pP-079"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="igd-2b-kwD"/>
+                    <navigationItem key="navigationItem" title="登入" id="igd-2b-kwD"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="enterAccountTextField" destination="9Bu-Ya-cyB" id="KYa-sx-FF1"/>
                         <outlet property="enterPasswordTextField" destination="fbD-qq-L5z" id="i90-eh-Z8V"/>
+                        <outlet property="errorTipsLabel" destination="DaK-sX-84i" id="Y8b-rR-sRD"/>
                         <outlet property="errorTipsStackView" destination="Gtd-Nf-MRq" id="9nP-Vo-8Om"/>
+                        <outlet property="loadingActivityIndicator" destination="gEJ-rd-fCa" id="CYu-0n-qe6"/>
                         <outlet property="loginButton" destination="OhM-9J-zwg" id="BKE-q9-UKt"/>
                     </connections>
                 </viewController>
@@ -281,7 +286,7 @@
             </objects>
             <point key="canvasLocation" x="4471" y="765"/>
         </scene>
-        <!--Sgin Up-->
+        <!--註冊-->
         <scene sceneID="Amn-6V-gBE">
             <objects>
                 <viewController id="5lR-2C-yww" customClass="SginUpViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
@@ -290,7 +295,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入帳號 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTQ-ZY-fg5">
-                                <rect key="frame" x="30" y="125" width="315" height="30"/>
+                                <rect key="frame" x="30" y="124.5" width="315" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -299,44 +304,44 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-0B-NbY">
-                                <rect key="frame" x="40" y="94" width="35" height="21"/>
+                                <rect key="frame" x="40" y="94" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5f-YQ-wea">
-                                <rect key="frame" x="40" y="185" width="35" height="21"/>
+                                <rect key="frame" x="40" y="184.5" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入密碼 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVl-dh-ddh">
-                                <rect key="frame" x="30" y="216" width="315" height="30"/>
+                                <rect key="frame" x="30" y="215" width="315" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-ge-HhL">
-                                <rect key="frame" x="40" y="276" width="35" height="21"/>
+                                <rect key="frame" x="40" y="275" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入暱稱 ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9sy-Z7-JY5">
-                                <rect key="frame" x="30" y="307" width="315" height="30"/>
+                                <rect key="frame" x="30" y="305.5" width="315" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fkc-3T-Kjc">
-                                <rect key="frame" x="30" y="398" width="315" height="29"/>
+                                <rect key="frame" x="30" y="396" width="315" height="29"/>
                                 <segments>
                                     <segment title="教練"/>
                                     <segment title="學員"/>
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IQ-eD-gfa">
-                                <rect key="frame" x="40" y="367" width="35" height="21"/>
+                                <rect key="frame" x="40" y="365.5" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -361,7 +366,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBL-Sz-vVq">
-                                <rect key="frame" x="312" y="216.5" width="28" height="28"/>
+                                <rect key="frame" x="312" y="215.5" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jBL-Sz-vVq" secondAttribute="height" multiplier="1:1" id="khm-C9-NT5"/>
                                     <constraint firstAttribute="height" constant="28" id="mof-tQ-KXs"/>
@@ -374,14 +379,36 @@
                                 </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_ok_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HAd-00-cvG">
-                                <rect key="frame" x="314.5" y="129" width="23" height="23"/>
+                                <rect key="frame" x="314.5" y="128.5" width="23" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="GTe-5J-jZO"/>
                                     <constraint firstAttribute="width" secondItem="HAd-00-cvG" secondAttribute="height" multiplier="1:1" id="Yt5-Rr-1WK"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dr8-QD-mLY">
+                                <rect key="frame" x="220" y="522" width="125" height="20"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_error_icon" translatesAutoresizingMaskIntoConstraints="NO" id="yND-jY-S3L">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="1qw-Wo-Ubo"/>
+                                            <constraint firstAttribute="height" constant="20" id="BBT-AB-5MT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尚有資料未填寫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHK-Xf-BNd">
+                                        <rect key="frame" x="25" y="0.0" width="100" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NRG-CN-W25">
+                                <rect key="frame" x="178" y="577" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="JTQ-ZY-fg5" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="30" id="0hS-F0-iBK"/>
                             <constraint firstItem="P0k-0B-NbY" firstAttribute="top" secondItem="QrI-Be-fxY" secondAttribute="top" constant="30" id="3BX-jR-ygY"/>
@@ -390,15 +417,18 @@
                             <constraint firstItem="jBL-Sz-vVq" firstAttribute="centerY" secondItem="zVl-dh-ddh" secondAttribute="centerY" id="7sx-ca-BIS"/>
                             <constraint firstItem="8IQ-eD-gfa" firstAttribute="top" secondItem="9sy-Z7-JY5" secondAttribute="bottom" constant="30" id="Brk-Kw-aMB"/>
                             <constraint firstItem="QrI-Be-fxY" firstAttribute="trailing" secondItem="JTQ-ZY-fg5" secondAttribute="trailing" constant="30" id="DJd-5z-1Xu"/>
+                            <constraint firstItem="QrI-Be-fxY" firstAttribute="trailing" secondItem="dr8-QD-mLY" secondAttribute="trailing" constant="30" id="FPj-OP-X1X"/>
                             <constraint firstItem="V5f-YQ-wea" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="40" id="Fxu-Gd-TNR"/>
                             <constraint firstItem="9sy-Z7-JY5" firstAttribute="top" secondItem="c4a-ge-HhL" secondAttribute="bottom" constant="10" id="Gvy-oW-s5u"/>
                             <constraint firstItem="8IQ-eD-gfa" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="40" id="IKM-tZ-k7v"/>
                             <constraint firstItem="c4a-ge-HhL" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="40" id="Iej-WX-icc"/>
+                            <constraint firstItem="gG1-dh-GvJ" firstAttribute="top" secondItem="dr8-QD-mLY" secondAttribute="bottom" constant="25" id="J8X-zu-jxn"/>
                             <constraint firstItem="HAd-00-cvG" firstAttribute="centerX" secondItem="jBL-Sz-vVq" secondAttribute="centerX" id="JPX-dC-eiO"/>
                             <constraint firstItem="HAd-00-cvG" firstAttribute="centerY" secondItem="JTQ-ZY-fg5" secondAttribute="centerY" id="PzW-0W-kJv"/>
                             <constraint firstItem="QrI-Be-fxY" firstAttribute="trailing" secondItem="Fkc-3T-Kjc" secondAttribute="trailing" constant="30" id="S6D-o8-WoT"/>
                             <constraint firstItem="gG1-dh-GvJ" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="30" id="Sa9-Dp-EXL"/>
                             <constraint firstItem="V5f-YQ-wea" firstAttribute="top" secondItem="JTQ-ZY-fg5" secondAttribute="bottom" constant="30" id="THZ-im-Iki"/>
+                            <constraint firstItem="NRG-CN-W25" firstAttribute="centerX" secondItem="gG1-dh-GvJ" secondAttribute="centerX" id="Tvw-ot-r0X"/>
                             <constraint firstItem="9sy-Z7-JY5" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="30" id="VaD-Ei-vxd"/>
                             <constraint firstItem="c4a-ge-HhL" firstAttribute="top" secondItem="zVl-dh-ddh" secondAttribute="bottom" constant="30" id="YI2-Uz-TO5"/>
                             <constraint firstItem="QrI-Be-fxY" firstAttribute="trailing" secondItem="9sy-Z7-JY5" secondAttribute="trailing" constant="30" id="b7d-H1-dFg"/>
@@ -407,13 +437,17 @@
                             <constraint firstItem="QrI-Be-fxY" firstAttribute="trailing" secondItem="jBL-Sz-vVq" secondAttribute="trailing" constant="35" id="hqv-Pg-UVu"/>
                             <constraint firstItem="zVl-dh-ddh" firstAttribute="top" secondItem="V5f-YQ-wea" secondAttribute="bottom" constant="10" id="iGx-un-eUj"/>
                             <constraint firstItem="zVl-dh-ddh" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="30" id="r3d-VE-g3t"/>
+                            <constraint firstItem="NRG-CN-W25" firstAttribute="centerY" secondItem="gG1-dh-GvJ" secondAttribute="centerY" id="rCq-95-Roz"/>
                             <constraint firstItem="Fkc-3T-Kjc" firstAttribute="top" secondItem="8IQ-eD-gfa" secondAttribute="bottom" constant="10" id="sou-n2-xTK"/>
                             <constraint firstItem="Fkc-3T-Kjc" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="30" id="uIn-SL-ZRL"/>
                             <constraint firstItem="P0k-0B-NbY" firstAttribute="leading" secondItem="QrI-Be-fxY" secondAttribute="leading" constant="40" id="vKg-rC-pag"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QrI-Be-fxY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="tu4-GY-0qI" appends="YES" id="nhq-TO-5wt"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Sgin Up" id="hLn-fZ-39s"/>
+                    <navigationItem key="navigationItem" title="註冊" id="hLn-fZ-39s"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="sginupAccessSegmented" destination="Fkc-3T-Kjc" id="PbW-83-zwk"/>
@@ -421,9 +455,18 @@
                         <outlet property="sginupCheckIconImageView" destination="HAd-00-cvG" id="YVl-at-0P5"/>
                         <outlet property="sginupNameTextField" destination="9sy-Z7-JY5" id="9BC-2n-BdB"/>
                         <outlet property="sginupPasswordTextField" destination="zVl-dh-ddh" id="Qxc-Rh-PF0"/>
+                        <outlet property="signErrorTipsLabel" destination="SHK-Xf-BNd" id="f8j-Fw-EaR"/>
+                        <outlet property="signErrorTipsStackView" destination="dr8-QD-mLY" id="9wV-nV-jLy"/>
+                        <outlet property="signLoadingActivityIndicator" destination="NRG-CN-W25" id="aDo-Ch-EDM"/>
+                        <outlet property="signinButton" destination="gG1-dh-GvJ" id="fvV-Q2-p5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEj-rG-g7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tu4-GY-0qI">
+                    <connections>
+                        <action selector="endEdit:" destination="5lR-2C-yww" id="vQy-qW-SkA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5360.8000000000002" y="29.23538230884558"/>
         </scene>

@@ -20,11 +20,22 @@ class SginUpViewController: UIViewController {
     @IBOutlet weak var sginupNameTextField: UITextField!
     @IBOutlet weak var sginupAccessSegmented: UISegmentedControl!
     
+    private var signErrorTipsLock = true
+    @IBOutlet weak var signErrorTipsLabel: UILabel!
+    @IBOutlet weak var signErrorTipsStackView: UIStackView!
+    
+    @IBOutlet weak var signLoadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var signinButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sginupAccountTextField.delegate = self
         sginupPasswordTextField.delegate = self
         sginupNameTextField.delegate = self
+        // 提示訊息
+        signErrorTipsStackView.alpha = 0
+        // 轉轉
+        signLoadingActivityIndicator.hidesWhenStopped = true
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -36,28 +47,44 @@ class SginUpViewController: UIViewController {
     @IBAction func prepareSginup(_ sender: UIButton) {
         
         guard let account = sginupAccountTextField.text, !account.isEmpty else {
+            showSignErrorTips(message: "尚有資料未填寫...")
             sender.shake()
             return
         }
         guard let password = sginupPasswordTextField.text, !password.isEmpty else {
+            showSignErrorTips(message: "尚有資料未填寫...")
             sender.shake()
             return
         }
         guard let name = sginupNameTextField.text, !name.isEmpty else {
+            showSignErrorTips(message: "尚有資料未填寫...")
             sender.shake()
             return
         }
         guard checkAccountResult else {
+            showSignErrorTips(message: "帳號已有人使用")
             sender.shake()
             return
         }
         let access = sginupAccessSegmented.selectedSegmentIndex + 1 // 教練 = 1, 學員 ＝ 2
         
         Alert.shared.buildDoubleAlert(viewController: self, alertTitle: nil, alertMessage: "確定送出?", actionTitles: ["Cancel","OK"], firstHandler: { (action) in
+            
             return
+            
         }) { (action) in
-            self.sginupNow(account: account, password: password, name: name, access: access)
+            
+            sender.setTitle("", for: .normal)
+            self.signLoadingActivityIndicator.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.sginupNow(account: account, password: password, name: name, access: access)
+            }
+            
         }
+    }
+    
+    @IBAction func endEdit(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     @IBAction func sginupShowPassword(_ sender: UIButton) {
@@ -72,6 +99,20 @@ class SginUpViewController: UIViewController {
         guard let account = sginupAccountTextField.text, !account.isEmpty else { return }
         connectionDBCheckAccount(account: account)
     }
+    
+    private func showSignErrorTips(message: String) {
+        
+        guard signErrorTipsLock else { return }
+        signErrorTipsLock = false
+        signErrorTipsLabel.text = message
+        UIView.animate(withDuration: 0.15) { self.signErrorTipsStackView.alpha = 1 }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIView.animate(withDuration: 0.15) { self.signErrorTipsStackView.alpha = 0 }
+            self.signErrorTipsLock = true
+        }
+    }
+    
     
     
  // MAEK: - Connect DB Methods.
@@ -93,6 +134,8 @@ class SginUpViewController: UIViewController {
             }
             
             if result == "0" { // 理論上進不來
+                self.signinButton.setTitle("註冊", for: .normal)
+                self.signLoadingActivityIndicator.stopAnimating()
                 Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "Error", handler: { (action) in })
             } else { // 註冊成功
                 UserFile.shared.setUserAccount(account: account)

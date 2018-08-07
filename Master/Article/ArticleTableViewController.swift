@@ -82,6 +82,7 @@ class ArticleTableViewController: UITableViewController {
     }
     
     private func reloadArticleView() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         var account = ""
         if let userAccount = userAccount { account = userAccount }
         self.getExperienceArticle(account: account)
@@ -116,18 +117,8 @@ class ArticleTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: postsCell, for: indexPath) as? ArticleTableViewCell else {
             return UITableViewCell()
         }
-        
-        
-        
-        
-        // TODO: - 新增點擊大頭照Show Detail
-        
+        // 點擊大頭照
         cell.postsPortraitImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUserDetail(_:))))
-        
-        
-        
-        
- 
         // 發文者大頭照
         if let data = ArticleData.shared.info[indexPath.row].postPortrait {
             cell.postsPortraitImage.image = UIImage(data: data)
@@ -163,6 +154,7 @@ class ArticleTableViewController: UITableViewController {
   
     
     @objc private func showUserDetail(_ sender: UITapGestureRecognizer) {
+        guard checkLogin() else { return }
         // 拿到目前點擊的誰的大頭照的 index
         guard let point = sender.view?.convert(CGPoint.zero, to: self.tableView),
               let indexPath = self.tableView.indexPathForRow(at: point) else { return }

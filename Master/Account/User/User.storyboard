@@ -185,7 +185,7 @@
                                                 <constraint firstAttribute="height" constant="40" id="BrF-6x-v3w"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" title="Sign Out">
+                                            <state key="normal" title="登出">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -282,7 +282,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="編輯專業技能" id="BvT-Jr-gh7">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="0Lm-yl-6mu">
+                        <barButtonItem key="leftBarButtonItem" title="上一頁" id="0Lm-yl-6mu">
                             <connections>
                                 <action selector="goBack:" destination="dcO-WI-dxs" id="vUg-6z-jJG"/>
                             </connections>
@@ -422,7 +422,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="Lod-qI-9Zd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Send">
+                                                <state key="normal" title="完成">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -550,7 +550,7 @@
                         <viewLayoutGuide key="safeArea" id="pu2-91-zuN"/>
                     </view>
                     <navigationItem key="navigationItem" title="編輯會員資料" id="ZRH-hZ-EvR">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="vBJ-Uq-XVg">
+                        <barButtonItem key="leftBarButtonItem" title="上一頁" id="vBJ-Uq-XVg">
                             <connections>
                                 <action selector="goBack:" destination="5ao-QH-SVF" id="3NN-x8-kR7"/>
                             </connections>

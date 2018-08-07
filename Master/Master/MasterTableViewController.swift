@@ -198,7 +198,7 @@ extension MasterTableViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         pickerTextField.inputView = pickerView
         pickerTextField.placeholder = professionCategory
         pickerView.selectRow(0, inComponent: 0, animated: true)
-        pickerTextField.text = pickerArray[0]
+        pickerTextField.text = pickerArray[0] 
         downloadCourse(professionItem: pickerArray[0])
     }
     

@@ -149,6 +149,11 @@ class MasterViewController: UIViewController {
             return
         }
         
+        guard professionCategorys.count != 0 else {
+            print("professionCategorys.count is nil.")
+            return
+        }
+        
         switch segue.identifier {
         case waterSegue:
             controller.pickerArray = professionCategorys[0].professionItems

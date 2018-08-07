@@ -163,20 +163,21 @@ class ArticleTableViewController: UITableViewController {
   
     
     @objc private func showUserDetail(_ sender: UITapGestureRecognizer) {
-        
+        // 拿到目前點擊的誰的大頭照的 index
         guard let point = sender.view?.convert(CGPoint.zero, to: self.tableView),
               let indexPath = self.tableView.indexPathForRow(at: point) else { return }
-        
-        
+        // 拿到目的地
         let storyboard = UIStoryboard(name: "Article", bundle: nil)
-        guard let userDetailView = storyboard.instantiateViewController(withIdentifier: "UserDetailVC") as? OtherUserDetailViewController else {
+        guard let userDetailView = storyboard.instantiateViewController(withIdentifier: "OtherUserDetailVC") as? OtherUserDetailViewController else {
             return
         }
-        userDetailView.testStr = "QQ"
-        
+        // 準備傳遞資料
+        userDetailView.otherUserId = ArticleData.shared.info[indexPath.row].userId
+        // 第二頁背景透明相關
         userDetailView.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         userDetailView.modalPresentationStyle = .overCurrentContext // 背景半透明
         userDetailView.modalTransitionStyle = .crossDissolve // 畫面出現淡入淡出
+        // 開始轉跳頁面
         let rootViewController = self.view.window?.rootViewController
         rootViewController?.present(userDetailView, animated: true, completion: nil)
     }

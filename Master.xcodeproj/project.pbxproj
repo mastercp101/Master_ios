@@ -65,6 +65,7 @@
 		F1D8EA7821194B3D00410305 /* OtherUserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */; };
 		F1D8EA7B21194B9100410305 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7921194B9100410305 /* LoginViewController.swift */; };
 		F1D8EA7C21194B9100410305 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1D8EA7A21194B9100410305 /* Login.storyboard */; };
+		F1D8EA7E211975BE00410305 /* OtherUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D8EA7D211975BE00410305 /* OtherUserInfoTableViewController.swift */; };
 		F1DA664A2102242500CBF1D3 /* LoginRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */; };
 		F1DA664C2102250700CBF1D3 /* UserModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */; };
 		F1F714D320FF557F009DB9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F714CF20FF557E009DB9EF /* User.swift */; };
@@ -137,6 +138,7 @@
 		F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserDetailViewController.swift; sourceTree = "<group>"; };
 		F1D8EA7921194B9100410305 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F1D8EA7A21194B9100410305 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		F1D8EA7D211975BE00410305 /* OtherUserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserInfoTableViewController.swift; sourceTree = "<group>"; };
 		F1DA66492102242500CBF1D3 /* LoginRemindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemindViewController.swift; sourceTree = "<group>"; };
 		F1DA664B2102250700CBF1D3 /* UserModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModifyViewController.swift; sourceTree = "<group>"; };
 		F1F714CF20FF557E009DB9EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				F1B2993221143BEB0074B0F4 /* ArticleDetailViewController.swift */,
 				F1B2993121143BEB0074B0F4 /* AddPhotoTextViewController.swift */,
 				F1D8EA7721194B3D00410305 /* OtherUserDetailViewController.swift */,
+				F1D8EA7D211975BE00410305 /* OtherUserInfoTableViewController.swift */,
 				F1B2993421143BEC0074B0F4 /* ArticleTableViewCell.swift */,
 				F1B2992F21143BEB0074B0F4 /* Article.swift */,
 			);
@@ -477,6 +480,7 @@
 				B37E32202108AA4B008A5A4F /* ProfessionCategory.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				2766CA50210EE577007F9648 /* PhotoItemViewController.swift in Sources */,
+				F1D8EA7E211975BE00410305 /* OtherUserInfoTableViewController.swift in Sources */,
 				27FC3FBC20F2F7A2001A063E /* MasterViewController.swift in Sources */,
 				27D2A7752105F68D00E8C761 /* Profession.swift in Sources */,
 				27B9470320FF61CC00931FE4 /* Apply.swift in Sources */,
@@ -678,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -700,7 +704,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PK8ATU8493;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

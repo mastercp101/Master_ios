@@ -20,13 +20,23 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var enterAccountTextField: UITextField!
     @IBOutlet weak var enterPasswordTextField: UITextField!
+    
+    private var errorTipsLock = true
     @IBOutlet weak var errorTipsStackView: UIStackView!
+    @IBOutlet weak var errorTipsLabel: UILabel!
+    
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         enterAccountTextField.delegate = self
         enterPasswordTextField.delegate = self
+        // 提示訊息
+        errorTipsStackView.alpha = 0
+        // 轉轉轉
+        loadingActivityIndicator.hidesWhenStopped = true
+        // 鍵盤監聽
         NotificationCenter.default.addObserver(self, selector: #selector(moveViewUp(_:)), name: .UIKeyboardWillShow, object: nil)
     }
 
@@ -36,19 +46,17 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        UIApplication.shared.statusBarStyle = .lightContent
+        keyboardHeight = 0
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        UIApplication.shared.statusBarStyle = .default
         self.view.endEditing(true)
         resetType()
     }
     
     @objc func moveViewUp(_ aNotification: Notification) {
-        
         guard keyboardLock else { return }
         keyboardLock = false
         let info = aNotification.userInfo
@@ -64,6 +72,20 @@ class LoginViewController: UIViewController {
         keyboardHeight = nil
     }
     
+    private func showErrorTips(message: String) {
+        
+        guard errorTipsLock else { return }
+        errorTipsLock = false
+        errorTipsLabel.text = message
+        UIView.animate(withDuration: 0.15) { self.errorTipsStackView.alpha = 1 }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIView.animate(withDuration: 0.15) { self.errorTipsStackView.alpha = 0 }
+            self.errorTipsLock = true
+        }
+    }
+    
+    
     @IBAction func loginViewEndEdit(_ sender: UITapGestureRecognizer) {
         
         if let keyboardHeight = keyboardHeight {
@@ -75,12 +97,18 @@ class LoginViewController: UIViewController {
     
     @IBAction func prepareLogin(_ sender: UIButton) {
         // check test field ...
-        guard let account = enterAccountTextField.text, let password = enterPasswordTextField.text ,!account.isEmpty, !password.isEmpty else {
+        guard let account = self.enterAccountTextField.text, let password = self.enterPasswordTextField.text ,!account.isEmpty, !password.isEmpty else {
+            showErrorTips(message: "帳號密碼不能為空")
             sender.shake()
             return
         }
-        // check account and password (Srever) ...
-        loginCheck(account: account, password: password)
+        self.loadingActivityIndicator.startAnimating()
+        sender.setTitle("", for: .normal)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // check account and password (Srever) ...
+            self.loginCheck(account: account, password: password)
+        }
     }
     
     @IBAction func loginShowPassword(_ sender: UIButton) {
@@ -116,10 +144,9 @@ class LoginViewController: UIViewController {
                 UserFile.shared.setUserAccount(account: account)
                 self.getUserAccess(account: account)
             } else { // 登入失敗
-                UIView.animate(withDuration: 0.2) { self.errorTipsStackView.alpha = 1 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                     UIView.animate(withDuration: 0.2) { self.errorTipsStackView.alpha = 0 }
-                }
+                self.showErrorTips(message: "帳號或密碼錯誤")
+                self.loadingActivityIndicator.stopAnimating()
+                self.loginButton.setTitle("登入", for: .normal)
                 self.loginButton.shake()
             }
         }

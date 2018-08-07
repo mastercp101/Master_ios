@@ -989,7 +989,7 @@
         <scene sceneID="RDu-n7-RKQ">
             <objects>
                 <tableViewController id="x6P-OH-GHh" customClass="OtherUserInfoTableViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Uj-ku-fkT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Uj-ku-fkT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -998,7 +998,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D0x-d7-ee7" id="R9A-mD-7Tu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_default_bkgd" translatesAutoresizingMaskIntoConstraints="NO" id="rgy-BU-PpX">
@@ -1027,12 +1027,16 @@
                                         <constraint firstAttribute="bottom" secondItem="ndf-XI-1mE" secondAttribute="bottom" id="zca-hY-NNh"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userBackgroundImageView" destination="rgy-BU-PpX" id="ep5-ZK-ytT"/>
+                                    <outlet property="userPortraitImageView" destination="ndf-XI-1mE" id="RiH-ZI-Sob"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserNameCell" id="BQK-ig-r83" customClass="UserNameCell" customModule="Master" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="278" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BQK-ig-r83" id="GYA-a0-QcF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rl-W4-EV4">
@@ -1048,12 +1052,15 @@
                                         <constraint firstItem="0Rl-W4-EV4" firstAttribute="top" secondItem="GYA-a0-QcF" secondAttribute="top" priority="900" constant="10" id="qc6-TD-2xj"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userNameLabel" destination="0Rl-W4-EV4" id="8o9-d7-TMr"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserInfoCell" id="Duf-Tk-DTV" customClass="UserInfoCell" customModule="Master" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="322" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Duf-Tk-DTV" id="zrU-J4-fEj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="標題" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAk-OU-aCr">
@@ -1077,12 +1084,16 @@
                                         <constraint firstItem="qAk-OU-aCr" firstAttribute="top" secondItem="zrU-J4-fEj" secondAttribute="top" constant="10" id="s4t-NJ-ugL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userInfoDetail" destination="pDF-SH-SFC" id="mWM-HN-Fat"/>
+                                    <outlet property="userInfoTitle" destination="qAk-OU-aCr" id="o2z-y8-SWf"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserProfileCell" id="Bv3-jr-vSR" customClass="UserProfileCell" customModule="Master" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="366" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bv3-jr-vSR" id="OeJ-Pc-Jof">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="個人簡介 ..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzr-k2-DbK">
@@ -1099,12 +1110,15 @@
                                         <constraint firstItem="Fzr-k2-DbK" firstAttribute="top" secondItem="OeJ-Pc-Jof" secondAttribute="top" priority="900" constant="10" id="Bya-sI-lS5"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userProfileLabel" destination="Fzr-k2-DbK" id="9Gm-AF-Ihr"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserProfessionCell" id="zWr-Ax-Q3Z" customClass="UserProfessionCell" customModule="Master" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="410" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zWr-Ax-Q3Z" id="NFz-ky-w9m">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="專業技能" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzm-2I-WSn">
@@ -1120,6 +1134,9 @@
                                         <constraint firstItem="hzm-2I-WSn" firstAttribute="centerX" secondItem="NFz-ky-w9m" secondAttribute="centerX" id="Mne-tH-uCa"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userProfessionLabel" destination="hzm-2I-WSn" id="hD9-RV-U73"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

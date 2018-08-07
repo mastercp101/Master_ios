@@ -84,7 +84,8 @@ class OtherUserDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let controller = (segue.destination as? UINavigationController)?.topViewController as? OtherUserInfoTableViewController {
-            controller.otherUserInfo = self.otherUserInfo
+            controller.otherUserInfo = otherUserInfo
+            controller.otherUserId = otherUserId
         }
     }
     

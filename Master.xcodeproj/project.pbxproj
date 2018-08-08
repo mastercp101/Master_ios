@@ -25,6 +25,7 @@
 		273D6391211300140040803B /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D6390211300140040803B /* MessageTableViewCell.swift */; };
 		2766CA50210EE577007F9648 /* PhotoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766CA4F210EE577007F9648 /* PhotoItemViewController.swift */; };
 		2766CA52210F284E007F9648 /* CommentDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766CA51210F284E007F9648 /* CommentDialogViewController.swift */; };
+		278AED46211AB98000685C4D /* ContectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278AED45211AB98000685C4D /* ContectHandler.swift */; };
 		27B9470320FF61CC00931FE4 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B9470220FF61CC00931FE4 /* Apply.swift */; };
 		27D2A7752105F68D00E8C761 /* Profession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D2A7742105F68D00E8C761 /* Profession.swift */; };
 		27FB31DD20F9BF76009AD98B /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FB31DC20F9BF76009AD98B /* Photo.storyboard */; };
@@ -95,6 +96,7 @@
 		273D6390211300140040803B /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		2766CA4F210EE577007F9648 /* PhotoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemViewController.swift; sourceTree = "<group>"; };
 		2766CA51210F284E007F9648 /* CommentDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDialogViewController.swift; sourceTree = "<group>"; };
+		278AED45211AB98000685C4D /* ContectHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectHandler.swift; sourceTree = "<group>"; };
 		27B9470220FF61CC00931FE4 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
 		27D2A7742105F68D00E8C761 /* Profession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profession.swift; sourceTree = "<group>"; };
 		27FB31DC20F9BF76009AD98B /* Photo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				27FC3FBD20F2F7A2001A063E /* Main.storyboard */,
 				27FC3FDA20F2FF7F001A063E /* Common.swift */,
 				270D072F20FC91910037F510 /* UIImageCropper.swift */,
+				278AED45211AB98000685C4D /* ContectHandler.swift */,
 				270D073120FC91A80037F510 /* UIImage+FixOrientation.swift */,
 				270A00F920F774E4008CEAEC /* Task.swift */,
 				27FC3FD320F2FC93001A063E /* Master */,
@@ -478,6 +481,7 @@
 				F11684D82108A0D4004E0345 /* ProfessionItemTableViewController.swift in Sources */,
 				F1F714DD20FF56B0009DB9EF /* SginUpViewController.swift in Sources */,
 				B37E32202108AA4B008A5A4F /* ProfessionCategory.swift in Sources */,
+				278AED46211AB98000685C4D /* ContectHandler.swift in Sources */,
 				27FC3FD020F2FC5E001A063E /* NotificationViewController.swift in Sources */,
 				2766CA50210EE577007F9648 /* PhotoItemViewController.swift in Sources */,
 				F1D8EA7E211975BE00410305 /* OtherUserInfoTableViewController.swift in Sources */,
@@ -682,7 +686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -704,7 +708,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PK8ATU8493;
 				INFOPLIST_FILE = Master/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

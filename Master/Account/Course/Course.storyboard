@@ -32,10 +32,13 @@
                                     <outlet property="delegate" destination="ykG-pR-0Uw" id="BJl-Q5-ipo"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeO-1e-bqY">
-                                <rect key="frame" x="299" y="546.5" width="40" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="add"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeO-1e-bqY">
+                                <rect key="frame" x="297.5" y="545" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="hUr-Nq-ZON"/>
+                                    <constraint firstAttribute="height" constant="44" id="iU2-lv-uZJ"/>
+                                </constraints>
+                                <state key="normal" image="add_course"/>
                                 <connections>
                                     <action selector="addBtnTapped:" destination="ykG-pR-0Uw" eventType="touchUpInside" id="WM1-Le-qPp"/>
                                 </connections>
@@ -853,6 +856,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_course" width="191" height="191"/>
         <image name="bordercollie" width="280" height="280"/>
         <image name="bulldog" width="280" height="280"/>
         <image name="courseAddImage" width="64" height="64"/>

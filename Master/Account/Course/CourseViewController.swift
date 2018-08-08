@@ -13,7 +13,6 @@ class CourseViewController: UIViewController {
 
     @IBOutlet weak var addCourseBtn: UIButton!
     @IBOutlet weak var iCarouselView: iCarousel!
-    var dogName = ["beagle","bulldog","bordercollie","shiba"]
     var courseList = [Course]()
     var photoList = [Photo]()
     var isCourseDelete : Bool?
@@ -40,6 +39,7 @@ class CourseViewController: UIViewController {
     
     private func identifyAccess(){
         if userAccess == .coach{
+            addCourseBtn.isHidden = false
             // download coach owned course
             downloadCourse(action: "findCourseByCoach")
         }else if userAccess == .student{

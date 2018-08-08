@@ -88,7 +88,7 @@ class singleCourseViewController: UIViewController {
         }
     }
     
-    // MARK : - apply button tapped
+    // MARK: - applyButtonTapped
     @IBAction func applyBtnTapped(_ sender: Any) {
         guard userAccess == .student else{
             return
@@ -120,7 +120,7 @@ class singleCourseViewController: UIViewController {
         if result > 0{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您已報名過此課程！", handler: { (action) in})
         }else{
-            let newApply = InsertApply(applyID: 0, courseID: course.courseID, userID: "Cindy", applyStatusID: 1, applyTime: nil)
+            let newApply = InsertApply(applyID: 0, courseID: course.courseID, userID: userAccount!, applyStatusID: 1, applyTime: nil)
             Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "確認是否要報名\(course.courseName)?", alertMessage: nil, actionTitles: ["確定","取消"], firstHandler: { (confirmAction) in
                 self.insertApply(apply: newApply)
             }){ (cancelAction) in}
@@ -195,7 +195,6 @@ class singleCourseViewController: UIViewController {
                                           firstHandler: { (firstAction) in
                                             // handle Delete Course
                                             self.handleDeleteCourse()
-                                            
             }, secondHandler: { _ in})
         }
     }
@@ -238,7 +237,6 @@ class singleCourseViewController: UIViewController {
     
     // Delete Course
     private func deleteCourse(){
-        
         guard let course = course ,
             let encodedCourse = try? encoder.encode(course),
             let encodedCourseStr = String(data: encodedCourse, encoding: .utf8) else{

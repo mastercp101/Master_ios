@@ -177,11 +177,11 @@
             </objects>
             <point key="canvasLocation" x="3421.5999999999999" y="617.54122938530736"/>
         </scene>
-        <!--Message-->
+        <!--訊息-->
         <scene sceneID="o1O-4A-ieN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yai-kq-JsL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Message" image="Message" selectedImage="Message" id="yIO-zv-gIL"/>
+                    <tabBarItem key="tabBarItem" title="訊息" image="Message" selectedImage="Message" id="yIO-zv-gIL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Eq-a1-zvD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

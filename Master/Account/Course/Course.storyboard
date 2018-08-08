@@ -32,10 +32,13 @@
                                     <outlet property="delegate" destination="ykG-pR-0Uw" id="BJl-Q5-ipo"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeO-1e-bqY">
-                                <rect key="frame" x="299" y="546.5" width="40" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="add"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeO-1e-bqY">
+                                <rect key="frame" x="297.5" y="545" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="hUr-Nq-ZON"/>
+                                    <constraint firstAttribute="height" constant="44" id="iU2-lv-uZJ"/>
+                                </constraints>
+                                <state key="normal" image="add_course"/>
                                 <connections>
                                     <action selector="addBtnTapped:" destination="ykG-pR-0Uw" eventType="touchUpInside" id="WM1-Le-qPp"/>
                                 </connections>
@@ -92,13 +95,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Z-ZT-ep6">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGT-i8-HeP">
-                                                                <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課程名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGT-i8-HeP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程名稱" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTl-2n-gOh">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程名稱" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="課程名稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTl-2n-gOh">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -115,13 +118,13 @@
                                                     <stackView opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fqr-XX-731">
                                                         <rect key="frame" x="0.0" y="80.5" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9e-kg-lOE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="專業項目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9e-kg-lOE">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程類別" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WP-QL-mz9">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程類別" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4WP-QL-mz9">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -138,8 +141,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8q4-DJ-m6O">
                                                         <rect key="frame" x="0.0" y="161" width="335" height="100"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUk-Rg-mU2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="44" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課程內容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUk-Rg-mU2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -162,13 +165,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iMf-2h-xjT">
                                                         <rect key="frame" x="0.0" y="286" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgq-mC-rlb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="36" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上課日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgq-mC-rlb">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程日期" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-o0-2iS">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程日期" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="日期" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-o0-2iS">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -188,13 +191,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QpX-lx-grb">
                                                         <rect key="frame" x="0.0" y="366.5" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91a-ya-Mdc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="39" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課程價格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91a-ya-Mdc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程價格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n86-rz-qCX">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程價格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="價格" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n86-rz-qCX">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -211,8 +214,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hVT-HO-mKt">
                                                         <rect key="frame" x="0.0" y="447" width="335" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9v-iL-Boc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="21"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上課地點" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9v-iL-Boc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="5Fw-Zf-lJW"/>
                                                                 </constraints>
@@ -220,7 +223,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程地點" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FLe-mT-wDW">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程地點" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地點" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FLe-mT-wDW">
                                                                 <rect key="frame" x="0.0" y="26" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -237,13 +240,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Lny-Yx-WI1">
                                                         <rect key="frame" x="0.0" y="528" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUu-F2-XRO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="41" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課程需求" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUu-F2-XRO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程需求" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Need" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxm-vi-VWT">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程需求" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="需求" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxm-vi-VWT">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -260,8 +263,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-yy-bLN">
                                                         <rect key="frame" x="0.0" y="608.5" width="335" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of people" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I0-Dt-2rF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="21"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="報名人數限制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I0-Dt-2rF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="vXK-GA-eaT"/>
                                                                 </constraints>
@@ -269,7 +272,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程人數" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of people" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-zp-LmD">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="課程人數" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="報名人數" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6KX-zp-LmD">
                                                                 <rect key="frame" x="0.0" y="26" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -286,13 +289,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="heL-bP-Z0M">
                                                         <rect key="frame" x="0.0" y="689.5" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qualification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV9-h4-9jm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="95.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="報名資格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV9-h4-9jm">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名資格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qualification" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ycu-xc-ExU">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名資格" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="資格" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ycu-xc-ExU">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -309,13 +312,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="h0w-Ja-E3b">
                                                         <rect key="frame" x="0.0" y="770" width="335" height="55.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emO-KT-Eei">
-                                                                <rect key="frame" x="0.0" y="0.0" width="132.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="報名期限" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emO-KT-Eei">
+                                                                <rect key="frame" x="0.0" y="0.0" width="69.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名期限" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Register deadline" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9s-pb-UZ9">
+                                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="報名期限" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="報名期限" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K9s-pb-UZ9">
                                                                 <rect key="frame" x="0.0" y="25.5" width="335" height="30"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -334,8 +337,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="95A-n5-i8D">
                                                         <rect key="frame" x="0.0" y="850.5" width="335" height="125.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvU-ze-hW9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="37" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="備註" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvU-ze-hW9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -398,7 +401,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ei2-oa-RaU"/>
                                                 </constraints>
-                                                <state key="normal" title="Send">
+                                                <state key="normal" title="完成">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -445,7 +448,7 @@
                         <viewLayoutGuide key="safeArea" id="AjB-cR-ibU"/>
                     </view>
                     <navigationItem key="navigationItem" title="新增課程" id="7hI-sv-Bpj">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="OxG-LL-enF">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="OxG-LL-enF">
                             <connections>
                                 <action selector="backBtnTapped:" destination="SdZ-FC-aFw" id="xAN-3o-MIq"/>
                             </connections>
@@ -550,7 +553,7 @@
                                                                 <constraint firstAttribute="width" constant="70" id="oS6-Hp-GDU"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="CONTECT">
+                                                            <state key="normal" title="私訊">
                                                                 <color key="titleColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -575,7 +578,7 @@
                                                                 <constraint firstAttribute="width" constant="70" id="x86-7O-4wi"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="APPLY">
+                                                            <state key="normal" title="報名">
                                                                 <color key="titleColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                             <connections>
@@ -657,12 +660,12 @@
                         <viewLayoutGuide key="safeArea" id="acn-hi-n4i"/>
                     </view>
                     <navigationItem key="navigationItem" title="Course" id="WgY-Yo-ihu">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="QOD-Cg-xrB">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="QOD-Cg-xrB">
                             <connections>
                                 <action selector="backBtnTapped:" destination="FWt-eU-9ak" id="A1y-vz-Awi"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="manage" id="e9B-dz-Fcm">
+                        <barButtonItem key="rightBarButtonItem" title="編輯" id="e9B-dz-Fcm">
                             <connections>
                                 <action selector="manageBtnTapped:" destination="FWt-eU-9ak" id="YqS-aj-rBN"/>
                             </connections>
@@ -764,7 +767,7 @@
                         <viewLayoutGuide key="safeArea" id="5DS-DT-k5h"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="xOP-nw-T4J">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ZfS-Vu-KKh">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="ZfS-Vu-KKh">
                             <connections>
                                 <action selector="backBtnTapped:" destination="BqP-z7-bq0" id="WQh-z6-bF9"/>
                             </connections>
@@ -853,6 +856,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_course" width="191" height="191"/>
         <image name="bordercollie" width="280" height="280"/>
         <image name="bulldog" width="280" height="280"/>
         <image name="courseAddImage" width="64" height="64"/>

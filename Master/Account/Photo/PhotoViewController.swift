@@ -35,7 +35,7 @@ class PhotoViewController: UIViewController {
     
     private func downloadUserArticle(){
         let urlStr = urlString + "ExperienceArticleServlet"
-        let request : [String : Any] = ["experienceArticle":"getExperiences","userId":userAccount!]
+        let request : [String : Any] = ["experienceArticle":"getExperienceByUserID","user_id":userAccount!]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error {
                 assertionFailure("Error : \(error)")

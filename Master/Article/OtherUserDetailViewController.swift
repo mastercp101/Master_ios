@@ -48,11 +48,11 @@ class OtherUserDetailViewController: UIViewController {
 
     
     @IBAction func clickGoTalk(_ sender: UIButton) {
-    
-        
-        // ... 聊聊
-        
-        
+        guard otherUserId! != userAccount else{
+            return
+        }
+        let contect = ContectHandler(viewController: self, friendUserID: otherUserId!, friendUserName: otherUserInfo!.userName!)
+        contect.isRoomExist()
     }
     
     

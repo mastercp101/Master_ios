@@ -53,7 +53,7 @@ class ChatRoomViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "123"
+        self.title = chatRoom!.roomName
     }
     
     private func setConstraint(){
@@ -91,6 +91,11 @@ class ChatRoomViewController: UIViewController {
     }
     
     private func scrollToBottom(){
+        
+        guard self.chatItems.count > 0 else{
+            return
+        }
+        
         let indexPath = IndexPath(row: self.chatItems.count - 1, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }

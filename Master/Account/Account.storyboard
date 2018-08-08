@@ -25,9 +25,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vG7-1L-azf">
                                 <rect key="frame" x="10" y="30" width="355" height="29"/>
                                 <segments>
-                                    <segment title="Account"/>
-                                    <segment title="Photo"/>
-                                    <segment title="Course"/>
+                                    <segment title="會員"/>
+                                    <segment title="相片牆"/>
+                                    <segment title="我的課程"/>
                                 </segments>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -47,7 +47,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ipE-DR-fA7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" image="Account" id="CCy-xw-pCc"/>
+                    <tabBarItem key="tabBarItem" title="會員" image="Account" id="CCy-xw-pCc"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="switchView" destination="F92-Sg-MbD" id="7jO-1V-wNp"/>

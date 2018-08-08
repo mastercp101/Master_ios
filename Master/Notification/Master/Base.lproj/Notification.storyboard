@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notification-->
+        <!--通知-->
         <scene sceneID="fh1-I5-DRp">
             <objects>
                 <viewController id="ogC-eT-UMc" customClass="NotificationViewController" customModule="Master" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="N2K-dI-c9R"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Notification" image="Notification" selectedImage="Notification" id="gsv-8q-7y9"/>
+                    <tabBarItem key="tabBarItem" title="通知" image="Notification" selectedImage="Notification" id="gsv-8q-7y9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Le-UT-HO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Notification" width="36" height="35"/>
+        <image name="Notification" width="25" height="23"/>
     </resources>
 </document>

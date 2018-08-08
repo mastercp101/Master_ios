@@ -41,7 +41,7 @@ class singleCourseViewController: UIViewController {
     }
     
     @IBAction func manageBtnTapped(_ sender: UIButton) {
-
+        
         guard let course = course else{
             assertionFailure("Invalid Course")
             return
@@ -83,116 +83,16 @@ class singleCourseViewController: UIViewController {
                 return
             }
             self.friendUserName = resultName
-            self.isRoomExist()
+            let contect = ContectHandler(viewController: self, friendUserID: course.userID, friendUserName: resultName)
+            contect.isRoomExist()
         }
     }
     
-    private func isRoomExist(){
-        let urlStr = urlString + chatSevlet
-        let request : [String : Any] = ["action":"checkChatRoom","user_id":userAccount!,"friend_name":friendUserName]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error {
-                assertionFailure("Error : \(error)")
-                return
-            }
-            guard let data = data,
-                let resultStr = String(data: data, encoding: .utf8),
-                let result = Int(resultStr) else{
-                assertionFailure("Invalid Data")
-                return
-            }
-            if result > 0{
-                // find room position
-                self.findRoomPosition()
-            }else{
-                // create chatRoom
-                let position = self.createFireBaseChatRoom()
-                self.position = position
-                self.insertChatRommInDB( position: position)
-            }
-        }
-    }
-    
-    private func findRoomPosition(){
-        let urlStr = urlString + chatSevlet
-        let request : [String : Any] = ["action":"findRoomPosition","user_id":userAccount!,"friend_name":friendUserName]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error {
-                assertionFailure("Error : \(error)")
-                return
-            }
-            guard let data = data,
-                let resultStr = String(data: data, encoding: .utf8) else{
-                    assertionFailure("Invalid Data")
-                    return
-            }
-            self.position = resultStr
-            self.openChatRoom()
-        }
-    }
-    
-    private func createFireBaseChatRoom() -> String{
-        let key = ref.childByAutoId().key
-        let request : [String : Any] = [key:"空房間"]
-        ref.updateChildValues(request)
-        return key
-    }
-    
-    private func insertChatRommInDB(position : String){
-        let urlStr = urlString + chatSevlet
-        let request : [String : Any] = ["action":"createChatRoom","chat_room_position":position]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error {
-                assertionFailure("Error : \(error)")
-                return
-            }
-            guard let data = data,
-                let resultStr = String(data: data, encoding: .utf8),
-                let result = Int(resultStr) else{
-                    assertionFailure("Invalid Data")
-                    return
-            }
-            self.connectUserToChatRoom(userID: userAccount!, chatRoomID: result)
-        }
-    }
-    
-    private func connectUserToChatRoom(userID : String,chatRoomID : Int){
-        let urlStr = urlString + chatSevlet
-        let request : [String : Any] = ["action":"connectUserToRoom","user_id":userID,"chat_room_id":chatRoomID,"room_name":friendUserName]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error {
-                assertionFailure("Error : \(error)")
-                return
-            }
-            self.connectFriendToChatRoom(userID: self.course!.userID, chatRoomID: chatRoomID)
-        }
-    }
-    
-    private func connectFriendToChatRoom(userID : String,chatRoomID : Int){
-        let urlStr = urlString + chatSevlet
-        let request : [String : Any] = ["action":"connectUserToRoom","user_id":userID,"chat_room_id":chatRoomID,"room_name":userName!]
-        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
-            if let error = error {
-                assertionFailure("Error : \(error)")
-                return
-            }
-            self.openChatRoom()
-        }
-    }
-    
-    private func openChatRoom(){
-        guard let course = course else{
+    // MARK: - applyButtonTapped
+    @IBAction func applyBtnTapped(_ sender: Any) {
+        guard userAccess == .student else{
             return
         }
-        let chatRoom = ChatRoom(friendUserID: course.userID, roomName: self.friendUserName, roomPosition: self.position, lastMessage: "")
-        let nextVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatRoomVC") as! ChatRoomViewController
-        nextVC.chatRoom = chatRoom
-        let navigation = UINavigationController(rootViewController: nextVC)
-        self.present(navigation, animated: true, completion: nil)
-    }
-    
-    // MARK : - apply button tapped
-    @IBAction func applyBtnTapped(_ sender: Any) {
         guard let course = course else{
             assertionFailure("Invalid Course")
             return
@@ -220,7 +120,7 @@ class singleCourseViewController: UIViewController {
         if result > 0{
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您已報名過此課程！", handler: { (action) in})
         }else{
-            let newApply = InsertApply(applyID: 0, courseID: course.courseID, userID: "Cindy", applyStatusID: 1, applyTime: nil)
+            let newApply = InsertApply(applyID: 0, courseID: course.courseID, userID: userAccount!, applyStatusID: 1, applyTime: nil)
             Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "確認是否要報名\(course.courseName)?", alertMessage: nil, actionTitles: ["確定","取消"], firstHandler: { (confirmAction) in
                 self.insertApply(apply: newApply)
             }){ (cancelAction) in}
@@ -279,8 +179,8 @@ class singleCourseViewController: UIViewController {
                                       actionTitles: ["管理學生","管理課程","刪除課程"],
                                       useCancelAction: true,
                                       firstAction:{ (firstAction) in
-            // Manage Student
-            self.presentManageStudentVC()
+                                        // Manage Student
+                                        self.presentManageStudentVC()
                                         
         }, secondAction: { (secondAction) in
             
@@ -293,9 +193,8 @@ class singleCourseViewController: UIViewController {
                                           alertMessage: nil,
                                           actionTitles: ["確定","取消"],
                                           firstHandler: { (firstAction) in
-            // handle Delete Course
-            self.handleDeleteCourse()
-                                            
+                                            // handle Delete Course
+                                            self.handleDeleteCourse()
             }, secondHandler: { _ in})
         }
     }
@@ -338,12 +237,11 @@ class singleCourseViewController: UIViewController {
     
     // Delete Course
     private func deleteCourse(){
-        
         guard let course = course ,
             let encodedCourse = try? encoder.encode(course),
             let encodedCourseStr = String(data: encodedCourse, encoding: .utf8) else{
-            assertionFailure("Invalid Course")
-            return
+                assertionFailure("Invalid Course")
+                return
         }
         
         let urlStr = urlString + "finalCourseServlet"

@@ -219,11 +219,11 @@
             </objects>
             <point key="canvasLocation" x="4158" y="-197"/>
         </scene>
-        <!--Article-->
+        <!--文章-->
         <scene sceneID="jD3-xY-sgB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8lw-3R-g1a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Article" image="Article" selectedImage="Article" id="Jmu-7L-LRL"/>
+                    <tabBarItem key="tabBarItem" title="文章" image="Article" selectedImage="Article" id="Jmu-7L-LRL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4WL-dc-lOP">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -10,23 +10,36 @@ import UIKit
 
 class PhotoItemViewController: UIViewController {
 
+    var article : ExperienceArticle?
+    
     @IBOutlet weak var phototScrollView: UIScrollView!
     @IBOutlet weak var photoImageView: UIImageView!
     
-    var article : ExperienceArticle?
+    @IBOutlet weak var ActicleContentLabel: UILabel!
     
-   
+    deinit { print("deinit") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.statusBarStyle = .lightContent
+
+        
+        // TODO: - 判斷文字是否為空白, 隱藏更多按鈕
+        
+        
         setImageView()
         setNav()
-        
     }
-    deinit {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .default
     }
+
     
     @IBAction func readMoreBtnTapped(_ sender: Any) {
         let nextVC = setCommentVC()

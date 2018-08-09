@@ -142,7 +142,7 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ZM-yB-bJ0">
+                                        <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ZM-yB-bJ0">
                                             <rect key="frame" x="0.0" y="95" width="375" height="265"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -215,7 +215,6 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="shI-Vk-Q2Y"/>
                 </view>
-                <tapGestureRecognizer id="fx4-ww-TQ6"/>
             </objects>
             <point key="canvasLocation" x="4158" y="-197"/>
         </scene>

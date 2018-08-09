@@ -24,7 +24,7 @@ class MasterViewController: UIViewController {
     
     var timer: Timer?
     var targetIndex = 0
-    var hightlightImages = [UIImage]()
+    var hightlightImages = [Int: UIImage]()
     var highlightCourses = [Course]()
     var professionCategorys = [ProfessionCategory]()
     
@@ -136,7 +136,7 @@ class MasterViewController: UIViewController {
                     return
                 }
                 
-                self.hightlightImages.append(image)
+                self.hightlightImages[i] = image
                 self.configureImageView()
             }
         }
@@ -146,6 +146,11 @@ class MasterViewController: UIViewController {
         
         guard let controller = segue.destination as? MasterTableViewController else {
             assertionFailure("Fail to get controller.")
+            return
+        }
+        
+        guard professionCategorys.count != 0 else {
+            print("professionCategorys.count is nil.")
             return
         }
         

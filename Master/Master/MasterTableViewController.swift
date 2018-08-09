@@ -19,7 +19,7 @@ class MasterTableViewController: UITableViewController {
     private let photoServlet = "photoServlet"
 
     var courseList = [Course]()
-    var photoList = [UIImage]()
+    var photoList = [Int: UIImage]()
     var pickerArray = [String]()
     var professionCategory: String?
     let dateFormatter = DateFormatter()
@@ -134,9 +134,8 @@ class MasterTableViewController: UITableViewController {
             self.courseList = courseList
             self.tableView.reloadData()
             
-            var images = [UIImage]()
-            for course in courseList {
-                self.downloadImages(imageID: course.courseImageID, doneHandler: { (error, data) in
+            for i in 0..<courseList.count {
+                self.downloadImages(imageID: courseList[i].courseImageID, doneHandler: { (error, data) in
                     
                     if let error = error {
                         assertionFailure("Fail to downloadImage: \(error)")
@@ -148,11 +147,7 @@ class MasterTableViewController: UITableViewController {
                         return
                     }
                     
-                    images.append(image)
-                    // Check is already download all images.
-                    if images.count == courseList.count {
-                        self.photoList = images
-                    }
+                    self.photoList[i] = image
                 })
             }
             

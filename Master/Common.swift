@@ -16,8 +16,8 @@ import UIKit
 //哲維
 //let urlString = "http://192.168.50.21:8080/Master/"
 //峻亦
-let urlString = "http://192.168.50.245:8080/Master/"
-//let urlString = "http://172.20.10.8:8080/Master/"
+//let urlString = "http://192.168.50.245:8080/Master/"
+let urlString = "http://172.20.10.8:8080/Master/"
 let urlUserInfo = "UserInfo" // 子桓專用
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()

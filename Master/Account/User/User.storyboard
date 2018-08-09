@@ -282,12 +282,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="編輯專業技能" id="BvT-Jr-gh7">
-                        <barButtonItem key="leftBarButtonItem" title="上一頁" id="0Lm-yl-6mu">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="0Lm-yl-6mu">
                             <connections>
                                 <action selector="goBack:" destination="dcO-WI-dxs" id="vUg-6z-jJG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="HhH-kI-ilr">
+                        <barButtonItem key="rightBarButtonItem" title="編輯" id="HhH-kI-ilr">
                             <connections>
                                 <action selector="newProfession:" destination="dcO-WI-dxs" id="Qyk-cH-wV9"/>
                             </connections>
@@ -550,7 +550,7 @@
                         <viewLayoutGuide key="safeArea" id="pu2-91-zuN"/>
                     </view>
                     <navigationItem key="navigationItem" title="編輯會員資料" id="ZRH-hZ-EvR">
-                        <barButtonItem key="leftBarButtonItem" title="上一頁" id="vBJ-Uq-XVg">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="vBJ-Uq-XVg">
                             <connections>
                                 <action selector="goBack:" destination="5ao-QH-SVF" id="3NN-x8-kR7"/>
                             </connections>

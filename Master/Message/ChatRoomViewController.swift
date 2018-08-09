@@ -119,6 +119,8 @@ class ChatRoomViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - send Btn Tapped
     @IBAction func sendBtnTapped(_ sender: Any) {
         guard let message = inputMessageTextField.text else{
             return
@@ -130,6 +132,7 @@ class ChatRoomViewController: UIViewController {
         updateLastessage(message: message, userID: userAccount!, roomName: chatRoom!.roomName)
         updateLastessage(message: message, userID: chatRoom!.friendUserID, roomName: userName!)
     }
+    
     
     private func updateLastessage(message : String, userID : String, roomName : String){
         let urlStr = urlString + "chatRoomServlet"

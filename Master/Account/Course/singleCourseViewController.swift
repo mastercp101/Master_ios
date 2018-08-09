@@ -84,7 +84,7 @@ class singleCourseViewController: UIViewController {
             }
             self.friendUserName = resultName
             let contect = ContectHandler(viewController: self, friendUserID: course.userID, friendUserName: resultName)
-            contect.isRoomExist()
+            contect.checkIsRoomExistAndGoOn()
         }
     }
     

@@ -240,7 +240,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4g-N8-FCO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Master" image="Master" selectedImage="Master" id="KUt-5O-dzU"/>
+                    <tabBarItem key="tabBarItem" title="課程" image="Master" selectedImage="Master" id="KUt-5O-dzU"/>
                     <navigationItem key="navigationItem" title="課程" id="jfS-BW-yyF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

@@ -9,11 +9,12 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
-
+    
     @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     var fullScreenWidth : CGFloat?
-    var articles = [ExperienceArticle]()
+    
+    deinit { NotificationCenter.default.removeObserver(self) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +22,9 @@ class PhotoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        downloadUserArticle()
+        super.viewWillAppear(animated)
+        if UserPhotoData.shared.info.count == 0 { downloadUserArticle() }
     }
-    
     
     private func setCollectionView(){
         fullScreenWidth = UIScreen.main.bounds.width
@@ -45,26 +46,32 @@ class PhotoViewController: UIViewController {
                 assertionFailure("Invalid data")
                 return
             }
-            self.articles = articles
+            UserPhotoData.shared.info = articles
             self.photoCollectionView.reloadData()
         }
     }
 }
 
-extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSource{
+extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articles.count
+        return UserPhotoData.shared.info.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! photoCollectionViewCell
-        cell.articleImageView.getArticlePhoto(postId: articles[indexPath.row].postId, index: indexPath.row)
+        cell.articleImageView.getArticlePhoto(postId: UserPhotoData.shared.info[indexPath.row].postId, index: indexPath.row)
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! photoCollectionViewCell
-        self.articles[indexPath.row].postPhoto = UIImagePNGRepresentation(cell.articleImageView.image!)
+        UserPhotoData.shared.info[indexPath.row].postPhoto = UIImagePNGRepresentation(cell.articleImageView.image!)
         let nextVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoItemVC") as! PhotoItemViewController
-        nextVC.article = self.articles[indexPath.row]
+        
+        nextVC.selectIndex = indexPath.row
+        nextVC.userEntrance = .photo
+        
         let navigation = UINavigationController(rootViewController: nextVC)
         self.show(navigation, sender: self)
     }
@@ -75,7 +82,13 @@ class photoCollectionViewCell : UICollectionViewCell{
     @IBOutlet weak var articleImageView: UIImageView!
 }
 
-
+class UserPhotoData {
+    
+    static let shared = UserPhotoData()
+    private init(){}
+    
+    var info = [ExperienceArticle]()
+}
 
 
 

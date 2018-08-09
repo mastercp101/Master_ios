@@ -24,7 +24,7 @@ class MasterViewController: UIViewController {
     
     var timer: Timer?
     var targetIndex = 0
-    var hightlightImages = [UIImage]()
+    var hightlightImages = [Int: UIImage]()
     var highlightCourses = [Course]()
     var professionCategorys = [ProfessionCategory]()
     
@@ -136,7 +136,7 @@ class MasterViewController: UIViewController {
                     return
                 }
                 
-                self.hightlightImages.append(image)
+                self.hightlightImages[i] = image
                 self.configureImageView()
             }
         }

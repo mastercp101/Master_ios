@@ -52,7 +52,7 @@ class OtherUserDetailViewController: UIViewController {
             return
         }
         let contect = ContectHandler(viewController: self, friendUserID: otherUserId!, friendUserName: otherUserInfo!.userName!)
-        contect.isRoomExist()
+        contect.checkIsRoomExistAndGoOn()
     }
     
     

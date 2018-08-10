@@ -30,7 +30,7 @@ class singleCourseViewController: UIViewController {
         ref = Database.database().reference()
         downloadFriendPortrait()
         self.navigationItem.title = course?.courseName
-        if userAccess == .student{
+        if userAccess == .student || userAccount != course!.userID{
             self.navigationItem.rightBarButtonItem = nil
         }
     }
@@ -84,7 +84,7 @@ class singleCourseViewController: UIViewController {
             }
             self.friendUserName = resultName
             let contect = ContectHandler(viewController: self, friendUserID: course.userID, friendUserName: resultName)
-            contect.isRoomExist()
+            contect.checkIsRoomExistAndGoOn()
         }
     }
     

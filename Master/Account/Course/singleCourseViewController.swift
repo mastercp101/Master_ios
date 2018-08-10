@@ -30,7 +30,7 @@ class singleCourseViewController: UIViewController {
         ref = Database.database().reference()
         downloadFriendPortrait()
         self.navigationItem.title = course?.courseName
-        if userAccess == .student{
+        if userAccess == .student || userAccount != course!.userID{
             self.navigationItem.rightBarButtonItem = nil
         }
     }

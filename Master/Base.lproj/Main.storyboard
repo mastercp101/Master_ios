@@ -24,7 +24,6 @@
                         <segue destination="ap4-7N-vSh" kind="relationship" relationship="viewControllers" id="Z4D-rh-TEm"/>
                         <segue destination="KRs-Qe-i9s" kind="relationship" relationship="viewControllers" id="JNl-x2-E9U"/>
                         <segue destination="8lB-FP-G9B" kind="relationship" relationship="viewControllers" id="iXx-t3-Oy9"/>
-                        <segue destination="aCb-mO-Jez" kind="relationship" relationship="viewControllers" id="bDA-ue-pX3"/>
                         <segue destination="SXS-x5-qqr" kind="relationship" relationship="viewControllers" id="EGS-aY-jOw"/>
                     </connections>
                 </tabBarController>
@@ -64,16 +63,6 @@
             </objects>
             <point key="canvasLocation" x="896" y="39"/>
         </scene>
-        <!--Notification-->
-        <scene sceneID="RuP-Xi-ZnW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Notification" id="aCb-mO-Jez" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notification" selectedImage="Notification" id="fzF-s9-kug"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BnS-oA-stA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="903" y="133"/>
-        </scene>
         <!--Account-->
         <scene sceneID="L9u-Mu-nD8">
             <objects>
@@ -86,10 +75,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="36" height="35"/>
-        <image name="Article" width="36" height="35"/>
-        <image name="Master" width="36" height="35"/>
-        <image name="Message" width="37" height="35"/>
-        <image name="Notification" width="36" height="35"/>
+        <image name="Account" width="24" height="23"/>
+        <image name="Article" width="25" height="23"/>
+        <image name="Master" width="24" height="23"/>
+        <image name="Message" width="24" height="23"/>
     </resources>
 </document>

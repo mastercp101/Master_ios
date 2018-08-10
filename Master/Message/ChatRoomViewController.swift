@@ -77,7 +77,6 @@ class ChatRoomViewController: UIViewController {
                 let chatItemObject = chatItem.value as! [String : Any]
                 let message = chatItemObject["msg"] as! String
                 let name = chatItemObject["name"] as! String
-                print("\(name) : \(message)")
                 let newChatItem = ChatItem(userID: name, message: message)
                 self.chatItems.append(newChatItem)
             }

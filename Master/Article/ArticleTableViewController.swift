@@ -40,15 +40,8 @@ class ArticleTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateArticle(noti:)), name: .updateArticle, object: nil)
     }
 
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear")
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-         print("viewDidAppear")
         // 檢查目前登入的帳號是否跟讀取時的帳號一致, 否則重新整理(包括登出狀態)
         var account = ""
         if let userAccount = userAccount { account = userAccount }

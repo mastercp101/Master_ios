@@ -76,7 +76,7 @@ class SginUpViewController: UIViewController {
             
             sender.setTitle("", for: .normal)
             self.signLoadingActivityIndicator.startAnimating()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.sginupNow(account: account, password: password, name: name, access: access)
             }
             

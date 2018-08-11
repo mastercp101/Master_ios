@@ -30,7 +30,6 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="B5O-eq-2jb" secondAttribute="trailing" constant="90" id="G0Z-bk-4eW"/>
                                     <constraint firstItem="B5O-eq-2jb" firstAttribute="centerY" secondItem="XLD-fq-isr" secondAttribute="centerY" constant="10" id="Z4M-QT-GIZ"/>

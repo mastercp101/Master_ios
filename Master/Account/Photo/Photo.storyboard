@@ -194,12 +194,12 @@
                         <viewLayoutGuide key="safeArea" id="tKe-hb-Mwf"/>
                     </view>
                     <navigationItem key="navigationItem" id="wnE-WN-40T">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pVG-x1-lJQ">
+                        <barButtonItem key="leftBarButtonItem" title="上一頁" id="pVG-x1-lJQ">
                             <connections>
                                 <action selector="backBtnTapped:" destination="6rA-E2-apw" id="gKB-NH-oC9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="N5o-kG-c7m"/>
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="N5o-kG-c7m"/>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
@@ -403,13 +403,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jM3-7R-Jqa">
                                         <rect key="frame" x="0.0" y="497" width="315" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leN-IA-WGr">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leN-IA-WGr">
                                                 <rect key="frame" x="266" y="10" width="36" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="enu-HP-nkP"/>
                                                     <constraint firstAttribute="width" constant="36" id="rBa-Ny-ihq"/>
                                                 </constraints>
-                                                <state key="normal" title="Send"/>
+                                                <state key="normal" image="article_send"/>
                                                 <connections>
                                                     <action selector="sendBtnTapped:" destination="Igz-f1-jYT" eventType="touchUpInside" id="6d3-c4-Mw6"/>
                                                 </connections>
@@ -552,6 +552,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="article_send" width="128" height="128"/>
         <image name="photo_detail_like" width="24" height="24"/>
         <image name="photo_detail_talk" width="24" height="24"/>
         <image name="user_default_por" width="450" height="450"/>

@@ -466,6 +466,8 @@ class UserTableViewController: UITableViewController {
         UserFile.shared.removeUserAccess()
         UserFile.shared.removeUserName()
         UserFile.shared.deleteUserPortrait()
+        // 清除相片牆資料
+        UserPhotoData.shared.info.removeAll()
     }
     
 }

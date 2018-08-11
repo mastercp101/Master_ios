@@ -25,10 +25,9 @@ class ContectHandler{
         self.friendUserName = friendUserName
         self.viewController = viewController
         ref = Database.database().reference()
-        //        self.isRoomExist()
     }
     
-    func isRoomExist(){
+    func checkIsRoomExistAndGoOn(){
         let urlStr = urlString + chatSevlet
         let request : [String : Any] = ["action":"checkChatRoom","user_id":myID,"friend_name":friendUserName]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in

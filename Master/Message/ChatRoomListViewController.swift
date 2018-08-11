@@ -76,6 +76,5 @@ extension ChatRoomListViewController :UITableViewDataSource,UITableViewDelegate{
         nextVC.chatRoom = chatRoomList[indexPath.row]
         let navigation = UINavigationController(rootViewController: nextVC)
         self.present(navigation, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -40,7 +40,7 @@ class ArticleDetailViewController: UIViewController {
             self.navigationItem.title = "貼文"
         }
         commentTextField.delegate = self
-        // 找到 TableView
+        // 找到 TableView 
         for view in self.view.subviews {
             if view is UITableView, let tableView = view as? UITableView {
                 self.tableView = tableView
@@ -297,7 +297,6 @@ class ArticleDetailViewController: UIViewController {
                 }
             }
         }
-        
     }
     
 }

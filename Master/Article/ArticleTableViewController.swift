@@ -125,6 +125,8 @@ class ArticleTableViewController: UITableViewController {
         } else {
             cell.postsPortraitImage.getUserPortrait(account: ArticleData.shared.info[indexPath.row].userId, index: indexPath.row)
         }
+        // 點擊文章內容
+        cell.postsContentImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showArticleDetail(_:))))
         // 內容貼圖
         if let data = ArticleData.shared.info[indexPath.row].postPhoto {
             cell.postsContentImage.image = UIImage(data: data)
@@ -174,6 +176,22 @@ class ArticleTableViewController: UITableViewController {
         rootViewController?.present(userDetailView, animated: true, completion: nil)
     }
 
+    @objc private func showArticleDetail(_ sender: UITapGestureRecognizer) {
+        guard checkLogin() else { return }
+        // 拿到目前點擊的誰的大頭照的 index
+        guard let point = sender.view?.convert(CGPoint.zero, to: self.tableView),
+            let indexPath = self.tableView.indexPathForRow(at: point) else { return }
+
+        let nextVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoItemVC") as! PhotoItemViewController
+        
+        nextVC.selectIndex = indexPath.row
+        nextVC.userEntrance = .article
+        
+        let navigation = UINavigationController(rootViewController: nextVC)
+        self.show(navigation, sender: self)
+    }
+    
+    
     
  // MARK: - Click button handler
     
@@ -322,6 +340,15 @@ class ArticleTableViewController: UITableViewController {
         }
     }
     
+    
+    // TODO: - 詳細
+//    @IBAction func testtest(_ sender: UITapGestureRecognizer) {
+//
+//        let nextVC = UIStoryboard(name: "Photo", bundle: nil).instantiateViewController(withIdentifier: "photoItemVC") as! PhotoItemViewController
+//        let navigation = UINavigationController(rootViewController: nextVC)
+//        self.show(navigation, sender: self)
+//    }
+
 }
 
 

@@ -48,6 +48,7 @@ class editCourseViewController: UIViewController{
     var courseImageID : Int?
     var courseCategoryID = 0
     var updateCourseProfileResult : Int?
+    var dateCourse : Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,8 +117,11 @@ class editCourseViewController: UIViewController{
         dateFormatter.dateStyle = .medium
         dateFormatter.dateFormat = "yyyy-MM-dd"
         if whichIsEditing == DateIsEditing.courseDate{
+            self.dateCourse = sender.date
+            sender.minimumDate = Date()
             courseTextField[2].text = dateFormatter.string(from: sender.date)
         }else{
+            sender.maximumDate = self.dateCourse!
             courseTextField[8].text = dateFormatter.string(from: sender.date)
         }
     }
@@ -352,7 +356,6 @@ class editCourseViewController: UIViewController{
                 return
             }
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "上傳課程成功！") { (_) in
-//                self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "unwindToCourseWithEditCourseSuccess", sender: nil)
             }
         }

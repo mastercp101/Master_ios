@@ -63,7 +63,6 @@ class editCourseViewController: UIViewController{
         cropper.delegate = self
         courseCategoryPicker.delegate = self
         setPicker()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +71,7 @@ class editCourseViewController: UIViewController{
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.dateCourse = nil
         Common.shared.removeObservers(viewController: self)
     }
     

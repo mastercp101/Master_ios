@@ -10,18 +10,20 @@ import UIKit
 
 class MasterTableViewController: UITableViewController {
     
-
+    
     @IBOutlet weak var pickerTextField: UITextField!
     
+    private let nilCell = "nilCell"
     private let courseCell = "courseCell"
     private let COURSE_ARTICLE_Key = "courseArticle"
-    private let courseArticleServlet = "CourseArticleServlet"
     private let photoServlet = "photoServlet"
-
+    private let courseArticleServlet = "CourseArticleServlet"
+    
     var courseList = [Course]()
-    var photoList = [Int: UIImage]()
     var pickerArray = [String]()
+    var hiddenCell = [IndexPath]()
     var professionCategory: String?
+    var photoList = [Int: UIImage]()
     let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -42,7 +44,7 @@ class MasterTableViewController: UITableViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -51,53 +53,69 @@ class MasterTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
     }
-
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return courseList.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath) as? MasterTableViewCell else {
+        guard let coursecell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath) as? MasterTableViewCell else {
             assertionFailure("Fail to get MasterTableViewCell.")
             return UITableViewCell()
         }
+        
+        guard let nilcell = tableView.dequeueReusableCell(withIdentifier: nilCell) else {
+            assertionFailure("Fail to get nilCell.")
+            return UITableViewCell()
+        }
+        
         
         let course = courseList[indexPath.row]
         let requestNumOfJoin = ["courseArticle":"courseJoin","courseId":"\(course.courseID)"]
         
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestNumOfJoin) { (error, data) in
-
+            
             if let error = error {
                 assertionFailure("Fail to get requestNumOfJoin : \(error)")
                 return
             }
-
+            
             guard let data = data else {
                 assertionFailure("Data is nil.")
                 return
             }
-
+            
             if let peopleNumber = String(data: data, encoding: .utf8) {
-                cell.numberOfJoinedLabel.text = "參加人數: \(peopleNumber)/\(course.coursePeopleNumber)"
+                coursecell.numberOfJoinedLabel.text = "參加人數: \(peopleNumber)/\(course.coursePeopleNumber)"
             }
             
-            cell.courseNameLabel.text = course.courseName
-            cell.starTimeLabel.text = "開始日期: \(course.courseDate)"
-            cell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
-            cell.locationLabel.text = course.courseLocation
+            guard let courseDeadLine = self.dateFormatter.date(from: course.courseApplyDeadLine), Date() < courseDeadLine else {
+                self.hiddenCell.append(indexPath)
+                return
+            }
+            
+            coursecell.courseNameLabel.text = course.courseName
+            coursecell.starTimeLabel.text = "開始日期: \(course.courseDate)"
+            coursecell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
+            coursecell.locationLabel.text = course.courseLocation
         }
-                
-        return cell
+        
+//        if let courseDeadLine = self.dateFormatter.date(from: course.courseApplyDeadLine), Date() > courseDeadLine {
+//            return nilcell
+//        } else {
+//            return coursecell
+//        }
+        return coursecell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -110,7 +128,19 @@ class MasterTableViewController: UITableViewController {
         present(navigation, animated: true, completion: nil)
     }
     
-   
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        var height = 120.0
+        
+        for indexpath in hiddenCell {
+            if indexpath == indexPath {
+                height = 0.0
+            }
+        }
+        
+        return CGFloat(height)
+    }
+    
     private func downloadCourse(professionItem: String) {
         
         let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
@@ -128,14 +158,15 @@ class MasterTableViewController: UITableViewController {
             }
             
             self.courseList = courseList
-            self.tableView.reloadData()
             
             for i in 0..<courseList.count {
                 
-                guard let courseDeadLine = self.dateFormatter.date(from: courseList[i].courseApplyDeadLine), Date() > courseDeadLine else {
-                    courseList.remove(at: i)
-                    return
-                }
+                //                guard let courseDeadLine = self.dateFormatter.date(from: courseList[i].courseApplyDeadLine), Date() < courseDeadLine else {
+                //                    courseList.remove(at: i)
+                //                    self.courseList.remove(at: i)
+                //
+                //                    return
+                //                }
                 
                 self.downloadImages(imageID: courseList[i].courseImageID, doneHandler: { (error, data) in
                     
@@ -152,6 +183,7 @@ class MasterTableViewController: UITableViewController {
                     self.photoList[i] = image
                 })
             }
+            self.tableView.reloadData()
             
         }
     }
@@ -183,7 +215,7 @@ class MasterTableViewController: UITableViewController {
             }
         }
     }
-
+    
 }
 
 extension MasterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {

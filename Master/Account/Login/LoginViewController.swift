@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         self.loadingActivityIndicator.startAnimating()
         sender.setTitle("", for: .normal)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             // check account and password (Srever) ...
             self.loginCheck(account: account, password: password)
         }

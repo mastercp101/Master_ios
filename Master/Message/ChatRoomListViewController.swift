@@ -63,7 +63,7 @@ extension ChatRoomListViewController :UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! messageRoomItemCell
         cell.userProfileImageView.setRoundImage()
-        cell.userProfileImageView.getUserPortrait(account: chatRoomList[indexPath.row].roomName, index: nil)
+        cell.userProfileImageView.getUserPortrait(account: chatRoomList[indexPath.row].friendUserID, index: nil)
         cell.userNameLabel.text = chatRoomList[indexPath.row].roomName
         cell.lastMessageLabel.text = chatRoomList[indexPath.row].lastMessage
         return cell

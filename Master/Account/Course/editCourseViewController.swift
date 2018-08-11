@@ -54,8 +54,7 @@ class editCourseViewController: UIViewController{
         super.viewDidLoad()
         self.title = "新增/管理課程"
         encoder.outputFormatting = .init()
-        // Download user profession
-        downloadUserProfession()
+        
         // Setting UI or delegate
         setTextView(textView: detailTextView)
         setTextView(textView: noteTextView)
@@ -68,6 +67,10 @@ class editCourseViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Common.shared.addObserves(scrollView: scrollView)
+        // Download user profession
+        downloadUserProfession()
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,6 +166,12 @@ class editCourseViewController: UIViewController{
             do{
                 let encodedProfession = try decoder.decode([Profession].self, from: data)
                 self.professions = encodedProfession
+                guard encodedProfession.count > 0 else{
+                    Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "您還沒新增專業技能") { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    return
+                }
                 self.courseCategoryPicker.reloadAllComponents()
             }catch{
                 assertionFailure("Error : \(error)")

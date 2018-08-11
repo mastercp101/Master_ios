@@ -53,8 +53,6 @@ class Common{
     }
     
     func downloadExperience(){
-        // TODO: - Debug
-//        let account = "billy"
         // TODO: - 正式版
         var account = ""
         if let userAccount = userAccount { account = userAccount }
@@ -245,10 +243,8 @@ extension UIImageView {
         if let index = index {
             downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
                 ArticleData.shared.info[index].postPortrait = data
-                ChatItemSingleTon.shared.friendPortrait = UIImage(data: data!)
             }) { (data) in
                 ArticleData.shared.info[index].postPortrait = data
-                ChatItemSingleTon.shared.friendPortrait = UIImage(data: data!)
             }
         }else{
             downloadImage(url, request: request, defaultImage: image, failHandler: { (defaultImageData) in}) { (imageData) in}

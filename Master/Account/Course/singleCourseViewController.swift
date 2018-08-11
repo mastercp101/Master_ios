@@ -55,7 +55,8 @@ class singleCourseViewController: UIViewController {
     
     private func downloadFriendPortrait(){
         let imageView = UIImageView()
-        imageView.getUserPortrait(account: course!.userID, index: 0)
+        imageView.getUserPortrait(account: course!.userID, index: nil)
+        ChatItemSingleTon.shared.friendPortrait = imageView.image
     }
     
     // MARK: - contectBtnTapped

@@ -40,8 +40,15 @@ class ArticleTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateArticle(noti:)), name: .updateArticle, object: nil)
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+         print("viewDidAppear")
         // 檢查目前登入的帳號是否跟讀取時的帳號一致, 否則重新整理(包括登出狀態)
         var account = ""
         if let userAccount = userAccount { account = userAccount }
@@ -126,7 +133,7 @@ class ArticleTableViewController: UITableViewController {
             cell.postsPortraitImage.getUserPortrait(account: ArticleData.shared.info[indexPath.row].userId, index: indexPath.row)
         }
         // 點擊文章內容
-        cell.postsContentImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showArticleDetail(_:))))
+        cell.postsContentImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showArticlePhotoDetail(_:))))
         // 內容貼圖
         if let data = ArticleData.shared.info[indexPath.row].postPhoto {
             cell.postsContentImage.image = UIImage(data: data)
@@ -176,7 +183,7 @@ class ArticleTableViewController: UITableViewController {
         rootViewController?.present(userDetailView, animated: true, completion: nil)
     }
 
-    @objc private func showArticleDetail(_ sender: UITapGestureRecognizer) {
+    @objc private func showArticlePhotoDetail(_ sender: UITapGestureRecognizer) {
         guard checkLogin() else { return }
         // 拿到目前點擊的誰的大頭照的 index
         guard let point = sender.view?.convert(CGPoint.zero, to: self.tableView),

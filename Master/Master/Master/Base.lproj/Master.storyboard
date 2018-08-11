@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -219,7 +219,7 @@
                                     <constraint firstItem="uKK-tT-UBT" firstAttribute="centerX" secondItem="vcW-7o-b5Q" secondAttribute="centerX" id="j0m-rx-8Fh"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
                                 <rect key="frame" x="0.0" y="92" width="375" height="261"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="261" id="Mw8-Yx-YUQ"/>
@@ -364,15 +364,6 @@
                                     <outlet property="starTimeLabel" destination="uQB-xq-Gl5" id="vi6-F2-pY5"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nilCell" rowHeight="0.0" id="HW6-TF-Pfl">
-                                <rect key="frame" x="0.0" y="192" width="375" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HW6-TF-Pfl" id="dR3-Cd-gl0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.30163741440000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -410,14 +401,14 @@
     </scenes>
     <resources>
         <image name="Master" width="24" height="23"/>
-        <image name="pfs_ball" width="116" height="116"/>
-        <image name="pfs_code" width="116" height="116"/>
-        <image name="pfs_language" width="116" height="116"/>
-        <image name="pfs_music" width="116" height="116"/>
-        <image name="pfs_paint" width="116" height="116"/>
-        <image name="pfs_skate" width="116" height="116"/>
-        <image name="pfs_swim" width="116" height="116"/>
-        <image name="pfs_workout" width="116" height="116"/>
+        <image name="pfs_ball" width="87" height="87"/>
+        <image name="pfs_code" width="87" height="87"/>
+        <image name="pfs_language" width="87" height="87"/>
+        <image name="pfs_music" width="87" height="87"/>
+        <image name="pfs_paint" width="87" height="87"/>
+        <image name="pfs_skate" width="87" height="87"/>
+        <image name="pfs_swim" width="87" height="87"/>
+        <image name="pfs_workout" width="87" height="87"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2cj-Tj-yB4"/>

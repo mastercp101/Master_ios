@@ -74,12 +74,6 @@ class MasterTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        guard let nilcell = tableView.dequeueReusableCell(withIdentifier: nilCell) else {
-            assertionFailure("Fail to get nilCell.")
-            return UITableViewCell()
-        }
-        
-        
         let course = courseList[indexPath.row]
         let requestNumOfJoin = ["courseArticle":"courseJoin","courseId":"\(course.courseID)"]
         

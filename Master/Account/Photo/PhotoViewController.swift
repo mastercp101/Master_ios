@@ -60,7 +60,12 @@ extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! photoCollectionViewCell
-        cell.articleImageView.getArticlePhoto(postId: UserPhotoData.shared.info[indexPath.row].postId, index: indexPath.row)
+        
+        if let dataImage = UserPhotoData.shared.info[indexPath.row].postPhoto {
+            cell.articleImageView.image = UIImage(data: dataImage)
+        } else {
+            cell.articleImageView.getUserPhotoWall(postId: UserPhotoData.shared.info[indexPath.row].postId, index: indexPath.row)
+        }
         return cell
     }
     

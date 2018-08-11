@@ -13,7 +13,6 @@ class MasterTableViewController: UITableViewController {
     
     @IBOutlet weak var pickerTextField: UITextField!
     
-    private let nilCell = "nilCell"
     private let courseCell = "courseCell"
     private let COURSE_ARTICLE_Key = "courseArticle"
     private let photoServlet = "photoServlet"
@@ -49,17 +48,9 @@ class MasterTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -69,10 +60,7 @@ class MasterTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let coursecell = tableView.dequeueReusableCell(withIdentifier: courseCell, for: indexPath) as? MasterTableViewCell else {
-            assertionFailure("Fail to get MasterTableViewCell.")
-            return UITableViewCell()
-        }
+        let courseCell = tableView.dequeueReusableCell(withIdentifier: self.courseCell, for: indexPath) as! MasterTableViewCell
         
         let course = courseList[indexPath.row]
         let requestNumOfJoin = ["courseArticle":"courseJoin","courseId":"\(course.courseID)"]
@@ -89,27 +77,23 @@ class MasterTableViewController: UITableViewController {
                 return
             }
             
+//            guard let courseDeadLine = self.dateFormatter.date(from: course.courseApplyDeadLine), Date() < courseDeadLine else {
+//                self.hiddenCell.append(indexPath)
+//                return
+//            }
+            
             if let peopleNumber = String(data: data, encoding: .utf8) {
-                coursecell.numberOfJoinedLabel.text = "參加人數: \(peopleNumber)/\(course.coursePeopleNumber)"
+                courseCell.numberOfJoinedLabel.text = "參加人數: \(peopleNumber)/\(course.coursePeopleNumber)"
             }
             
-            guard let courseDeadLine = self.dateFormatter.date(from: course.courseApplyDeadLine), Date() < courseDeadLine else {
-                self.hiddenCell.append(indexPath)
-                return
-            }
             
-            coursecell.courseNameLabel.text = course.courseName
-            coursecell.starTimeLabel.text = "開始日期: \(course.courseDate)"
-            coursecell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
-            coursecell.locationLabel.text = course.courseLocation
+            courseCell.courseNameLabel.text = course.courseName
+            courseCell.starTimeLabel.text = "開始日期: \(course.courseDate)"
+            courseCell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
+            courseCell.locationLabel.text = course.courseLocation
         }
         
-//        if let courseDeadLine = self.dateFormatter.date(from: course.courseApplyDeadLine), Date() > courseDeadLine {
-//            return nilcell
-//        } else {
-//            return coursecell
-//        }
-        return coursecell
+        return courseCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -123,20 +107,16 @@ class MasterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         var height = 120.0
-        
         for indexpath in hiddenCell {
             if indexpath == indexPath {
                 height = 0.0
             }
         }
-        
         return CGFloat(height)
     }
     
     private func downloadCourse(professionItem: String) {
-        
         let requestGetCourse = ["courseArticle":"getCourseByProfessionItem","professionItem":professionItem]
         
         Task.postRequestData(urlString: urlString + courseArticleServlet, request: requestGetCourse) { (error, data) in
@@ -146,43 +126,36 @@ class MasterTableViewController: UITableViewController {
                 return
             }
             
-            guard let data = data, var courseList = try? decoder.decode([Course].self, from: data) else {
+            guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
                 print("Data is nil.")
                 return
             }
             
             self.courseList = courseList
-            
-            for i in 0..<courseList.count {
-                
-                //                guard let courseDeadLine = self.dateFormatter.date(from: courseList[i].courseApplyDeadLine), Date() < courseDeadLine else {
-                //                    courseList.remove(at: i)
-                //                    self.courseList.remove(at: i)
-                //
-                //                    return
-                //                }
-                
-                self.downloadImages(imageID: courseList[i].courseImageID, doneHandler: { (error, data) in
-                    
-                    if let error = error {
-                        assertionFailure("Fail to downloadImage: \(error)")
-                        return
-                    }
-                    
-                    guard let data = data, let image = UIImage(data: data) else {
-                        assertionFailure("Data is nil.")
-                        return
-                    }
-                    
-                    self.photoList[i] = image
-                })
-            }
-            self.tableView.reloadData()
-            
+            self.handleImage()
         }
     }
     
+    private func handleImage(){
+        for i in 0..<self.courseList.count {
+            self.downloadImages(imageID: courseList[i].courseImageID,
+                                doneHandler: { (error, data) in
+                if let error = error {
+                    assertionFailure("Fail to downloadImage: \(error)")
+                    return
+                }
+                guard let data = data, let image = UIImage(data: data) else {
+                    assertionFailure("Data is nil.")
+                    return
+                }
+                self.photoList[i] = image
+            })
+        }
+        self.tableView.reloadData()
+    }
+    
     private func downloadImages(imageID : Int, doneHandler: @escaping Task.DoneHandler){
+        
         let urlStr = urlString + photoServlet
         let request : [String : Any] = ["action":"getImage","photo_id":imageID,"imageSize":1000]
         
@@ -226,7 +199,6 @@ extension MasterTableViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     // MARK: PickerView Delegate
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -241,6 +213,9 @@ extension MasterTableViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerTextField.text = pickerArray[row]
+        courseList.removeAll()
+        photoList.removeAll()
+        hiddenCell.removeAll()
         downloadCourse(professionItem: pickerArray[row])
     }
     

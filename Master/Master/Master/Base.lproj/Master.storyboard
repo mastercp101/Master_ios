@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dZa-qw-qZD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,7 +213,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.75894135210000002" blue="0.79167244420000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="uKK-tT-UBT" firstAttribute="centerY" secondItem="vcW-7o-b5Q" secondAttribute="centerY" id="TiW-U7-yTg"/>
                                     <constraint firstAttribute="height" constant="230" id="ZAE-7c-cIv"/>
@@ -223,19 +222,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
                                 <rect key="frame" x="0.0" y="94" width="375" height="244"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Va9-wr-zID" secondAttribute="height" multiplier="375:244" id="ToE-bD-ueD"/>
+                                    <constraint firstAttribute="height" constant="261" id="Mw8-Yx-YUQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Va9-wr-zID" secondAttribute="trailing" id="6HJ-qT-qeQ"/>
+                            <constraint firstItem="Va9-wr-zID" firstAttribute="trailing" secondItem="P4g-N8-FCO" secondAttribute="trailing" id="E63-wV-tB0"/>
+                            <constraint firstItem="Va9-wr-zID" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" id="FaX-OF-lUM"/>
                             <constraint firstItem="P4g-N8-FCO" firstAttribute="bottom" secondItem="vcW-7o-b5Q" secondAttribute="bottom" constant="20" id="HeB-3x-zkH"/>
-                            <constraint firstItem="Va9-wr-zID" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" id="NSD-xH-oGU"/>
                             <constraint firstItem="vcW-7o-b5Q" firstAttribute="trailing" secondItem="P4g-N8-FCO" secondAttribute="trailing" constant="-10" id="Qid-jf-4Bw"/>
                             <constraint firstItem="vcW-7o-b5Q" firstAttribute="leading" secondItem="P4g-N8-FCO" secondAttribute="leading" constant="10" id="S06-r0-jRq"/>
-                            <constraint firstItem="Va9-wr-zID" firstAttribute="top" secondItem="P4g-N8-FCO" secondAttribute="top" constant="30" id="YPq-AB-rSJ"/>
-                            <constraint firstItem="vcW-7o-b5Q" firstAttribute="top" secondItem="Va9-wr-zID" secondAttribute="bottom" constant="30" id="ccg-DD-wv8"/>
+                            <constraint firstItem="Va9-wr-zID" firstAttribute="top" secondItem="P4g-N8-FCO" secondAttribute="top" constant="28" id="pfB-dD-3NX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4g-N8-FCO"/>
                     </view>
@@ -403,16 +401,16 @@
     </scenes>
     <resources>
         <image name="Master" width="24" height="23"/>
-        <image name="pfs_ball" width="116" height="116"/>
-        <image name="pfs_code" width="116" height="116"/>
-        <image name="pfs_language" width="116" height="116"/>
-        <image name="pfs_music" width="116" height="116"/>
-        <image name="pfs_paint" width="116" height="116"/>
-        <image name="pfs_skate" width="116" height="116"/>
-        <image name="pfs_swim" width="116" height="116"/>
-        <image name="pfs_workout" width="116" height="116"/>
+        <image name="pfs_ball" width="87" height="87"/>
+        <image name="pfs_code" width="87" height="87"/>
+        <image name="pfs_language" width="87" height="87"/>
+        <image name="pfs_music" width="87" height="87"/>
+        <image name="pfs_paint" width="87" height="87"/>
+        <image name="pfs_skate" width="87" height="87"/>
+        <image name="pfs_swim" width="87" height="87"/>
+        <image name="pfs_workout" width="87" height="87"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JET-dQ-tiY"/>
+        <segue reference="2cj-Tj-yB4"/>
     </inferredMetricsTieBreakers>
 </document>

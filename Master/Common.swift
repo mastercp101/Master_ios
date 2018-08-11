@@ -12,7 +12,7 @@ import UIKit
 //if you want to put variable property put it in singleton
 
 // Connect DB URL
-//let urlString = "http://127.0.0.1:8080/Master/"
+let urlString = "http://127.0.0.1:8080/Master/"
 //哲維
 let urlString = "http://192.168.50.20:8080/Master/"
 //峻亦
@@ -210,6 +210,19 @@ extension UIButton {
 
 extension UIImageView {
     
+    // 下載相片牆
+    func getUserPhotoWall(postId: Int, index: Int) {
+        let url = urlString + urlUserInfo
+        let request : [String : Any] = ["action" : "getUserPostPhoto", "postId" : postId]
+        let image = UIImage(named: "user_default_por")
+        
+        downloadImage(url, request: request, defaultImage: image, failHandler: { (data) in
+            UserPhotoData.shared.info[index].postPhoto = data
+        }) { (data) in
+            UserPhotoData.shared.info[index].postPhoto = data
+        }
+    }
+
     // 下載文章圖片
     func getArticlePhoto(postId: Int, index: Int) {
         let url = urlString + urlUserInfo

@@ -219,8 +219,8 @@
                                     <constraint firstItem="uKK-tT-UBT" firstAttribute="centerX" secondItem="vcW-7o-b5Q" secondAttribute="centerX" id="j0m-rx-8Fh"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
-                                <rect key="frame" x="0.0" y="92" width="375" height="261"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Va9-wr-zID">
+                                <rect key="frame" x="0.0" y="94" width="375" height="244"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="261" id="Mw8-Yx-YUQ"/>
                                 </constraints>

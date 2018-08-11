@@ -137,14 +137,10 @@ class ArticleDetailViewController: UIViewController {
             return
         }
         endEdit()
-        Alert.shared.buildDoubleAlert(viewController: self, alertTitle: "確定發布?", alertMessage: nil, actionTitles: ["取消","確定"], firstHandler: { (action) in
-            // 取消
-        }) { (action) in
-            // 確定
-            guard let index = self.selectArticleIndex, let account = userAccount else { return }
-            self.setArticleComment(account: account, postId: ArticleData.shared.info[index].postId, content: text, returnIndex: index)
-            self.commentTextField.text?.removeAll()
-        }
+        // 發表留言
+        guard let index = self.selectArticleIndex, let account = userAccount else { return }
+        self.setArticleComment(account: account, postId: ArticleData.shared.info[index].postId, content: text, returnIndex: index)
+        self.commentTextField.text?.removeAll()
     }
 
     @IBAction func detailClinkbBlank(_ sender: UITapGestureRecognizer) {

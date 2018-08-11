@@ -26,8 +26,8 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 10
+//        self.layer.masksToBounds = true
+//        self.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,17 +36,17 @@ class ArticleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    override var frame: CGRect {
-        
-        didSet {
-            var newFrame = frame
-//            newFrame.origin.x += 10
-            newFrame.origin.y += 5
-//            newFrame.size.width -= 20
-            newFrame.size.height -= 10
-            super.frame = newFrame
-        }
-    }
+//    override var frame: CGRect {
+//
+//        didSet {
+//            var newFrame = frame
+////            newFrame.origin.x += 10
+//            newFrame.origin.y += 5
+////            newFrame.size.width -= 20
+//            newFrame.size.height -= 10
+//            super.frame = newFrame
+//        }
+//    }
 }
 
 // 文章內文
@@ -61,16 +61,16 @@ class ArticleDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var articleDetailTalks: UILabel!
     @IBOutlet weak var articleDetailLikeButton: UIButton!
     
-    override var frame: CGRect {
-        didSet {
-            var newFrame = frame
-//            newFrame.origin.x += 10
-//            newFrame.size.width -= 20
-            newFrame.origin.y += 5
-            newFrame.size.height -= 15
-            super.frame = newFrame
-        }
-    }
+//    override var frame: CGRect {
+//        didSet {
+//            var newFrame = frame
+////            newFrame.origin.x += 10
+////            newFrame.size.width -= 20
+//            newFrame.origin.y += 5
+//            newFrame.size.height -= 15
+//            super.frame = newFrame
+//        }
+//    }
 }
 
 // 留言

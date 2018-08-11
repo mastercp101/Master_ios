@@ -118,7 +118,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="更多"/>
                                         <connections>
-                                            <segue destination="Igz-f1-jYT" kind="presentation" id="Uho-Rt-l5w"/>
+                                            <segue destination="Igz-f1-jYT" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Uho-Rt-l5w"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="s8a-2i-8RW">
@@ -558,6 +558,6 @@
         <image name="user_default_por" width="450" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zgG-pD-Chu"/>
+        <segue reference="Uho-Rt-l5w"/>
     </inferredMetricsTieBreakers>
 </document>

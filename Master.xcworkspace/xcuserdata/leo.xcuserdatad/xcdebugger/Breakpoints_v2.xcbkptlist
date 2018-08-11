@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Master/Master/MasterTableViewController.swift"
-            timestampString = "555663202.912351"
+            timestampString = "555663881.050576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "downloadCourse(professionItem:)"
             landmarkType = "7">
          </BreakpointContent>

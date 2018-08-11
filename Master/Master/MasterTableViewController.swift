@@ -96,11 +96,7 @@ class MasterTableViewController: UITableViewController {
             cell.endTimeLabel.text = "截止日期: \(course.courseApplyDeadLine)"
             cell.locationLabel.text = course.courseLocation
         }
-        
-        if let courseDeadLine = dateFormatter.date(from: course.courseApplyDeadLine), Date() > courseDeadLine {
-            cell.isHidden = true
-        }
-        
+                
         return cell
     }
     
@@ -126,7 +122,7 @@ class MasterTableViewController: UITableViewController {
                 return
             }
             
-            guard let data = data, let courseList = try? decoder.decode([Course].self, from: data) else {
+            guard let data = data, var courseList = try? decoder.decode([Course].self, from: data) else {
                 print("Data is nil.")
                 return
             }
@@ -135,6 +131,12 @@ class MasterTableViewController: UITableViewController {
             self.tableView.reloadData()
             
             for i in 0..<courseList.count {
+                
+                guard let courseDeadLine = self.dateFormatter.date(from: courseList[i].courseApplyDeadLine), Date() > courseDeadLine else {
+                    courseList.remove(at: i)
+                    return
+                }
+                
                 self.downloadImages(imageID: courseList[i].courseImageID, doneHandler: { (error, data) in
                     
                     if let error = error {

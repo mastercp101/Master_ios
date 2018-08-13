@@ -62,12 +62,19 @@ class singleCourseViewController: UIViewController {
                 assertionFailure("Error : \(error)")
                 return
             }
-            guard let data = data ,let course = try? decoder.decode(Course.self, from: data)else{
+            guard let data = data else{
                 assertionFailure("Invalid data")
                 return
             }
-            self.course = course
-            self.singleCourseTableView.reloadData()
+            
+            do{
+                let course = try decoder.decode(Course.self, from: data)
+                self.course = course
+                self.singleCourseTableView.reloadData()
+            }catch{
+                assertionFailure("Error : \(error)")
+            }
+            
         }
     }
     

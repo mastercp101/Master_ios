@@ -30,7 +30,7 @@ class singleCourseViewController: UIViewController {
         ref = Database.database().reference()
         downloadFriendPortrait()
         self.navigationItem.title = course?.courseName
-        if userAccess == .student || userAccount != course!.userID{
+        if userAccess == .student || userAccount != course!.userID {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
@@ -38,6 +38,7 @@ class singleCourseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         singleCourseTableView.setCellAutoRowHeight()
+        downloadCourse()
     }
     
     @IBAction func manageBtnTapped(_ sender: UIButton) {
@@ -51,6 +52,23 @@ class singleCourseViewController: UIViewController {
     
     @IBAction func backBtnTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func downloadCourse(){
+        let urlStr = urlString + "finalCourseServlet"
+        let request : [String : Any] = ["action":"findById","course_id":course!.courseID]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let course = try? decoder.decode(Course.self, from: data)else{
+                assertionFailure("Invalid data")
+                return
+            }
+            self.course = course
+            self.singleCourseTableView.reloadData()
+        }
     }
     
     private func downloadFriendPortrait(){

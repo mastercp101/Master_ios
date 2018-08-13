@@ -363,7 +363,8 @@ class editCourseViewController: UIViewController{
                 return
             }
             Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "上傳課程成功！") { (_) in
-                self.performSegue(withIdentifier: "unwindToCourseWithEditCourseSuccess", sender: nil)
+//                self.performSegue(withIdentifier: "unwindToCourseWithEditCourseSuccess", sender: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

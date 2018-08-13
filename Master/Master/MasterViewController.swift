@@ -43,9 +43,6 @@ class MasterViewController: UIViewController {
         // Download ProfessionCategorys
         downloadProfessionCategory()
         
-        // Download HighlightCoursePhoto
-        downloadHighlightCourse()
-        
         // Add gesture recognizer
         let toleft = UISwipeGestureRecognizer(target: self, action: #selector(toLeft))
         toleft.direction = .left
@@ -58,6 +55,11 @@ class MasterViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHighlightImage))
         masterImageView.addGestureRecognizer(tap)
         masterImageView.isUserInteractionEnabled = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Download HighlightCoursePhoto
+        downloadHighlightCourse()
     }
     
     override func viewDidAppear(_ animated: Bool) {

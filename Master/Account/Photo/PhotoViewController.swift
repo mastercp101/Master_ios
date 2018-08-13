@@ -19,6 +19,7 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionView()
+        prepareRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +51,21 @@ class PhotoViewController: UIViewController {
             self.photoCollectionView.reloadData()
         }
     }
+    
+    // 加入夏拉重新整理
+    private func prepareRefreshControl() {
+        photoCollectionView.refreshControl = UIRefreshControl()
+        photoCollectionView.refreshControl?.addTarget(self, action: #selector(refreshPhotoData), for: .valueChanged)
+    }
+    // 下拉刷新畫面執行
+    @objc func refreshPhotoData() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            defer { self.photoCollectionView.refreshControl?.endRefreshing() }
+            self.downloadUserArticle()
+        }
+    }
+    
 }
 
 extension PhotoViewController : UICollectionViewDelegate,UICollectionViewDataSource {

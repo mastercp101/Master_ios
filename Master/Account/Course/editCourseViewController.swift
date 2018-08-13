@@ -62,15 +62,14 @@ class editCourseViewController: UIViewController{
         cropper.delegate = self
         courseCategoryPicker.delegate = self
         setPicker()
+        
+        // Download user profession
+        downloadUserProfession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Common.shared.addObserves(scrollView: scrollView)
-        // Download user profession
-        downloadUserProfession()
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -197,7 +196,6 @@ class editCourseViewController: UIViewController{
         }
         
         let professionIndex = professions.index { (profession) -> Bool in
-            print("\(profession.professionID),\(course.professionID)")
             guard profession.professionID == course.professionID else{
                 return false
             }
@@ -404,7 +402,6 @@ extension editCourseViewController : UIImageCropperProtocol{
     
     // MARK: - Did Finish Crop Image
     func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
-        
         guard let image = croppedImage else{
             assertionFailure("Invalid Image")
             return

@@ -26,7 +26,9 @@ class CourseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.iCarouselView.reloadData()
         if isCourseDelete == true{
-            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in}
+            Alert.shared.buildSingleAlert(viewConteoller: self, alertTitle: "課程刪除成功") { (action) in
+                self.isCourseDelete = false
+            }
         }
         identifyAccess()
     }

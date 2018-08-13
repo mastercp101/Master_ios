@@ -199,7 +199,6 @@
                                 <action selector="backBtnTapped:" destination="6rA-E2-apw" id="gKB-NH-oC9"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="儲存" id="N5o-kG-c7m"/>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>

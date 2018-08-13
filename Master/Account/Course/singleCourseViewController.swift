@@ -64,6 +64,10 @@ class singleCourseViewController: UIViewController {
         guard let course = course else{
             return
         }
+        guard userAccount != nil else{
+            Common.shared.alertUserToLogin(viewController: self)
+            return
+        }
         guard course.userID != userAccount ,userAccess != .coach else{
             return
         }
@@ -91,6 +95,12 @@ class singleCourseViewController: UIViewController {
     
     // MARK: - applyButtonTapped
     @IBAction func applyBtnTapped(_ sender: Any) {
+        
+        guard userAccount != nil else{
+            Common.shared.alertUserToLogin(viewController: self)
+            return
+        }
+        
         guard userAccess == .student else{
             return
         }
@@ -103,7 +113,7 @@ class singleCourseViewController: UIViewController {
     
     private func checkApply(course : Course){
         let urlStr = urlString + applyServer
-        let request : [String : Any] = ["action":"check","course_id":course.courseID,"user_id":"Cindy"]
+        let request : [String : Any] = ["action":"check","course_id":course.courseID,"user_id":userAccount!]
         Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
             if let error = error{
                 assertionFailure("Error : \(error)")

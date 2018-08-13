@@ -10,6 +10,9 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     
+    
+    @IBOutlet weak var notPhotoLabel: UILabel!
+    
     @IBOutlet weak var photoCollectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     var fullScreenWidth : CGFloat?
@@ -24,7 +27,10 @@ class PhotoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if UserPhotoData.shared.info.count == 0 { downloadUserArticle() }
+        if UserPhotoData.shared.info.count == 0 {
+            photoCollectionView.reloadData()
+            downloadUserArticle()
+        }
     }
     
     private func setCollectionView(){
@@ -48,7 +54,13 @@ class PhotoViewController: UIViewController {
                 return
             }
             UserPhotoData.shared.info = articles
-            self.photoCollectionView.reloadData()
+            
+            if UserPhotoData.shared.info.count == 0 {
+                self.notPhotoLabel.isHidden = false
+            } else {
+                self.notPhotoLabel.isHidden = true
+                self.photoCollectionView.reloadData()
+            }
         }
     }
     

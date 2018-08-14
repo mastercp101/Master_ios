@@ -15,6 +15,7 @@ struct FindByCourseApply : Codable{
     let userName : String
     let applyStatusName : String
     let applyDate : String
+    let userID : String
     
     enum CodingKeys : String,CodingKey{
         case courseID = "course_id"
@@ -22,6 +23,7 @@ struct FindByCourseApply : Codable{
         case userName = "user_name"
         case applyStatusName = "apply_status_name"
         case applyDate = "apply_time"
+        case userID = "user_id"
     }
 }
 

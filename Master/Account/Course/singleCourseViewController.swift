@@ -70,11 +70,28 @@ class singleCourseViewController: UIViewController {
             do{
                 let course = try decoder.decode(Course.self, from: data)
                 self.course = course
-                self.singleCourseTableView.reloadData()
+                self.downloadImage(imageID: course.courseImageID)
             }catch{
                 assertionFailure("Error : \(error)")
             }
             
+        }
+    }
+    
+    private func downloadImage(imageID : Int){
+        let urlStr = urlString + "photoServlet"
+        let request : [String : Any] = ["action":"getImage","photo_id":imageID,"imageSize":1000]
+        Task.postRequestData(urlString: urlStr, request: request) { (error, data) in
+            if let error = error{
+                assertionFailure("Error : \(error)")
+                return
+            }
+            guard let data = data ,let image = UIImage(data: data)else{
+                assertionFailure("Invalid data")
+                return
+            }
+            self.image = image
+            self.singleCourseTableView.reloadData()
         }
     }
     

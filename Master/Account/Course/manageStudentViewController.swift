@@ -98,7 +98,7 @@ extension manageStudentViewController : UITableViewDelegate ,UITableViewDataSour
         cell.studentImageView.setRoundImage()
         
         let apply = applyList[indexPath.row]
-        cell.studentImageView.getUserPortrait(account: apply.userName, index: nil)
+        cell.studentImageView.getUserPortrait(account: apply.userID, index: nil)
         cell.applyStatus.text = apply.applyStatusName
         cell.studentName.text = apply.userName
         return cell

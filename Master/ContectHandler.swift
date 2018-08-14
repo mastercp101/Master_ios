@@ -120,6 +120,7 @@ class ContectHandler{
     }
     
     private func openChatRoom(){
+        downloadFriendPortrait()
         let chatRoom = ChatRoom(friendUserID: self.friendUserID, roomName: self.friendUserName, roomPosition: self.position, lastMessage: "")
         let nextVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "chatRoomVC") as! ChatRoomViewController
         nextVC.chatRoom = chatRoom
@@ -127,5 +128,11 @@ class ContectHandler{
         viewController.present(navigation, animated: true, completion: nil)
     }
     
+    
+    private func downloadFriendPortrait(){
+        let imageView = UIImageView()
+        imageView.getUserPortrait(account: friendUserID, index: nil)
+        ChatItemSingleTon.shared.friendPortrait = imageView.image
+    }
     
 }

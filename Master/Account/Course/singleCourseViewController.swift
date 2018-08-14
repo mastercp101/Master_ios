@@ -15,6 +15,7 @@ class singleCourseViewController: UIViewController {
     @IBOutlet weak var manageBtn: UIBarButtonItem!
     @IBOutlet weak var singleCourseTableView: UITableView!
     
+    
     var course : Course?
     var image : UIImage?
     var applyList = [FindByCourseApply]()
@@ -29,7 +30,6 @@ class singleCourseViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         downloadFriendPortrait()
-        self.navigationItem.title = course?.courseName
         if userAccess == .student || userAccount != course!.userID {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -41,8 +41,8 @@ class singleCourseViewController: UIViewController {
         downloadCourse()
     }
     
+    
     @IBAction func manageBtnTapped(_ sender: UIButton) {
-        
         guard let course = course else{
             assertionFailure("Invalid Course")
             return
@@ -71,6 +71,7 @@ class singleCourseViewController: UIViewController {
                 let course = try decoder.decode(Course.self, from: data)
                 self.course = course
                 self.downloadImage(imageID: course.courseImageID)
+                self.navigationItem.title = course.courseName
             }catch{
                 assertionFailure("Error : \(error)")
             }
